@@ -1,0 +1,7 @@
+*.vs
+*.pdb
+*.log
+x64/
+.vs/
+*.inc
+*.pch
