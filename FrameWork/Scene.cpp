@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// File: CScene.cpp
+// File: Scene.cpp
 //-----------------------------------------------------------------------------
 
 #include "stdafx.h"
@@ -172,4 +172,3 @@ void CScene::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera
 
 	for (int i = 0; i < m_nShaders; i++) if (m_ppShaders[i]) m_ppShaders[i]->Render(pd3dCommandList, pCamera);
 }
-
