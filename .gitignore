@@ -4,6 +4,7 @@
 *.log
 *.sln
 *.vcxproj
+*.vcxproj.*
 *.user
 *.i
 *.opensdf
@@ -29,7 +30,7 @@ Src/Shaders/Compiled/*.pdb
 MakeSpriteFont/obj/
 
 # CMake 관련
-CMakeUserPresets.json/
+CMakeUserPresets.json
 
 # 기타 디렉터리 무시
 Bin/
