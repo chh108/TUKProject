@@ -43,6 +43,9 @@
     <Filter Include="77.Shaders">
       <UniqueIdentifier>{568e690c-d62b-4c47-8ad3-8e87f3c59dec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Texture">
+      <UniqueIdentifier>{bfffbb4b-ed31-4f22-99d3-e61997a18c10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -90,6 +93,9 @@
     <ClInclude Include="Shader.h">
       <Filter>77.Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>02.GameObjects\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -130,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>77.Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>02.GameObjects\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
