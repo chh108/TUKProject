@@ -1,7 +1,40 @@
+# Visual Studio 관련 파일
 *.vs
 *.pdb
 *.log
-x64/
+*.sln
+*.vcxproj
+*.user
+*.i
+*.opensdf
+*.opendb
+*.ipch
+*.cache
+*.tlog
+*.lastbuildstate
+*.ilk
+*.VC.db
+*.nupkg
+
+# Visual Studio 디렉터리
 .vs/
-*.inc
-*.pch
+ipch/
+x64/
+
+# Shader 컴파일 파일
+Src/Shaders/Compiled/*.inc
+Src/Shaders/Compiled/*.pdb
+
+# SpriteFont 관련
+MakeSpriteFont/obj/
+
+# CMake 관련
+CMakeUserPresets.json/
+
+# 기타 디렉터리 무시
+Bin/
+packages/
+Tests/
+Testing/
+wiki/
+out/
