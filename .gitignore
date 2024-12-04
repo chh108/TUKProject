@@ -2,8 +2,6 @@
 *.vs
 *.pdb
 *.log
-*.sln
-*.vcxproj
 *.vcxproj.*
 *.user
 *.i

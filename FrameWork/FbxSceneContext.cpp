@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "Shader.h"
 #include "FbxSceneContext.h"
+#include "Texture.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -431,12 +432,13 @@ void RenderFbxNodeHierarchy(ID3D12GraphicsCommandList *pd3dCommandList, FbxNode 
 	for (int i = 0; i < nChilds; i++) RenderFbxNodeHierarchy(pd3dCommandList, pfbxNode->GetChild(i), fbxCurrentTime, fbxmtxWorld);
 }
 
-void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxNode *pfbxNode)
+void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxNode *pfbxNode, CTexture& textureManager)
 {
 	FbxNodeAttribute *pfbxNodeAttribute = pfbxNode->GetNodeAttribute();
 	if (pfbxNodeAttribute && (pfbxNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh))
 	{
 		FbxMesh *pfbxMesh = pfbxNode->GetMesh();
+		textureManager.ExtractTexturesFromNode(pfbxNode);
 		if (pfbxMesh)
 		{
 			int nVertices = pfbxMesh->GetControlPointsCount();

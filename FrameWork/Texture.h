@@ -1,33 +1,24 @@
-// 파일명: Texture.h
+// Texture.h
 #pragma once
 
+// 20241204 Texture 헤더 파일 수정
 #include "stdafx.h"
 #include <codecvt>
 
-class Texture {
+class CTexture {
 public:
-    struct TextureInfo {
-        std::string texturePath;
-        ID3D12Resource* textureResource = nullptr;
-    };
+    CTexture(ID3D12Device* device, ID3D12GraphicsCommandList* commandList, ID3D12DescriptorHeap* descriptorHeap);
+    ~CTexture();
 
-private:
-    ID3D12Device* m_pd3dDevice = nullptr;
-    ID3D12GraphicsCommandList* m_pd3dCommandList = nullptr;
-    ID3D12DescriptorHeap* m_pd3dDescriptorHeap = nullptr;
-    UINT m_heapIndex = 0;
-
-public:
-    Texture(ID3D12Device* device, ID3D12GraphicsCommandList* commandList, ID3D12DescriptorHeap* descriptorHeap);
-    ~Texture();
-
-    // 텍스처 로드 함수
+    // 텍스처 로드 및 디스크립터 힙 등록
     ID3D12Resource* LoadTexture(const std::string& path);
 
-    // FBX 노드에서 텍스처 추출
-    std::vector<TextureInfo> ExtractTexturesFromNode(FbxNode* node);
+    // FBX 노드에서 텍스처 추출 및 로드
+    void ExtractTexturesFromNode(FbxNode* node);
 
-    // 디스크립터 힙 인덱스 관리
-    void SetHeapIndex(UINT heapIndex);
-    UINT GetHeapIndex() const;
+private:
+    ID3D12Device* m_pd3dDevice;
+    ID3D12GraphicsCommandList* m_pd3dCommandList;
+    ID3D12DescriptorHeap* m_pd3dDescriptorHeap;
+    UINT m_heapIndex = 0;
 };
