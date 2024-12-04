@@ -18,8 +18,8 @@ public:
 
 CFbxRenderInfo::~CFbxRenderInfo()
 {
-	if (m_pShader) m_pShader->Release();
-	if (m_pMesh) m_pMesh->Release();
+	if (m_pShader) m_pShader->Release(); m_pShader = NULL;
+	if (m_pMesh) m_pMesh->Release(); m_pMesh = NULL;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -452,39 +452,9 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 				for (int j = 0; j < nPolygonSize; j++) pnIndices[k++] = pfbxMesh->GetPolygonVertex(i, j);
 			}
 
-			// 20241203 FBX Load TextureInfo
-			int materialCount = pfbxNode->GetMaterialCount();
-			for (int i = 0; i < materialCount; i++)
-			{
-				FbxSurfaceMaterial* pfbxMaterial = pfbxNode->GetMaterial(i);
-				if (pfbxMaterial)
-				{
-					FbxProperty diffuseProp = pfbxMaterial->FindProperty(FbxSurfaceMaterial::sDiffuse);
-					if (diffuseProp.IsValid())
-					{
-						FbxFileTexture* pfbxTexture = diffuseProp.GetSrcObject<FbxFileTexture>();
-						if (pfbxTexture)
-						{
-							const char* texturePath = pfbxTexture->GetFileName();
-							if (texturePath)
-							{
-								//// 텍스처를 로드하여 DirectX 리소스로 변환
-								//ID3D12Resource* pTextureResource = LoadTexture(pd3dDevice, pd3dCommandList, texturePath);
-								//// 텍스처를 셰이더에 설정하거나 CFbxRenderInfo에 추가
-								//if (pTextureResource)
-								//{
-								//	// 텍스처 셰이더 리소스를 연결하는 코드 추가
-								//	// 예: pFbxRenderInfo->m_pTexture = pTextureResource;
-								//	// 이후 셰이더에서 텍스처를 사용할 수 있도록 바인딩해야 함
-								//}
-							}
-						}
-					}
-				}
-			}
-
 			CFbxRenderInfo *pFbxRenderInfo = new CFbxRenderInfo();
 			pFbxRenderInfo->m_pMesh = new CMeshFromFbx(pd3dDevice, pd3dCommandList, nVertices, nIndices, pnIndices);
+
 			int nSkinDeformers = pfbxMesh->GetDeformerCount(FbxDeformer::eSkin);
 			if (nSkinDeformers > 0)
 				pFbxRenderInfo->m_pShader = new CFbxSkinnedModelShader();

@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Shader.h"
+#include "Texture.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CPlayer
@@ -235,7 +236,7 @@ void CPlayer::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamer
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
-CAngrybotPlayer::CAngrybotPlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
+CBluePlayer::CBluePlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
 {
 	m_pCamera = ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
 
@@ -255,11 +256,11 @@ CAngrybotPlayer::CAngrybotPlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommand
 	SetPosition(XMFLOAT3(0.0f, 0.0f, -60.0f));
 }
 
-CAngrybotPlayer::~CAngrybotPlayer()
+CBluePlayer::~CBluePlayer()
 {
 }
 
-CCamera *CAngrybotPlayer::ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed)
+CCamera *CBluePlayer::ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed)
 {
 	DWORD nCurrentCameraMode = (m_pCamera) ? m_pCamera->GetMode() : 0x00;
 	if (nCurrentCameraMode == nNewCameraMode) return(m_pCamera);

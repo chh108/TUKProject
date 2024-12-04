@@ -413,7 +413,7 @@ void CGameFramework::BuildObjects()
 	m_pd3dCommandList->Reset(m_pd3dCommandAllocator, NULL);
 
 #ifdef _WITH_FBX_SCENE_INSTANCING
-	m_pfbxScene = ::LoadFbxSceneFromFile(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, "Model/Angrybot.fbx");
+	m_pfbxScene = ::LoadFbxSceneFromFile(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, "Model/Blue.fbx");
 #endif
 	m_pScene = new CScene();
 	if (m_pScene) m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, m_pfbxScene);
@@ -422,7 +422,7 @@ void CGameFramework::BuildObjects()
 	::CreateMeshFromFbxNodeHierarchy(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxScene->GetRootNode());
 #endif
 
-	CAngrybotPlayer *pPlayer = new CAngrybotPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxSdkManager, m_pfbxScene);
+	CBluePlayer *pPlayer = new CBluePlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxSdkManager, m_pfbxScene);
 
 	m_pScene->m_pPlayer = m_pPlayer = pPlayer;
 	m_pCamera = m_pPlayer->GetCamera();

@@ -239,7 +239,7 @@ void CGameObject::Rotate(XMFLOAT4 *pxmf4Quaternion)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CAngrybotObject::CAngrybotObject(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
+CBlueObject::CBlueObject(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
 {
 	m_pfbxScene = pfbxScene;
 	if (!m_pfbxScene)
@@ -250,7 +250,7 @@ CAngrybotObject::CAngrybotObject(ID3D12Device *pd3dDevice, ID3D12GraphicsCommand
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 }
 
-CAngrybotObject::~CAngrybotObject()
+CBlueObject::~CBlueObject()
 {
 }
 
