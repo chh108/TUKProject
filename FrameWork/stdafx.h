@@ -42,6 +42,7 @@ using namespace std;
 
 #include <fbxsdk.h>
 
+
 //#define _WITH_FBX_SCENE_INSTANCING
 
 using namespace DirectX;
