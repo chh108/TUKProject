@@ -438,7 +438,7 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 	if (pfbxNodeAttribute && (pfbxNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh))
 	{
 		FbxMesh *pfbxMesh = pfbxNode->GetMesh();
-		textureManager.ExtractTexturesFromNode(pfbxNode);
+		//textureManager.ExtractTexturesFromNode(pfbxNode, );
 		if (pfbxMesh)
 		{
 			int nVertices = pfbxMesh->GetControlPointsCount();
@@ -471,7 +471,7 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 	}
 
 	int nChilds = pfbxNode->GetChildCount();
-	for (int i = 0; i < nChilds; i++) CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, pfbxNode->GetChild(i));
+	for (int i = 0; i < nChilds; i++) CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, pfbxNode->GetChild(i), NULL);
 }
 
 void ReleaseMeshFromFbxNodeHierarchy(FbxNode *pfbxNode)
