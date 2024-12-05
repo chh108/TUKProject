@@ -1,0 +1,245 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\FrameWork\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\protocol.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Session.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Session.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Players.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Players.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Packet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Packet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Exp_Over.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Exp_Over.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\GameServer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\GameServer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA36C2A4-2664-4933-90AB-014569C0C8F5}|..\\Server\\Server.vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\stdafx.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65253246-029B-47B6-BA29-ECAB89223433}|LabProject08-8-6(Fbx Animation).vcxproj|C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\FrameWork\\stdafx.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65253246-029B-47B6-BA29-ECAB89223433}|LabProject08-8-6(Fbx Animation).vcxproj|solutionrelative:stdafx.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Packet.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Packet.cpp",
+              "RelativeDocumentMoniker": "..\\Server\\Packet.cpp",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Packet.cpp",
+              "RelativeToolTip": "..\\Server\\Packet.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T08:44:57.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Packet.h",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Packet.h",
+              "RelativeDocumentMoniker": "..\\Server\\Packet.h",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Packet.h",
+              "RelativeToolTip": "..\\Server\\Packet.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T08:43:29.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Players.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Players.cpp",
+              "RelativeDocumentMoniker": "..\\Server\\Players.cpp",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Players.cpp",
+              "RelativeToolTip": "..\\Server\\Players.cpp",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAAAFUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T08:42:11.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Players.h",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Players.h",
+              "RelativeDocumentMoniker": "..\\Server\\Players.h",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Players.h",
+              "RelativeToolTip": "..\\Server\\Players.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T08:41:41.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "stdafx.h",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\stdafx.h",
+              "RelativeDocumentMoniker": "..\\Server\\stdafx.h",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\stdafx.h",
+              "RelativeToolTip": "..\\Server\\stdafx.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T08:40:09.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "protocol.h",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\protocol.h",
+              "RelativeDocumentMoniker": "..\\Server\\protocol.h",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\protocol.h",
+              "RelativeToolTip": "..\\Server\\protocol.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T08:38:31.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Exp_Over.h",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Exp_Over.h",
+              "RelativeDocumentMoniker": "..\\Server\\Exp_Over.h",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Exp_Over.h",
+              "RelativeToolTip": "..\\Server\\Exp_Over.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T08:37:42.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Exp_Over.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Exp_Over.cpp",
+              "RelativeDocumentMoniker": "..\\Server\\Exp_Over.cpp",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Exp_Over.cpp",
+              "RelativeToolTip": "..\\Server\\Exp_Over.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T08:37:28.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Session.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Session.cpp",
+              "RelativeDocumentMoniker": "..\\Server\\Session.cpp",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Session.cpp",
+              "RelativeToolTip": "..\\Server\\Session.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T08:36:34.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Session.h",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Session.h",
+              "RelativeDocumentMoniker": "..\\Server\\Session.h",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\Session.h",
+              "RelativeToolTip": "..\\Server\\Session.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T08:36:06.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GameServer.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\GameServer.cpp",
+              "RelativeDocumentMoniker": "..\\Server\\GameServer.cpp",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\GameServer.cpp",
+              "RelativeToolTip": "..\\Server\\GameServer.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T08:34:59.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GameServer.h",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\GameServer.h",
+              "RelativeDocumentMoniker": "..\\Server\\GameServer.h",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\GameServer.h",
+              "RelativeToolTip": "..\\Server\\GameServer.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T08:34:44.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\main.cpp",
+              "RelativeDocumentMoniker": "..\\Server\\main.cpp",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\Server\\main.cpp",
+              "RelativeToolTip": "..\\Server\\main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T08:33:48.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "stdafx.h",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\FrameWork\\stdafx.h",
+              "RelativeDocumentMoniker": "stdafx.h",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\\uACF5\uBD80\\GradProject\\TUKProject\\FrameWork\\stdafx.h",
+              "RelativeToolTip": "stdafx.h",
+              "ViewState": "AQIAANsAAAAAAAAAAAAAAOgAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T08:16:59.892Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

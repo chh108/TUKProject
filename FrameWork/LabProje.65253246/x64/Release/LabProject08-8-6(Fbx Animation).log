@@ -1,0 +1,114 @@
+﻿  stdafx.cpp
+  Camera.cpp
+  DDSTextureLoader12.cpp
+  FbxSceneContext.cpp
+  GameFramework.cpp
+  LabProject08-8-6(Fbx Animation).cpp
+  Mesh.cpp
+  Object.cpp
+  Player.cpp
+  Scene.cpp
+  Shader.cpp
+  Timer.cpp
+  WICTextureLoader12.cpp
+libfbxsdk-md.lib(fbxmanager.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlCleanupParser
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlStrcmp
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlStrcmp
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewDoc
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewDoc
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewDoc
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewDoc
+libfbxsdk-md.lib(fbxreadercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFreeDoc
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFreeDoc
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFreeDoc
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFreeDoc
+libfbxsdk-md.lib(fbxcontainertemplate.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFreeDoc
+libfbxsdk-md.lib(fbxlocale.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFreeDoc
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFreeDoc
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewProp
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewProp
+libfbxsdk-md.lib(fbxcolladautils.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewProp
+libfbxsdk-md.lib(fbxcolladaanimationelement.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewProp
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewNode
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewNode
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewTextChild
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewTextChild
+libfbxsdk-md.lib(fbxreadercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocGetRootElement
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocGetRootElement
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocGetRootElement
+libfbxsdk-md.lib(fbxcontainertemplate.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocGetRootElement
+libfbxsdk-md.lib(fbxlocale.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocGetRootElement
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocGetRootElement
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocSetRootElement
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocSetRootElement
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlDocSetRootElement
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlAddChild
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlAddChild
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlAddChild
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(fbxreadercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(fbxcolladautils.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(fbxcolladaelement.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(fbxcolladaanimationelement.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(fbxcontainertemplate.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(fbxlocale.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlGetProp
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlSaveFormatFileEnc
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlSaveFormatFileEnc
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlSaveFormatFileEnc
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlParseFile
+libfbxsdk-md.lib(fbxcontainertemplate.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlParseFile
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlParseFile
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(fbxreadercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(fbxcolladautils.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(fbxcolladaelement.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(fbxcolladaanimationelement.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(fbxiosettings.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(fbxcontainertemplate.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(fbxlocale.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFree
+libfbxsdk-md.lib(fbxio.obj) : error LNK2001: 확인할 수 없는 외부 기호 adler32
+libfbxsdk-md.lib(fbxcontainertemplate.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNodeGetContent
+libfbxsdk-md.lib(fbxreadercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNodeGetContent
+libfbxsdk-md.lib(fbxcolladaelement.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNodeGetContent
+libfbxsdk-md.lib(fbxcolladaanimationelement.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNodeGetContent
+libfbxsdk-md.lib(fbxlocale.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlStrcasecmp
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlStrcasecmp
+libfbxsdk-md.lib(fbxlocale.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlReadFile
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlReadFile
+libfbxsdk-md.lib(fbxreadercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlReadFile
+libfbxsdk-md.lib(fbxiofieldzlib.obj) : error LNK2001: 확인할 수 없는 외부 기호 deflate
+libfbxsdk-md.lib(fbxiofieldzlib.obj) : error LNK2001: 확인할 수 없는 외부 기호 deflateEnd
+libfbxsdk-md.lib(fbxiofieldzlib.obj) : error LNK2001: 확인할 수 없는 외부 기호 inflate
+libfbxsdk-md.lib(unzip.obj) : error LNK2001: 확인할 수 없는 외부 기호 inflate
+libfbxsdk-md.lib(fbxiofieldzlib.obj) : error LNK2001: 확인할 수 없는 외부 기호 inflateEnd
+libfbxsdk-md.lib(unzip.obj) : error LNK2001: 확인할 수 없는 외부 기호 inflateEnd
+libfbxsdk-md.lib(fbxiofieldzlib.obj) : error LNK2001: 확인할 수 없는 외부 기호 deflateInit_
+libfbxsdk-md.lib(fbxiofieldzlib.obj) : error LNK2001: 확인할 수 없는 외부 기호 inflateInit_
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewDocNode
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewDocNode
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewDocText
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlSetProp
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlSetProp
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlHasProp
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlEncodeEntitiesReentrant
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlReadDoc
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlCtxtReadDoc
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlCtxtReadFile
+libfbxsdk-md.lib(xmlHelper.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlIndentTreeOutput
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlIndentTreeOutput
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewChild
+libfbxsdk-md.lib(fbxcolladautils.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewChild
+libfbxsdk-md.lib(fbxcolladaanimationelement.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewChild
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNewChild
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlAddNextSibling
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlUnlinkNode
+libfbxsdk-md.lib(fbxwritercollada14.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlFreeNode
+libfbxsdk-md.lib(unzip.obj) : error LNK2001: 확인할 수 없는 외부 기호 crc32
+libfbxsdk-md.lib(unzip.obj) : error LNK2001: 확인할 수 없는 외부 기호 inflateInit2_
+libfbxsdk-md.lib(unzip.obj) : error LNK2001: 확인할 수 없는 외부 기호 get_crc_table
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlNodeListGetString
+libfbxsdk-md.lib(awCacheDescriptionIO.obj) : error LNK2001: 확인할 수 없는 외부 기호 xmlSaveFormatFile
+C:\Users\USER\Desktop\공부\GradProject\TUKProject\FrameWork\x64\Release\LabProject08-8-6(Fbx Animation).exe : fatal error LNK1120: 42개의 확인할 수 없는 외부 참조입니다.

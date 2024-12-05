@@ -72,19 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.2\lib\vs2019\x64\debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\USER\Desktop\공부\Graduation\LabProject08-8-6-2\2020.3.2\lib\vs2019\x64\debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\USER\Desktop\공부\Graduation\LabProject08-8-6-2\2020.3.2\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\USER\Desktop\공부\Graduation\LabProject08-8-6-2\2020.3.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\USER\Desktop\공부\Graduation\LabProject08-8-6-2\2020.3.2\lib\vs2019\x64\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\USER\Desktop\공부\Graduation\LabProject08-8-6-2\2020.3.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\USER\Desktop\공부\Graduation\LabProject08-8-6-2\2020.3.2\lib\vs2019\x64\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\Program Files\Autodesk\FBX\FBX SDK\2019.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Program Files\Autodesk\FBX\FBX SDK\2019.0\lib\vs2015\x64\release;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\USER\Desktop\공부\Graduation\LabProject08-8-6-2\2020.3.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\USER\Desktop\공부\Graduation\LabProject08-8-6-2\2020.3.2\lib\vs2019\x64\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
