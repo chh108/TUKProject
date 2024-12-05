@@ -8,7 +8,8 @@ extern void AnimateFbxNodeHierarchy(FbxNode *pfbxNode, FbxTime& fbxCurrentTime);
 extern void RenderFbxMesh(ID3D12GraphicsCommandList *pd3dCommandList, FbxMesh *pfbxMesh, FbxAMatrix& fbxmtxNodeToRoot, FbxAMatrix& fbxmtxGeometryOffset, FbxAMatrix fbxmtxWorld);
 extern void RenderFbxNodeHierarchy(ID3D12GraphicsCommandList *pd3dCommandList, FbxNode *pfbxNode, FbxTime& fbxCurrentTime, FbxAMatrix& fbxmtxWorld);
 
-extern void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxNode *pfbxNode, CTexture& textureManager);
+extern void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, 
+	FbxNode *pfbxNode);
 extern void ReleaseMeshFromFbxNodeHierarchy(FbxNode *pfbxNode);
 extern void ReleaseUploadBufferFromFbxNodeHierarchy(FbxNode *pfbxNode);
 

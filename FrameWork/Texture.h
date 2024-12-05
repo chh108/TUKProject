@@ -5,17 +5,21 @@
 #include "stdafx.h"
 #include <codecvt>
 
+// 20241205 CreateMeshFromFbx 함수 수정해야함.
+
 class CTexture {
 public:
     CTexture(ID3D12Device* device, ID3D12CommandQueue* commandQueue, ID3D12DescriptorHeap* descriptorHeap);
     ~CTexture();
 
     ID3D12Resource* LoadTexture(const std::string& path);
+
     void ExtractTexturesFromNode(FbxNode* node);
 
 private:
     ID3D12Device* m_pd3dDevice;
     ID3D12CommandQueue* m_pd3dCommandQueue;
     ID3D12DescriptorHeap* m_pd3dDescriptorHeap;
+
     UINT m_heapIndex = 0;
 };

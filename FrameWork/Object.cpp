@@ -239,13 +239,13 @@ void CGameObject::Rotate(XMFLOAT4 *pxmf4Quaternion)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CBlueObject::CBlueObject(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene, CTexture pTexture)
+CBlueObject::CBlueObject(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
 {
 	m_pfbxScene = pfbxScene;
 	if (!m_pfbxScene)
 	{
 		m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, "Model/BluePlayer.fbx");
-		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode(), pTexture);
+		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
 	}
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 }

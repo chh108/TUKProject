@@ -4,8 +4,8 @@
 
 #include "stdafx.h"
 
-#include "DDSTextureLoader12.h"
-#include "WICTextureLoader12.h"
+#include "WICTextureLoader.h"
+#include "DDSTextureLoader.h"
 
 UINT gnCbvSrvDescriptorIncrementSize = 32;
 
@@ -157,7 +157,7 @@ ID3D12Resource *CreateTextureResourceFromWICFile(ID3D12Device *pd3dDevice, ID3D1
 	std::unique_ptr<uint8_t[]> decodedData;
 	D3D12_SUBRESOURCE_DATA d3dSubresource;
 
-	HRESULT hResult = DirectX::LoadWICTextureFromFileEx(pd3dDevice, pszFileName, 0, D3D12_RESOURCE_FLAG_NONE, WIC_LOADER_DEFAULT, &pd3dTexture, decodedData, d3dSubresource);
+	HRESULT hResult = LoadWICTextureFromFileEx(pd3dDevice, pszFileName, 0, D3D12_RESOURCE_FLAG_NONE, WIC_LOADER_DEFAULT, &pd3dTexture, decodedData, d3dSubresource);
 
 	D3D12_HEAP_PROPERTIES d3dHeapPropertiesDesc;
 	::ZeroMemory(&d3dHeapPropertiesDesc, sizeof(D3D12_HEAP_PROPERTIES));

@@ -432,7 +432,7 @@ void RenderFbxNodeHierarchy(ID3D12GraphicsCommandList *pd3dCommandList, FbxNode 
 	for (int i = 0; i < nChilds; i++) RenderFbxNodeHierarchy(pd3dCommandList, pfbxNode->GetChild(i), fbxCurrentTime, fbxmtxWorld);
 }
 
-void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxNode *pfbxNode, CTexture& textureManager)
+void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxNode *pfbxNode)
 {
 	FbxNodeAttribute *pfbxNodeAttribute = pfbxNode->GetNodeAttribute();
 	if (pfbxNodeAttribute && (pfbxNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh))
@@ -471,7 +471,7 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 	}
 
 	int nChilds = pfbxNode->GetChildCount();
-	for (int i = 0; i < nChilds; i++) CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, pfbxNode->GetChild(i), NULL);
+	for (int i = 0; i < nChilds; i++) CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, pfbxNode->GetChild(i));
 }
 
 void ReleaseMeshFromFbxNodeHierarchy(FbxNode *pfbxNode)
