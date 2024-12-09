@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="d3dx12.h" />
     <ClInclude Include="FbxSceneContext.h" />
     <ClInclude Include="GameFramework.h" />
     <ClInclude Include="LabProject08-8-6(Fbx Animation).h" />
