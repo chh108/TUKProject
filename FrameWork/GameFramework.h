@@ -26,6 +26,10 @@ public:
 
 	void CreateRtvAndDsvDescriptorHeaps();
 
+	//20241209 Texture
+	void CreateSrvDescriptorHeaps();
+	void LoadGameTextures();
+
 	void CreateRenderTargetViews();
 	void CreateDepthStencilView();
 
@@ -64,6 +68,10 @@ private:
 	static const UINT			m_nSwapChainBuffers = 2;
 	UINT						m_nSwapChainBufferIndex;
 
+	static const UINT			m_nShaderResourceViews = 1;
+	ID3D12DescriptorHeap		*m_pd3dSrvDescriptorHeap = NULL;
+	ID3D12Resource				*m_pTexture = NULL;
+
 	ID3D12Resource				*m_ppd3dSwapChainBackBuffers[m_nSwapChainBuffers];
 	ID3D12DescriptorHeap		*m_pd3dRtvDescriptorHeap = NULL;
 	UINT						m_nRtvDescriptorIncrementSize;
@@ -96,5 +104,8 @@ private:
 
 	FbxManager 					*m_pfbxSdkManager = NULL;
 	FbxScene  					*m_pfbxScene = NULL;
+
+	// 20241209
+	CTexture					*m_pTextureManager = NULL;
 };
 

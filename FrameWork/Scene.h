@@ -16,6 +16,9 @@ public:
 	bool OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 	bool OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 
+	// 20241209
+	virtual void CreateTextureSRV(ID3D12Device* pd3dDevice, ID3D12Resource* pTextureResource, ID3D12DescriptorHeap* pd3dDescriptorHeap, UINT heapIndex);
+
 	virtual void CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
 	virtual void UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList);
 	virtual void ReleaseShaderVariables();

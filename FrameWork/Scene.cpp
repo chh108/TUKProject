@@ -64,14 +64,16 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 
 	D3D12_ROOT_PARAMETER pd3dRootParameters[3]; // 20241204 Add RootParameters 2->3
 
+	// 1. CBV for Camera
 	pd3dRootParameters[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
-	pd3dRootParameters[0].Descriptor.ShaderRegister = 1; //Camera
+	pd3dRootParameters[0].Descriptor.ShaderRegister = 1; // b1
 	pd3dRootParameters[0].Descriptor.RegisterSpace = 0;
 	pd3dRootParameters[0].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
+	// 2. 32BIT_CONSTANTS for GameObject
 	pd3dRootParameters[1].ParameterType = D3D12_ROOT_PARAMETER_TYPE_32BIT_CONSTANTS;
-	pd3dRootParameters[1].Constants.Num32BitValues = 16;
-	pd3dRootParameters[1].Constants.ShaderRegister = 2; //GameObject
+	pd3dRootParameters[1].Constants.Num32BitValues = 16; // GameObject Matrix
+	pd3dRootParameters[1].Constants.ShaderRegister = 2; // b2
 	pd3dRootParameters[1].Constants.RegisterSpace = 0;
 	pd3dRootParameters[1].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
@@ -88,16 +90,11 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	pd3dRootParameters[2].DescriptorTable.pDescriptorRanges = &srvRange;
 	pd3dRootParameters[2].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
 
+	// Root Signature Flag
 	D3D12_ROOT_SIGNATURE_FLAGS d3dRootSignatureFlags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT | 
 		D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS | 
 		D3D12_ROOT_SIGNATURE_FLAG_DENY_DOMAIN_SHADER_ROOT_ACCESS | 
 		D3D12_ROOT_SIGNATURE_FLAG_DENY_GEOMETRY_SHADER_ROOT_ACCESS;
-
-	D3D12_ROOT_SIGNATURE_DESC d3dRootSignatureDesc;
-	::ZeroMemory(&d3dRootSignatureDesc, sizeof(D3D12_ROOT_SIGNATURE_DESC));
-	d3dRootSignatureDesc.NumParameters = _countof(pd3dRootParameters);
-	d3dRootSignatureDesc.pParameters = pd3dRootParameters;
-	d3dRootSignatureDesc.NumStaticSamplers = 1;
 
 	//20241204 Add Samplers
 	D3D12_STATIC_SAMPLER_DESC samplerDesc = {};
@@ -115,6 +112,11 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	samplerDesc.RegisterSpace = 0;
 	samplerDesc.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
 
+	D3D12_ROOT_SIGNATURE_DESC d3dRootSignatureDesc;
+	::ZeroMemory(&d3dRootSignatureDesc, sizeof(D3D12_ROOT_SIGNATURE_DESC));
+	d3dRootSignatureDesc.NumParameters = _countof(pd3dRootParameters);
+	d3dRootSignatureDesc.pParameters = pd3dRootParameters;
+	d3dRootSignatureDesc.NumStaticSamplers = 1;
 	d3dRootSignatureDesc.pStaticSamplers = &samplerDesc;
 	d3dRootSignatureDesc.Flags = d3dRootSignatureFlags;
 
@@ -128,9 +130,24 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	return(pd3dGraphicsRootSignature);
 }
 
+// 20241209
+void CScene::CreateTextureSRV(ID3D12Device* pd3dDevice, ID3D12Resource* pTextureResource, ID3D12DescriptorHeap* pd3dDescriptorHeap, UINT heapIndex)
+{
+	D3D12_CPU_DESCRIPTOR_HANDLE srvHandle = pd3dDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+	srvHandle.ptr += heapIndex * pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+
+	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+	srvDesc.Format = pTextureResource->GetDesc().Format;
+	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+	srvDesc.Texture2D.MipLevels = pTextureResource->GetDesc().MipLevels;
+
+	pd3dDevice->CreateShaderResourceView(pTextureResource, &srvDesc, srvHandle);
+}
+
 void CScene::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)
 {
-	// 20241204 Add Texture and Upload
+
 }
 
 void CScene::UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList)

@@ -20,6 +20,7 @@ CGameFramework::CGameFramework()
 
 	m_pd3dRtvDescriptorHeap = NULL;
 	m_pd3dDsvDescriptorHeap = NULL;
+	m_pd3dSrvDescriptorHeap = NULL;
 
 	m_nRtvDescriptorIncrementSize = 0;
 	m_nDsvDescriptorIncrementSize = 0;
@@ -33,6 +34,7 @@ CGameFramework::CGameFramework()
 
 	m_pScene = NULL;
 	m_pPlayer = NULL;
+	m_pTexture = NULL;
 
 	_tcscpy_s(m_pszFrameRate, _T("LabProject ("));
 }
@@ -49,6 +51,7 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	CreateDirect3DDevice();
 	CreateCommandQueueAndList();
 	CreateRtvAndDsvDescriptorHeaps();
+	CreateSrvDescriptorHeaps();
 	CreateSwapChain();
 	CreateDepthStencilView();
 
@@ -202,6 +205,37 @@ void CGameFramework::CreateRtvAndDsvDescriptorHeaps()
 	d3dDescriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
 	hResult = m_pd3dDevice->CreateDescriptorHeap(&d3dDescriptorHeapDesc, __uuidof(ID3D12DescriptorHeap), (void **)&m_pd3dDsvDescriptorHeap);
 	m_nDsvDescriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_DSV);
+}
+
+//20241209 SRV HEAP & Texture
+void CGameFramework::CreateSrvDescriptorHeaps()
+{ 
+	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
+	srvHeapDesc.NumDescriptors = m_nShaderResourceViews; // num of SRV
+	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+
+	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&m_pd3dSrvDescriptorHeap));
+	if (FAILED(hResult)) {
+		OutputDebugString(L"Failed to create SRV descriptor heap.\n");
+	}
+}
+
+void CGameFramework::LoadGameTextures()
+{
+	if (!m_pTextureManager) return;
+
+	m_pTexture = m_pTextureManager->LoadTexture("Model\Character\Textures\character_01_01.png");
+
+	if (m_pTexture)
+	{
+		std::cout << "Texture Loaded!" << std::endl;
+	}
+
+	else
+	{
+		std::cerr << "Failed to Load." << std::endl;
+	}
 }
 
 void CGameFramework::CreateRenderTargetViews()
@@ -375,6 +409,10 @@ void CGameFramework::OnDestroy()
 
 	for (int i = 0; i < m_nSwapChainBuffers; i++) if (m_ppd3dSwapChainBackBuffers[i]) m_ppd3dSwapChainBackBuffers[i]->Release();
 	if (m_pd3dRtvDescriptorHeap) m_pd3dRtvDescriptorHeap->Release();
+	if (m_pd3dSrvDescriptorHeap) m_pd3dSrvDescriptorHeap->Release();
+
+	if (m_pTexture) m_pTexture->Release();
+	if (m_pTextureManager) m_pTexture->Release();
 
 	if (m_pd3dCommandAllocator) m_pd3dCommandAllocator->Release();
 	if (m_pd3dCommandQueue) m_pd3dCommandQueue->Release();
