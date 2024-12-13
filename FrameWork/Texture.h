@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include <codecvt>
 
-// 20241205 CreateMeshFromFbx 함수 수정해야함.
+// 20241213 Texture 클래스 수정
 
 class CTexture {
 public:
