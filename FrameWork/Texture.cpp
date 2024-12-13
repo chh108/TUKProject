@@ -10,12 +10,23 @@ CTexture::CTexture(ID3D12Device* device, ID3D12CommandQueue* commandQueue, ID3D1
 CTexture::~CTexture() {}
 
 ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
+    // Convert string path to wide string
     std::wstring widePath = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>().from_bytes(path);
     ID3D12Resource* textureResource = nullptr;
 
-    std::cout << "Loading Texture from: " << path << std::endl;
+    // Validate the device
+    if (!m_pd3dDevice) {
+        std::cerr << "Device is NULL!" << std::endl;
+        return nullptr;
+    }
 
-    // ResourceUploadBatch를 사용하여 텍스처 로드
+    // Validate the descriptor heap
+    if (!m_pd3dDescriptorHeap) {
+        std::cerr << "Descriptor Heap is NULL!" << std::endl;
+        return nullptr;
+    }
+
+    // Use ResourceUploadBatch to load texture
     DirectX::ResourceUploadBatch uploadBatch(m_pd3dDevice);
     uploadBatch.Begin();
 
@@ -24,19 +35,22 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
         uploadBatch,
         widePath.c_str(),
         &textureResource,
-        false // Mipmap 생성 안 함
+        false // Do not generate mipmaps
     );
 
     if (FAILED(hr)) {
-        wprintf(L"Failed to load texture: %s. HRESULT: 0x%08X\n", widePath.c_str(), hr);
+        wprintf(L"CreateWICTextureFromFile failed with HRESULT: 0x%08X\n", hr);
+        if (hr == E_NOINTERFACE) {
+            std::cerr << "E_NOINTERFACE: No such interface supported. Check WIC or DirectX environment." << std::endl;
+        }
         return nullptr;
     }
 
-    // 업로드 작업 완료
+    // Finish upload
     auto finishResult = uploadBatch.End(m_pd3dCommandQueue);
     finishResult.wait();
 
-    // 디스크립터 힙에 텍스처 등록
+    // Register texture in descriptor heap
     D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
     srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
     srvDesc.Format = textureResource->GetDesc().Format;
@@ -47,7 +61,7 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
     srvHandle.ptr += m_heapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
     m_pd3dDevice->CreateShaderResourceView(textureResource, &srvDesc, srvHandle);
 
-    m_heapIndex++; // 디스크립터 힙 인덱스 증가
+    m_heapIndex++; // Increment descriptor heap index
 
     return textureResource;
 }

@@ -55,10 +55,10 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	CreateSwapChain();
 	CreateDepthStencilView();
 
+	CoInitialize(NULL);
+
 	//20241212 LoadTextures
 	LoadGameTextures();
-
-	CoInitialize(NULL);
 
 	BuildObjects();
 
