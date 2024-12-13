@@ -13,6 +13,8 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
     std::wstring widePath = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>().from_bytes(path);
     ID3D12Resource* textureResource = nullptr;
 
+    std::cout << "Loading Texture from: " << path << std::endl;
+
     // ResourceUploadBatch를 사용하여 텍스처 로드
     DirectX::ResourceUploadBatch uploadBatch(m_pd3dDevice);
     uploadBatch.Begin();

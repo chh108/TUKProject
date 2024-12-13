@@ -231,7 +231,7 @@ void CGameFramework::LoadGameTextures()
 		m_pTextureManager = new CTexture(m_pd3dDevice, m_pd3dCommandQueue, m_pd3dSrvDescriptorHeap);
 	}
 
-	m_pTexture = m_pTextureManager->LoadTexture("Model\Character\Textures\character_01_01.png");
+	m_pTexture = m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");
 
 	if (m_pTexture)
 	{
