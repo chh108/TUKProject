@@ -55,6 +55,9 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	CreateSwapChain();
 	CreateDepthStencilView();
 
+	//20241212 LoadTextures
+	LoadGameTextures();
+
 	CoInitialize(NULL);
 
 	BuildObjects();
@@ -223,7 +226,10 @@ void CGameFramework::CreateSrvDescriptorHeaps()
 
 void CGameFramework::LoadGameTextures()
 {
-	if (!m_pTextureManager) return;
+	if (!m_pTextureManager) 
+	{
+		m_pTextureManager = new CTexture(m_pd3dDevice, m_pd3dCommandQueue, m_pd3dSrvDescriptorHeap);
+	}
 
 	m_pTexture = m_pTextureManager->LoadTexture("Model\Character\Textures\character_01_01.png");
 
