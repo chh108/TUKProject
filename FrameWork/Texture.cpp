@@ -1,15 +1,29 @@
+// CTexture.cpp
+
 #include "stdafx.h"
 #include "Texture.h"
 #include <WICTextureLoader.h>
 #include <ResourceUploadBatch.h>
+#include <unordered_map>            // 20241214 Unorderd_map 사용을 통한 중복 방지
 
 CTexture::CTexture(ID3D12Device* device, ID3D12CommandQueue* commandQueue, ID3D12DescriptorHeap* descriptorHeap)
-    : m_pd3dDevice(device), m_pd3dCommandQueue(commandQueue), m_pd3dDescriptorHeap(descriptorHeap) {
+    : m_pd3dDevice(device), m_pd3dCommandQueue(commandQueue), m_pd3dDescriptorHeap(descriptorHeap), m_heapIndex(0) {
 }
 
-CTexture::~CTexture() {}
+CTexture::~CTexture() {
+    // Release All Textures
+    for (auto& pair : m_textureMap) {
+        if (pair.second) pair.second->Release();
+    }
+}
 
 ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
+    
+    // Check if texture is already loaded to avoid duplicates
+    if (m_textureMap.find(path) != m_textureMap.end()) {
+        return m_textureMap[path]; // Return the already loaded texture
+    }
+
     // Convert string path to wide string
     std::wstring widePath = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>().from_bytes(path);
     ID3D12Resource* textureResource = nullptr;
