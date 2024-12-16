@@ -82,8 +82,12 @@ void CAnimationController::AdvanceTime(float fTimeElapsed)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CGameObject::CGameObject()
-{
+CGameObject::CGameObject() {
+	m_xmf4x4World = Matrix4x4::Identity();
+}
+
+CGameObject::CGameObject(ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, ID3D12Device* pd3dDevice) 
+	: m_pd3dSrvDescriptorHeap(pd3dSrvDescriptorHeap), m_pd3dDevice(pd3dDevice) {
 	m_xmf4x4World = Matrix4x4::Identity();
 }
 
@@ -120,6 +124,14 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 {
 	OnPrepareRender();
 
+	// 20241216 텍스처 로딩
+	if (m_pTexture) {
+		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root Parameter Index 2
+	}
+
+	// 20241216 애니메이션 작업 시작
 	FbxAMatrix fbxf4x4World = ::XmFloat4x4MatrixToFbxMatrix(m_xmf4x4World);
 	if (m_pfbxScene) ::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
 }

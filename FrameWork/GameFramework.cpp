@@ -460,17 +460,22 @@ void CGameFramework::BuildObjects()
 	m_pfbxScene = ::LoadFbxSceneFromFile(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, "Model/Blue.fbx");
 #endif
 
-	m_pTextureManager = new CTexture(m_pd3dDevice, m_pd3dCommandQueue, m_pd3dSrvDescriptorHeap);
-	m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png"); // 1215 LoadTextures
-
 	m_pScene = new CScene();
 	if (m_pScene) m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, m_pfbxScene);
+
+	if (!m_pTextureManager) {
+		m_pTextureManager = new CTexture(m_pd3dDevice, m_pd3dCommandQueue, m_pd3dSrvDescriptorHeap);
+	}
+
+	// Load Blue Player
+	ID3D12Resource* pTexture = m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");
+
+	CPlayer* pPlayer = new CPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(),
+		m_pfbxSdkManager, "Model/BluePlayer.fbx", pTexture, m_pd3dSrvDescriptorHeap, PlayerType::Blue);
 
 #ifdef _WITH_FBX_SCENE_INSTANCING
 	::CreateMeshFromFbxNodeHierarchy(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxScene->GetRootNode());
 #endif
-
-	CBluePlayer *pPlayer = new CBluePlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxSdkManager, m_pfbxScene, m_pTextureManager);
 
 	m_pScene->m_pPlayer = m_pPlayer = pPlayer;
 	m_pCamera = m_pPlayer->GetCamera();

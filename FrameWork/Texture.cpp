@@ -26,18 +26,18 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
 
     // Convert string path to wide string
     std::wstring widePath = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>().from_bytes(path);
-    ID3D12Resource* textureResource = nullptr;
+    ID3D12Resource* textureResource = NULL;
 
     // Validate the device
     if (!m_pd3dDevice) {
         std::cerr << "Device is NULL!" << std::endl;
-        return nullptr;
+        return NULL;
     }
 
     // Validate the descriptor heap
     if (!m_pd3dDescriptorHeap) {
         std::cerr << "Descriptor Heap is NULL!" << std::endl;
-        return nullptr;
+        return NULL;
     }
 
     // Use ResourceUploadBatch to load texture
@@ -57,25 +57,25 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
         if (hr == E_NOINTERFACE) {
             std::cerr << "E_NOINTERFACE: No such interface supported. Check WIC or DirectX environment." << std::endl;
         }
-        return nullptr;
+        return NULL;
     }
 
     if (!m_pd3dDescriptorHeap) {
         std::cerr << "Descriptor Heap is NULL!" << std::endl;
-        return nullptr;
+        return NULL;
     }
 
     // textureResource 상태 점검
     if (!textureResource) {
         std::cerr << "Texture resource is NULL!" << std::endl;
-        return nullptr;
+        return NULL;
     }
 
     // 디스크립터 힙 정보 가져오기
     D3D12_DESCRIPTOR_HEAP_DESC descHeapDesc = m_pd3dDescriptorHeap->GetDesc();
     if (m_heapIndex >= descHeapDesc.NumDescriptors) {
         std::cerr << "Heap index exceeds descriptor heap size!" << std::endl;
-        return nullptr;
+        return NULL;
     }
 
     // 디스크립터 핸들 설정
@@ -93,6 +93,11 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
 
     // 디스크립터 힙 인덱스 증가
     m_heapIndex++;
+    
+    // 텍스처 맵으로 관리
+    if (textureResource) {
+        m_textureMap[path] = textureResource;
+    }
 
     return textureResource;
 }

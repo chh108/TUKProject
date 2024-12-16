@@ -51,6 +51,10 @@ public:
 //
 class CGameObject
 {
+protected:
+	ID3D12Device* m_pd3dDevice = NULL; // Direct3D 디바이스
+	ID3D12DescriptorHeap* m_pd3dSrvDescriptorHeap = NULL; // 디스크립터 힙
+
 private:
 	int								m_nReferences = 0;
 
@@ -60,6 +64,7 @@ public:
 
 public:
 	CGameObject();
+	CGameObject(ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, ID3D12Device* pd3dDevice);
     virtual ~CGameObject();
 
 public:
@@ -69,6 +74,11 @@ public:
 
 	XMFLOAT4X4  					m_xmf4x4World;
 
+	//20241215 TextureResource
+	ID3D12Resource					*m_pTexture = NULL;
+	UINT							m_TextureHeapIndex = 0;
+
+	//20241216 Animation
 	CAnimationController 			*m_pAnimationController = NULL;
 
 	virtual void Animate(float fTimeElapsed);
@@ -84,6 +94,7 @@ public:
 
 	virtual void ReleaseUploadBuffers();
 
+	// 모델 위치 방향 관련 함수들
 	XMFLOAT3 GetPosition();
 	XMFLOAT3 GetLook();
 	XMFLOAT3 GetUp();
@@ -103,6 +114,15 @@ public:
 
 public:
 	void SetAnimationStack(int nAnimationStack) { m_pAnimationController->SetAnimationStack(m_pfbxScene, nAnimationStack); }
+
+	// 20241215 Texture Func
+	void SetTexture(ID3D12Resource* pTexture, UINT textureHeapIndex) {
+		m_pTexture = pTexture;
+		m_TextureHeapIndex = textureHeapIndex;
+	}
+
+	ID3D12Resource* GetTexture() const { return m_pTexture; }
+	UINT GetTextureHeapIndex() const { return m_TextureHeapIndex;  }
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

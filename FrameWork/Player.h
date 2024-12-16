@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------
+// File: Player.h
+//-----------------------------------------------------------------------------
+
 #pragma once
 
 #define DIR_FORWARD				0x01
@@ -10,14 +14,24 @@
 #include "Object.h"
 #include "Camera.h"
 
+enum class PlayerType {
+	Blue,
+	Red,
+	Green
+};
+
 class CPlayer : public CGameObject
 {
+private:
+	PlayerType m_PlayerType; // PlayerType (Blue, Red, Green)
+	ID3D12Resource* m_pTexture = NULL; // Player Texture
+	int m_TextureHeapIndex = -1; // TextureHeapIndex for Descriptor
+
 protected:
 	XMFLOAT3					m_xmf3Position = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	XMFLOAT3					m_xmf3Right = XMFLOAT3(1.0f, 0.0f, 0.0f);
 	XMFLOAT3					m_xmf3Up = XMFLOAT3(0.0f, 1.0f, 0.0f);
 	XMFLOAT3					m_xmf3Look = XMFLOAT3(0.0f, 0.0f, 1.0f);
-
 	XMFLOAT3					m_xmf3Scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
 
 	float           			m_fPitch = 0.0f;
@@ -34,11 +48,14 @@ protected:
 	LPVOID						m_pCameraUpdatedContext = NULL;
 
 	CCamera						*m_pCamera = NULL;
+	// CAnimationController		*m_pAnimationController = NULL;
 
-	ID3D12Resource				*m_pTexture = NULL;
 
 public:
-	CPlayer();
+	CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
+		ID3D12RootSignature* pd3dGraphicsRootSignature, FbxManager* pfbxSdkManager,
+		const std::string& fbxFilePath, ID3D12Resource* pTexture,
+		ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, PlayerType playerType);
 	virtual ~CPlayer();
 
 	XMFLOAT3 GetPosition() { return(m_xmf3Position); }
@@ -52,7 +69,6 @@ public:
 	void SetMaxVelocityY(float fMaxVelocity) { m_fMaxVelocityY = fMaxVelocity; }
 	void SetVelocity(const XMFLOAT3& xmf3Velocity) { m_xmf3Velocity = xmf3Velocity; }
 	void SetPosition(const XMFLOAT3& xmf3Position) { Move(XMFLOAT3(xmf3Position.x - m_xmf3Position.x, xmf3Position.y - m_xmf3Position.y, xmf3Position.z - m_xmf3Position.z), false); }
-
 	void SetScale(const XMFLOAT3& xmf3Scale) { m_xmf3Scale = xmf3Scale; }
 
 	const XMFLOAT3& GetVelocity() const { return(m_xmf3Velocity); }
@@ -81,18 +97,11 @@ public:
 	virtual void UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList);
 
 	CCamera *OnChangeCamera(DWORD nNewCameraMode, DWORD nCurrentCameraMode);
+	CCamera* ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed);
 
-	virtual CCamera *ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed) { return(NULL); }
 	virtual void OnPrepareRender();
 	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera = NULL);
-};
 
-class CBluePlayer : public CPlayer
-{
-public:
-	CBluePlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene, CTexture* pTextureManager);
-	virtual ~CBluePlayer();
-
-public:
-	virtual CCamera *ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed);
+private:
+	void SetPlayerProperties();
 };
