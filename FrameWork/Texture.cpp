@@ -60,22 +60,39 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
         return nullptr;
     }
 
-    // Finish upload
-    auto finishResult = uploadBatch.End(m_pd3dCommandQueue);
-    finishResult.wait();
+    if (!m_pd3dDescriptorHeap) {
+        std::cerr << "Descriptor Heap is NULL!" << std::endl;
+        return nullptr;
+    }
 
-    // Register texture in descriptor heap
+    // textureResource 상태 점검
+    if (!textureResource) {
+        std::cerr << "Texture resource is NULL!" << std::endl;
+        return nullptr;
+    }
+
+    // 디스크립터 힙 정보 가져오기
+    D3D12_DESCRIPTOR_HEAP_DESC descHeapDesc = m_pd3dDescriptorHeap->GetDesc();
+    if (m_heapIndex >= descHeapDesc.NumDescriptors) {
+        std::cerr << "Heap index exceeds descriptor heap size!" << std::endl;
+        return nullptr;
+    }
+
+    // 디스크립터 핸들 설정
+    D3D12_CPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+    srvHandle.ptr += m_heapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+
+    // Shader Resource View 생성
     D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
     srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
     srvDesc.Format = textureResource->GetDesc().Format;
     srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
     srvDesc.Texture2D.MipLevels = textureResource->GetDesc().MipLevels;
 
-    D3D12_CPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
-    srvHandle.ptr += m_heapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
     m_pd3dDevice->CreateShaderResourceView(textureResource, &srvDesc, srvHandle);
 
-    m_heapIndex++; // Increment descriptor heap index
+    // 디스크립터 힙 인덱스 증가
+    m_heapIndex++;
 
     return textureResource;
 }

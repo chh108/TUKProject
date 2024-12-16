@@ -35,6 +35,8 @@ protected:
 
 	CCamera						*m_pCamera = NULL;
 
+	ID3D12Resource				*m_pTexture = NULL;
+
 public:
 	CPlayer();
 	virtual ~CPlayer();
@@ -88,7 +90,7 @@ public:
 class CBluePlayer : public CPlayer
 {
 public:
-	CBluePlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene);
+	CBluePlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene, CTexture* pTextureManager);
 	virtual ~CBluePlayer();
 
 public:

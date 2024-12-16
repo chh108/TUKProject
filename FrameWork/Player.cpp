@@ -236,7 +236,7 @@ void CPlayer::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamer
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
-CBluePlayer::CBluePlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
+CBluePlayer::CBluePlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene, CTexture* pTextureManager)
 {
 	m_pCamera = ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
 
@@ -245,6 +245,12 @@ CBluePlayer::CBluePlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd
 	{
 		m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, "Model/BluePlayer.fbx");
 		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
+	}
+
+	ID3D12Resource* pPlayerTexture = pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");
+
+	if (pPlayerTexture) {
+		m_pTexture = pPlayerTexture;
 	}
 
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
