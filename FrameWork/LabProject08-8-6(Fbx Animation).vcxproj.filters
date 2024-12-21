@@ -43,6 +43,12 @@
     <Filter Include="77.Shaders">
       <UniqueIdentifier>{568e690c-d62b-4c47-8ad3-8e87f3c59dec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Manager">
+      <UniqueIdentifier>{f465511b-0be5-46e1-a46c-b0ca073755f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Manager\Player">
+      <UniqueIdentifier>{4ce345da-968a-479e-b94e-b0664788fa2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -90,6 +96,9 @@
     <ClInclude Include="Shader.h">
       <Filter>77.Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>03.Manager\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -130,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>77.Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>03.Manager\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

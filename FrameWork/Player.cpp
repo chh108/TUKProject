@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Shader.h"
-
+#include "PlayerManager.h"
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CPlayer
 
@@ -159,11 +159,29 @@ void CPlayer::Update(float fTimeElapsed)
 	Move(xmf3Velocity, false);
 
 	if (m_pPlayerUpdatedContext) OnPlayerUpdateCallback(fTimeElapsed);
-
+	//camera
 	DWORD nCurrentCameraMode = m_pCamera->GetMode();
-	if (nCurrentCameraMode == THIRD_PERSON_CAMERA) m_pCamera->Update(m_xmf3Position, fTimeElapsed);
+	if (CPlayerManager::Get_Instance()->Get_Aiming())	//+
+	{
+		ChangeCamera(AIM_DOWN_SIGHT_CAMERA, fTimeElapsed);
+	}
+	//else // 에이밍 상태가 아니라면
+	//{
+	//	ChangeCamera(THIRD_PERSON_CAMERA, fTimeElapsed);
+	//}
+	if (nCurrentCameraMode == THIRD_PERSON_CAMERA || nCurrentCameraMode == AIM_DOWN_SIGHT_CAMERA)
+	{
+		m_pCamera->Update(m_xmf3Position, fTimeElapsed);
+	}
 	if (m_pCameraUpdatedContext) OnCameraUpdateCallback(fTimeElapsed);
-	if (nCurrentCameraMode == THIRD_PERSON_CAMERA) m_pCamera->SetLookAt(m_xmf3Position);
+	if (nCurrentCameraMode == THIRD_PERSON_CAMERA)
+	{
+		m_pCamera->SetLookAt(m_xmf3Position);
+	}
+	else if (nCurrentCameraMode == AIM_DOWN_SIGHT_CAMERA)
+	{
+		m_pCamera->SetLookAt(Vector3::Add(m_xmf3Position, XMFLOAT3(100.f, 0.0f, INT_MAX)));
+	}
 	m_pCamera->RegenerateViewMatrix();
 
 	fLength = Vector3::Length(m_xmf3Velocity);
@@ -185,6 +203,9 @@ CCamera *CPlayer::OnChangeCamera(DWORD nNewCameraMode, DWORD nCurrentCameraMode)
 			break;
 		case SPACESHIP_CAMERA:
 			pNewCamera = new CSpaceShipCamera(m_pCamera);
+			break;
+		case AIM_DOWN_SIGHT_CAMERA:
+			pNewCamera = new CAimPersonCamera(m_pCamera);
 			break;
 	}
 	if (nCurrentCameraMode == SPACESHIP_CAMERA)
@@ -230,7 +251,7 @@ void CPlayer::OnPrepareRender()
 void CPlayer::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera)
 {
 	DWORD nCameraMode = (pCamera) ? pCamera->GetMode() : 0x00;
-	if (nCameraMode == THIRD_PERSON_CAMERA) CGameObject::Render(pd3dCommandList, pCamera);
+	if (nCameraMode == THIRD_PERSON_CAMERA || nCameraMode == AIM_DOWN_SIGHT_CAMERA) CGameObject::Render(pd3dCommandList, pCamera);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -302,6 +323,19 @@ CCamera *CAngrybotPlayer::ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed)
 			m_pCamera->SetViewport(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT, 0.0f, 1.0f);
 			m_pCamera->SetScissorRect(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
 			break;
+		case AIM_DOWN_SIGHT_CAMERA:
+			SetFriction(15.0f);	//1221
+			SetGravity(XMFLOAT3(0.0f, 0.0f, 0.0f));
+			SetMaxVelocityXZ(10.0f);//1221
+			SetMaxVelocityY(10.0f);
+			m_pCamera = OnChangeCamera(AIM_DOWN_SIGHT_CAMERA, nCurrentCameraMode);
+			m_pCamera->SetTimeLag(0.25f);
+			//m_pCamera->SetLookAt(XMFLOAT3(30.f, 0.f, 1.0f));
+			m_pCamera->SetOffset(XMFLOAT3(25.0f, 100.0f, -120.0f));						//1221
+			m_pCamera->GenerateProjectionMatrix(1.01f, 5000.0f, ASPECT_RATIO, 60.0f);	//1221
+			m_pCamera->SetViewport(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT, 0.0f, 1.0f);
+			m_pCamera->SetScissorRect(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
+			break;
 		default:
 			break;
 	}
@@ -310,4 +344,3 @@ CCamera *CAngrybotPlayer::ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed)
 
 	return(m_pCamera);
 }
-

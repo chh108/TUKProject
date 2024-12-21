@@ -5,6 +5,7 @@
 #define FIRST_PERSON_CAMERA			0x01
 #define SPACESHIP_CAMERA			0x02
 #define THIRD_PERSON_CAMERA			0x03
+#define AIM_DOWN_SIGHT_CAMERA		0x04
 
 struct VS_CB_CAMERA_INFO
 {
@@ -132,3 +133,13 @@ public:
 	virtual void SetLookAt(const XMFLOAT3& vLookAt);
 };
 
+class CAimPersonCamera : public CCamera
+{
+public:
+	CAimPersonCamera(CCamera* pCamera);
+	virtual ~CAimPersonCamera() { }
+
+	virtual void Rotate(float fPitch = 0.0f, float fYaw = 0.0f, float fRoll = 0.0f);	//+
+	virtual void Update(const XMFLOAT3& xmf3LookAt, float fTimeElapsed);
+	virtual void SetLookAt(const XMFLOAT3& vLookAt);
+};

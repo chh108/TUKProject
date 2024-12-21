@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "GameFramework.h"
+#include "PlayerManager.h"
 
 CGameFramework::CGameFramework()
 {
@@ -321,6 +322,7 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 				case VK_F1:
 				case VK_F2:
 				case VK_F3:
+				case VK_F4:
 					m_pCamera = m_pPlayer->ChangeCamera((DWORD)(wParam - VK_F1 + 1), m_GameTimer.GetTimeElapsed());
 					break;
 				case VK_F9:
@@ -351,8 +353,10 @@ LRESULT CALLBACK CGameFramework::OnProcessingWindowMessage(HWND hWnd, UINT nMess
 			break;
 		case WM_LBUTTONDOWN:
         case WM_RBUTTONDOWN:
+			CPlayerManager::Get_Instance()->Set_Aiming(true);
         case WM_LBUTTONUP:
         case WM_RBUTTONUP:
+			CPlayerManager::Get_Instance()->Set_Aiming(false);
         case WM_MOUSEMOVE:
 			OnProcessingMouseMessage(hWnd, nMessageID, wParam, lParam);
             break;

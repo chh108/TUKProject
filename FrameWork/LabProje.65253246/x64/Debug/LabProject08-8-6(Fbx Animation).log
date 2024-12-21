@@ -1,2 +1,5 @@
 ﻿  Player.cpp
+C:\Users\USER\Desktop\HyeYeon\졸작\TUKProject\FrameWork\Player.cpp(183,75): warning C4305: '인수': 'int'에서 'float'(으)로 잘립니다.
+  (소스 파일 '/Player.cpp'을(를) 컴파일하는 중)
+  
   LabProject08-8-6(Fbx Animation).vcxproj -> C:\Users\USER\Desktop\HyeYeon\졸작\TUKProject\FrameWork\x64\Debug\LabProject08-8-6(Fbx Animation).exe
