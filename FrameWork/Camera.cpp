@@ -280,7 +280,7 @@ void CThirdPersonCamera::Update(const XMFLOAT3& xmf3LookAt, float fTimeElapsed)
 		float fLength = Vector3::Length(xmf3Direction);
 		xmf3Direction = Vector3::Normalize(xmf3Direction);
 		float fTimeLagScale = (m_fTimeLag) ? fTimeElapsed * (1.0f / m_fTimeLag) : 1.0f;
-		float fDistance = fLength * fTimeLagScale;
+		float fDistance = fLength/* * fTimeLagScale*/;			//1221
 		if (fDistance > fLength) fDistance = fLength;
 		if (fLength < 0.01f) fDistance = fLength;
 		if (fDistance > 0)
@@ -293,9 +293,36 @@ void CThirdPersonCamera::Update(const XMFLOAT3& xmf3LookAt, float fTimeElapsed)
 
 void CThirdPersonCamera::SetLookAt(const XMFLOAT3& xmf3LookAt)
 {
+	XMFLOAT3 adjustedLookAt = xmf3LookAt;				//+
+	adjustedLookAt.y += 100.0f; // 타겟 Y축을 100만큼 아래로 설정		
+
 	XMFLOAT3 xmf3PlayerUp = m_pPlayer->GetUpVector();
-	XMFLOAT4X4 mtxLookAt = Matrix4x4::LookAtLH(m_xmf3Position, xmf3LookAt, xmf3PlayerUp);
+	XMFLOAT4X4 mtxLookAt = Matrix4x4::LookAtLH(m_xmf3Position, adjustedLookAt, xmf3PlayerUp);
 	m_xmf3Right = XMFLOAT3(mtxLookAt._11, mtxLookAt._21, mtxLookAt._31);
 	m_xmf3Up = XMFLOAT3(mtxLookAt._12, mtxLookAt._22, mtxLookAt._32);
 	m_xmf3Look = XMFLOAT3(mtxLookAt._13, mtxLookAt._23, mtxLookAt._33);
+}
+
+void CThirdPersonCamera::Rotate(float x, float y, float z)				//함수 +
+{
+	if (y != 0.0f) // 좌우 회전 (Yaw)
+	{
+		m_fYaw += y;
+
+		XMFLOAT3 xmf3PlayerUp = m_pPlayer->GetUpVector();
+		XMMATRIX xmmtxRotate = XMMatrixRotationAxis(XMLoadFloat3(&xmf3PlayerUp), XMConvertToRadians(y));
+		m_xmf3Offset = Vector3::TransformCoord(m_xmf3Offset, xmmtxRotate);
+	}
+	if (x != 0.0f) // 상하 회전 (Pitch)
+	{
+		m_fPitch += x;
+
+		// Pitch를 -80도 ~ +80도로 제한
+		if (m_fPitch > 80.0f) { x -= (m_fPitch - 80.0f); m_fPitch = 80.0f; }
+		if (m_fPitch < -80.0f) { x -= (m_fPitch + 80.0f); m_fPitch = -80.0f; }
+
+		XMFLOAT3 xmf3Right = m_pPlayer->GetRightVector();
+		XMMATRIX xmmtxRotate = XMMatrixRotationAxis(XMLoadFloat3(&xmf3Right), XMConvertToRadians(x));
+		m_xmf3Offset = Vector3::TransformCoord(m_xmf3Offset, xmmtxRotate);
+	}
 }
