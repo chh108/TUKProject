@@ -52,6 +52,13 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
         false // Do not generate mipmaps
     );
 
+    if (SUCCEEDED(hr) && textureResource) {
+        std::cout << "Texture resource created successfully: " << textureResource << std::endl;
+    }
+    else {
+        std::cerr << "Failed to create texture resource. HRESULT: " << hr << std::endl;
+    }
+
     if (FAILED(hr)) {
         wprintf(L"CreateWICTextureFromFile failed with HRESULT: 0x%08X\n", hr);
         if (hr == E_NOINTERFACE) {
@@ -102,20 +109,65 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
     return textureResource;
 }
 
-void CTexture::ExtractTexturesFromNode(FbxNode* node) {
-    int materialCount = node->GetMaterialCount();
+std::vector<ID3D12Resource*> CTexture::ExtractTexturesWithCustom(FbxNode* pNode, const std::string& path) {
+    std::vector<ID3D12Resource*> textureResources;
+
+    if (!pNode) return textureResources;
+
+    int materialCount = pNode->GetMaterialCount();
     for (int i = 0; i < materialCount; i++) {
-        FbxSurfaceMaterial* material = node->GetMaterial(i);
+        FbxSurfaceMaterial* material = pNode->GetMaterial(i);
         if (material) {
             FbxProperty prop = material->FindProperty(FbxSurfaceMaterial::sDiffuse);
             if (prop.IsValid()) {
                 FbxFileTexture* fileTexture = prop.GetSrcObject<FbxFileTexture>();
                 if (fileTexture) {
-                    std::string texturePath = fileTexture->GetFileName();
-                    LoadTexture(texturePath);
-                    std::cout << "Loaded Texture: " << texturePath << std::endl;
+                    std::string originalPath = fileTexture->GetFileName();
+
+                    // 파일 이름만 추출
+                    std::string fileName = originalPath.substr(originalPath.find_last_of("/\\") + 1);
+                    fileName = ConvertExtensionToLowerCase(fileName);
+
+                    // 경로에 텍스처가 있다고 가정하고 새 경로 생성
+                    std::string customPath = path + fileName;
+
+                    // 변경된 경로로 텍스처 로드
+                    ID3D12Resource* textureResource = LoadTexture(customPath);
+                    if (textureResource) {
+                        textureResources.push_back(textureResource);
+                        std::cout << "Loaded Custom Texture: " << customPath << std::endl;
+                    }
+                    else {
+                        std::cerr << "Failed to load texture: " << customPath << std::endl;
+                    }
                 }
             }
         }
     }
+
+    // 재귀적으로 자식 노드 탐색
+    int childCount = pNode->GetChildCount();
+    for (int i = 0; i < childCount; i++) {
+        std::vector<ID3D12Resource*> childResources = ExtractTexturesWithCustom(pNode->GetChild(i), path);
+        textureResources.insert(textureResources.end(), childResources.begin(), childResources.end());
+    }
+
+    return textureResources;
+}
+
+std::string CTexture::ConvertExtensionToLowerCase(const std::string& fileName) {
+    size_t dotPos = fileName.find_last_of('.');
+    if (dotPos == std::string::npos) {
+        // 확장자가 없으면 그대로 반환
+        return fileName;
+    }
+
+    std::string namePart = fileName.substr(0, dotPos); // 파일 이름 부분
+    std::string extPart = fileName.substr(dotPos);    // 확장자 부분
+
+    // 확장자를 소문자로 변환
+    std::transform(extPart.begin(), extPart.end(), extPart.begin(),
+        [](unsigned char c) { return std::tolower(c); });
+
+    return namePart + extPart;
 }

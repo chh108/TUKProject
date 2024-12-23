@@ -16,8 +16,8 @@ public:
     ~CTexture();
 
     ID3D12Resource* LoadTexture(const std::string& path);
-
-    void ExtractTexturesFromNode(FbxNode* node);
+    std::vector<ID3D12Resource*>  ExtractTexturesWithCustom(FbxNode* pNode, const std::string& path);
+    std::string ConvertExtensionToLowerCase(const std::string & fileName);
 
 private:
     ID3D12Device* m_pd3dDevice;

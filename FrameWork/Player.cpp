@@ -12,23 +12,35 @@
 
 CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
 	ID3D12RootSignature* pd3dGraphicsRootSignature, FbxManager* pfbxSdkManager,
-	const std::string& fbxFilePath, ID3D12Resource* pTexture,
-	ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, PlayerType playerType)
-	: CGameObject(pd3dSrvDescriptorHeap, pd3dDevice), m_pTexture(pTexture), m_PlayerType(playerType) {
+	const std::string& fbxFilePath, ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, ID3D12CommandQueue* pd3dCommandQueue, PlayerType playerType)
+	: CGameObject(pd3dSrvDescriptorHeap, pd3dDevice), m_pTexture(NULL), m_PlayerType(playerType) {
+
+	std::cout << "Initial m_pTexture: " << m_pTexture << std::endl;
 
 	m_pCamera = ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
 
-	// 텍스처 설정
-	m_pTexture = pTexture;
+	m_pTextureManager = new CTexture(pd3dDevice, pd3dCommandQueue, pd3dSrvDescriptorHeap);
 
 	// FBX 씬 로드
 	m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, const_cast<char*>(fbxFilePath.c_str()));
 	if (m_pfbxScene) {
+		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), "Model/Character/Textures/");
+
+		if (!textures.empty()) {
+			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
+			std::cout << "First texture loaded for Player: " << m_pTexture << std::endl;
+		}
+		else {
+			std::cerr << "No textures loaded for Player." << std::endl;
+		}
+
 		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
 	}
-	m_pAnimationController = new CAnimationController(m_pfbxScene);
 
-	SetAnimationStack(0);
+	m_pAnimationController = new CAnimationController(m_pfbxScene);
+	if (m_pAnimationController) {
+		m_pAnimationController->SetAnimationStack(m_pfbxScene, 0);
+	}
 	// 플레이어 타입별 설정
 	SetPlayerProperties();
 
@@ -42,6 +54,11 @@ CPlayer::~CPlayer()
 
 	if (m_pCamera) delete m_pCamera;
 	if (m_pAnimationController) delete m_pAnimationController;
+	if (m_pTextureManager) 
+	{
+		delete m_pTextureManager;
+		m_pTextureManager = NULL;
+	}
 }
 
 void CPlayer::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)
@@ -158,7 +175,11 @@ void CPlayer::Update(float fTimeElapsed)
 	}
 	float fMaxVelocityY = m_fMaxVelocityY;
 	fLength = sqrtf(m_xmf3Velocity.y * m_xmf3Velocity.y);
-	if (fLength > m_fMaxVelocityY) m_xmf3Velocity.y *= (fMaxVelocityY / fLength);
+	
+	if (fLength > m_fMaxVelocityY) 
+	{
+		m_xmf3Velocity.y *= (fMaxVelocityY / fLength);
+	}
 
 	XMFLOAT3 xmf3Velocity = Vector3::ScalarProduct(m_xmf3Velocity, fTimeElapsed, false);
 	Move(xmf3Velocity, false);

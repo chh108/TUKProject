@@ -438,7 +438,6 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 	if (pfbxNodeAttribute && (pfbxNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh))
 	{
 		FbxMesh *pfbxMesh = pfbxNode->GetMesh();
-		//textureManager.ExtractTexturesFromNode(pfbxNode, );
 		if (pfbxMesh)
 		{
 			int nVertices = pfbxMesh->GetControlPointsCount();
