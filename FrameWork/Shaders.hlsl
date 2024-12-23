@@ -68,6 +68,5 @@ float4 PSFbxSkinnedModel(VS_FBX_MODEL_OUTPUT input) : SV_TARGET
     {
         return float4(0.0f, 1.0f, 0.0f, 1.0f);
     }
-    return float4(1.0f, 1.0f, 1.0f, 1.0f);
-    // return gTexture.Sample(gSampler, uv); // Texture Sampling
+    return gTexture.Sample(gSampler, uv); // Texture Sampling
 }
