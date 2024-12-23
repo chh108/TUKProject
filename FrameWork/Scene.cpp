@@ -62,6 +62,15 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 {
 	ID3D12RootSignature *pd3dGraphicsRootSignature = NULL;
 
+
+	// 20241204 SRV Descriptor Table Add
+	D3D12_DESCRIPTOR_RANGE srvRange = {};
+	srvRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	srvRange.NumDescriptors = 1; // Texture Nums
+	srvRange.BaseShaderRegister = 0; // t0
+	srvRange.RegisterSpace = 0;
+	srvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+
 	D3D12_ROOT_PARAMETER pd3dRootParameters[3]; // 20241204 Add RootParameters 2->3
 
 	// 1. CBV for Camera
@@ -77,14 +86,7 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	pd3dRootParameters[1].Constants.RegisterSpace = 0;
 	pd3dRootParameters[1].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
-	// 20241204 SRV Descriptor Table Add
-	D3D12_DESCRIPTOR_RANGE srvRange;
-	srvRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
-	srvRange.NumDescriptors = 1; // Texture Nums
-	srvRange.BaseShaderRegister = 0; // t0
-	srvRange.RegisterSpace = 0;
-	srvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
-
+	// 3. Simple Texture
 	pd3dRootParameters[2].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
 	pd3dRootParameters[2].DescriptorTable.NumDescriptorRanges = 1;
 	pd3dRootParameters[2].DescriptorTable.pDescriptorRanges = &srvRange;

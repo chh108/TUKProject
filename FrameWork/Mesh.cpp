@@ -42,9 +42,15 @@ void CMeshFromFbx::ReleaseUploadBuffers()
 	m_pd3dIndexUploadBuffer = NULL;
 }
 
+void CMeshFromFbx::OnPrepareRender(ID3D12GraphicsCommandList* pd3dCommandList, void* pContext)
+{
+	D3D12_VERTEX_BUFFER_VIEW pVertexBufferViews[2] = { m_d3dPositionBufferView, m_d3dUVBufferView };
+	pd3dCommandList->IASetVertexBuffers(m_nSlot, 2, pVertexBufferViews);
+}
+
 void CMeshFromFbx::Render(ID3D12GraphicsCommandList *pd3dCommandList)
 {
-	pd3dCommandList->IASetVertexBuffers(m_nSlot, 1, &m_d3dPositionBufferView);
+	OnPrepareRender(pd3dCommandList, NULL);
 	pd3dCommandList->IASetPrimitiveTopology(m_d3dPrimitiveTopology);
 
 	pd3dCommandList->IASetIndexBuffer(&m_d3dIndexBufferView);

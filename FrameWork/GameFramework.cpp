@@ -214,33 +214,13 @@ void CGameFramework::CreateRtvAndDsvDescriptorHeaps()
 void CGameFramework::CreateSrvDescriptorHeaps()
 { 
 	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
-	srvHeapDesc.NumDescriptors = m_nShaderResourceViews; // num of SRV
+	srvHeapDesc.NumDescriptors = m_nShaderResourceViews; // num of SRV srvDesc.Num
 	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
 
 	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&m_pd3dSrvDescriptorHeap));
 	if (FAILED(hResult)) {
 		OutputDebugString(L"Failed to create SRV descriptor heap.\n");
-	}
-}
-
-void CGameFramework::LoadGameTextures()
-{
-	if (!m_pTextureManager) 
-	{
-		m_pTextureManager = new CTexture(m_pd3dDevice, m_pd3dCommandQueue, m_pd3dSrvDescriptorHeap);
-	}
-
-	m_pTexture = m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");
-
-	if (m_pTexture)
-	{
-		std::cout << "Texture Loaded!" << std::endl;
-	}
-
-	else
-	{
-		std::cerr << "Failed to Load." << std::endl;
 	}
 }
 
@@ -616,6 +596,8 @@ void CGameFramework::FrameAdvance()
 	m_pd3dCommandList->ClearDepthStencilView(d3dDsvCPUDescriptorHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, NULL);
 
 	m_pd3dCommandList->OMSetRenderTargets(1, &d3dRtvCPUDescriptorHandle, TRUE, &d3dDsvCPUDescriptorHandle);
+
+	m_pd3dCommandList->SetDescriptorHeaps(1, &m_pd3dSrvDescriptorHeap);
 
 	if (m_pScene) m_pScene->Render(m_pd3dCommandList, m_pCamera);
 

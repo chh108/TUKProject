@@ -29,6 +29,8 @@ protected:
 
 	ID3D12Resource					*m_pd3dPositionBuffer = NULL;
 	D3D12_VERTEX_BUFFER_VIEW		m_d3dPositionBufferView;
+	D3D12_VERTEX_BUFFER_VIEW		m_d3dVertexBufferView;
+	D3D12_VERTEX_BUFFER_VIEW		m_d3dUVBufferView;
 
 	int								m_nIndices = 0;
 
@@ -41,6 +43,8 @@ public:
 
 public:
 	virtual void ReleaseUploadBuffers();
+
+	void OnPrepareRender(ID3D12GraphicsCommandList* pd3dCommandList, void* pContext);
 
 	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList);
 };

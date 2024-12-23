@@ -20,13 +20,13 @@ SamplerState gSampler : register(s0); // Sampler binding
 struct VS_FBX_MODEL_INPUT
 {
 	float4 position : POSITION;
-    float2 texcoord : TEXCOORD0;
+    float2 texcoord : TEXCOORD;
 };
 
 struct VS_FBX_MODEL_OUTPUT
 {
 	float4 position : SV_POSITION;
-    float2 texcoord : TEXCOORD0;
+    float2 texcoord : TEXCOORD;
 };
 
 VS_FBX_MODEL_OUTPUT VSFbxModel(VS_FBX_MODEL_INPUT input)
@@ -42,9 +42,12 @@ VS_FBX_MODEL_OUTPUT VSFbxModel(VS_FBX_MODEL_INPUT input)
 float4 PSFbxModel(VS_FBX_MODEL_OUTPUT input) : SV_TARGET
 {	
 	// float4 cColor = float4(0.0f, 0.0f, 1.0f, 1.0f);
-    float4 cColor = gTexture.Sample(gSampler, input.texcoord); // Texture Sampling
-	
-	return(cColor);
+    float2 uv = input.texcoord;
+    if (uv.x < 0 || uv.x > 1 || uv.y < 0 || uv.y > 1)
+    {
+        return float4(1.0f, 0.0f, 0.0f, 1.0f);
+    }
+    return gTexture.Sample(gSampler, uv); // Texture Sampling
 }
 
 VS_FBX_MODEL_OUTPUT VSFbxSkinnedModel(VS_FBX_MODEL_INPUT input)
@@ -60,7 +63,11 @@ VS_FBX_MODEL_OUTPUT VSFbxSkinnedModel(VS_FBX_MODEL_INPUT input)
 float4 PSFbxSkinnedModel(VS_FBX_MODEL_OUTPUT input) : SV_TARGET
 {	
 	// float4 cColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
-    float4 cColor = gTexture.Sample(gSampler, input.texcoord); // Texture Sampling
-	
-	return(cColor);
+    float2 uv = input.texcoord;
+    if (uv.x < 0 || uv.x > 1 || uv.y < 0 || uv.y > 1)
+    {
+        return float4(0.0f, 1.0f, 0.0f, 1.0f);
+    }
+    return float4(1.0f, 1.0f, 1.0f, 1.0f);
+    // return gTexture.Sample(gSampler, uv); // Texture Sampling
 }

@@ -97,13 +97,12 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
     srvDesc.Texture2D.MipLevels = textureResource->GetDesc().MipLevels;
 
     m_pd3dDevice->CreateShaderResourceView(textureResource, &srvDesc, srvHandle);
-
-    // 디스크립터 힙 인덱스 증가
-    m_heapIndex++;
     
     // 텍스처 맵으로 관리
     if (textureResource) {
         m_textureMap[path] = textureResource;
+        // 디스크립터 힙 인덱스 증가
+        m_heapIndex++;
     }
 
     return textureResource;

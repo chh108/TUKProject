@@ -37,6 +37,8 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
 	}
 
+	SetTexture(m_pTexture, 0);
+
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 	if (m_pAnimationController) {
 		m_pAnimationController->SetAnimationStack(m_pfbxScene, 0);
@@ -342,6 +344,19 @@ void CPlayer::OnPrepareRender()
 
 void CPlayer::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera)
 {
+	if (m_pTexture) {
+		std::cout << "Rendering Player with valid texture: " << m_pTexture << std::endl;
+	}
+	else {
+		std::cerr << "Player texture is NULL during Render." << std::endl;
+	}
 	DWORD nCameraMode = (pCamera) ? pCamera->GetMode() : 0x00;
 	if (nCameraMode == THIRD_PERSON_CAMERA) CGameObject::Render(pd3dCommandList, pCamera);
+
+	if (m_pTexture) {
+		std::cout << "After CGameObject::Render - Player texture valid: " << m_pTexture << std::endl;
+	}
+	else {
+		std::cerr << "After CGameObject::Render - Player texture is NULL." << std::endl;
+	}
 }

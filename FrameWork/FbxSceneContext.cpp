@@ -440,6 +440,24 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 		FbxMesh *pfbxMesh = pfbxNode->GetMesh();
 		if (pfbxMesh)
 		{
+			if (pfbxMesh->GetElementUVCount() > 0)
+			{
+				FbxGeometryElementUV* pUVElement = pfbxMesh->GetElementUV(0);
+
+				for (int i = 0; i < pfbxMesh->GetPolygonCount(); i++)
+				{
+					for (int j = 0; j < pfbxMesh->GetPolygonSize(i); j++)
+					{
+						int uvIndex = pfbxMesh->GetTextureUVIndex(i, j);
+						FbxVector2 uv = pUVElement->GetDirectArray().GetAt(uvIndex);
+						std::cout << "Polygon[" << i << "] Vertex[" << j << "] UV = (" << uv[0] << ", " << uv[1] << ")" << std::endl;
+					}
+				}
+			}
+			else
+			{
+				std::cerr << "No UV data available for this mesh." << std::endl;
+			}
 			int nVertices = pfbxMesh->GetControlPointsCount();
 
 			int nIndices = 0;

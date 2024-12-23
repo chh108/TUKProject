@@ -88,6 +88,12 @@ CGameObject::CGameObject() {
 
 CGameObject::CGameObject(ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, ID3D12Device* pd3dDevice) 
 	: m_pd3dSrvDescriptorHeap(pd3dSrvDescriptorHeap), m_pd3dDevice(pd3dDevice) {
+  	if (!m_pd3dSrvDescriptorHeap) {
+		std::cerr << "CGameObject: SRV Descriptor Heap is NULL during initialization." << std::endl;
+	}
+	else {
+		std::cout << "CGameObject: SRV Descriptor Heap successfully initialized." << std::endl;
+	}
 	m_xmf4x4World = Matrix4x4::Identity();
 }
 
@@ -122,12 +128,29 @@ void CGameObject::Animate(float fTimeElapsed)
 
 void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera)
 {
+	if (m_pTexture) {
+		std::cout << "CGameObject::Render - Texture valid: " << m_pTexture << std::endl;
+	}
+	else {
+		std::cerr << "CGameObject::Render - Texture is NULL." << std::endl;
+	}
+
 	OnPrepareRender();
 
+	if (m_pd3dSrvDescriptorHeap) {
+		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = m_pd3dSrvDescriptorHeap->GetDesc();
+		std::cout << "SRV Descriptor Heap Size: " << heapDesc.NumDescriptors << std::endl;
+	}
+	else {
+		std::cerr << "SRV Descriptor Heap is NULL." << std::endl;
+	}
 	// 20241216 텍스처 로딩
 	if (m_pTexture) {
 		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
 		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+		UINT64 testNum = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+		std::cout << "SRVHandle: " << srvHandle.ptr << std::endl;
+
 		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root Parameter Index 2
 	}
 

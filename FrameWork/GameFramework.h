@@ -28,7 +28,6 @@ public:
 
 	//20241209 Texture
 	void CreateSrvDescriptorHeaps();
-	void LoadGameTextures();
 
 	void CreateRenderTargetViews();
 	void CreateDepthStencilView();
@@ -68,7 +67,7 @@ private:
 	static const UINT			m_nSwapChainBuffers = 2;
 	UINT						m_nSwapChainBufferIndex;
 
-	static const UINT			m_nShaderResourceViews = 1;
+	static const UINT			m_nShaderResourceViews = 32;
 	ID3D12DescriptorHeap		*m_pd3dSrvDescriptorHeap = NULL;
 	ID3D12Resource				*m_pTexture = NULL;
 
