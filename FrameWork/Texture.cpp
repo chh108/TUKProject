@@ -17,7 +17,7 @@ CTexture::~CTexture() {
     }
 }
 
-ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
+ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCommandList* pd3dCommandList) {
     
     // Check if texture is already loaded to avoid duplicates
     if (m_textureMap.find(path) != m_textureMap.end()) {
@@ -52,6 +52,8 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
         false // Do not generate mipmaps
     );
 
+    uploadBatch.End(m_pd3dCommandQueue).wait();
+
     if (SUCCEEDED(hr) && textureResource) {
         std::cout << "Texture resource created successfully: " << textureResource << std::endl;
     }
@@ -78,26 +80,6 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
         return NULL;
     }
 
-    // 디스크립터 힙 정보 가져오기
-    D3D12_DESCRIPTOR_HEAP_DESC descHeapDesc = m_pd3dDescriptorHeap->GetDesc();
-    if (m_heapIndex >= descHeapDesc.NumDescriptors) {
-        std::cerr << "Heap index exceeds descriptor heap size!" << std::endl;
-        return NULL;
-    }
-
-    // 디스크립터 핸들 설정
-    D3D12_CPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
-    srvHandle.ptr += m_heapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-
-    // Shader Resource View 생성
-    D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
-    srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
-    srvDesc.Format = textureResource->GetDesc().Format;
-    srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
-    srvDesc.Texture2D.MipLevels = textureResource->GetDesc().MipLevels;
-
-    m_pd3dDevice->CreateShaderResourceView(textureResource, &srvDesc, srvHandle);
-    
     // 텍스처 맵으로 관리
     if (textureResource) {
         m_textureMap[path] = textureResource;
@@ -108,7 +90,7 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path) {
     return textureResource;
 }
 
-std::vector<ID3D12Resource*> CTexture::ExtractTexturesWithCustom(FbxNode* pNode, const std::string& path) {
+std::vector<ID3D12Resource*> CTexture::ExtractTexturesWithCustom(FbxNode* pNode, const std::string& path, ID3D12GraphicsCommandList* pd3dCommandList) {
     std::vector<ID3D12Resource*> textureResources;
 
     if (!pNode) return textureResources;
@@ -131,7 +113,7 @@ std::vector<ID3D12Resource*> CTexture::ExtractTexturesWithCustom(FbxNode* pNode,
                     std::string customPath = path + fileName;
 
                     // 변경된 경로로 텍스처 로드
-                    ID3D12Resource* textureResource = LoadTexture(customPath);
+                    ID3D12Resource* textureResource = LoadTexture(customPath, pd3dCommandList);
                     if (textureResource) {
                         textureResources.push_back(textureResource);
                         std::cout << "Loaded Custom Texture: " << customPath << std::endl;
@@ -147,7 +129,7 @@ std::vector<ID3D12Resource*> CTexture::ExtractTexturesWithCustom(FbxNode* pNode,
     // 재귀적으로 자식 노드 탐색
     int childCount = pNode->GetChildCount();
     for (int i = 0; i < childCount; i++) {
-        std::vector<ID3D12Resource*> childResources = ExtractTexturesWithCustom(pNode->GetChild(i), path);
+        std::vector<ID3D12Resource*> childResources = ExtractTexturesWithCustom(pNode->GetChild(i), path, pd3dCommandList);
         textureResources.insert(textureResources.end(), childResources.begin(), childResources.end());
     }
 
