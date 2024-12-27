@@ -20,7 +20,7 @@ CGameFramework::CGameFramework()
 
 	m_pd3dRtvDescriptorHeap = NULL;
 	m_pd3dDsvDescriptorHeap = NULL;
-	m_pd3dSrvDescriptorHeap = NULL;
+	m_pd3dCbvSrvDescriptorHeap = NULL;
 
 	m_nRtvDescriptorIncrementSize = 0;
 	m_nDsvDescriptorIncrementSize = 0;
@@ -51,7 +51,7 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	CreateDirect3DDevice();
 	CreateCommandQueueAndList();
 	CreateRtvAndDsvDescriptorHeaps();
-	CreateSrvDescriptorHeaps();
+	CreateCbvAndSrvDescriptorHeaps();
 	CreateSwapChain();
 	CreateDepthStencilView();
 
@@ -211,16 +211,19 @@ void CGameFramework::CreateRtvAndDsvDescriptorHeaps()
 }
 
 //20241209 SRV HEAP & Texture
-void CGameFramework::CreateSrvDescriptorHeaps()
+void CGameFramework::CreateCbvAndSrvDescriptorHeaps()
 { 
-	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
-	srvHeapDesc.NumDescriptors = m_nShaderResourceViews; // num of SRV srvDesc.Num
-	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	D3D12_DESCRIPTOR_HEAP_DESC d3dDescriptorHeapDesc;
+	d3dDescriptorHeapDesc.NumDescriptors = m_nConstantBufferViews + m_nShaderResourceViews; // num of SRV srvDesc.Num
+	d3dDescriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	d3dDescriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	d3dDescriptorHeapDesc.NodeMask = 0;
 
-	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&m_pd3dSrvDescriptorHeap));
+	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&d3dDescriptorHeapDesc, __uuidof(ID3D12DescriptorHeap), (void**)&m_pd3dCbvSrvDescriptorHeap);
+
 	if (FAILED(hResult)) {
-		OutputDebugString(L"Failed to create SRV descriptor heap.\n");
+		std::cerr << "Failed to create descriptor heap: " << hResult << std::endl;
+		return;
 	}
 }
 
@@ -395,7 +398,7 @@ void CGameFramework::OnDestroy()
 
 	for (int i = 0; i < m_nSwapChainBuffers; i++) if (m_ppd3dSwapChainBackBuffers[i]) m_ppd3dSwapChainBackBuffers[i]->Release();
 	if (m_pd3dRtvDescriptorHeap) m_pd3dRtvDescriptorHeap->Release();
-	if (m_pd3dSrvDescriptorHeap) m_pd3dSrvDescriptorHeap->Release();
+	if (m_pd3dCbvSrvDescriptorHeap) m_pd3dCbvSrvDescriptorHeap->Release();
 
 	if (m_pTexture) m_pTexture->Release();
 	if (m_pTextureManager) m_pTexture->Release();
@@ -447,7 +450,7 @@ void CGameFramework::BuildObjects()
 	// ID3D12Resource* pTexture = m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");
 
 	CPlayer* pPlayer = new CPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(),
-		m_pfbxSdkManager, "Model/BluePlayer.fbx", m_pd3dSrvDescriptorHeap, m_pd3dCommandQueue, PlayerType::Blue);
+		m_pfbxSdkManager, "Model/BluePlayer.fbx", m_pd3dCbvSrvDescriptorHeap, m_pd3dCommandQueue, PlayerType::Blue);
 
 #ifdef _WITH_FBX_SCENE_INSTANCING
 	::CreateMeshFromFbxNodeHierarchy(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxScene->GetRootNode());
@@ -597,7 +600,8 @@ void CGameFramework::FrameAdvance()
 
 	m_pd3dCommandList->OMSetRenderTargets(1, &d3dRtvCPUDescriptorHandle, TRUE, &d3dDsvCPUDescriptorHandle);
 
-	m_pd3dCommandList->SetDescriptorHeaps(1, &m_pd3dSrvDescriptorHeap);
+	m_pd3dCommandList->SetDescriptorHeaps(1, &m_pd3dCbvSrvDescriptorHeap);
+	// m_pd3dCommandList->SetGraphicsRootDescriptorTable(2, m_d3dSrvGPUDescriptorStartHandle);
 
 	if (m_pScene) m_pScene->Render(m_pd3dCommandList, m_pCamera);
 

@@ -24,7 +24,7 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 	// FBX 씬 로드
 	m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, const_cast<char*>(fbxFilePath.c_str()));
 	if (m_pfbxScene) {
-		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), "Model/Character/Textures/");
+		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), "Model/Character/Textures/", pd3dCommandList);
 
 		if (!textures.empty()) {
 			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
