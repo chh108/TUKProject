@@ -87,6 +87,26 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
         m_heapIndex++;
     }
 
+    // SRV 생성
+    D3D12_CPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+    srvHandle.ptr += m_heapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+
+    D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+    srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+    srvDesc.Format = textureResource->GetDesc().Format;
+    srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+    srvDesc.Texture2D.MipLevels = textureResource->GetDesc().MipLevels;
+
+    m_pd3dDevice->CreateShaderResourceView(textureResource, &srvDesc, srvHandle);
+
+    // GPU 핸들 저장
+    D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle = m_pd3dDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+    gpuHandle.ptr += m_heapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+    m_textureHandles[path] = gpuHandle;
+
+    m_textureMap[path] = textureResource;
+    m_heapIndex++;
+
     return textureResource;
 }
 
