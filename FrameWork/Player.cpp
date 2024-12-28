@@ -42,9 +42,9 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 	if (m_pAnimationController) {
-		CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/WALK.fbx");
+		// CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/WALK.fbx");
 		PrintAnimationStackNames(m_pfbxScene);
-		m_pAnimationController->SetAnimationStack(m_pfbxScene, 1);
+		m_pAnimationController->SetAnimationStack(m_pfbxScene, 0);
 	}
 	// 플레이어 타입별 설정
 	SetPlayerProperties();
