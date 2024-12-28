@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "GameFramework.h"
+#include "debugLog.h"
 
 D3D12_CPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dCbvCPUDescriptorStartHandle;
 D3D12_GPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dCbvGPUDescriptorStartHandle;
@@ -616,7 +617,19 @@ void CGameFramework::FrameAdvance()
 	m_pd3dCommandList->OMSetRenderTargets(1, &d3dRtvCPUDescriptorHandle, TRUE, &d3dDsvCPUDescriptorHandle);
 
 	m_pd3dCommandList->SetDescriptorHeaps(1, &m_pd3dCbvSrvDescriptorHeap);
-	// m_pd3dCommandList->SetGraphicsRootDescriptorTable(2, m_d3dSrvGPUDescriptorStartHandle);
+	D3D12_DESCRIPTOR_HEAP_DESC heapDesc = m_pd3dCbvSrvDescriptorHeap->GetDesc();
+	debugLog << "SRV DH Initialized: NUM Descriptors = " << heapDesc.NumDescriptors << std::endl;
+	debugLog << "HeapType = " << heapDesc.Type << std::endl;
+
+	if (m_d3dSrvGPUDescriptorStartHandle.ptr == 0) {
+		debugLog << "GPU Handle Error!\n";
+	}
+	else
+	{
+		debugLog << "GPU Handle is valid. Address : " << m_d3dSrvGPUDescriptorStartHandle.ptr << "\n";
+	}
+	//m_pd3dCommandList->SetGraphicsRootDescriptorTable(2, m_d3dSrvGPUDescriptorStartHandle);
+	//debugLog << "RootDesctiporTable for Texture Set.\n";
 
 	if (m_pScene) m_pScene->Render(m_pd3dCommandList, m_pCamera);
 

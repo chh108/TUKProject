@@ -150,9 +150,13 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
 		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 		UINT64 testNum = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-		debugLog << "SRVHandle: " << srvHandle.ptr << std::endl;
+		debugLog << "SRVHandle: (With Texture) " << srvHandle.ptr << std::endl;
 
 		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root Parameter Index 2
+	}
+	else
+	{
+		debugLog << "Failed To Bind SRV.\n";
 	}
 
 	// 20241216 애니메이션 작업 시작
