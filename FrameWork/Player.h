@@ -103,6 +103,10 @@ public:
 	virtual void OnPrepareRender();
 	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera = NULL);
 
+	void PrintAnimationStackNames(FbxScene* pfbxScene);
+
+	bool CreateAnimationStack(FbxScene* pScene, const std::string& animationFilePath);
+
 private:
 	void SetPlayerProperties();
 };

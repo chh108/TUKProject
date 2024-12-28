@@ -20,6 +20,10 @@ CTexture::~CTexture() {
 
 ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCommandList* pd3dCommandList) {
     
+    if (m_textureMap.empty())
+    {
+       debugLog << "m_TextureMap is empty." << std::endl;
+    }
     // Check if texture is already loaded to avoid duplicates
     if (m_textureMap.find(path) != m_textureMap.end()) {
         return m_textureMap[path]; // Return the already loaded texture
