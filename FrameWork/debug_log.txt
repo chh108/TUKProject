@@ -1,7 +1,7 @@
 Debug Log Initialized
 CGameObject: SRV Descriptor Heap successfully initialized.
 m_TextureMap is empty.
-Texture resource created successfully: 000002B309090DF0
+Texture resource created successfully: 000002AD36898D20
 Loaded Custom Texture: Model/Character/Textures/character_01_01.png
 Animation Stack [0]: Take 001
 SRV DH Initialized: NUM Descriptors = 64
@@ -13,7 +13,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -25,7 +25,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -37,7 +37,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -49,7 +49,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -61,7 +61,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -73,7 +73,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -85,7 +85,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -97,7 +97,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -109,7 +109,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -121,7 +121,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -133,7 +133,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -145,7 +145,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -157,7 +157,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -169,7 +169,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -181,7 +181,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -193,7 +193,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -205,7 +205,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -217,7 +217,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -229,7 +229,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -241,7 +241,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -253,7 +253,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -265,7 +265,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -277,7 +277,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -289,7 +289,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -301,7 +301,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -313,7 +313,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -325,7 +325,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -337,7 +337,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -349,7 +349,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -361,7 +361,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -373,7 +373,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -385,7 +385,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -397,7 +397,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -409,7 +409,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -421,7 +421,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -433,7 +433,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -445,7 +445,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -457,7 +457,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -469,7 +469,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -481,7 +481,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -493,7 +493,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -505,7 +505,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -517,7 +517,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -529,7 +529,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -541,7 +541,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -553,7 +553,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -565,7 +565,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -577,7 +577,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -589,7 +589,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -601,7 +601,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -613,7 +613,7 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
 SRV DH Initialized: NUM Descriptors = 64
@@ -625,78 +625,6 @@ Failed To Bind SRV.
 CGameObject::Render - Texture is NULL.
 SRV Descriptor Heap is NULL.
 Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
-SRV Descriptor Heap Size: 64
-SRVHandle: (With Texture) 10528416542556160
-SRV DH Initialized: NUM Descriptors = 64
-HeapType = 0
-GPU Handle is valid. Address : 10528416542556160
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
-SRV Descriptor Heap Size: 64
-SRVHandle: (With Texture) 10528416542556160
-SRV DH Initialized: NUM Descriptors = 64
-HeapType = 0
-GPU Handle is valid. Address : 10528416542556160
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
-SRV Descriptor Heap Size: 64
-SRVHandle: (With Texture) 10528416542556160
-SRV DH Initialized: NUM Descriptors = 64
-HeapType = 0
-GPU Handle is valid. Address : 10528416542556160
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
-SRV Descriptor Heap Size: 64
-SRVHandle: (With Texture) 10528416542556160
-SRV DH Initialized: NUM Descriptors = 64
-HeapType = 0
-GPU Handle is valid. Address : 10528416542556160
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
-SRV Descriptor Heap Size: 64
-SRVHandle: (With Texture) 10528416542556160
-SRV DH Initialized: NUM Descriptors = 64
-HeapType = 0
-GPU Handle is valid. Address : 10528416542556160
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
-SRV Descriptor Heap Size: 64
-SRVHandle: (With Texture) 10528416542556160
-SRV DH Initialized: NUM Descriptors = 64
-HeapType = 0
-GPU Handle is valid. Address : 10528416542556160
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture valid: 000002B309090DF0
+CGameObject::Render - Texture valid: 000002AD36898D20
 SRV Descriptor Heap Size: 64
 SRVHandle: (With Texture) 10528416542556160
