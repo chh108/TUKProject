@@ -451,7 +451,7 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 					{
 						int uvIndex = pfbxMesh->GetTextureUVIndex(i, j);
 						FbxVector2 uv = pUVElement->GetDirectArray().GetAt(uvIndex);
-						std::cout << "Polygon[" << i << "] Vertex[" << j << "] UV = (" << uv[0] << ", " << uv[1] << ")" << std::endl;
+						// debugLog << "Polygon[" << i << "] Vertex[" << j << "] UV = (" << uv[0] << ", " << uv[1] << ")" << std::endl; // For Debug UV File
 					}
 				}
 			}

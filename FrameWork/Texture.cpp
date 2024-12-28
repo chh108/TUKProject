@@ -7,8 +7,8 @@
 #include <unordered_map>            // 20241214 Unorderd_map 사용을 통한 중복 방지
 #include "DebugLog.h"
 
-CTexture::CTexture(ID3D12Device* device, ID3D12CommandQueue* commandQueue, ID3D12DescriptorHeap* descriptorHeap)
-    : m_pd3dDevice(device), m_pd3dCommandQueue(commandQueue), m_pd3dDescriptorHeap(descriptorHeap), m_heapIndex(0) {
+CTexture::CTexture()
+    : m_pd3dDevice(NULL), m_pd3dCommandQueue(NULL), m_pd3dCbvSrvDescriptorHeap(NULL), m_descriptorIncrementSize(0), m_heapIndex(0) {
 }
 
 CTexture::~CTexture() {
@@ -16,6 +16,16 @@ CTexture::~CTexture() {
     for (auto& pair : m_textureMap) {
         if (pair.second) pair.second->Release();
     }
+}
+
+void CTexture::Initialize(ID3D12Device* pd3dDevice, ID3D12CommandQueue* pd3dCommandQueue, ID3D12DescriptorHeap* pd3dCbvSrvDescriptorHeap, UINT descriptorIncrementSize)
+{
+    m_pd3dDevice = pd3dDevice;
+    m_pd3dCommandQueue = pd3dCommandQueue;
+    m_pd3dCbvSrvDescriptorHeap = pd3dCbvSrvDescriptorHeap;
+    m_descriptorIncrementSize = descriptorIncrementSize;
+
+    debugLog << "CTexture::Initialize called - Device: " << m_pd3dDevice << std::endl;
 }
 
 ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCommandList* pd3dCommandList) {
@@ -38,13 +48,7 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
         debugLog << "Device is NULL!" << std::endl;
         return NULL;
     }
-
-    // Validate the descriptor heap
-    if (!m_pd3dDescriptorHeap) {
-        debugLog << "Descriptor Heap is NULL!" << std::endl;
-        return NULL;
-    }
-
+    
     // Use ResourceUploadBatch to load texture
     DirectX::ResourceUploadBatch uploadBatch(m_pd3dDevice);
     uploadBatch.Begin();
@@ -56,8 +60,8 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
         &textureResource,
         false // Do not generate mipmaps
     );
-
     uploadBatch.End(m_pd3dCommandQueue).wait();
+
 
     if (SUCCEEDED(hr) && textureResource) {
         debugLog << "Texture resource created successfully: " << textureResource << std::endl;
@@ -74,11 +78,6 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
         return NULL;
     }
 
-    if (!m_pd3dDescriptorHeap) {
-        debugLog << "Descriptor Heap is NULL!" << std::endl;
-        return NULL;
-    }
-
     // textureResource 상태 점검
     if (!textureResource) {
         debugLog << "Texture resource is NULL!" << std::endl;
@@ -87,6 +86,22 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
 
     // 텍스처 맵으로 관리
     if (textureResource) {
+        D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+        srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+        srvDesc.Format = textureResource->GetDesc().Format;
+        srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+        srvDesc.Texture2D.MostDetailedMip = 0;
+        srvDesc.Texture2D.MipLevels = textureResource->GetDesc().MipLevels;
+
+        D3D12_CPU_DESCRIPTOR_HANDLE srvHandle(m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
+        debugLog << "SRV Handle Address (Before) : " << srvHandle.ptr << std::endl;
+
+        srvHandle.ptr += m_heapIndex * m_descriptorIncrementSize;
+
+        m_pd3dDevice->CreateShaderResourceView(textureResource, &srvDesc, srvHandle);
+
+        debugLog << "Create SRV : " << srvHandle.ptr << "with " << textureResource << std::endl;
+
         m_textureMap[path] = textureResource;
         // 디스크립터 힙 인덱스 증가
         m_heapIndex++;

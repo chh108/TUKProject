@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Shader.h"
+#include "Scene.h"
 #include "Texture.h"
 #include "DebugLog.h"
 
@@ -13,23 +14,30 @@
 
 CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
 	ID3D12RootSignature* pd3dGraphicsRootSignature, FbxManager* pfbxSdkManager,
-	const std::string& fbxFilePath, ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, ID3D12CommandQueue* pd3dCommandQueue, PlayerType playerType)
-	: CGameObject(pd3dSrvDescriptorHeap, pd3dDevice), m_pTexture(NULL), m_PlayerType(playerType) {
+	const std::string& fbxFilePath, CTexture* pTextureManager, PlayerType playerType)
+	: CGameObject(pTextureManager, pd3dDevice), m_pTexture(NULL), m_PlayerType(playerType) {
 
-	std::cout << "Initial m_pTexture: " << m_pTexture << std::endl;
+	debugLog << "CPlayer Constructor (Before Scene Load) - Device: " << m_pd3dDevice << std::endl;
 
 	m_pCamera = ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
 
-	m_pTextureManager = new CTexture(pd3dDevice, pd3dCommandQueue, pd3dSrvDescriptorHeap);
-
+	if (pTextureManager) {
+		m_pTextureManager = pTextureManager;
+	}
+	else {
+		debugLog << "CPlayer: Texture Manager is NULL!" << std::endl;
+	}
 	// FBX 씬 로드
 	m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, const_cast<char*>(fbxFilePath.c_str()));
+
+	debugLog << "CPlayer Constructor (After Scene Load) - Device: " << m_pd3dDevice << std::endl;
+
 	if (m_pfbxScene) {
 		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), "Model/Character/Textures/", pd3dCommandList);
 
 		if (!textures.empty()) {
 			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
-			std::cout << "First texture loaded for Player: " << m_pTexture << std::endl;
+			debugLog << "First texture loaded for Player: " << m_pTexture << std::endl;
 		}
 		else {
 			std::cerr << "No textures loaded for Player." << std::endl;
@@ -348,19 +356,19 @@ void CPlayer::OnPrepareRender()
 void CPlayer::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera)
 {
 	if (m_pTexture) {
-		std::cout << "Rendering Player with valid texture: " << m_pTexture << std::endl;
+		debugLog << "Rendering Player Texture Address: " << m_pTexture << std::endl;
 	}
 	else {
-		std::cerr << "Player texture is NULL during Render." << std::endl;
+		debugLog << "Player texture is NULL during Render." << std::endl;
 	}
 	DWORD nCameraMode = (pCamera) ? pCamera->GetMode() : 0x00;
 	if (nCameraMode == THIRD_PERSON_CAMERA) CGameObject::Render(pd3dCommandList, pCamera);
 
 	if (m_pTexture) {
-		std::cout << "After CGameObject::Render - Player texture valid: " << m_pTexture << std::endl;
+		debugLog << "After CGameObject::Render - Player texture valid: " << m_pTexture << std::endl;
 	}
 	else {
-		std::cerr << "After CGameObject::Render - Player texture is NULL." << std::endl;
+		debugLog << "After CGameObject::Render - Player texture is NULL." << std::endl;
 	}
 }
 

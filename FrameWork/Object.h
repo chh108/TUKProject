@@ -54,6 +54,7 @@ class CGameObject
 protected:
 	ID3D12Device* m_pd3dDevice = NULL; // Direct3D 디바이스
 	ID3D12DescriptorHeap* m_pd3dSrvDescriptorHeap = NULL; // 디스크립터 힙
+	CTexture* m_pTextureManager; // Texture 매니저
 
 private:
 	int								m_nReferences = 0;
@@ -64,7 +65,7 @@ public:
 
 public:
 	CGameObject();
-	CGameObject(ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, ID3D12Device* pd3dDevice);
+	CGameObject(CTexture* pTextureManager, ID3D12Device* pd3dDevice);
     virtual ~CGameObject();
 
 public:

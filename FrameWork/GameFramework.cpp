@@ -6,16 +6,6 @@
 #include "GameFramework.h"
 #include "debugLog.h"
 
-D3D12_CPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dCbvCPUDescriptorStartHandle;
-D3D12_GPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dCbvGPUDescriptorStartHandle;
-D3D12_CPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dSrvCPUDescriptorStartHandle;
-D3D12_GPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dSrvGPUDescriptorStartHandle;
-
-D3D12_CPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dCbvCPUDescriptorNextHandle;
-D3D12_GPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dCbvGPUDescriptorNextHandle;
-D3D12_CPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dSrvCPUDescriptorNextHandle;
-D3D12_GPU_DESCRIPTOR_HANDLE	CGameFramework::m_d3dSrvGPUDescriptorNextHandle;
-
 CGameFramework::CGameFramework()
 {
 	m_pdxgiFactory = NULL;
@@ -62,9 +52,13 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	CreateDirect3DDevice();
 	CreateCommandQueueAndList();
 	CreateRtvAndDsvDescriptorHeaps();
-	CreateCbvAndSrvDescriptorHeaps(); // 20241227 CBV , SRV Descriptor Heap
+	CreateCbvAndSrvDescriptorHeaps();
 	CreateSwapChain();
 	CreateDepthStencilView();
+
+	// 20241229 Texture
+	m_pTextureManager = new CTexture();
+	m_pTextureManager->Initialize(m_pd3dDevice, m_pd3dCommandQueue, m_pd3dCbvSrvDescriptorHeap, m_nCbvSrvDescriptorIncrementSize);
 
 	CoInitialize(NULL);
 
@@ -221,28 +215,40 @@ void CGameFramework::CreateRtvAndDsvDescriptorHeaps()
 	m_nDsvDescriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_DSV);
 }
 
-//20241209 SRV HEAP & Texture
-void CGameFramework::CreateCbvAndSrvDescriptorHeaps()
-{ 
-	D3D12_DESCRIPTOR_HEAP_DESC d3dDescriptorHeapDesc;
-	d3dDescriptorHeapDesc.NumDescriptors = m_nConstantBufferViews + m_nShaderResourceViews; // num of SRV srvDesc.Num
+void CGameFramework::CreateCbvAndSrvDescriptorHeaps() // 20241228 
+{
+	D3D12_DESCRIPTOR_HEAP_DESC d3dDescriptorHeapDesc = {};
+	d3dDescriptorHeapDesc.NumDescriptors = 60; // Max Num of Textures
 	d3dDescriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	d3dDescriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
 	d3dDescriptorHeapDesc.NodeMask = 0;
 
 	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&d3dDescriptorHeapDesc, __uuidof(ID3D12DescriptorHeap), (void**)&m_pd3dCbvSrvDescriptorHeap);
-
 	if (FAILED(hResult)) {
-		std::cerr << "Failed to create descriptor heap: " << hResult << std::endl;
-		return;
+		debugLog << (L"Failed to create CBV/SRV/UAV Descriptor Heap.\n");
 	}
 
-	m_d3dCbvCPUDescriptorNextHandle = m_d3dCbvCPUDescriptorStartHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
-	m_d3dCbvGPUDescriptorNextHandle = m_d3dCbvGPUDescriptorStartHandle = m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
-	m_d3dSrvCPUDescriptorNextHandle.ptr = m_d3dSrvCPUDescriptorStartHandle.ptr = m_d3dCbvCPUDescriptorStartHandle.ptr + (::gnCbvSrvDescriptorIncrementSize * m_nConstantBufferViews);
-	m_d3dSrvGPUDescriptorNextHandle.ptr = m_d3dSrvGPUDescriptorStartHandle.ptr = m_d3dCbvGPUDescriptorStartHandle.ptr + (::gnCbvSrvDescriptorIncrementSize * m_nConstantBufferViews);
+	m_nCbvSrvDescriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV); // GetDescriptorSize
 }
 
+void CGameFramework::CreateShaderResourceViews(ID3D12Resource** ppTextures, int nTextures)
+{
+	D3D12_CPU_DESCRIPTOR_HANDLE srvCpuHandle(m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
+	D3D12_GPU_DESCRIPTOR_HANDLE srcGpuHandle(m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
+
+	for (int i = 0; i < nTextures; ++i)
+	{
+		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+		srvDesc.Format = ppTextures[i]->GetDesc().Format;
+		srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+		srvDesc.Texture2D.MostDetailedMip = 0;
+		srvDesc.Texture2D.MipLevels = ppTextures[i]->GetDesc().MipLevels;
+
+		m_pd3dDevice->CreateShaderResourceView(ppTextures[i], &srvDesc, srvCpuHandle);
+		srvCpuHandle.ptr += m_nCbvSrvDescriptorIncrementSize; // MoveDescriptorHandleForHeapStart();
+	}
+}
 void CGameFramework::CreateRenderTargetViews()
 {
 	D3D12_CPU_DESCRIPTOR_HANDLE d3dRtvCPUDescriptorHandle = m_pd3dRtvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
@@ -417,7 +423,6 @@ void CGameFramework::OnDestroy()
 	if (m_pd3dCbvSrvDescriptorHeap) m_pd3dCbvSrvDescriptorHeap->Release();
 
 	if (m_pTexture) m_pTexture->Release();
-	if (m_pTextureManager) m_pTexture->Release();
 
 	if (m_pd3dCommandAllocator) m_pd3dCommandAllocator->Release();
 	if (m_pd3dCommandQueue) m_pd3dCommandQueue->Release();
@@ -452,7 +457,6 @@ void CGameFramework::CreateFbxSdkManager()
 void CGameFramework::BuildObjects()
 {
 	CreateFbxSdkManager();
-
 	m_pd3dCommandList->Reset(m_pd3dCommandAllocator, NULL);
 
 #ifdef _WITH_FBX_SCENE_INSTANCING
@@ -465,8 +469,12 @@ void CGameFramework::BuildObjects()
 	// Load Blue Player
 	// ID3D12Resource* pTexture = m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");
 
+	debugLog << "Before Create Player (device) : " << m_pd3dDevice << std::endl;
+
 	CPlayer* pPlayer = new CPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(),
-		m_pfbxSdkManager, "Model/BluePlayer.fbx", m_pd3dCbvSrvDescriptorHeap, m_pd3dCommandQueue, PlayerType::Blue);
+		m_pfbxSdkManager, "Model/BluePlayer.fbx", m_pTextureManager, PlayerType::Blue);
+
+	debugLog << "After CPlayer Creation - Device: " << m_pd3dDevice << std::endl;
 
 #ifdef _WITH_FBX_SCENE_INSTANCING
 	::CreateMeshFromFbxNodeHierarchy(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxScene->GetRootNode());
@@ -616,20 +624,11 @@ void CGameFramework::FrameAdvance()
 
 	m_pd3dCommandList->OMSetRenderTargets(1, &d3dRtvCPUDescriptorHandle, TRUE, &d3dDsvCPUDescriptorHandle);
 
-	m_pd3dCommandList->SetDescriptorHeaps(1, &m_pd3dCbvSrvDescriptorHeap);
-	D3D12_DESCRIPTOR_HEAP_DESC heapDesc = m_pd3dCbvSrvDescriptorHeap->GetDesc();
-	debugLog << "SRV DH Initialized: NUM Descriptors = " << heapDesc.NumDescriptors << std::endl;
-	debugLog << "HeapType = " << heapDesc.Type << std::endl;
+	//ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dCbvSrvDescriptorHeap };
+	//m_pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps); // Do When Rendering is needed 20241229
 
-	if (m_d3dSrvGPUDescriptorStartHandle.ptr == 0) {
-		debugLog << "GPU Handle Error!\n";
-	}
-	else
-	{
-		debugLog << "GPU Handle is valid. Address : " << m_d3dSrvGPUDescriptorStartHandle.ptr << "\n";
-	}
-	//m_pd3dCommandList->SetGraphicsRootDescriptorTable(2, m_d3dSrvGPUDescriptorStartHandle);
-	//debugLog << "RootDesctiporTable for Texture Set.\n";
+	//// SetRootDescriptorTable and Rendering
+	//m_pd3dCommandList->SetGraphicsRootDescriptorTable(0, m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
 
 	if (m_pScene) m_pScene->Render(m_pd3dCommandList, m_pCamera);
 

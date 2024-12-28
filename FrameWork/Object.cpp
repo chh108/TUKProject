@@ -84,17 +84,22 @@ void CAnimationController::AdvanceTime(float fTimeElapsed)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CGameObject::CGameObject() {
+CGameObject::CGameObject() 
+	: m_pd3dSrvDescriptorHeap(NULL), m_pd3dDevice(NULL), m_pTextureManager(NULL) {
 	m_xmf4x4World = Matrix4x4::Identity();
 }
 
-CGameObject::CGameObject(ID3D12DescriptorHeap* pd3dSrvDescriptorHeap, ID3D12Device* pd3dDevice) 
-	: m_pd3dSrvDescriptorHeap(pd3dSrvDescriptorHeap), m_pd3dDevice(pd3dDevice) {
-  	if (!m_pd3dSrvDescriptorHeap) {
-		debugLog << "CGameObject: SRV Descriptor Heap is NULL during initialization." << std::endl;
+CGameObject::CGameObject(CTexture* pTextureManager, ID3D12Device* pd3dDevice)
+	: m_pTextureManager(pTextureManager), m_pd3dDevice(pd3dDevice) {
+
+	debugLog << "CGameObject Constructor - Device: " << pd3dDevice << std::endl;
+
+	if (!m_pTextureManager) {
+		debugLog << "CGameObject: Texture Manager is NULL during initialization." << std::endl;
 	}
 	else {
-		debugLog << "CGameObject: SRV Descriptor Heap successfully initialized." << std::endl;
+		debugLog << "CGameObject: Texture Manager successfully initialized." << std::endl;
+		m_pd3dSrvDescriptorHeap = pTextureManager->GetDescriptorHeap(); // Èü ÂüÁ¶
 	}
 	m_xmf4x4World = Matrix4x4::Identity();
 }
@@ -151,9 +156,9 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
 		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 		UINT64 testNum = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-		debugLog << "SRVHandle: (With Texture) " << srvHandle.ptr << std::endl;
-
-		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root Parameter Index 2
+		debugLog << "SRVHandle: (With Texture) " << srvHandle.ptr << 
+			" | index " << m_TextureHeapIndex <<
+			" | Descriptor IncrementSize " << testNum << std::endl;
 	}
 	else
 	{
