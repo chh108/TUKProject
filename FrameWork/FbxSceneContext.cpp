@@ -3,6 +3,7 @@
 #include "Shader.h"
 #include "FbxSceneContext.h"
 #include "Texture.h"
+#include "DebugLog.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -456,7 +457,7 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 			}
 			else
 			{
-				std::cerr << "No UV data available for this mesh." << std::endl;
+				std::cout << "No UV data available for this mesh." << std::endl;
 			}
 			int nVertices = pfbxMesh->GetControlPointsCount();
 

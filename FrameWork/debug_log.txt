@@ -1,0 +1,32 @@
+Debug Log Initialized
+CGameObject: SRV Descriptor Heap successfully initialized.
+Texture resource created successfully: 000001A6CC99F600
+Loaded Custom Texture: Model/Character/Textures/character_01_01.png
+CGameObject::Render - Texture is NULL.
+SRV Descriptor Heap is NULL.
+CGameObject::Render - Texture is NULL.
+SRV Descriptor Heap is NULL.
+CGameObject::Render - Texture valid: 000001A6CC99F600
+SRV Descriptor Heap Size: 64
+SRVHandle: 10528416542556160
+CGameObject::Render - Texture is NULL.
+SRV Descriptor Heap is NULL.
+CGameObject::Render - Texture is NULL.
+SRV Descriptor Heap is NULL.
+CGameObject::Render - Texture valid: 000001A6CC99F600
+SRV Descriptor Heap Size: 64
+SRVHandle: 10528416542556160
+CGameObject::Render - Texture is NULL.
+SRV Descriptor Heap is NULL.
+CGameObject::Render - Texture is NULL.
+SRV Descriptor Heap is NULL.
+CGameObject::Render - Texture valid: 000001A6CC99F600
+SRV Descriptor Heap Size: 64
+SRVHandle: 10528416542556160
+CGameObject::Render - Texture is NULL.
+SRV Descriptor Heap is NULL.
+CGameObject::Render - Texture is NULL.
+SRV Descriptor Heap is NULL.
+CGameObject::Render - Texture valid: 000001A6CC99F600
+SRV Descriptor Heap Size: 64
+SRVHandle: 10528416542556160

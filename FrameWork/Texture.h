@@ -19,10 +19,6 @@ public:
     std::vector<ID3D12Resource*>  ExtractTexturesWithCustom(FbxNode* pNode, const std::string& path, ID3D12GraphicsCommandList* pd3dCommandList);
     std::string ConvertExtensionToLowerCase(const std::string & fileName);
 
-    void SetRootParameterIndex(int index, UINT rootParameterIndex);
-    UINT GetRootParameterIndex(int index) const;
-
-    D3D12_GPU_DESCRIPTOR_HANDLE GetGpuDescriptorHandle(int index) const;
 
 private:
     ID3D12Device* m_pd3dDevice;
@@ -31,6 +27,4 @@ private:
 
     UINT m_heapIndex = 0;
     std::unordered_map<std::string, ID3D12Resource*> m_textureMap;
-    std::unordered_map<std::string, D3D12_GPU_DESCRIPTOR_HANDLE> m_textureHandles;
-    std::vector<UINT> m_rootParameterIndices;
 };

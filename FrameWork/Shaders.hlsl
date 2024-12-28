@@ -61,12 +61,14 @@ VS_FBX_MODEL_OUTPUT VSFbxSkinnedModel(VS_FBX_MODEL_INPUT input)
 }
 
 float4 PSFbxSkinnedModel(VS_FBX_MODEL_OUTPUT input) : SV_TARGET
-{	
+{
 	// float4 cColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
     float2 uv = input.texcoord;
     if (uv.x < 0 || uv.x > 1 || uv.y < 0 || uv.y > 1)
     {
         return float4(0.0f, 1.0f, 0.0f, 1.0f);
     }
-    return gTexture.Sample(gSampler, uv); // Texture Sampling
+    float4 texTest = gTexture.Sample(gSampler, uv); // Texture Sampling
+    return texTest;
+    // return float4(1.0f, 1.0f, 0.0f, 1.0f);
 }

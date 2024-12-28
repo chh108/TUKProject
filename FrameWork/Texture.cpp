@@ -5,13 +5,14 @@
 #include <WICTextureLoader.h>
 #include <ResourceUploadBatch.h>
 #include <unordered_map>            // 20241214 Unorderd_map 사용을 통한 중복 방지
+#include "DebugLog.h"
 
 CTexture::CTexture(ID3D12Device* device, ID3D12CommandQueue* commandQueue, ID3D12DescriptorHeap* descriptorHeap)
     : m_pd3dDevice(device), m_pd3dCommandQueue(commandQueue), m_pd3dDescriptorHeap(descriptorHeap), m_heapIndex(0) {
 }
 
 CTexture::~CTexture() {
-    // Release All Textures
+     // Release All Textures
     for (auto& pair : m_textureMap) {
         if (pair.second) pair.second->Release();
     }
@@ -30,13 +31,13 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
 
     // Validate the device
     if (!m_pd3dDevice) {
-        std::cerr << "Device is NULL!" << std::endl;
+        debugLog << "Device is NULL!" << std::endl;
         return NULL;
     }
 
     // Validate the descriptor heap
     if (!m_pd3dDescriptorHeap) {
-        std::cerr << "Descriptor Heap is NULL!" << std::endl;
+        debugLog << "Descriptor Heap is NULL!" << std::endl;
         return NULL;
     }
 
@@ -55,28 +56,28 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
     uploadBatch.End(m_pd3dCommandQueue).wait();
 
     if (SUCCEEDED(hr) && textureResource) {
-        std::cout << "Texture resource created successfully: " << textureResource << std::endl;
+        debugLog << "Texture resource created successfully: " << textureResource << std::endl;
     }
     else {
-        std::cerr << "Failed to create texture resource. HRESULT: " << hr << std::endl;
+        debugLog << "Failed to create texture resource. HRESULT: " << hr << std::endl;
     }
 
     if (FAILED(hr)) {
         wprintf(L"CreateWICTextureFromFile failed with HRESULT: 0x%08X\n", hr);
         if (hr == E_NOINTERFACE) {
-            std::cerr << "E_NOINTERFACE: No such interface supported. Check WIC or DirectX environment." << std::endl;
+            debugLog << "E_NOINTERFACE: No such interface supported. Check WIC or DirectX environment." << std::endl;
         }
         return NULL;
     }
 
     if (!m_pd3dDescriptorHeap) {
-        std::cerr << "Descriptor Heap is NULL!" << std::endl;
+        debugLog << "Descriptor Heap is NULL!" << std::endl;
         return NULL;
     }
 
     // textureResource 상태 점검
     if (!textureResource) {
-        std::cerr << "Texture resource is NULL!" << std::endl;
+        debugLog << "Texture resource is NULL!" << std::endl;
         return NULL;
     }
 
@@ -86,23 +87,6 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
         // 디스크립터 힙 인덱스 증가
         m_heapIndex++;
     }
-
-    // SRV 생성
-    D3D12_CPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
-    srvHandle.ptr += m_heapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-
-    D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
-    srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
-    srvDesc.Format = textureResource->GetDesc().Format;
-    srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
-    srvDesc.Texture2D.MipLevels = textureResource->GetDesc().MipLevels;
-
-    m_pd3dDevice->CreateShaderResourceView(textureResource, &srvDesc, srvHandle);
-
-    // GPU 핸들 저장
-    D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle = m_pd3dDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
-    gpuHandle.ptr += m_heapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-    m_textureHandles[path] = gpuHandle;
 
     m_textureMap[path] = textureResource;
     m_heapIndex++;
@@ -136,10 +120,10 @@ std::vector<ID3D12Resource*> CTexture::ExtractTexturesWithCustom(FbxNode* pNode,
                     ID3D12Resource* textureResource = LoadTexture(customPath, pd3dCommandList);
                     if (textureResource) {
                         textureResources.push_back(textureResource);
-                        std::cout << "Loaded Custom Texture: " << customPath << std::endl;
+                        debugLog << "Loaded Custom Texture: " << customPath << std::endl;
                     }
                     else {
-                        std::cerr << "Failed to load texture: " << customPath << std::endl;
+                        debugLog << "Failed to load texture: " << customPath << std::endl;
                     }
                 }
             }
