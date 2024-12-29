@@ -154,11 +154,19 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	// 20241216 텍스처 로딩
 	if (m_pTexture) {
 		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		debugLog << "Texture Resource: " << m_pTexture << std::endl;
+
 		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 		UINT64 testNum = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 		debugLog << "SRVHandle: (With Texture) " << srvHandle.ptr << 
 			" | index " << m_TextureHeapIndex <<
 			" | Descriptor IncrementSize " << testNum << std::endl;
+
+		ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dSrvDescriptorHeap };
+		pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
+		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root ParameterIndex 2
+
+		debugLog << "SetGraphicsRootDescriptorTable: Handle Ptr = " << srvHandle.ptr << std::endl;
 	}
 	else
 	{
@@ -285,15 +293,41 @@ void CGameObject::Rotate(XMFLOAT4 *pxmf4Quaternion)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CBlueObject::CBlueObject(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
+CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
+	ID3D12RootSignature* pd3dGraphicsRootSignature, FbxManager* pfbxSdkManager, CTexture* pTextureManager, FbxScene *pfbxScene)
+	: CGameObject(pTextureManager, pd3dDevice), m_pObjTexture(NULL)
 {
 	m_pfbxScene = pfbxScene;
 	if (!m_pfbxScene)
 	{
+		if (pTextureManager) {
+			m_pTextureManager = pTextureManager;
+		}
+		else {
+			debugLog << "CBlueObject : Texture Manager is NULL!" << std::endl;
+		}
+
 		m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, "Model/BluePlayer.fbx");
+
+		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), "Model/Character/Textures/", pd3dCommandList);
+
+		if (!textures.empty()) {
+			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
+			debugLog << "First texture loaded for Player: " << m_pTexture << std::endl;
+		}
+		else {
+			std::cerr << "No textures loaded for Player." << std::endl;
+		}
 		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
 	}
+	SetTexture(m_pTexture, 0);
+
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
+
+	if (m_pAnimationController) {
+		// CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/WALK.fbx");
+		m_pAnimationController->SetAnimationStack(m_pfbxScene, 0);
+	}
 }
 
 CBlueObject::~CBlueObject()

@@ -217,17 +217,20 @@ void CGameFramework::CreateRtvAndDsvDescriptorHeaps()
 
 void CGameFramework::CreateCbvAndSrvDescriptorHeaps() // 20241228 
 {
-	D3D12_DESCRIPTOR_HEAP_DESC d3dDescriptorHeapDesc = {};
-	d3dDescriptorHeapDesc.NumDescriptors = 60; // Max Num of Textures
-	d3dDescriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-	d3dDescriptorHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-	d3dDescriptorHeapDesc.NodeMask = 0;
+	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
+	srvHeapDesc.NumDescriptors = 60; // Max Num of Textures
+	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	srvHeapDesc.NodeMask = 0;
 
-	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&d3dDescriptorHeapDesc, __uuidof(ID3D12DescriptorHeap), (void**)&m_pd3dCbvSrvDescriptorHeap);
+	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&srvHeapDesc, __uuidof(ID3D12DescriptorHeap), (void**)&m_pd3dCbvSrvDescriptorHeap);
 	if (FAILED(hResult)) {
-		debugLog << (L"Failed to create CBV/SRV/UAV Descriptor Heap.\n");
+		debugLog << ("Failed to create CBV/SRV/UAV Descriptor Heap.\n");
 	}
-
+	else
+	{
+		debugLog << ("SRV Descriptor Heap Created Well Done\n");
+	}
 	m_nCbvSrvDescriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV); // GetDescriptorSize
 }
 
@@ -464,7 +467,7 @@ void CGameFramework::BuildObjects()
 #endif
 
 	m_pScene = new CScene();
-	if (m_pScene) m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, m_pfbxScene);
+	if (m_pScene) m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, m_pTextureManager, m_pfbxScene);
 
 	// Load Blue Player
 	// ID3D12Resource* pTexture = m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");

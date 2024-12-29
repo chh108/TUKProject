@@ -14,19 +14,19 @@ CScene::~CScene()
 {
 }
 
-void CScene::BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
+void CScene::BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, CTexture* pTextureManager, FbxScene *pfbxScene)
 {
 	m_pd3dGraphicsRootSignature = CreateGraphicsRootSignature(pd3dDevice);
 
 	m_nGameObjects = 2;
 	m_ppGameObjects = new CGameObject*[m_nGameObjects];
 
-	m_ppGameObjects[0] = new CBlueObject(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pfbxScene);
+	m_ppGameObjects[0] = new CBlueObject(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
 	m_ppGameObjects[0]->SetAnimationStack(0);
 	m_ppGameObjects[0]->m_pAnimationController->SetPosition(0, 0.0f);
 	m_ppGameObjects[0]->SetPosition(150.0f, 0.0f, 150.0f);
 
-	m_ppGameObjects[1] = new CBlueObject(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pfbxScene);
+	m_ppGameObjects[1] = new CBlueObject(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
 	m_ppGameObjects[1]->SetAnimationStack(0);
 	m_ppGameObjects[1]->m_pAnimationController->SetPosition(0, 0.75f);
 	m_ppGameObjects[1]->SetPosition(-150.0f, 0.0f, 250.0f);

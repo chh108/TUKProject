@@ -441,17 +441,27 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 		FbxMesh *pfbxMesh = pfbxNode->GetMesh();
 		if (pfbxMesh)
 		{
+			int nVertices = pfbxMesh->GetControlPointsCount();
+
+			XMFLOAT2* pxmf2UVs = new XMFLOAT2[nVertices]; // 20241229 ADD UV
 			if (pfbxMesh->GetElementUVCount() > 0)
 			{
 				FbxGeometryElementUV* pUVElement = pfbxMesh->GetElementUV(0);
 
+				for (int i = 0; i < nVertices; i++)
+				{
+					pxmf2UVs[i] = XMFLOAT2(0.0f, 0.0f); // Reset UV
+				}
 				for (int i = 0; i < pfbxMesh->GetPolygonCount(); i++)
 				{
 					for (int j = 0; j < pfbxMesh->GetPolygonSize(i); j++)
 					{
-						int uvIndex = pfbxMesh->GetTextureUVIndex(i, j);
+						int vertexIndex = pfbxMesh->GetPolygonVertex(i, j); // GetVertexIndex
+						int uvIndex = pfbxMesh->GetTextureUVIndex(i, j); // GetUVIndex
 						FbxVector2 uv = pUVElement->GetDirectArray().GetAt(uvIndex);
-						// debugLog << "Polygon[" << i << "] Vertex[" << j << "] UV = (" << uv[0] << ", " << uv[1] << ")" << std::endl; // For Debug UV File
+
+						pxmf2UVs[vertexIndex] = XMFLOAT2(static_cast<float>(uv[0]), 1.0f - static_cast<float>(uv[1]));
+						// debugLog << "Vertex[" << vertexIndex << "] UV = (" << uv[0] << ", " << uv[1] << ")" << std::endl; // Check UV DATA
 					}
 				}
 			}
@@ -459,7 +469,6 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 			{
 				std::cout << "No UV data available for this mesh." << std::endl;
 			}
-			int nVertices = pfbxMesh->GetControlPointsCount();
 
 			int nIndices = 0;
 			int nPolygons = pfbxMesh->GetPolygonCount();
@@ -473,7 +482,7 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 			}
 
 			CFbxRenderInfo *pFbxRenderInfo = new CFbxRenderInfo();
-			pFbxRenderInfo->m_pMesh = new CMeshFromFbx(pd3dDevice, pd3dCommandList, nVertices, nIndices, pnIndices);
+			pFbxRenderInfo->m_pMesh = new CMeshFromFbx(pd3dDevice, pd3dCommandList, nVertices, nIndices, pnIndices, pxmf2UVs);
 
 			int nSkinDeformers = pfbxMesh->GetDeformerCount(FbxDeformer::eSkin);
 			if (nSkinDeformers > 0)

@@ -7,6 +7,7 @@
 #include "Mesh.h"
 #include "Camera.h"
 #include "FbxSceneContext.h"
+#include "DebugLog.h"
 
 #define DIR_FORWARD					0x01
 #define DIR_BACKWARD				0x02
@@ -114,7 +115,19 @@ public:
 	void Rotate(XMFLOAT4 *pxmf4Quaternion);
 
 public:
+	// 20241229 Animation
 	void SetAnimationStack(int nAnimationStack) { m_pAnimationController->SetAnimationStack(m_pfbxScene, nAnimationStack); }
+	void PrintAnimationStackNames(FbxScene* pfbxScene)
+	{
+		FbxArray<FbxString*> animationStackNames;
+		pfbxScene->FillAnimStackNameArray(animationStackNames);
+
+		for (int i = 0; i < animationStackNames.Size(); i++) {
+			debugLog << "Animation Stack [" << i << "]: " << animationStackNames[i]->Buffer() << std::endl;
+		}
+
+		FbxArrayDelete(animationStackNames);
+	}
 
 	// 20241215 Texture Func
 	void SetTexture(ID3D12Resource* pTexture, UINT textureHeapIndex) {
@@ -130,8 +143,13 @@ public:
 //
 class CBlueObject : public CGameObject
 {
+private:
+	CTexture* m_pObjTextureManager; // TextureManager
+	ID3D12Resource* m_pObjTexture = NULL; // Obj Texture
+	int m_TextureHeapIndex = -1; // TextureHeapIndex for Descriptor
 public:
-	CBlueObject(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene);
+	CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
+		ID3D12RootSignature* pd3dGraphicsRootSignature, FbxManager* pfbxSdkManager, CTexture* pTextureManager, FbxScene *pfbxScene);
 	virtual ~CBlueObject();
 };
 

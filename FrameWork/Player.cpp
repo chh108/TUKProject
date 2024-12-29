@@ -22,11 +22,11 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 	m_pCamera = ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
 
 	if (pTextureManager) {
-		m_pTextureManager = pTextureManager;
-	}
-	else {
-		debugLog << "CPlayer: Texture Manager is NULL!" << std::endl;
-	}
+        m_pTextureManager = pTextureManager;
+    } else
+	{
+        debugLog << "CPlayer: Texture Manager is NULL!" << std::endl;
+    }
 	// FBX ¾À ·Îµå
 	m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, const_cast<char*>(fbxFilePath.c_str()));
 

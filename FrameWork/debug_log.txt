@@ -1,1071 +1,908 @@
 Debug Log Initialized
-CTexture::Initialize called - Device: 000002A0A44605D0
-Before Create Player (device) : 000002A0A44605D0
-CGameObject Constructor - Device: 000002A0A44605D0
+SRV Descriptor Heap Created Well Done
+CTexture::Initialize called - Device: 0000022709AB6E50
+CGameObject Constructor - Device: 0000022709AB6E50
 CGameObject: Texture Manager successfully initialized.
-CPlayer Constructor (Before Scene Load) - Device: 000002A0A44605D0
-CPlayer Constructor (After Scene Load) - Device: 000002A0A44605D0
 m_TextureMap is empty.
-Texture resource created successfully: 000002A0ABF1F710
-SRV Handle Address (Before) : 2889048412160
-Create SRV : 2889048412160with 000002A0ABF1F710
+Texture resource created successfully: 0000022710A3CB30
+SRV Handle Address (Before) : 2366764896256
+Create SRV : 2366764896256with 0000022710A3CB30
 Loaded Custom Texture: Model/Character/Textures/character_01_01.png
-First texture loaded for Player: 000002A0ABF1F710
+First texture loaded for Player: 0000022710A3CB30
+CGameObject Constructor - Device: 0000022709AB6E50
+CGameObject: Texture Manager successfully initialized.
+Loaded Custom Texture: Model/Character/Textures/character_01_01.png
+First texture loaded for Player: 0000022710A3CB30
+Before Create Player (device) : 0000022709AB6E50
+CGameObject Constructor - Device: 0000022709AB6E50
+CGameObject: Texture Manager successfully initialized.
+CPlayer Constructor (Before Scene Load) - Device: 0000022709AB6E50
+CPlayer Constructor (After Scene Load) - Device: 0000022709AB6E50
+Loaded Custom Texture: Model/Character/Textures/character_01_01.png
+First texture loaded for Player: 0000022710A3CB30
 Animation Stack [0]: Take 001
-After CPlayer Creation - Device: 000002A0A44605D0
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-CGameObject::Render - Texture is NULL.
-SRV Descriptor Heap is NULL.
-Failed To Bind SRV.
-Rendering Player Texture Address: 000002A0ABF1F710
-CGameObject::Render - Texture valid: 000002A0ABF1F710
-SRV Descriptor Heap Size: 60
-SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
-After CGameObject::Render - Player texture valid: 000002A0ABF1F710
+After CPlayer Creation - Device: 0000022709AB6E50
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+Rendering Player Texture Address: 0000022710A3CB30
+CGameObject::Render - Texture valid: 0000022710A3CB30
+SRV Descriptor Heap Size: 60
+Texture Resource: 0000022710A3CB30
+SRVHandle: (With Texture) 10528416542556160 | index 0 | Descriptor IncrementSize 32
+SetGraphicsRootDescriptorTable: Handle Ptr = 10528416542556160
+After CGameObject::Render - Player texture valid: 0000022710A3CB30
