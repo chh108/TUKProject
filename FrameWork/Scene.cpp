@@ -4,7 +4,11 @@
 
 #include "stdafx.h"
 #include "Scene.h"
+#include "Map.h"
+#include "Object.h"
 #include "DebugLog.h"
+#include "Defines.h"
+#include "Shader.h"
 
 CScene::CScene()
 {
@@ -17,6 +21,12 @@ CScene::~CScene()
 void CScene::BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, CTexture* pTextureManager, FbxScene *pfbxScene)
 {
 	m_pd3dGraphicsRootSignature = CreateGraphicsRootSignature(pd3dDevice);
+
+	// InitializeShaders(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature);
+	CGameObject::PrepareShaders(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature);
+	// 20241229 Create Map
+	// Map Object »ý¼º
+	m_pMap = new CMap(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
 
 	m_nGameObjects = 2;
 	m_ppGameObjects = new CGameObject*[m_nGameObjects];
@@ -64,14 +74,34 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	ID3D12RootSignature *pd3dGraphicsRootSignature = NULL;
 
 	// 20241227 SRV Descriptor Table
-	D3D12_DESCRIPTOR_RANGE srvRange = {};
-	srvRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
-	srvRange.NumDescriptors = 60; // Texture Nums
-	srvRange.BaseShaderRegister = 0; // t0
-	srvRange.RegisterSpace = 0;
-	srvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
 
-	D3D12_ROOT_PARAMETER pd3dRootParameters[4]; // 20241204 Add RootParameters 2->3 20241229 3->4
+	//D3D12_DESCRIPTOR_RANGE srvRange = {};
+	//srvRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	//srvRange.NumDescriptors = 1; // Player Texture
+	//srvRange.BaseShaderRegister = 0; // t0
+	//srvRange.RegisterSpace = 0;
+	//srvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+	D3D12_DESCRIPTOR_RANGE srvRange[3];
+
+	srvRange[0].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	srvRange[0].NumDescriptors = 1; // Player Texture
+	srvRange[0].BaseShaderRegister = 0; // t0
+	srvRange[0].RegisterSpace = 0;
+	srvRange[0].OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+
+	srvRange[1].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	srvRange[1].NumDescriptors = 1; // MapTexture
+	srvRange[1].BaseShaderRegister = 1; // t1
+	srvRange[1].RegisterSpace = 0;
+	srvRange[1].OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+
+	srvRange[2].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	srvRange[2].NumDescriptors = 1; // SkyBoxTexture
+	srvRange[2].BaseShaderRegister = 2; // t2
+	srvRange[2].RegisterSpace = 0;
+	srvRange[2].OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+
+	D3D12_ROOT_PARAMETER pd3dRootParameters[6]; // 20241204 Add RootParameters 2->3 20241229 3->4
 
 	// 1. CBV for Camera
 	pd3dRootParameters[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
@@ -89,7 +119,7 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	// 3. Descriptor Table for Textures
 	pd3dRootParameters[2].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
 	pd3dRootParameters[2].DescriptorTable.NumDescriptorRanges = 1;
-	pd3dRootParameters[2].DescriptorTable.pDescriptorRanges = &srvRange;
+	pd3dRootParameters[2].DescriptorTable.pDescriptorRanges = &(srvRange[0]);
 	pd3dRootParameters[2].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
 
 	// 4. CBV for Map Transformation (20241229)
@@ -98,11 +128,17 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	pd3dRootParameters[3].Descriptor.RegisterSpace = 0;
 	pd3dRootParameters[3].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
-	// Root Signature Flag
-	D3D12_ROOT_SIGNATURE_FLAGS d3dRootSignatureFlags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT | 
-		D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS | 
-		D3D12_ROOT_SIGNATURE_FLAG_DENY_DOMAIN_SHADER_ROOT_ACCESS | 
-		D3D12_ROOT_SIGNATURE_FLAG_DENY_GEOMETRY_SHADER_ROOT_ACCESS;
+	// 5. Descriptor Table for Map Textures
+	pd3dRootParameters[4].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+	pd3dRootParameters[4].DescriptorTable.NumDescriptorRanges = 1;
+	pd3dRootParameters[4].DescriptorTable.pDescriptorRanges = &(srvRange[1]);
+	pd3dRootParameters[4].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+
+	// 6. Descriptor Table for SkyBox Textures
+	pd3dRootParameters[5].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+	pd3dRootParameters[5].DescriptorTable.NumDescriptorRanges = 1;
+	pd3dRootParameters[5].DescriptorTable.pDescriptorRanges = &(srvRange[2]);
+	pd3dRootParameters[5].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
 
 	//20241204 Add Samplers
 	D3D12_STATIC_SAMPLER_DESC pd3dSamplerDescs[2];
@@ -133,6 +169,12 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	pd3dSamplerDescs[1].RegisterSpace = 0;
 	pd3dSamplerDescs[1].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
 
+	// Root Signature Flag
+	D3D12_ROOT_SIGNATURE_FLAGS d3dRootSignatureFlags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT |
+		D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS |
+		D3D12_ROOT_SIGNATURE_FLAG_DENY_DOMAIN_SHADER_ROOT_ACCESS |
+		D3D12_ROOT_SIGNATURE_FLAG_DENY_GEOMETRY_SHADER_ROOT_ACCESS;
+
 	D3D12_ROOT_SIGNATURE_DESC d3dRootSignatureDesc;
 	::ZeroMemory(&d3dRootSignatureDesc, sizeof(D3D12_ROOT_SIGNATURE_DESC));
 	d3dRootSignatureDesc.NumParameters = _countof(pd3dRootParameters);
@@ -162,6 +204,20 @@ void CScene::UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList)
 
 void CScene::ReleaseShaderVariables()
 {
+
+}
+
+void CScene::InitializeShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList, ID3D12RootSignature* pd3dGraphicsRootSignature)
+{
+	m_nShaders = 4;
+	m_ppShaders = new CShader * [m_nShaders];
+
+	for (int i = 0; i < m_nShaders; i++)
+	{
+		m_ppShaders[i] = new CShader();
+		m_ppShaders[i]->SetObjectsShader(pd3dDevice);
+		m_ppShaders[i]->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE(i));
+	}
 }
 
 void CScene::ReleaseUploadBuffers()

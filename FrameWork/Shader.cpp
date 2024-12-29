@@ -181,16 +181,57 @@ D3D12_BLEND_DESC CShader::CreateBlendState()
 	return(d3dBlendDesc);
 }
 
-void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature)
+void CShader::SetObjectsShader(ID3D12Device* pd3dDevice)
+{
+	g_shaderInfo[0].VS = CShader::CompileShaderFromFile(L"Model.hlsl", "VSFbxModel", "vs_5_1", &m_pd3dFbxVSBlob);
+	g_shaderInfo[0].PS = CShader::CompileShaderFromFile(L"Model.hlsl", "PSFbxModel", "ps_5_1", &m_pd3dFbxPSBlob);
+
+	g_shaderInfo[1].VS = CShader::CompileShaderFromFile(L"SkinnedModel.hlsl", "VSFbxSkinnedModel", "vs_5_1", &m_pd3dFbxSkinVSBlob);
+	g_shaderInfo[1].PS = CShader::CompileShaderFromFile(L"SkinnedModel.hlsl", "PSFbxSkinnedModel", "ps_5_1", &m_pd3dFbxSkinPSBlob);
+
+	g_shaderInfo[2].VS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "VSSkyBox", "vs_5_1", &m_pd3dSkyBoxVSBlob);
+	g_shaderInfo[2].PS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "PSSkyBox", "ps_5_1", &m_pd3dSkyBoxPSBlob);
+
+	g_shaderInfo[3].VS = CShader::CompileShaderFromFile(L"MapShader.hlsl", "VSSkyBox", "vs_5_1", &m_pd3dMapVSBlob);
+	g_shaderInfo[3].PS = CShader::CompileShaderFromFile(L"MapShader.hlsl", "PSSkyBox", "ps_5_1", &m_pd3dMapPSBlob);
+}
+
+void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, SHADER_TYPE eType)
 {
 	::ZeroMemory(&m_d3dPipelineStateDesc, sizeof(D3D12_GRAPHICS_PIPELINE_STATE_DESC));
 	m_d3dPipelineStateDesc.pRootSignature = pd3dGraphicsRootSignature;
-	m_d3dPipelineStateDesc.VS = CreateVertexShader();
-	m_d3dPipelineStateDesc.PS = CreatePixelShader();
+
+	SetObjectsShader(pd3dDevice);
+
+	switch (eType) {
+	case SHADER_TYPE::FbxModel:
+		m_d3dPipelineStateDesc.VS = g_shaderInfo[0].VS;
+		m_d3dPipelineStateDesc.PS = g_shaderInfo[0].PS;
+		break;
+	case SHADER_TYPE::FbxSkinnedModel:
+		m_d3dPipelineStateDesc.VS = g_shaderInfo[1].VS;
+		m_d3dPipelineStateDesc.PS = g_shaderInfo[1].PS;
+		break;
+	case SHADER_TYPE::SkyBox:
+		m_d3dPipelineStateDesc.VS = g_shaderInfo[2].VS;
+		m_d3dPipelineStateDesc.PS = g_shaderInfo[2].PS;
+		break;
+	case SHADER_TYPE::Map:
+		m_d3dPipelineStateDesc.VS = g_shaderInfo[3].VS;
+		m_d3dPipelineStateDesc.PS = g_shaderInfo[3].PS;
+		break;
+	default:
+		debugLog << "Handle Error Caused" << std::endl;
+		break;
+	}
 	m_d3dPipelineStateDesc.RasterizerState = CreateRasterizerState();
 	m_d3dPipelineStateDesc.BlendState = CreateBlendState();
 	m_d3dPipelineStateDesc.DepthStencilState = CreateDepthStencilState();
 	m_d3dPipelineStateDesc.InputLayout = CreateInputLayout();
+	if (m_d3dPipelineStateDesc.InputLayout.pInputElementDescs == NULL || m_d3dPipelineStateDesc.InputLayout.NumElements == 0) {
+		debugLog << "Input layout is invalid. NUM : " << int(eType) << std::endl;
+		return; // 오류 처리
+	}
 	m_d3dPipelineStateDesc.SampleMask = UINT_MAX;
 	m_d3dPipelineStateDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 	m_d3dPipelineStateDesc.NumRenderTargets = 1;
@@ -199,10 +240,32 @@ void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *
 	m_d3dPipelineStateDesc.SampleDesc.Count = 1;
 	m_d3dPipelineStateDesc.Flags = D3D12_PIPELINE_STATE_FLAG_NONE;
 
-	HRESULT hResult = pd3dDevice->CreateGraphicsPipelineState(&m_d3dPipelineStateDesc, __uuidof(ID3D12PipelineState), (void **)&m_pd3dPipelineState);
+	debugLog << "Ready To Connect Shader Num : " << int(eType) << " Address :" << &m_pd3dPipelineState << std::endl;
 
-	if (m_pd3dVertexShaderBlob) m_pd3dVertexShaderBlob->Release();
-	if (m_pd3dPixelShaderBlob) m_pd3dPixelShaderBlob->Release();
+	HRESULT hResult = pd3dDevice->CreateGraphicsPipelineState(&m_d3dPipelineStateDesc, __uuidof(ID3D12PipelineState), (void **)&m_pd3dPipelineState);
+	if (FAILED(hResult)) {
+		debugLog << "ShaderPipeLinestate Connection Failed NUMBER : "<< int(eType) << "ERROR : " << hResult << std::endl;
+	}
+
+	if (m_pd3dFbxVSBlob)
+		m_pd3dFbxVSBlob->Release();
+	if (m_pd3dFbxPSBlob)
+		m_pd3dFbxPSBlob->Release();
+
+	if (m_pd3dFbxSkinVSBlob)
+		m_pd3dFbxSkinVSBlob->Release();
+	if (m_pd3dFbxSkinPSBlob)
+		m_pd3dFbxSkinPSBlob->Release();
+
+	if (m_pd3dSkyBoxVSBlob)
+		m_pd3dSkyBoxVSBlob->Release();
+	if (m_pd3dSkyBoxPSBlob)
+		m_pd3dSkyBoxPSBlob->Release();
+
+	if (m_pd3dMapVSBlob)
+		m_pd3dMapVSBlob->Release();
+	if (m_pd3dMapPSBlob)
+		m_pd3dMapPSBlob->Release();
 
 	if (m_d3dPipelineStateDesc.InputLayout.pInputElementDescs) delete[] m_d3dPipelineStateDesc.InputLayout.pInputElementDescs;
 }
@@ -229,6 +292,7 @@ CFbxModelShader::~CFbxModelShader()
 
 D3D12_INPUT_LAYOUT_DESC CFbxModelShader::CreateInputLayout()
 {
+	// debugLog << "Start Create FbxModel Shader" << std::endl;
 	UINT nInputElementDescs = 2;
 	D3D12_INPUT_ELEMENT_DESC *pd3dInputElementDescs = new D3D12_INPUT_ELEMENT_DESC[nInputElementDescs];
 
@@ -238,7 +302,7 @@ D3D12_INPUT_LAYOUT_DESC CFbxModelShader::CreateInputLayout()
 	D3D12_INPUT_LAYOUT_DESC d3dInputLayoutDesc;
 	d3dInputLayoutDesc.pInputElementDescs = pd3dInputElementDescs;
 	d3dInputLayoutDesc.NumElements = nInputElementDescs;
-
+	// debugLog << "pInputElementDescs : " << d3dInputLayoutDesc.pInputElementDescs << "NumElements : " << d3dInputLayoutDesc.NumElements << std::endl;
 	return(d3dInputLayoutDesc);
 }
 
@@ -262,16 +326,6 @@ D3D12_RASTERIZER_DESC CFbxModelShader::CreateRasterizerState()
 	return(d3dRasterizerDesc);
 }
 
-D3D12_SHADER_BYTECODE CFbxModelShader::CreateVertexShader()
-{
-	return(CShader::CompileShaderFromFile(L"Shaders.hlsl", "VSFbxModel", "vs_5_1", &m_pd3dVertexShaderBlob));
-}
-
-D3D12_SHADER_BYTECODE CFbxModelShader::CreatePixelShader()
-{
-	return(CShader::CompileShaderFromFile(L"Shaders.hlsl", "PSFbxModel", "ps_5_1", &m_pd3dPixelShaderBlob));
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 CFbxSkinnedModelShader::CFbxSkinnedModelShader()
@@ -284,6 +338,7 @@ CFbxSkinnedModelShader::~CFbxSkinnedModelShader()
 
 D3D12_INPUT_LAYOUT_DESC CFbxSkinnedModelShader::CreateInputLayout()
 {
+	debugLog << "Start Create FbxSkinnedModel Shader" << std::endl;
 	UINT nInputElementDescs = 2;
 	D3D12_INPUT_ELEMENT_DESC *pd3dInputElementDescs = new D3D12_INPUT_ELEMENT_DESC[nInputElementDescs];
 
@@ -294,8 +349,7 @@ D3D12_INPUT_LAYOUT_DESC CFbxSkinnedModelShader::CreateInputLayout()
 	d3dInputLayoutDesc.pInputElementDescs = pd3dInputElementDescs;
 	d3dInputLayoutDesc.NumElements = nInputElementDescs;
 
-	delete[] pd3dInputElementDescs; // Free input layout memory
-
+	debugLog << "pInputElementDescs : " << d3dInputLayoutDesc.pInputElementDescs<< "\nNumElements : " << d3dInputLayoutDesc.NumElements << std::endl;
 	return(d3dInputLayoutDesc);
 }
 
@@ -318,17 +372,6 @@ D3D12_RASTERIZER_DESC CFbxSkinnedModelShader::CreateRasterizerState()
 
 	return(d3dRasterizerDesc);
 }
-
-D3D12_SHADER_BYTECODE CFbxSkinnedModelShader::CreateVertexShader()
-{
-	return(CShader::CompileShaderFromFile(L"Shaders.hlsl", "VSFbxSkinnedModel", "vs_5_1", &m_pd3dVertexShaderBlob));
-}
-
-D3D12_SHADER_BYTECODE CFbxSkinnedModelShader::CreatePixelShader()
-{
-	return(CShader::CompileShaderFromFile(L"Shaders.hlsl", "PSFbxSkinnedModel", "ps_5_1", &m_pd3dPixelShaderBlob));
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 CSkyBoxShader::CSkyBoxShader()
@@ -341,6 +384,8 @@ CSkyBoxShader::~CSkyBoxShader()
 
 D3D12_INPUT_LAYOUT_DESC CSkyBoxShader::CreateInputLayout()
 {
+	debugLog << "Start Create SkyBox Shader" << std::endl;
+	
 	UINT nInputElementDescs = 1;
 	D3D12_INPUT_ELEMENT_DESC* pd3dInputElementDescs = new D3D12_INPUT_ELEMENT_DESC[nInputElementDescs];
 
@@ -349,6 +394,8 @@ D3D12_INPUT_LAYOUT_DESC CSkyBoxShader::CreateInputLayout()
 	D3D12_INPUT_LAYOUT_DESC d3dInputLayoutDesc;
 	d3dInputLayoutDesc.pInputElementDescs = pd3dInputElementDescs;
 	d3dInputLayoutDesc.NumElements = nInputElementDescs;
+
+	debugLog << "pInputElementDescs : " << d3dInputLayoutDesc.pInputElementDescs << "\nNumElements : " << d3dInputLayoutDesc.NumElements << std::endl;
 
 	return(d3dInputLayoutDesc);
 }
@@ -374,16 +421,6 @@ D3D12_DEPTH_STENCIL_DESC CSkyBoxShader::CreateDepthStencilState()
 	return(d3dDepthStencilDesc);
 }
 
-D3D12_SHADER_BYTECODE CSkyBoxShader::CreateVertexShader()
-{
-	return(CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "VSSkyBox", "vs_5_1", &m_pd3dVertexShaderBlob));
-}
-
-D3D12_SHADER_BYTECODE CSkyBoxShader::CreatePixelShader()
-{
-	return(CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "PSSkyBox", "ps_5_1", &m_pd3dPixelShaderBlob));
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 CMapShader::CMapShader()
@@ -396,25 +433,26 @@ CMapShader::~CMapShader()
 
 D3D12_INPUT_LAYOUT_DESC CMapShader::CreateInputLayout()
 {
+	debugLog << "Start Create Map Shader" << std::endl;
 	UINT nInputElementDescs = 2;
 	D3D12_INPUT_ELEMENT_DESC* pd3dInputElementDescs = new D3D12_INPUT_ELEMENT_DESC[nInputElementDescs];
 
 	pd3dInputElementDescs[0] = { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
-	pd3dInputElementDescs[1] = { "TEXCOORD", 1, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
+	pd3dInputElementDescs[1] = { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 1, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
 
 	D3D12_INPUT_LAYOUT_DESC d3dInputLayoutDesc;
 	d3dInputLayoutDesc.pInputElementDescs = pd3dInputElementDescs;
 	d3dInputLayoutDesc.NumElements = nInputElementDescs;
-
+	debugLog << "pInputElementDescs : " << d3dInputLayoutDesc.pInputElementDescs << "\nNumElements : " << d3dInputLayoutDesc.NumElements << std::endl;
 	return(d3dInputLayoutDesc);
 }
 
 D3D12_DEPTH_STENCIL_DESC CMapShader::CreateDepthStencilState()
 {
 	D3D12_DEPTH_STENCIL_DESC d3dDepthStencilDesc;
-	d3dDepthStencilDesc.DepthEnable = FALSE;
-	d3dDepthStencilDesc.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ZERO;
-	d3dDepthStencilDesc.DepthFunc = D3D12_COMPARISON_FUNC_NEVER;
+	d3dDepthStencilDesc.DepthEnable = TRUE; // Depth Test
+	d3dDepthStencilDesc.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL; // Enable depth writing
+	d3dDepthStencilDesc.DepthFunc = D3D12_COMPARISON_FUNC_LESS; // Depth comparison
 	d3dDepthStencilDesc.StencilEnable = FALSE;
 	d3dDepthStencilDesc.StencilReadMask = 0xff;
 	d3dDepthStencilDesc.StencilWriteMask = 0xff;
@@ -428,14 +466,4 @@ D3D12_DEPTH_STENCIL_DESC CMapShader::CreateDepthStencilState()
 	d3dDepthStencilDesc.BackFace.StencilFunc = D3D12_COMPARISON_FUNC_ALWAYS;
 
 	return(d3dDepthStencilDesc);
-}
-
-D3D12_SHADER_BYTECODE CMapShader::CreateVertexShader()
-{
-	return(CShader::CompileShaderFromFile(L"MapShader.hlsl", "VSMap", "vs_5_1", &m_pd3dVertexShaderBlob));
-}
-
-D3D12_SHADER_BYTECODE CMapShader::CreatePixelShader()
-{
-	return(CShader::CompileShaderFromFile(L"MapShader.hlsl", "PSMap", "ps_5_1", &m_pd3dPixelShaderBlob));
 }

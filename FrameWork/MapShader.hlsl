@@ -7,7 +7,13 @@ cbuffer cbCameraInfo : register(b1)
     float3 gvCameraPosition : packoffset(c8);
 };
 
-cbuffer MapBuffer : register(b3)
+cbuffer cbGameObjectInfo : register(b2)
+{
+    matrix gmtxGameObject : packoffset(c0);
+    float4 gcPixelColor : packoffset(c4);
+};
+
+cbuffer cbMapInfo : register(b3)
 {
     matrix gMapWorldMatrix; // 맵 월드 변환 행렬
 }
@@ -24,7 +30,7 @@ struct VS_FBX_MAP_OUTPUT
     float2 texcoord : TEXCOORD;
 };
 
-Texture2D gMapTexture : register(t0); // 맵 텍스처
+Texture2D gMapTexture : register(t1); // 맵 텍스처
 SamplerState gMapSampler : register(s0); // 텍스처 샘플러
 
 VS_FBX_MAP_OUTPUT VSMap(VS_FBX_MAP_INPUT input)

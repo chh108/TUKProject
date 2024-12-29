@@ -6,6 +6,7 @@
 
 #include "Mesh.h"
 #include "Camera.h"
+#include "stdafx.h"
 #include "FbxSceneContext.h"
 #include "DebugLog.h"
 
@@ -17,6 +18,7 @@
 #define DIR_DOWN					0x20
 
 class CShader;
+class CGameObject;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -58,6 +60,7 @@ protected:
 	ID3D12Device* m_pd3dDevice = NULL; // Direct3D 디바이스
 	ID3D12DescriptorHeap* m_pd3dSrvDescriptorHeap = NULL; // 디스크립터 힙
 	CTexture* m_pTextureManager; // Texture 매니저
+	CShader* m_pShader; // Shader
 
 private:
 	int								m_nReferences = 0;
@@ -69,36 +72,47 @@ public:
 public:
 	CGameObject();
 	CGameObject(CTexture* pTextureManager, ID3D12Device* pd3dDevice);
-    virtual ~CGameObject();
+	virtual ~CGameObject();
 
 public:
 	char							m_pstrFrameName[64];
 
-	FbxScene 						*m_pfbxScene = NULL;
+	FbxScene* m_pfbxScene = NULL;
 
 	XMFLOAT4X4  					m_xmf4x4World;
 
 	//20241215 TextureResource
-	ID3D12Resource					*m_pTexture = NULL;
+	ID3D12Resource* m_pTexture = NULL;
 	UINT							m_TextureHeapIndex = 0;
 
 	//20241216 Animation
-	CAnimationController 			*m_pAnimationController = NULL;
+	CAnimationController* m_pAnimationController = NULL;
 	double							m_dFbxCurrentTime = 0;
 	double							m_dAnimationStartTime = 0;
 	double							m_dAnimationEndTime = 0;
 
+	static CShader* m_pFbxShader; 
+	static CShader* m_pFbxSkinnedShader;
+	static CShader* m_pSkyBoxShader;
+	static CShader* m_pMapShader;
 
 	virtual void Animate(float fTimeElapsed);
-	virtual void OnPrepareRender() { }
-	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera);
+	virtual void OnPrepareRender() {}
+	virtual void Render(ID3D12GraphicsCommandList* pd3dCommandList, CCamera* pCamera);
 
-	virtual void CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
-	virtual void UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList);
+	static void CGameObject::PrepareShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList, ID3D12RootSignature* pd3dGraphicsRootSignature);
+
+	void SetFbxShader() { CGameObject::SetShader(m_pFbxShader); }
+	void SetFbxSkinnedShader() { CGameObject::SetShader(m_pFbxSkinnedShader); }
+	void SetSkyBoxShader() { CGameObject::SetShader(m_pSkyBoxShader); }
+	void SetMapShader(){ CGameObject::SetShader(m_pMapShader); }
+
+	virtual void CreateShaderVariables(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList);
+	virtual void UpdateShaderVariables(ID3D12GraphicsCommandList* pd3dCommandList);
 	virtual void ReleaseShaderVariables();
 
-	static void UpdateShaderVariable(ID3D12GraphicsCommandList *pd3dCommandList, XMFLOAT4X4 *pxmf4x4World);
-	static void UpdateShaderVariable(ID3D12GraphicsCommandList *pd3dCommandList, FbxAMatrix *pfbxf4x4World);
+	static void UpdateShaderVariable(ID3D12GraphicsCommandList* pd3dCommandList, XMFLOAT4X4* pxmf4x4World);
+	static void UpdateShaderVariable(ID3D12GraphicsCommandList* pd3dCommandList, FbxAMatrix* pfbxf4x4World);
 
 	virtual void ReleaseUploadBuffers();
 
@@ -117,8 +131,10 @@ public:
 	void MoveForward(float fDistance = 1.0f);
 
 	void Rotate(float fPitch = 10.0f, float fYaw = 10.0f, float fRoll = 10.0f);
-	void Rotate(XMFLOAT3 *pxmf3Axis, float fAngle);
-	void Rotate(XMFLOAT4 *pxmf4Quaternion);
+	void Rotate(XMFLOAT3* pxmf3Axis, float fAngle);
+	void Rotate(XMFLOAT4* pxmf4Quaternion);
+
+	void SetShader(CShader* pShader);
 
 public:
 	// 20241229 Animation

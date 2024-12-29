@@ -105,6 +105,9 @@
     <ClInclude Include="Map.h">
       <Filter>02.GameObjects\Map</Filter>
     </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -167,13 +170,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shaders.hlsl">
+    <FxCompile Include="Model.hlsl">
       <Filter>77.Shaders</Filter>
     </FxCompile>
     <FxCompile Include="SkyBoxShader.hlsl">
       <Filter>77.Shaders</Filter>
     </FxCompile>
     <FxCompile Include="MapShader.hlsl">
+      <Filter>77.Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="SkinnedModel.hlsl">
       <Filter>77.Shaders</Filter>
     </FxCompile>
   </ItemGroup>

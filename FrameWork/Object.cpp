@@ -205,6 +205,31 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	if (m_pfbxScene) ::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
 }
 
+CShader* CGameObject::m_pFbxShader = NULL;
+CShader* CGameObject::m_pFbxSkinnedShader = NULL;
+CShader* CGameObject::m_pSkyBoxShader = NULL;
+CShader* CGameObject::m_pMapShader = NULL;
+
+
+void CGameObject::PrepareShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList, ID3D12RootSignature* pd3dGraphicsRootSignature)
+{
+	m_pFbxShader = new CFbxModelShader();
+	m_pFbxShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxModel);
+	m_pFbxShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+
+	m_pFbxSkinnedShader = new CFbxSkinnedModelShader();
+	m_pFbxSkinnedShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxSkinnedModel);
+	m_pFbxSkinnedShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+
+	m_pSkyBoxShader = new CSkyBoxShader();
+	m_pSkyBoxShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::SkyBox);
+	m_pSkyBoxShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+
+	m_pMapShader = new CMapShader();
+	m_pMapShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::Map);
+	m_pMapShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+}
+
 void CGameObject::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)
 {
 }
@@ -316,6 +341,14 @@ void CGameObject::Rotate(XMFLOAT4 *pxmf4Quaternion)
 {
 	XMMATRIX mtxRotate = XMMatrixRotationQuaternion(XMLoadFloat4(pxmf4Quaternion));
 	m_xmf4x4World = Matrix4x4::Multiply(mtxRotate, m_xmf4x4World);
+}
+
+void CGameObject::SetShader(CShader* pShader)
+{
+	if (m_pShader) m_pShader->Release();
+	m_pShader = pShader;
+
+	if (m_pShader) m_pShader->AddRef();
 }
 
 void CGameObject::PrintAnimationStackNames(FbxScene* pfbxScene)

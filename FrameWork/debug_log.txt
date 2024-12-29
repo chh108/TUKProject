@@ -1,9 +1,92 @@
 Debug Log Initialized
-CTexture::Initialize called - Device: 0000017F8D5A03C0
+CTexture::Initialize called - Device: 000001D7425E05D0
+Ready To Connect Shader Num : 0 Address :000001D748C8C0D8
+Start Create FbxSkinnedModel Shader
+pInputElementDescs : 000001D74165F400
+NumElements : 2
+Ready To Connect Shader Num : 1 Address :000001D748C8C6D8
+Start Create SkyBox Shader
+pInputElementDescs : 000001D748D5C500
+NumElements : 1
+Ready To Connect Shader Num : 2 Address :000001D748EB01B8
+Start Create Map Shader
+pInputElementDescs : 000001D74165EA80
+NumElements : 2
+Ready To Connect Shader Num : 3 Address :000001D748EAFB38
+ShaderPipeLinestate Connection Failed NUMBER : 3ERROR : -2147024809
 m_TextureMap is empty.
-Texture resource created successfully: 0000017F947B00B0
-SRV Handle Address (Before) : 1647418494976
-Create SRV : 1647418494976with 0000017F947B00B0
+Texture resource created successfully: 000001D7492498F0
+SRV Handle Address (Before) : 2024117391360
+Create SRV : 2024117391360with 000001D7492498F0
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Loaded Custom Texture: Map/Objects/Textures/MushroomBundleColormap.png
+Start Create Map Shader
+pInputElementDescs : 000001D741661B80
+NumElements : 2
+Ready To Connect Shader Num : 3 Address :000001D742752288
+ShaderPipeLinestate Connection Failed NUMBER : 3ERROR : -2147024809
+Texture resource created successfully: 000001D749751F10
+SRV Handle Address (Before) : 2024117391360
+Create SRV : 2024117391424with 000001D749751F10
 Loaded Custom Texture: Model/Character/Textures/character_01_01.png
 Total Animation Stacks: 1
 Animation Stack [0]: Take 001
@@ -14,529 +97,396 @@ Total Animation Stacks: 1
 Animation Stack [0]: Take 001
 Time Range: Start = 0, End = 1
 Animation Stack [0]: Take 001
-CPlayer Constructor (Before Scene Load) - Device: 0000017F8D5A03C0
-CPlayer Constructor (After Scene Load) - Device: 0000017F8D5A03C0
+CPlayer Constructor (Before Scene Load) - Device: 000001D7425E05D0
+CPlayer Constructor (After Scene Load) - Device: 000001D7425E05D0
 Loaded Custom Texture: Model/Character/Textures/character_01_01.png
-First texture loaded for Player: 0000017F947B00B0
+First texture loaded for Player: 000001D749751F10
 Total Animation Stacks: 1
 Animation Stack [0]: Take 001
 Time Range: Start = 0, End = 1
 Animation Stack [0]: Take 001
-Elapsed Time per Frame: 0.0145691
-Elapsed Time Per Frame: 0.0145691 seconds
-Animation Current Time : 0.0145691
-Animation Current Time : 0.0145691
-Animation Current Time : 0.0145691
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0198218
-Elapsed Time Per Frame: 0.0198218 seconds
-Animation Current Time : 0.0198217
-Animation Current Time : 0.0198217
-Animation Current Time : 0.0198217
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0177859
-Elapsed Time Per Frame: 0.0177859 seconds
-Animation Current Time : 0.0177859
-Animation Current Time : 0.0177859
-Animation Current Time : 0.0177859
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0183031
-Elapsed Time Per Frame: 0.0183031 seconds
-Animation Current Time : 0.0183031
-Animation Current Time : 0.0183031
-Animation Current Time : 0.0183031
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0193508
-Elapsed Time Per Frame: 0.0193508 seconds
-Animation Current Time : 0.0193508
-Animation Current Time : 0.0193508
-Animation Current Time : 0.0193508
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0217086
-Elapsed Time Per Frame: 0.0217086 seconds
-Animation Current Time : 0.0217086
-Animation Current Time : 0.0217086
-Animation Current Time : 0.0217086
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0210028
-Elapsed Time Per Frame: 0.0210028 seconds
-Animation Current Time : 0.0210028
-Animation Current Time : 0.0210028
-Animation Current Time : 0.0210028
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0204573
-Elapsed Time Per Frame: 0.0204573 seconds
-Animation Current Time : 0.0204573
-Animation Current Time : 0.0204573
-Animation Current Time : 0.0204573
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0200253
-Elapsed Time Per Frame: 0.0200253 seconds
-Animation Current Time : 0.0200253
-Animation Current Time : 0.0200253
-Animation Current Time : 0.0200253
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0197272
-Elapsed Time Per Frame: 0.0197272 seconds
-Animation Current Time : 0.0197272
-Animation Current Time : 0.0197272
-Animation Current Time : 0.0197272
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0194179
-Elapsed Time Per Frame: 0.0194179 seconds
-Animation Current Time : 0.0194179
-Animation Current Time : 0.0194179
-Animation Current Time : 0.0194179
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0191776
-Elapsed Time Per Frame: 0.0191776 seconds
-Animation Current Time : 0.0191776
-Animation Current Time : 0.0191776
-Animation Current Time : 0.0191776
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0189984
-Elapsed Time Per Frame: 0.0189984 seconds
-Animation Current Time : 0.0189984
-Animation Current Time : 0.0189984
-Animation Current Time : 0.0189984
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0188197
-Elapsed Time Per Frame: 0.0188197 seconds
-Animation Current Time : 0.0188197
-Animation Current Time : 0.0188197
-Animation Current Time : 0.0188197
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0186791
-Elapsed Time Per Frame: 0.0186791 seconds
-Animation Current Time : 0.0186791
-Animation Current Time : 0.0186791
-Animation Current Time : 0.0186791
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0185552
-Elapsed Time Per Frame: 0.0185552 seconds
-Animation Current Time : 0.0185552
-Animation Current Time : 0.0185552
-Animation Current Time : 0.0185552
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0184362
-Elapsed Time Per Frame: 0.0184362 seconds
-Animation Current Time : 0.0184362
-Animation Current Time : 0.0184362
-Animation Current Time : 0.0184362
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0183425
-Elapsed Time Per Frame: 0.0183425 seconds
-Animation Current Time : 0.0183425
-Animation Current Time : 0.0183425
-Animation Current Time : 0.0183425
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0182564
-Elapsed Time Per Frame: 0.0182564 seconds
-Animation Current Time : 0.0182564
-Animation Current Time : 0.0182564
-Animation Current Time : 0.0182564
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0181683
-Elapsed Time Per Frame: 0.0181683 seconds
-Animation Current Time : 0.0181683
-Animation Current Time : 0.0181683
-Animation Current Time : 0.0181683
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0181074
-Elapsed Time Per Frame: 0.0181074 seconds
-Animation Current Time : 0.0181074
-Animation Current Time : 0.0181074
-Animation Current Time : 0.0181074
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0180448
-Elapsed Time Per Frame: 0.0180448 seconds
-Animation Current Time : 0.0180448
-Animation Current Time : 0.0180448
-Animation Current Time : 0.0180448
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.017984
-Elapsed Time Per Frame: 0.017984 seconds
-Animation Current Time : 0.017984
-Animation Current Time : 0.017984
-Animation Current Time : 0.017984
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.017927
-Elapsed Time Per Frame: 0.017927 seconds
-Animation Current Time : 0.017927
-Animation Current Time : 0.017927
-Animation Current Time : 0.017927
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0178745
-Elapsed Time Per Frame: 0.0178745 seconds
-Animation Current Time : 0.0178745
-Animation Current Time : 0.0178745
-Animation Current Time : 0.0178745
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0178201
-Elapsed Time Per Frame: 0.0178201 seconds
-Animation Current Time : 0.01782
-Animation Current Time : 0.01782
-Animation Current Time : 0.01782
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0177834
-Elapsed Time Per Frame: 0.0177834 seconds
-Animation Current Time : 0.0177834
-Animation Current Time : 0.0177834
-Animation Current Time : 0.0177834
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0177486
-Elapsed Time Per Frame: 0.0177486 seconds
-Animation Current Time : 0.0177486
-Animation Current Time : 0.0177486
-Animation Current Time : 0.0177486
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0177037
-Elapsed Time Per Frame: 0.0177037 seconds
-Animation Current Time : 0.0177037
-Animation Current Time : 0.0177037
-Animation Current Time : 0.0177037
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0176757
-Elapsed Time Per Frame: 0.0176757 seconds
-Animation Current Time : 0.0176757
-Animation Current Time : 0.0176757
-Animation Current Time : 0.0176757
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0176418
-Elapsed Time Per Frame: 0.0176418 seconds
-Animation Current Time : 0.0176418
-Animation Current Time : 0.0176418
-Animation Current Time : 0.0176418
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0176078
-Elapsed Time Per Frame: 0.0176078 seconds
-Animation Current Time : 0.0176078
-Animation Current Time : 0.0176078
-Animation Current Time : 0.0176078
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0175818
-Elapsed Time Per Frame: 0.0175818 seconds
-Animation Current Time : 0.0175818
-Animation Current Time : 0.0175818
-Animation Current Time : 0.0175818
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0175565
-Elapsed Time Per Frame: 0.0175565 seconds
-Animation Current Time : 0.0175565
-Animation Current Time : 0.0175565
-Animation Current Time : 0.0175565
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0175307
-Elapsed Time Per Frame: 0.0175307 seconds
-Animation Current Time : 0.0175307
-Animation Current Time : 0.0175307
-Animation Current Time : 0.0175307
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0175096
-Elapsed Time Per Frame: 0.0175096 seconds
-Animation Current Time : 0.0175096
-Animation Current Time : 0.0175096
-Animation Current Time : 0.0175096
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0174826
-Elapsed Time Per Frame: 0.0174826 seconds
-Animation Current Time : 0.0174826
-Animation Current Time : 0.0174826
-Animation Current Time : 0.0174826
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0174591
-Elapsed Time Per Frame: 0.0174591 seconds
-Animation Current Time : 0.0174591
-Animation Current Time : 0.0174591
-Animation Current Time : 0.0174591
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0174412
-Elapsed Time Per Frame: 0.0174412 seconds
-Animation Current Time : 0.0174412
-Animation Current Time : 0.0174412
-Animation Current Time : 0.0174412
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0174223
-Elapsed Time Per Frame: 0.0174223 seconds
-Animation Current Time : 0.0174223
-Animation Current Time : 0.0174223
-Animation Current Time : 0.0174223
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0174016
-Elapsed Time Per Frame: 0.0174016 seconds
-Animation Current Time : 0.0174016
-Animation Current Time : 0.0174016
-Animation Current Time : 0.0174016
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0173875
-Elapsed Time Per Frame: 0.0173875 seconds
-Animation Current Time : 0.0173875
-Animation Current Time : 0.0173875
-Animation Current Time : 0.0173875
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0173829
-Elapsed Time Per Frame: 0.0173829 seconds
-Animation Current Time : 0.0173829
-Animation Current Time : 0.0173829
-Animation Current Time : 0.0173829
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0173527
-Elapsed Time Per Frame: 0.0173527 seconds
-Animation Current Time : 0.0173527
-Animation Current Time : 0.0173527
-Animation Current Time : 0.0173527
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0173371
-Elapsed Time Per Frame: 0.0173371 seconds
-Animation Current Time : 0.0173371
-Animation Current Time : 0.0173371
-Animation Current Time : 0.0173371
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0173216
-Elapsed Time Per Frame: 0.0173216 seconds
-Animation Current Time : 0.0173216
-Animation Current Time : 0.0173216
-Animation Current Time : 0.0173216
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0173076
-Elapsed Time Per Frame: 0.0173076 seconds
-Animation Current Time : 0.0173076
-Animation Current Time : 0.0173076
-Animation Current Time : 0.0173076
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0172943
-Elapsed Time Per Frame: 0.0172943 seconds
-Animation Current Time : 0.0172943
-Animation Current Time : 0.0172943
-Animation Current Time : 0.0172943
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0172828
-Elapsed Time Per Frame: 0.0172828 seconds
-Animation Current Time : 0.0172828
-Animation Current Time : 0.0172828
-Animation Current Time : 0.0172828
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0172669
-Elapsed Time Per Frame: 0.0172669 seconds
-Animation Current Time : 0.0172669
-Animation Current Time : 0.0172669
-Animation Current Time : 0.0172669
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0173124
-Elapsed Time Per Frame: 0.0173124 seconds
-Animation Current Time : 0.0173124
-Animation Current Time : 0.0173124
-Animation Current Time : 0.0173124
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0171422
-Elapsed Time Per Frame: 0.0171422 seconds
-Animation Current Time : 0.0171422
-Animation Current Time : 0.0171422
-Animation Current Time : 0.0171422
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0172026
-Elapsed Time Per Frame: 0.0172026 seconds
-Animation Current Time : 0.0172026
-Animation Current Time : 0.0172026
-Animation Current Time : 0.0172026
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0171508
-Elapsed Time Per Frame: 0.0171508 seconds
-Animation Current Time : 0.0171508
-Animation Current Time : 0.0171508
-Animation Current Time : 0.0171508
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0170054
-Elapsed Time Per Frame: 0.0170054 seconds
-Animation Current Time : 0.0170054
-Animation Current Time : 0.0170054
-Animation Current Time : 0.0170054
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166694
-Elapsed Time Per Frame: 0.0166694 seconds
-Animation Current Time : 0.0166694
-Animation Current Time : 0.0166694
-Animation Current Time : 0.0166694
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166691
-Elapsed Time Per Frame: 0.0166691 seconds
-Animation Current Time : 0.0166691
-Animation Current Time : 0.0166691
-Animation Current Time : 0.0166691
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166658
-Elapsed Time Per Frame: 0.0166658 seconds
-Animation Current Time : 0.0166658
-Animation Current Time : 0.0166658
-Animation Current Time : 0.0166658
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166706
-Elapsed Time Per Frame: 0.0166706 seconds
-Animation Current Time : 0.0166706
-Animation Current Time : 0.0166706
-Animation Current Time : 0.0166706
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166674
-Elapsed Time Per Frame: 0.0166674 seconds
-Animation Current Time : 0.0166674
-Animation Current Time : 0.0166674
-Animation Current Time : 0.0166674
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166714
-Elapsed Time Per Frame: 0.0166714 seconds
-Animation Current Time : 0.0166714
-Animation Current Time : 0.0166714
-Animation Current Time : 0.0166714
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.016671
-Elapsed Time Per Frame: 0.016671 seconds
-Animation Current Time : 0.016671
-Animation Current Time : 0.016671
-Animation Current Time : 0.016671
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166683
-Elapsed Time Per Frame: 0.0166683 seconds
-Animation Current Time : 0.0166683
-Animation Current Time : 0.0166683
-Animation Current Time : 0.0166683
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166963
-Elapsed Time Per Frame: 0.0166963 seconds
-Animation Current Time : 0.0166963
-Animation Current Time : 0.0166963
-Animation Current Time : 0.0166963
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166693
-Elapsed Time Per Frame: 0.0166693 seconds
-Animation Current Time : 0.0166693
-Animation Current Time : 0.0166693
-Animation Current Time : 0.0166693
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166709
-Elapsed Time Per Frame: 0.0166709 seconds
-Animation Current Time : 0.0166708
-Animation Current Time : 0.0166708
-Animation Current Time : 0.0166708
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166714
-Elapsed Time Per Frame: 0.0166714 seconds
-Animation Current Time : 0.0166714
-Animation Current Time : 0.0166714
-Animation Current Time : 0.0166714
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166778
-Elapsed Time Per Frame: 0.0166778 seconds
-Animation Current Time : 0.0166778
-Animation Current Time : 0.0166778
-Animation Current Time : 0.0166778
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.016675
-Elapsed Time Per Frame: 0.016675 seconds
-Animation Current Time : 0.016675
-Animation Current Time : 0.016675
-Animation Current Time : 0.016675
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0167592
-Elapsed Time Per Frame: 0.0167592 seconds
-Animation Current Time : 0.0167592
-Animation Current Time : 0.0167592
-Animation Current Time : 0.0167592
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0167025
-Elapsed Time Per Frame: 0.0167025 seconds
-Animation Current Time : 0.0167025
-Animation Current Time : 0.0167025
-Animation Current Time : 0.0167025
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166664
-Elapsed Time Per Frame: 0.0166664 seconds
-Animation Current Time : 0.0166664
-Animation Current Time : 0.0166664
-Animation Current Time : 0.0166664
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166658
-Elapsed Time Per Frame: 0.0166658 seconds
-Animation Current Time : 0.0166658
-Animation Current Time : 0.0166658
-Animation Current Time : 0.0166658
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
-Elapsed Time per Frame: 0.0166639
-Elapsed Time Per Frame: 0.0166639 seconds
-Animation Current Time : 0.0166639
-Animation Current Time : 0.0166639
-Animation Current Time : 0.0166639
-Rendering Player Texture Address: 0000017F947B00B0
-After CGameObject::Render - Player texture valid: 0000017F947B00B0
+Elapsed Time per Frame: 0.0161759
+Elapsed Time Per Frame: 0.0161759 seconds
+Animation Current Time : 0.0161759
+Animation Current Time : 0.0161759
+Animation Current Time : 0.0161759
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0181785
+Elapsed Time Per Frame: 0.0181785 seconds
+Animation Current Time : 0.0181785
+Animation Current Time : 0.0181785
+Animation Current Time : 0.0181785
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0170165
+Elapsed Time Per Frame: 0.0170165 seconds
+Animation Current Time : 0.0170165
+Animation Current Time : 0.0170165
+Animation Current Time : 0.0170165
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0169895
+Elapsed Time Per Frame: 0.0169895 seconds
+Animation Current Time : 0.0169895
+Animation Current Time : 0.0169895
+Animation Current Time : 0.0169895
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0188176
+Elapsed Time Per Frame: 0.0188176 seconds
+Animation Current Time : 0.0188176
+Animation Current Time : 0.0188176
+Animation Current Time : 0.0188176
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0213005
+Elapsed Time Per Frame: 0.0213005 seconds
+Animation Current Time : 0.0213005
+Animation Current Time : 0.0213005
+Animation Current Time : 0.0213005
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0205949
+Elapsed Time Per Frame: 0.0205949 seconds
+Animation Current Time : 0.0205949
+Animation Current Time : 0.0205949
+Animation Current Time : 0.0205949
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0201256
+Elapsed Time Per Frame: 0.0201256 seconds
+Animation Current Time : 0.0201256
+Animation Current Time : 0.0201256
+Animation Current Time : 0.0201256
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.019724
+Elapsed Time Per Frame: 0.019724 seconds
+Animation Current Time : 0.019724
+Animation Current Time : 0.019724
+Animation Current Time : 0.019724
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0194134
+Elapsed Time Per Frame: 0.0194134 seconds
+Animation Current Time : 0.0194134
+Animation Current Time : 0.0194134
+Animation Current Time : 0.0194134
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0191382
+Elapsed Time Per Frame: 0.0191382 seconds
+Animation Current Time : 0.0191382
+Animation Current Time : 0.0191382
+Animation Current Time : 0.0191382
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0189528
+Elapsed Time Per Frame: 0.0189528 seconds
+Animation Current Time : 0.0189528
+Animation Current Time : 0.0189528
+Animation Current Time : 0.0189528
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0188067
+Elapsed Time Per Frame: 0.0188067 seconds
+Animation Current Time : 0.0188067
+Animation Current Time : 0.0188067
+Animation Current Time : 0.0188067
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0186358
+Elapsed Time Per Frame: 0.0186358 seconds
+Animation Current Time : 0.0186358
+Animation Current Time : 0.0186358
+Animation Current Time : 0.0186358
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0185
+Elapsed Time Per Frame: 0.0185 seconds
+Animation Current Time : 0.0185
+Animation Current Time : 0.0185
+Animation Current Time : 0.0185
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0183652
+Elapsed Time Per Frame: 0.0183652 seconds
+Animation Current Time : 0.0183652
+Animation Current Time : 0.0183652
+Animation Current Time : 0.0183652
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0182894
+Elapsed Time Per Frame: 0.0182894 seconds
+Animation Current Time : 0.0182894
+Animation Current Time : 0.0182894
+Animation Current Time : 0.0182894
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0181672
+Elapsed Time Per Frame: 0.0181672 seconds
+Animation Current Time : 0.0181672
+Animation Current Time : 0.0181672
+Animation Current Time : 0.0181672
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.018129
+Elapsed Time Per Frame: 0.018129 seconds
+Animation Current Time : 0.018129
+Animation Current Time : 0.018129
+Animation Current Time : 0.018129
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0180364
+Elapsed Time Per Frame: 0.0180364 seconds
+Animation Current Time : 0.0180364
+Animation Current Time : 0.0180364
+Animation Current Time : 0.0180364
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0179872
+Elapsed Time Per Frame: 0.0179872 seconds
+Animation Current Time : 0.0179872
+Animation Current Time : 0.0179872
+Animation Current Time : 0.0179872
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0179262
+Elapsed Time Per Frame: 0.0179262 seconds
+Animation Current Time : 0.0179262
+Animation Current Time : 0.0179262
+Animation Current Time : 0.0179262
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0178535
+Elapsed Time Per Frame: 0.0178535 seconds
+Animation Current Time : 0.0178535
+Animation Current Time : 0.0178535
+Animation Current Time : 0.0178535
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0178266
+Elapsed Time Per Frame: 0.0178266 seconds
+Animation Current Time : 0.0178266
+Animation Current Time : 0.0178266
+Animation Current Time : 0.0178266
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0177709
+Elapsed Time Per Frame: 0.0177709 seconds
+Animation Current Time : 0.0177709
+Animation Current Time : 0.0177709
+Animation Current Time : 0.0177709
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0177261
+Elapsed Time Per Frame: 0.0177261 seconds
+Animation Current Time : 0.0177261
+Animation Current Time : 0.0177261
+Animation Current Time : 0.0177261
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0176828
+Elapsed Time Per Frame: 0.0176828 seconds
+Animation Current Time : 0.0176828
+Animation Current Time : 0.0176828
+Animation Current Time : 0.0176828
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0176592
+Elapsed Time Per Frame: 0.0176592 seconds
+Animation Current Time : 0.0176592
+Animation Current Time : 0.0176592
+Animation Current Time : 0.0176592
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0176126
+Elapsed Time Per Frame: 0.0176126 seconds
+Animation Current Time : 0.0176126
+Animation Current Time : 0.0176126
+Animation Current Time : 0.0176126
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0175808
+Elapsed Time Per Frame: 0.0175808 seconds
+Animation Current Time : 0.0175808
+Animation Current Time : 0.0175808
+Animation Current Time : 0.0175808
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0175611
+Elapsed Time Per Frame: 0.0175611 seconds
+Animation Current Time : 0.0175611
+Animation Current Time : 0.0175611
+Animation Current Time : 0.0175611
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0175143
+Elapsed Time Per Frame: 0.0175143 seconds
+Animation Current Time : 0.0175143
+Animation Current Time : 0.0175143
+Animation Current Time : 0.0175143
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0174997
+Elapsed Time Per Frame: 0.0174997 seconds
+Animation Current Time : 0.0174997
+Animation Current Time : 0.0174997
+Animation Current Time : 0.0174997
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0174819
+Elapsed Time Per Frame: 0.0174819 seconds
+Animation Current Time : 0.0174819
+Animation Current Time : 0.0174819
+Animation Current Time : 0.0174819
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0174425
+Elapsed Time Per Frame: 0.0174425 seconds
+Animation Current Time : 0.0174425
+Animation Current Time : 0.0174425
+Animation Current Time : 0.0174425
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0174296
+Elapsed Time Per Frame: 0.0174296 seconds
+Animation Current Time : 0.0174295
+Animation Current Time : 0.0174295
+Animation Current Time : 0.0174295
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0174059
+Elapsed Time Per Frame: 0.0174059 seconds
+Animation Current Time : 0.0174059
+Animation Current Time : 0.0174059
+Animation Current Time : 0.0174059
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.017383
+Elapsed Time Per Frame: 0.017383 seconds
+Animation Current Time : 0.017383
+Animation Current Time : 0.017383
+Animation Current Time : 0.017383
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.017366
+Elapsed Time Per Frame: 0.017366 seconds
+Animation Current Time : 0.017366
+Animation Current Time : 0.017366
+Animation Current Time : 0.017366
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0173535
+Elapsed Time Per Frame: 0.0173535 seconds
+Animation Current Time : 0.0173535
+Animation Current Time : 0.0173535
+Animation Current Time : 0.0173535
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0173399
+Elapsed Time Per Frame: 0.0173399 seconds
+Animation Current Time : 0.0173399
+Animation Current Time : 0.0173399
+Animation Current Time : 0.0173399
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0173168
+Elapsed Time Per Frame: 0.0173168 seconds
+Animation Current Time : 0.0173168
+Animation Current Time : 0.0173168
+Animation Current Time : 0.0173168
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172945
+Elapsed Time Per Frame: 0.0172945 seconds
+Animation Current Time : 0.0172945
+Animation Current Time : 0.0172945
+Animation Current Time : 0.0172945
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172866
+Elapsed Time Per Frame: 0.0172866 seconds
+Animation Current Time : 0.0172866
+Animation Current Time : 0.0172866
+Animation Current Time : 0.0172866
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172794
+Elapsed Time Per Frame: 0.0172794 seconds
+Animation Current Time : 0.0172794
+Animation Current Time : 0.0172794
+Animation Current Time : 0.0172794
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172636
+Elapsed Time Per Frame: 0.0172636 seconds
+Animation Current Time : 0.0172636
+Animation Current Time : 0.0172636
+Animation Current Time : 0.0172636
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172499
+Elapsed Time Per Frame: 0.0172499 seconds
+Animation Current Time : 0.0172499
+Animation Current Time : 0.0172499
+Animation Current Time : 0.0172499
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172359
+Elapsed Time Per Frame: 0.0172359 seconds
+Animation Current Time : 0.0172359
+Animation Current Time : 0.0172359
+Animation Current Time : 0.0172359
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172476
+Elapsed Time Per Frame: 0.0172476 seconds
+Animation Current Time : 0.0172476
+Animation Current Time : 0.0172476
+Animation Current Time : 0.0172476
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172095
+Elapsed Time Per Frame: 0.0172095 seconds
+Animation Current Time : 0.0172095
+Animation Current Time : 0.0172095
+Animation Current Time : 0.0172095
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0172243
+Elapsed Time Per Frame: 0.0172243 seconds
+Animation Current Time : 0.0172243
+Animation Current Time : 0.0172243
+Animation Current Time : 0.0172243
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0171521
+Elapsed Time Per Frame: 0.0171521 seconds
+Animation Current Time : 0.0171521
+Animation Current Time : 0.0171521
+Animation Current Time : 0.0171521
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0171918
+Elapsed Time Per Frame: 0.0171918 seconds
+Animation Current Time : 0.0171918
+Animation Current Time : 0.0171918
+Animation Current Time : 0.0171918
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0171937
+Elapsed Time Per Frame: 0.0171937 seconds
+Animation Current Time : 0.0171937
+Animation Current Time : 0.0171937
+Animation Current Time : 0.0171937
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10
+Elapsed Time per Frame: 0.0169978
+Elapsed Time Per Frame: 0.0169978 seconds
+Animation Current Time : 0.0169978
+Animation Current Time : 0.0169978
+Animation Current Time : 0.0169978
+Rendering Player Texture Address: 000001D749751F10
+After CGameObject::Render - Player texture valid: 000001D749751F10

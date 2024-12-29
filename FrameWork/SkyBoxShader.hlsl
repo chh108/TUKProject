@@ -1,41 +1,48 @@
 // SkyBoxShader.hlsl
 
-cbuffer CameraBuffer : register(b0)
+cbuffer cbCameraInfo : register(b1)
 {
-    matrix ViewProjection;
-}
-
-TextureCube SkyboxTexture : register(t0);
-SamplerState SkyboxSampler : register(s0);
-
-struct VS_OUTPUT
-{
-    float4 Position : SV_POSITION;
-    float3 TexCoord : TEXCOORD;
+    matrix gmtxView : packoffset(c0);
+    matrix gmtxProjection : packoffset(c4);
+    float3 gvCameraPosition : packoffset(c8);
 };
 
-VS_OUTPUT VSSkyBox(float4 position : POSITION)
+cbuffer cbGameObjectInfo : register(b2)
 {
-    //VS_OUTPUT output;
-    //output.Position = mul(position, ViewProjection);
-    //output.TexCoord = position.xyz;
-    //return output;
-    
-    VS_OUTPUT output;
+    matrix gmtxGameObject : packoffset(c0);
+    float4 gcPixelColor : packoffset(c4);
+};
 
-    // 뷰 행렬의 위치 제거 (오프셋 없이)
-    float4x4 modifiedViewProjection = ViewProjection;
-    modifiedViewProjection._41 = 0;
-    modifiedViewProjection._42 = 0;
-    modifiedViewProjection._43 = 0;
 
-    output.Position = mul(position, modifiedViewProjection);
-    output.TexCoord = position.xyz;
+TextureCube gtxtSkyCubeTexture : register(t2);
+SamplerState gssClamp : register(s1);
 
-    return output;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+struct VS_SKYBOX_CUBEMAP_INPUT
+{
+    float3 position : POSITION;
+};
+
+struct VS_SKYBOX_CUBEMAP_OUTPUT
+{
+    float3 positionL : POSITION;
+    float4 position : SV_POSITION;
+};
+
+VS_SKYBOX_CUBEMAP_OUTPUT VSSkyBox(VS_SKYBOX_CUBEMAP_INPUT input)
+{
+    VS_SKYBOX_CUBEMAP_OUTPUT output;
+
+    output.position = mul(mul(mul(float4(input.position, 1.0f), gmtxGameObject), gmtxView), gmtxProjection);
+    output.positionL = input.position;
+
+    return (output);
 }
 
-float4 PSSkyBox(VS_OUTPUT input) : SV_TARGET
+float4 PSSkyBox(VS_SKYBOX_CUBEMAP_OUTPUT input) : SV_TARGET
 {
-    return SkyboxTexture.Sample(SkyboxSampler, input.TexCoord);
+    float4 cColor = gtxtSkyCubeTexture.Sample(gssClamp, input.positionL);
+
+    return (cColor);
 }
