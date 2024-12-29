@@ -440,8 +440,9 @@ CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd
 	SetTexture(m_pTexture, 0);
 
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
+
 	if (m_pAnimationController) {
-		m_pAnimationController->CheckAnimationKeyframes(m_pfbxScene);
+		// m_pAnimationController->CheckAnimationKeyframes(m_pfbxScene);
 		// CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/IDLE.fbx");
 		CheckAllAnimationStacks(m_pfbxScene);
 		PrintAnimationStackNames(m_pfbxScene);

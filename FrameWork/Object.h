@@ -88,6 +88,7 @@ public:
 	double							m_dAnimationStartTime = 0;
 	double							m_dAnimationEndTime = 0;
 
+
 	virtual void Animate(float fTimeElapsed);
 	virtual void OnPrepareRender() { }
 	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera);

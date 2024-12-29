@@ -465,14 +465,8 @@ void CGameFramework::BuildObjects()
 #ifdef _WITH_FBX_SCENE_INSTANCING
 	m_pfbxScene = ::LoadFbxSceneFromFile(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, "Model/Blue.fbx");
 #endif
-
 	m_pScene = new CScene();
 	if (m_pScene) m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, m_pTextureManager, m_pfbxScene);
-
-	// Load Blue Player
-	// ID3D12Resource* pTexture = m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");
-
-	// debugLog << "Before Create Player (device) : " << m_pd3dDevice << std::endl;
 
 	CPlayer* pPlayer = new CPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(),
 		m_pfbxSdkManager, "Model/BluePlayer.fbx", m_pTextureManager, PlayerType::Blue);

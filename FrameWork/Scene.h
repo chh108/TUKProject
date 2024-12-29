@@ -36,6 +36,8 @@ public:
 
 	CPlayer								*m_pPlayer = NULL;
 
+	//20241229 Map
+
 protected:
 	ID3D12RootSignature					*m_pd3dGraphicsRootSignature = NULL;
 
@@ -57,4 +59,5 @@ public:
 
 	int									m_nShaders = 0;
 	CShader								**m_ppShaders = NULL;
+
 };
