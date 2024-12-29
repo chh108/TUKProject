@@ -45,6 +45,8 @@ public:
 	void AdvanceTime(float fElapsedTime);
 	FbxTime GetCurrentTime() { return(m_pfbxCurrentTimes[m_nAnimationStack]); }
 
+	void CheckAnimationKeyframes(FbxScene* pFbxScene);
+
 	void SetPosition(int nAnimationStack, float fPosition);
 };
 
@@ -82,6 +84,9 @@ public:
 
 	//20241216 Animation
 	CAnimationController 			*m_pAnimationController = NULL;
+	double							m_dFbxCurrentTime = 0;
+	double							m_dAnimationStartTime = 0;
+	double							m_dAnimationEndTime = 0;
 
 	virtual void Animate(float fTimeElapsed);
 	virtual void OnPrepareRender() { }
@@ -117,17 +122,10 @@ public:
 public:
 	// 20241229 Animation
 	void SetAnimationStack(int nAnimationStack) { m_pAnimationController->SetAnimationStack(m_pfbxScene, nAnimationStack); }
-	void PrintAnimationStackNames(FbxScene* pfbxScene)
-	{
-		FbxArray<FbxString*> animationStackNames;
-		pfbxScene->FillAnimStackNameArray(animationStackNames);
-
-		for (int i = 0; i < animationStackNames.Size(); i++) {
-			debugLog << "Animation Stack [" << i << "]: " << animationStackNames[i]->Buffer() << std::endl;
-		}
-
-		FbxArrayDelete(animationStackNames);
-	}
+	void PrintAnimationStackNames(FbxScene* pfbxScene);
+	bool CreateAnimationStack(FbxScene* pfbxScene, const std::string& animationFilePath);
+	void CheckAnimationStack(FbxScene* pfbxScene);
+	void CheckAllAnimationStacks(FbxScene* pfbxScene);
 
 	// 20241215 Texture Func
 	void SetTexture(ID3D12Resource* pTexture, UINT textureHeapIndex) {

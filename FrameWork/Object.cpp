@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "Object.h"
 #include "Shader.h"
+#include "Mesh.h"
 #include "Scene.h"
 #include "DebugLog.h"
 #include "texture.h"
@@ -78,9 +79,35 @@ void CAnimationController::AdvanceTime(float fTimeElapsed)
 	FbxTime fbxElapsedTime;
 	fbxElapsedTime.SetSecondDouble(fTimeElapsed);
 
+	debugLog << "Animation Current Time : " << fbxElapsedTime.GetSecondDouble() << std::endl;
+
 	m_pfbxCurrentTimes[m_nAnimationStack] += fbxElapsedTime;
 	if (m_pfbxCurrentTimes[m_nAnimationStack] > m_pfbxStopTimes[m_nAnimationStack]) m_pfbxCurrentTimes[m_nAnimationStack] = m_pfbxStartTimes[m_nAnimationStack];
 } 
+
+void CAnimationController::CheckAnimationKeyframes(FbxScene* pFbxScene)
+{
+	int animStackCount = pFbxScene->GetSrcObjectCount<FbxAnimStack>();
+	for (int i = 0; i < animStackCount; i++) {
+		FbxAnimStack* animStack = pFbxScene->GetSrcObject<FbxAnimStack>(i);
+		if (animStack) {
+			debugLog << "Animation Stack [" << i << "]: " << animStack->GetName() << std::endl;
+
+			FbxAnimLayer* animLayer = animStack->GetMember<FbxAnimLayer>();
+			if (animLayer) {
+				FbxAnimCurve* animCurve = pFbxScene->GetRootNode()->LclTranslation.GetCurve(animLayer, FBXSDK_CURVENODE_COMPONENT_X);
+				if (animCurve) {
+					int keyCount = animCurve->KeyGetCount();
+					debugLog << "Total Keyframes: " << keyCount << std::endl;
+					for (int k = 0; k < keyCount; k++) {
+						FbxTime keyTime = animCurve->KeyGetTime(k);
+						debugLog << "Keyframe[" << k << "] Time: " << keyTime.GetSecondDouble() << " seconds" << std::endl;
+					}
+				}
+			}
+		}
+	}
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -92,13 +119,13 @@ CGameObject::CGameObject()
 CGameObject::CGameObject(CTexture* pTextureManager, ID3D12Device* pd3dDevice)
 	: m_pTextureManager(pTextureManager), m_pd3dDevice(pd3dDevice) {
 
-	debugLog << "CGameObject Constructor - Device: " << pd3dDevice << std::endl;
+	// debugLog << "CGameObject Constructor - Device: " << pd3dDevice << std::endl;
 
 	if (!m_pTextureManager) {
-		debugLog << "CGameObject: Texture Manager is NULL during initialization." << std::endl;
+		// debugLog << "CGameObject: Texture Manager is NULL during initialization." << std::endl;
 	}
 	else {
-		debugLog << "CGameObject: Texture Manager successfully initialized." << std::endl;
+		// debugLog << "CGameObject: Texture Manager successfully initialized." << std::endl;
 		m_pd3dSrvDescriptorHeap = pTextureManager->GetDescriptorHeap(); // 힙 참조
 	}
 	m_xmf4x4World = Matrix4x4::Identity();
@@ -136,41 +163,41 @@ void CGameObject::Animate(float fTimeElapsed)
 void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera)
 {
 	if (m_pTexture) {
-		debugLog << "CGameObject::Render - Texture valid: " << m_pTexture << std::endl;
+		// debugLog << "CGameObject::Render - Texture valid: " << m_pTexture << std::endl;
 	}
 	else {
-		debugLog << "CGameObject::Render - Texture is NULL." << std::endl;
+		// debugLog << "CGameObject::Render - Texture is NULL." << std::endl;
 	}
 
 	OnPrepareRender();
 
 	if (m_pd3dSrvDescriptorHeap) {
 		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = m_pd3dSrvDescriptorHeap->GetDesc();
-		debugLog << "SRV Descriptor Heap Size: " << heapDesc.NumDescriptors << std::endl;
+		// debugLog << "SRV Descriptor Heap Size: " << heapDesc.NumDescriptors << std::endl;
 	}
 	else {
-		debugLog << "SRV Descriptor Heap is NULL." << std::endl;
+		// debugLog << "SRV Descriptor Heap is NULL." << std::endl;
 	}
 	// 20241216 텍스처 로딩
 	if (m_pTexture) {
 		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
-		debugLog << "Texture Resource: " << m_pTexture << std::endl;
+		// debugLog << "Texture Resource: " << m_pTexture << std::endl;
 
 		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 		UINT64 testNum = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-		debugLog << "SRVHandle: (With Texture) " << srvHandle.ptr << 
-			" | index " << m_TextureHeapIndex <<
-			" | Descriptor IncrementSize " << testNum << std::endl;
+		//debugLog << "SRVHandle: (With Texture) " << srvHandle.ptr << 
+		//	" | index " << m_TextureHeapIndex <<
+		//	" | Descriptor IncrementSize " << testNum << std::endl;
 
 		ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dSrvDescriptorHeap };
 		pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
 		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root ParameterIndex 2
 
-		debugLog << "SetGraphicsRootDescriptorTable: Handle Ptr = " << srvHandle.ptr << std::endl;
+		// debugLog << "SetGraphicsRootDescriptorTable: Handle Ptr = " << srvHandle.ptr << std::endl;
 	}
 	else
 	{
-		debugLog << "Failed To Bind SRV.\n";
+		// debugLog << "Failed To Bind SRV.\n";
 	}
 
 	// 20241216 애니메이션 작업 시작
@@ -291,6 +318,96 @@ void CGameObject::Rotate(XMFLOAT4 *pxmf4Quaternion)
 	m_xmf4x4World = Matrix4x4::Multiply(mtxRotate, m_xmf4x4World);
 }
 
+void CGameObject::PrintAnimationStackNames(FbxScene* pfbxScene)
+{
+	FbxArray<FbxString*> animationStackNames;
+	pfbxScene->FillAnimStackNameArray(animationStackNames);
+
+	for (int i = 0; i < animationStackNames.Size(); i++) {
+		debugLog << "Animation Stack [" << i << "]: " << animationStackNames[i]->Buffer() << std::endl;
+	}
+
+	FbxArrayDelete(animationStackNames);
+}
+
+bool CGameObject::CreateAnimationStack(FbxScene* pScene, const std::string& animationFilePath)
+{
+	FbxManager* pFbxSdkManager = pScene->GetFbxManager();
+	FbxImporter* pImporter = FbxImporter::Create(pFbxSdkManager, " ");
+
+	if (!pImporter->Initialize(animationFilePath.c_str(), -1, pFbxSdkManager->GetIOSettings())) {
+		std::cerr << "Failed to initialize importer for file: " << animationFilePath << std::endl;
+		return false;
+	}
+
+	FbxScene* pAnimationScene = FbxScene::Create(pFbxSdkManager, "AnimationScene");
+	if (!pImporter->Import(pAnimationScene)) {
+		std::cerr << "Failed to import animation file: " << animationFilePath << std::endl;
+		return false;
+	}
+
+	// 애니메이션 병합
+	FbxAnimStack* pAnimStack = pAnimationScene->GetMember<FbxAnimStack>();
+	if (pAnimStack) {
+		pScene->AddMember(pAnimStack);
+		std::cout << "Successfully added animation stack: " << pAnimStack->GetName() << std::endl;
+	}
+	else {
+		std::cerr << "No animation stack found in file: " << animationFilePath << std::endl;
+		return false;
+	}
+
+	pImporter->Destroy();
+	return true;
+}
+
+void CGameObject::CheckAnimationStack(FbxScene* pfbxScene)
+{
+	FbxAnimStack* pAnimStack = pfbxScene->GetCurrentAnimationStack();
+	if (pAnimStack)
+	{
+		debugLog << "Current Animation Stack: " << pAnimStack->GetName() << std::endl;
+
+		FbxTime startTime, endTime;
+		pAnimStack->GetLocalTimeSpan();
+		debugLog << "Animation Time Range: Start = " << startTime.GetSecondDouble()
+			<< ", End = " << endTime.GetSecondDouble() << std::endl;
+	}
+	else
+	{
+		debugLog << "No Animation Stack Found!" << std::endl;
+	}
+}
+
+void CGameObject::CheckAllAnimationStacks(FbxScene* pfbxScene)
+{
+	int stackCount = pfbxScene->GetSrcObjectCount<FbxAnimStack>();
+	debugLog << "Total Animation Stacks: " << stackCount << std::endl;
+
+	for (int i = 0; i < stackCount; ++i)
+	{
+		FbxAnimStack* pAnimStack = pfbxScene->GetSrcObject<FbxAnimStack>(i);
+		if (pAnimStack)
+		{
+			debugLog << "Animation Stack [" << i << "]: " << pAnimStack->GetName() << std::endl;
+
+			FbxTime startTime, endTime;
+			FbxTakeInfo* takeInfo = pfbxScene->GetTakeInfo(pAnimStack->GetName());
+			if (takeInfo)
+			{
+				startTime = takeInfo->mLocalTimeSpan.GetStart();
+				endTime = takeInfo->mLocalTimeSpan.GetStop();
+				debugLog << "Time Range: Start = " << startTime.GetSecondDouble()
+					<< ", End = " << endTime.GetSecondDouble() << std::endl;
+			}
+			else
+			{
+				debugLog << "No Time Range Available for Stack [" << i << "]" << std::endl;
+			}
+		}
+	}
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
@@ -304,7 +421,7 @@ CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd
 			m_pTextureManager = pTextureManager;
 		}
 		else {
-			debugLog << "CBlueObject : Texture Manager is NULL!" << std::endl;
+			// debugLog << "CBlueObject : Texture Manager is NULL!" << std::endl;
 		}
 
 		m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, "Model/BluePlayer.fbx");
@@ -313,19 +430,21 @@ CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd
 
 		if (!textures.empty()) {
 			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
-			debugLog << "First texture loaded for Player: " << m_pTexture << std::endl;
+			//debugLog << "First texture loaded for Player: " << m_pTexture << std::endl;
 		}
 		else {
-			std::cerr << "No textures loaded for Player." << std::endl;
+			// std::cerr << "No textures loaded for Player." << std::endl;
 		}
 		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
 	}
 	SetTexture(m_pTexture, 0);
 
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
-
 	if (m_pAnimationController) {
-		// CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/WALK.fbx");
+		m_pAnimationController->CheckAnimationKeyframes(m_pfbxScene);
+		// CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/IDLE.fbx");
+		CheckAllAnimationStacks(m_pfbxScene);
+		PrintAnimationStackNames(m_pfbxScene);
 		m_pAnimationController->SetAnimationStack(m_pfbxScene, 0);
 	}
 }

@@ -225,11 +225,11 @@ void CGameFramework::CreateCbvAndSrvDescriptorHeaps() // 20241228
 
 	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&srvHeapDesc, __uuidof(ID3D12DescriptorHeap), (void**)&m_pd3dCbvSrvDescriptorHeap);
 	if (FAILED(hResult)) {
-		debugLog << ("Failed to create CBV/SRV/UAV Descriptor Heap.\n");
+		// debugLog << ("Failed to create CBV/SRV/UAV Descriptor Heap.\n");
 	}
 	else
 	{
-		debugLog << ("SRV Descriptor Heap Created Well Done\n");
+		// debugLog << ("SRV Descriptor Heap Created Well Done\n");
 	}
 	m_nCbvSrvDescriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV); // GetDescriptorSize
 }
@@ -472,12 +472,12 @@ void CGameFramework::BuildObjects()
 	// Load Blue Player
 	// ID3D12Resource* pTexture = m_pTextureManager->LoadTexture("Model/Character/Textures/character_01_01.png");
 
-	debugLog << "Before Create Player (device) : " << m_pd3dDevice << std::endl;
+	// debugLog << "Before Create Player (device) : " << m_pd3dDevice << std::endl;
 
 	CPlayer* pPlayer = new CPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(),
 		m_pfbxSdkManager, "Model/BluePlayer.fbx", m_pTextureManager, PlayerType::Blue);
 
-	debugLog << "After CPlayer Creation - Device: " << m_pd3dDevice << std::endl;
+	// debugLog << "After CPlayer Creation - Device: " << m_pd3dDevice << std::endl;
 
 #ifdef _WITH_FBX_SCENE_INSTANCING
 	::CreateMeshFromFbxNodeHierarchy(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxScene->GetRootNode());
@@ -561,6 +561,8 @@ void CGameFramework::AnimateObjects()
 {
 	float fTimeElapsed = m_GameTimer.GetTimeElapsed();
 
+	debugLog << "Elapsed Time Per Frame: " << fTimeElapsed << " seconds" << std::endl;
+
 	if (m_pScene) m_pScene->AnimateObjects(fTimeElapsed);
 
 	m_pPlayer->Animate(fTimeElapsed);
@@ -599,6 +601,9 @@ void CGameFramework::FrameAdvance()
 {    
 	m_GameTimer.Tick(0.0f);
 	
+	float fTimeElapsed = m_GameTimer.GetTimeElapsed();
+	debugLog << "Elapsed Time per Frame: " << fTimeElapsed << std::endl;
+
 	ProcessInput();
 
     AnimateObjects();

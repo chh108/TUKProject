@@ -50,7 +50,8 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 	if (m_pAnimationController) {
-		// CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/WALK.fbx");
+		//CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/WALK.fbx");
+		CheckAllAnimationStacks(m_pfbxScene);
 		PrintAnimationStackNames(m_pfbxScene);
 		m_pAnimationController->SetAnimationStack(m_pfbxScene, 0);
 	}
@@ -370,47 +371,4 @@ void CPlayer::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamer
 	else {
 		debugLog << "After CGameObject::Render - Player texture is NULL." << std::endl;
 	}
-}
-
-void CPlayer::PrintAnimationStackNames(FbxScene* pfbxScene)
-{
-	FbxArray<FbxString*> animationStackNames;
-	pfbxScene->FillAnimStackNameArray(animationStackNames);
-
-	for (int i = 0; i < animationStackNames.Size(); i++) {
-		debugLog << "Animation Stack [" << i << "]: " << animationStackNames[i]->Buffer() << std::endl;
-	}
-
-	FbxArrayDelete(animationStackNames);
-}
-
-bool CPlayer::CreateAnimationStack(FbxScene* pScene, const std::string& animationFilePath)
-{
-	FbxManager* pFbxSdkManager = pScene->GetFbxManager();
-	FbxImporter* pImporter = FbxImporter::Create(pFbxSdkManager, " ");
-
-	if (!pImporter->Initialize(animationFilePath.c_str(), -1, pFbxSdkManager->GetIOSettings())) {
-		std::cerr << "Failed to initialize importer for file: " << animationFilePath << std::endl;
-		return false;
-	}
-
-	FbxScene* pAnimationScene = FbxScene::Create(pFbxSdkManager, "AnimationScene");
-	if (!pImporter->Import(pAnimationScene)) {
-		std::cerr << "Failed to import animation file: " << animationFilePath << std::endl;
-		return false;
-	}
-
-	// 애니메이션 병합
-	FbxAnimStack* pAnimStack = pAnimationScene->GetMember<FbxAnimStack>();
-	if (pAnimStack) {
-		pScene->AddMember(pAnimStack);
-		std::cout << "Successfully added animation stack: " << pAnimStack->GetName() << std::endl;
-	}
-	else {
-		std::cerr << "No animation stack found in file: " << animationFilePath << std::endl;
-		return false;
-	}
-
-	pImporter->Destroy();
-	return true;
 }

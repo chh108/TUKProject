@@ -375,12 +375,19 @@ void AnimateFbxMesh(FbxMesh *pfbxMesh, FbxTime& fbxCurrentTime)
 		::memcpy(pfbxv4Vertices, pfbxMesh->GetControlPoints(), nVertices * sizeof(FbxVector4));
 
 		int nSkinDeformers = pfbxMesh->GetDeformerCount(FbxDeformer::eSkin);
-		if (nSkinDeformers > 0) ::ComputeSkinDeformation(pfbxMesh, fbxCurrentTime, pfbxv4Vertices, nVertices);
+		if (nSkinDeformers > 0)
+		{
+			::ComputeSkinDeformation(pfbxMesh, fbxCurrentTime, pfbxv4Vertices, nVertices);
+		}
 
 		CFbxRenderInfo *pFbxRenderInfo = (CFbxRenderInfo *)pfbxMesh->GetUserDataPtr();
-		if (pFbxRenderInfo->m_pMesh)
+		if (pFbxRenderInfo && pFbxRenderInfo->m_pMesh)
 		{
-			for (int i = 0; i < nVertices; i++) pFbxRenderInfo->m_pMesh->m_pxmf4MappedPositions[i] = XMFLOAT4((float)pfbxv4Vertices[i][0], (float)pfbxv4Vertices[i][1], (float)pfbxv4Vertices[i][2], 1.0f);
+			for (int i = 0; i < nVertices; i++)
+			{
+				pFbxRenderInfo->m_pMesh->m_pxmf4MappedPositions[i] = XMFLOAT4((float)pfbxv4Vertices[i][0], (float)pfbxv4Vertices[i][1], (float)pfbxv4Vertices[i][2], 1.0f);
+			}
+			pFbxRenderInfo->m_pMesh->UploadDeformedVerticesToGPU();
 		}
 
 		delete[] pfbxv4Vertices;

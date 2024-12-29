@@ -109,8 +109,21 @@ void CMeshFromFbx::Render(ID3D12GraphicsCommandList *pd3dCommandList)
 {
 	OnPrepareRender(pd3dCommandList, NULL);
 	pd3dCommandList->IASetPrimitiveTopology(m_d3dPrimitiveTopology);
-
+	pd3dCommandList->IASetVertexBuffers(0, 1, &m_d3dPositionBufferView);
 	pd3dCommandList->IASetIndexBuffer(&m_d3dIndexBufferView);
+
 	pd3dCommandList->DrawIndexedInstanced(m_nIndices, 1, 0, 0, 0);
 }
 
+void CMeshFromFbx::UploadDeformedVerticesToGPU()
+{
+	XMFLOAT4* pMappedVertices = nullptr;
+	m_pd3dPositionBuffer->Map(0, nullptr, reinterpret_cast<void**>(&pMappedVertices));
+
+	for (int i = 0; i < m_nVertices; i++)
+	{
+		pMappedVertices[i] = m_pxmf4MappedPositions[i];
+	}
+
+	m_pd3dPositionBuffer->Unmap(0, nullptr);
+}

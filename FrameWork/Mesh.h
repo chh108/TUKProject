@@ -51,4 +51,6 @@ public:
 	void OnPrepareRender(ID3D12GraphicsCommandList* pd3dCommandList, void* pContext);
 
 	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList);
+
+	virtual void UploadDeformedVerticesToGPU();
 };
