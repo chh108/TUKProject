@@ -109,8 +109,12 @@ void CMeshFromFbx::Render(ID3D12GraphicsCommandList *pd3dCommandList)
 {
 	OnPrepareRender(pd3dCommandList, NULL);
 	pd3dCommandList->IASetPrimitiveTopology(m_d3dPrimitiveTopology);
-	pd3dCommandList->IASetVertexBuffers(0, 1, &m_d3dPositionBufferView);
+	//pd3dCommandList->IASetVertexBuffers(0, 1, &m_d3dPositionBufferView);
 	pd3dCommandList->IASetIndexBuffer(&m_d3dIndexBufferView);
+
+	debugLog << "PositionBuffer: " << m_d3dPositionBufferView.BufferLocation << std::endl;
+	debugLog << "UVBuffer: " << m_d3dUVBufferView.BufferLocation << std::endl;
+	debugLog << "IndexBuffer: " << m_d3dIndexBufferView.BufferLocation << std::endl;
 
 	pd3dCommandList->DrawIndexedInstanced(m_nIndices, 1, 0, 0, 0);
 }

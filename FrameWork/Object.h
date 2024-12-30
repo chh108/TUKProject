@@ -58,7 +58,7 @@ class CGameObject
 {
 protected:
 	ID3D12Device* m_pd3dDevice = NULL; // Direct3D 디바이스
-	ID3D12DescriptorHeap* m_pd3dSrvDescriptorHeap = NULL; // 디스크립터 힙
+	ID3D12DescriptorHeap* m_pd3dCbvSrvDescriptorHeap = NULL; // 디스크립터 힙
 	CTexture* m_pTextureManager; // Texture 매니저
 	CShader* m_pShader; // Shader
 

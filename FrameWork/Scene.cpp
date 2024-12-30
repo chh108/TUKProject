@@ -75,12 +75,6 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 
 	// 20241227 SRV Descriptor Table
 
-	//D3D12_DESCRIPTOR_RANGE srvRange = {};
-	//srvRange.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
-	//srvRange.NumDescriptors = 1; // Player Texture
-	//srvRange.BaseShaderRegister = 0; // t0
-	//srvRange.RegisterSpace = 0;
-	//srvRange.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
 	D3D12_DESCRIPTOR_RANGE srvRange[3];
 
 	srvRange[0].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
@@ -195,7 +189,6 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 
 void CScene::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)
 {
-
 }
 
 void CScene::UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList)
@@ -277,6 +270,7 @@ void CScene::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera
 	
 	if (m_pStage)
 	{
+		// m_pStage->UpdateCBV(pd3dCommandList);
 		m_pStage->Render(pd3dCommandList, pCamera);
 	}
 

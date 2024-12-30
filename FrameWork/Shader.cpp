@@ -259,6 +259,15 @@ void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *
 	HRESULT hResult = pd3dDevice->CreateGraphicsPipelineState(&m_d3dPipelineStateDesc, __uuidof(ID3D12PipelineState), (void **)&m_pd3dPipelineState);
 	if (FAILED(hResult)) {
 		debugLog << "ShaderPipeLinestate Connection Failed NUMBER : "<< int(eType) << "\nERROR : " << hResult << std::endl;
+		debugLog << "ShaderPipelineState Creation Failed!" << std::endl;
+		debugLog << "RootSignature: " << m_d3dPipelineStateDesc.pRootSignature << std::endl;
+		debugLog << "VS ByteCode Size: " << m_d3dPipelineStateDesc.VS.BytecodeLength << std::endl;
+		debugLog << "PS ByteCode Size: " << m_d3dPipelineStateDesc.PS.BytecodeLength << std::endl;
+		debugLog << "VS ByteCode Ptr: " << m_d3dPipelineStateDesc.VS.pShaderBytecode << std::endl;
+		debugLog << "PS ByteCode Ptr: " << m_d3dPipelineStateDesc.PS.pShaderBytecode << std::endl;
+		debugLog << "RTV Format: " << m_d3dPipelineStateDesc.RTVFormats[0] << std::endl;
+		debugLog << "DSV Format: " << m_d3dPipelineStateDesc.DSVFormat << std::endl;
+		debugLog << "InputLayout NumElements: " << m_d3dPipelineStateDesc.InputLayout.NumElements << std::endl;
 	}
 
 	if (m_pd3dFbxVSBlob)
@@ -447,12 +456,12 @@ CStageShader::~CStageShader()
 
 D3D12_INPUT_LAYOUT_DESC CStageShader::CreateInputLayout()
 {
-	debugLog << "Start Create Map Shader" << std::endl;
+	debugLog << "Start Create Stage Shader" << std::endl;
 	UINT nInputElementDescs = 2;
 	D3D12_INPUT_ELEMENT_DESC* pd3dInputElementDescs = new D3D12_INPUT_ELEMENT_DESC[nInputElementDescs];
 
 	pd3dInputElementDescs[0] = { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
-	pd3dInputElementDescs[1] = { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 1, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
+	pd3dInputElementDescs[1] = { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
 
 	D3D12_INPUT_LAYOUT_DESC d3dInputLayoutDesc;
 	d3dInputLayoutDesc.pInputElementDescs = pd3dInputElementDescs;

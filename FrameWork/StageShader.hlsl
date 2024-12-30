@@ -37,7 +37,6 @@ VS_FBX_STAGE_OUTPUT VSStage(VS_FBX_STAGE_INPUT input)
 {
     VS_FBX_STAGE_OUTPUT output;
 
-        // 월드 -> 뷰 -> 프로젝션 변환
     float4 worldPosition = mul(float4(input.position, 1.0f), gStageWorldMatrix);
     float4 viewProjectionPosition = mul(worldPosition, mul(gmtxView, gmtxProjection));
     output.position = viewProjectionPosition;

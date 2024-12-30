@@ -112,7 +112,7 @@ void CAnimationController::CheckAnimationKeyframes(FbxScene* pFbxScene)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 CGameObject::CGameObject() 
-	: m_pd3dSrvDescriptorHeap(NULL), m_pd3dDevice(NULL), m_pTextureManager(NULL) {
+	: m_pd3dCbvSrvDescriptorHeap(NULL), m_pd3dDevice(NULL), m_pTextureManager(NULL) {
 	m_xmf4x4World = Matrix4x4::Identity();
 }
 
@@ -126,7 +126,7 @@ CGameObject::CGameObject(CTexture* pTextureManager, ID3D12Device* pd3dDevice)
 	}
 	else {
 		// debugLog << "CGameObject: Texture Manager successfully initialized." << std::endl;
-		m_pd3dSrvDescriptorHeap = pTextureManager->GetDescriptorHeap(); // 힙 참조
+		m_pd3dCbvSrvDescriptorHeap = pTextureManager->GetDescriptorHeap(); // 힙 참조
 	}
 	m_xmf4x4World = Matrix4x4::Identity();
 }
@@ -171,8 +171,8 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 
 	OnPrepareRender();
 
-	if (m_pd3dSrvDescriptorHeap) {
-		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = m_pd3dSrvDescriptorHeap->GetDesc();
+	if (m_pd3dCbvSrvDescriptorHeap) {
+		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = m_pd3dCbvSrvDescriptorHeap->GetDesc();
 		// debugLog << "SRV Descriptor Heap Size: " << heapDesc.NumDescriptors << std::endl;
 	}
 	else {
@@ -180,16 +180,16 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	}
 	// 20241216 텍스처 로딩
 	if (m_pTexture) {
-		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
 		// debugLog << "Texture Resource: " << m_pTexture << std::endl;
 
 		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-		UINT64 testNum = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+		// UINT64 testNum = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 		//debugLog << "SRVHandle: (With Texture) " << srvHandle.ptr << 
 		//	" | index " << m_TextureHeapIndex <<
 		//	" | Descriptor IncrementSize " << testNum << std::endl;
 
-		ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dSrvDescriptorHeap };
+		ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dCbvSrvDescriptorHeap };
 		pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
 		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root ParameterIndex 2
 
@@ -202,7 +202,16 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 
 	// 20241216 애니메이션 작업 시작
 	FbxAMatrix fbxf4x4World = ::XmFloat4x4MatrixToFbxMatrix(m_xmf4x4World);
-	if (m_pfbxScene) ::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
+	if (m_pfbxScene && m_pAnimationController)
+	{
+		::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
+	}
+	else
+	{
+		FbxTime staticTime;
+		staticTime.SetSecondDouble(0.0);
+		::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), staticTime, fbxf4x4World);
+	}
 }
 
 CShader* CGameObject::m_pFbxShader = NULL;

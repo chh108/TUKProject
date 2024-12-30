@@ -37,7 +37,7 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 
 		if (!textures.empty()) {
 			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
-			debugLog << "First texture loaded for Player: " << m_pTexture << std::endl;
+			// debugLog << "First texture loaded for Player: " << m_pTexture << std::endl;
 		}
 		else {
 			std::cerr << "No textures loaded for Player." << std::endl;

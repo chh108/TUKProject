@@ -36,7 +36,7 @@ ID3D12Resource* CTexture::LoadTexture(const std::string& path, ID3D12GraphicsCom
     }
     // Check if texture is already loaded to avoid duplicates
     if (m_textureMap.find(path) != m_textureMap.end()) {
-        debugLog << "Texture Already Loaded: " << path << std::endl;
+        // debugLog << "Texture Already Loaded: " << path << std::endl;
         return m_textureMap[path]; // Return the already loaded texture
     }
 
@@ -140,8 +140,8 @@ std::vector<ID3D12Resource*> CTexture::ExtractTexturesWithCustom(FbxNode* pNode,
                     ID3D12Resource* textureResource = LoadTexture(customPath, pd3dCommandList);
                     if (textureResource) {
                         textureResources.push_back(textureResource);
-                        debugLog << "Loaded Custom Texture: " << customPath << std::endl;
-                        debugLog << "Texture Nums : " << textureResources.size() << std::endl;
+                        //debugLog << "Loaded Custom Texture: " << customPath << std::endl;
+                        //debugLog << "Texture Nums : " << textureResources.size() << std::endl;
                     }
                     else {
                         debugLog << "Failed to load texture: " << customPath << std::endl;
