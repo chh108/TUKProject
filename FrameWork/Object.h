@@ -94,7 +94,7 @@ public:
 	static CShader* m_pFbxShader; 
 	static CShader* m_pFbxSkinnedShader;
 	static CShader* m_pSkyBoxShader;
-	static CShader* m_pMapShader;
+	static CShader* m_pStageShader;
 
 	virtual void Animate(float fTimeElapsed);
 	virtual void OnPrepareRender() {}
@@ -105,7 +105,7 @@ public:
 	void SetFbxShader() { CGameObject::SetShader(m_pFbxShader); }
 	void SetFbxSkinnedShader() { CGameObject::SetShader(m_pFbxSkinnedShader); }
 	void SetSkyBoxShader() { CGameObject::SetShader(m_pSkyBoxShader); }
-	void SetMapShader(){ CGameObject::SetShader(m_pMapShader); }
+	void SetMapShader(){ CGameObject::SetShader(m_pStageShader); }
 
 	virtual void CreateShaderVariables(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList);
 	virtual void UpdateShaderVariables(ID3D12GraphicsCommandList* pd3dCommandList);

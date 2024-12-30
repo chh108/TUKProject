@@ -115,11 +115,11 @@ public:
 	virtual D3D12_DEPTH_STENCIL_DESC CreateDepthStencilState() override;
 };
 
-class CMapShader : public CShader
+class CStageShader : public CShader
 {
 public:
-	CMapShader();
-	virtual ~CMapShader();
+	CStageShader();
+	virtual ~CStageShader();
 
 	virtual D3D12_INPUT_LAYOUT_DESC CreateInputLayout() override;
 	virtual D3D12_DEPTH_STENCIL_DESC CreateDepthStencilState() override;

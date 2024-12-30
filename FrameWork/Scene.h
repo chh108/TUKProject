@@ -6,7 +6,7 @@
 
 #include "Shader.h"
 #include "Player.h"
-#include "Map.h"
+#include "Stage.h"
 
 class CScene
 {
@@ -38,7 +38,7 @@ public:
 	CPlayer								*m_pPlayer = NULL;
 
 	//20241229 Map
-	CMap								*m_pMap = NULL;
+	CStage								*m_pStage = NULL;
 
 protected:
 	ID3D12RootSignature					*m_pd3dGraphicsRootSignature = NULL;

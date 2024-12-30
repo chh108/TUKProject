@@ -208,7 +208,7 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 CShader* CGameObject::m_pFbxShader = NULL;
 CShader* CGameObject::m_pFbxSkinnedShader = NULL;
 CShader* CGameObject::m_pSkyBoxShader = NULL;
-CShader* CGameObject::m_pMapShader = NULL;
+CShader* CGameObject::m_pStageShader = NULL;
 
 
 void CGameObject::PrepareShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList, ID3D12RootSignature* pd3dGraphicsRootSignature)
@@ -225,9 +225,9 @@ void CGameObject::PrepareShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommand
 	m_pSkyBoxShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::SkyBox);
 	m_pSkyBoxShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
 
-	m_pMapShader = new CMapShader();
-	m_pMapShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::Map);
-	m_pMapShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+	m_pStageShader = new CStageShader();
+	m_pStageShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::Map);
+	m_pStageShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
 }
 
 void CGameObject::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)

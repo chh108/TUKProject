@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "Scene.h"
-#include "Map.h"
+#include "Stage.h"
 #include "Object.h"
 #include "DebugLog.h"
 #include "Defines.h"
@@ -26,7 +26,7 @@ void CScene::BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *p
 	CGameObject::PrepareShaders(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature);
 	// 20241229 Create Map
 	// Map Object »ý¼º
-	m_pMap = new CMap(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
+	m_pStage = new CStage(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
 
 	m_nGameObjects = 2;
 	m_ppGameObjects = new CGameObject*[m_nGameObjects];
@@ -274,6 +274,11 @@ void CScene::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera
 	pCamera->UpdateShaderVariables(pd3dCommandList);
 
 	UpdateShaderVariables(pd3dCommandList);
+	
+	if (m_pStage)
+	{
+		m_pStage->Render(pd3dCommandList, pCamera);
+	}
 
 	for (int i = 0; i < m_nGameObjects; i++)
 	{

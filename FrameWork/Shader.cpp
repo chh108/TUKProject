@@ -192,8 +192,14 @@ void CShader::SetObjectsShader(ID3D12Device* pd3dDevice)
 	g_shaderInfo[2].VS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "VSSkyBox", "vs_5_1", &m_pd3dSkyBoxVSBlob);
 	g_shaderInfo[2].PS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "PSSkyBox", "ps_5_1", &m_pd3dSkyBoxPSBlob);
 
-	g_shaderInfo[3].VS = CShader::CompileShaderFromFile(L"MapShader.hlsl", "VSMap", "vs_5_1", &m_pd3dMapVSBlob);
-	g_shaderInfo[3].PS = CShader::CompileShaderFromFile(L"MapShader.hlsl", "PSMap", "ps_5_1", &m_pd3dMapPSBlob);
+	g_shaderInfo[3].VS = CShader::CompileShaderFromFile(L"StageShader.hlsl", "VSStage", "vs_5_1", &m_pd3dMapVSBlob);
+	if (!g_shaderInfo[3].VS.pShaderBytecode) {
+		debugLog << "StageShader Vertex Compilation Failed!" << std::endl;
+	}
+	g_shaderInfo[3].PS = CShader::CompileShaderFromFile(L"StageShader.hlsl", "PSStage", "ps_5_1", &m_pd3dMapPSBlob);
+	if (!g_shaderInfo[3].PS.pShaderBytecode) {
+		debugLog << "StageShader Pixel Compilation Failed!" << std::endl;
+	}
 }
 
 void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, SHADER_TYPE eType)
@@ -243,7 +249,7 @@ void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *
 	debugLog << "Ready To Connect Shader Num : " << int(eType) << " Address :" << &m_pd3dPipelineState << std::endl;
 
 	if (!m_d3dPipelineStateDesc.VS.pShaderBytecode || !m_d3dPipelineStateDesc.PS.pShaderBytecode) 
-	{ debugLog << "Invalid Shader Bytecode for Map Shader" << std::endl; return; } 
+	{ debugLog << "Invalid Shader Bytecode for Shader" << std::endl; return; } 
 
 	debugLog << "Input Layout: " << m_d3dPipelineStateDesc.InputLayout.NumElements << std::endl; 
 
@@ -252,7 +258,7 @@ void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *
 
 	HRESULT hResult = pd3dDevice->CreateGraphicsPipelineState(&m_d3dPipelineStateDesc, __uuidof(ID3D12PipelineState), (void **)&m_pd3dPipelineState);
 	if (FAILED(hResult)) {
-		debugLog << "ShaderPipeLinestate Connection Failed NUMBER : "<< int(eType) << "ERROR : " << hResult << std::endl;
+		debugLog << "ShaderPipeLinestate Connection Failed NUMBER : "<< int(eType) << "\nERROR : " << hResult << std::endl;
 	}
 
 	if (m_pd3dFbxVSBlob)
@@ -431,15 +437,15 @@ D3D12_DEPTH_STENCIL_DESC CSkyBoxShader::CreateDepthStencilState()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CMapShader::CMapShader()
+CStageShader::CStageShader()
 {
 }
 
-CMapShader::~CMapShader()
+CStageShader::~CStageShader()
 {
 }
 
-D3D12_INPUT_LAYOUT_DESC CMapShader::CreateInputLayout()
+D3D12_INPUT_LAYOUT_DESC CStageShader::CreateInputLayout()
 {
 	debugLog << "Start Create Map Shader" << std::endl;
 	UINT nInputElementDescs = 2;
@@ -455,7 +461,7 @@ D3D12_INPUT_LAYOUT_DESC CMapShader::CreateInputLayout()
 	return(d3dInputLayoutDesc);
 }
 
-D3D12_DEPTH_STENCIL_DESC CMapShader::CreateDepthStencilState()
+D3D12_DEPTH_STENCIL_DESC CStageShader::CreateDepthStencilState()
 {
 	D3D12_DEPTH_STENCIL_DESC d3dDepthStencilDesc;
 	d3dDepthStencilDesc.DepthEnable = TRUE; // Depth Test

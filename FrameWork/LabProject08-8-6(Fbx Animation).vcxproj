@@ -162,7 +162,7 @@
     <ClInclude Include="FbxSceneContext.h" />
     <ClInclude Include="GameFramework.h" />
     <ClInclude Include="LabProject08-8-6(Fbx Animation).h" />
-    <ClInclude Include="Map.h">
+    <ClInclude Include="Stage.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Mesh.h" />
@@ -186,7 +186,7 @@
     <ClCompile Include="FbxSceneContext.cpp" />
     <ClCompile Include="GameFramework.cpp" />
     <ClCompile Include="LabProject08-8-6(Fbx Animation).cpp" />
-    <ClCompile Include="Map.cpp">
+    <ClCompile Include="Stage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Mesh.cpp" />
@@ -241,12 +241,12 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </FxCompile>
-    <FxCompile Include="MapShader.hlsl">
+    <FxCompile Include="StageShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VSMap</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VSStage</EntryPointName>
     </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

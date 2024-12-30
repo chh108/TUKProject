@@ -252,6 +252,7 @@ void CGameFramework::CreateShaderResourceViews(ID3D12Resource** ppTextures, int 
 		srvCpuHandle.ptr += m_nCbvSrvDescriptorIncrementSize; // MoveDescriptorHandleForHeapStart();
 	}
 }
+
 void CGameFramework::CreateRenderTargetViews()
 {
 	D3D12_CPU_DESCRIPTOR_HANDLE d3dRtvCPUDescriptorHandle = m_pd3dRtvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
