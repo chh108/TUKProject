@@ -230,13 +230,13 @@ void CGameObject::PrepareShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommand
 	m_pFbxSkinnedShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxSkinnedModel);
 	m_pFbxSkinnedShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
 
-	m_pSkyBoxShader = new CSkyBoxShader();
-	m_pSkyBoxShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::SkyBox);
-	m_pSkyBoxShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+	//m_pSkyBoxShader = new CSkyBoxShader();
+	//m_pSkyBoxShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::SkyBox);
+	//m_pSkyBoxShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
 
-	m_pStageShader = new CStageShader();
-	m_pStageShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::Map);
-	m_pStageShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+	//m_pStageShader = new CStageShader();
+	//m_pStageShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::Stage);
+	//m_pStageShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
 }
 
 void CGameObject::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)

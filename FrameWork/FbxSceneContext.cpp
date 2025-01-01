@@ -491,19 +491,19 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 			CFbxRenderInfo *pFbxRenderInfo = new CFbxRenderInfo();
 			pFbxRenderInfo->m_pMesh = new CMeshFromFbx(pd3dDevice, pd3dCommandList, nVertices, nIndices, pnIndices, pxmf2UVs);
 
-			//int nSkinDeformers = pfbxMesh->GetDeformerCount(FbxDeformer::eSkin);
-			//if (nSkinDeformers > 0)
-			//{
-			//	pFbxRenderInfo->m_pShader = new CFbxSkinnedModelShader();
-			//	pFbxRenderInfo->m_pShader->SetShader(pFbxRenderInfo->m_pShader);
-
-
-			//}
-			//else
-			//{
-			//	pFbxRenderInfo->m_pShader = new CFbxModelShader();
-			//	pFbxRenderInfo->m_pShader->SetShader(pFbxRenderInfo->m_pShader);
-			//}
+			int nSkinDeformers = pfbxMesh->GetDeformerCount(FbxDeformer::eSkin);
+			if (nSkinDeformers > 0)
+			{
+				pFbxRenderInfo->m_pShader = new CFbxSkinnedModelShader();
+				pFbxRenderInfo->m_pShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxSkinnedModel);
+				pFbxRenderInfo->m_pShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+			}
+			else
+			{
+				pFbxRenderInfo->m_pShader = new CFbxModelShader();
+				pFbxRenderInfo->m_pShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxModel);
+				pFbxRenderInfo->m_pShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+			}
 
 			pfbxMesh->SetUserDataPtr(pFbxRenderInfo);
 

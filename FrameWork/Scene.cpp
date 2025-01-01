@@ -22,11 +22,11 @@ void CScene::BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *p
 {
 	m_pd3dGraphicsRootSignature = CreateGraphicsRootSignature(pd3dDevice);
 
-	// InitializeShaders(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature);
+	InitializeShaders(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature);
 	CGameObject::PrepareShaders(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature);
 	// 20241229 Create Map
-	// Map Object 持失
-	m_pStage = new CStage(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
+	//// Map Object 持失
+	//m_pStage = new CStage(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
 
 	m_nGameObjects = 2;
 	m_ppGameObjects = new CGameObject*[m_nGameObjects];
@@ -202,7 +202,7 @@ void CScene::ReleaseShaderVariables()
 
 void CScene::InitializeShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList, ID3D12RootSignature* pd3dGraphicsRootSignature)
 {
-	m_nShaders = 4;
+	m_nShaders = 2;
 	m_ppShaders = new CShader * [m_nShaders];
 
 	for (int i = 0; i < m_nShaders; i++)
@@ -268,11 +268,11 @@ void CScene::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera
 
 	UpdateShaderVariables(pd3dCommandList);
 	
-	if (m_pStage)
-	{
-		// m_pStage->UpdateCBV(pd3dCommandList);
-		m_pStage->Render(pd3dCommandList, pCamera);
-	}
+	//if (m_pStage)
+	//{
+	//	// m_pStage->UpdateCBV(pd3dCommandList);
+	//	m_pStage->Render(pd3dCommandList, pCamera);
+	//}
 
 	for (int i = 0; i < m_nGameObjects; i++)
 	{

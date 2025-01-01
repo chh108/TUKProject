@@ -38,7 +38,7 @@ CStage::CStage(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandL
 	}
 	CreateCBV(pd3dDevice, pd3dCommandList);
 	CStageShader* pStageShader = new CStageShader();
-	pStageShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::Map);
+	pStageShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::Stage);
 	pStageShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
 }
 

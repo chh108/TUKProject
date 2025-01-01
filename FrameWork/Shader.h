@@ -76,7 +76,7 @@ protected:
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC	m_d3dPipelineStateDesc;
 
 
-	ShaderInfo							g_shaderInfo[4];
+	ShaderInfo							g_shaderInfo[2];
 
 	float								m_fElapsedTime = 0.0f;
 };

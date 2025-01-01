@@ -189,17 +189,17 @@ void CShader::SetObjectsShader(ID3D12Device* pd3dDevice)
 	g_shaderInfo[1].VS = CShader::CompileShaderFromFile(L"SkinnedModel.hlsl", "VSFbxSkinnedModel", "vs_5_1", &m_pd3dFbxSkinVSBlob);
 	g_shaderInfo[1].PS = CShader::CompileShaderFromFile(L"SkinnedModel.hlsl", "PSFbxSkinnedModel", "ps_5_1", &m_pd3dFbxSkinPSBlob);
 
-	g_shaderInfo[2].VS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "VSSkyBox", "vs_5_1", &m_pd3dSkyBoxVSBlob);
-	g_shaderInfo[2].PS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "PSSkyBox", "ps_5_1", &m_pd3dSkyBoxPSBlob);
+	//g_shaderInfo[2].VS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "VSSkyBox", "vs_5_1", &m_pd3dSkyBoxVSBlob);
+	//g_shaderInfo[2].PS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "PSSkyBox", "ps_5_1", &m_pd3dSkyBoxPSBlob);
 
-	g_shaderInfo[3].VS = CShader::CompileShaderFromFile(L"StageShader.hlsl", "VSStage", "vs_5_1", &m_pd3dMapVSBlob);
-	if (!g_shaderInfo[3].VS.pShaderBytecode) {
-		debugLog << "StageShader Vertex Compilation Failed!" << std::endl;
-	}
-	g_shaderInfo[3].PS = CShader::CompileShaderFromFile(L"StageShader.hlsl", "PSStage", "ps_5_1", &m_pd3dMapPSBlob);
-	if (!g_shaderInfo[3].PS.pShaderBytecode) {
-		debugLog << "StageShader Pixel Compilation Failed!" << std::endl;
-	}
+	//g_shaderInfo[3].VS = CShader::CompileShaderFromFile(L"StageShader.hlsl", "VSStage", "vs_5_1", &m_pd3dMapVSBlob);
+	//if (!g_shaderInfo[3].VS.pShaderBytecode) {
+	//	debugLog << "StageShader Vertex Compilation Failed!" << std::endl;
+	//}
+	//g_shaderInfo[3].PS = CShader::CompileShaderFromFile(L"StageShader.hlsl", "PSStage", "ps_5_1", &m_pd3dMapPSBlob);
+	//if (!g_shaderInfo[3].PS.pShaderBytecode) {
+	//	debugLog << "StageShader Pixel Compilation Failed!" << std::endl;
+	//}
 }
 
 void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, SHADER_TYPE eType)
@@ -219,12 +219,12 @@ void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *
 		m_d3dPipelineStateDesc.PS = g_shaderInfo[1].PS;
 		break;
 	case SHADER_TYPE::SkyBox:
-		m_d3dPipelineStateDesc.VS = g_shaderInfo[2].VS;
-		m_d3dPipelineStateDesc.PS = g_shaderInfo[2].PS;
+		//m_d3dPipelineStateDesc.VS = g_shaderInfo[2].VS;
+		//m_d3dPipelineStateDesc.PS = g_shaderInfo[2].PS;
 		break;
-	case SHADER_TYPE::Map:
-		m_d3dPipelineStateDesc.VS = g_shaderInfo[3].VS;
-		m_d3dPipelineStateDesc.PS = g_shaderInfo[3].PS;
+	case SHADER_TYPE::Stage:
+		//m_d3dPipelineStateDesc.VS = g_shaderInfo[3].VS;
+		//m_d3dPipelineStateDesc.PS = g_shaderInfo[3].PS;
 		break;
 	default:
 		debugLog << "Handle Error Caused" << std::endl;
@@ -285,10 +285,10 @@ void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *
 	if (m_pd3dSkyBoxPSBlob)
 		m_pd3dSkyBoxPSBlob->Release();
 
-	if (m_pd3dMapVSBlob)
-		m_pd3dMapVSBlob->Release();
-	if (m_pd3dMapPSBlob)
-		m_pd3dMapPSBlob->Release();
+	//if (m_pd3dMapVSBlob)
+	//	m_pd3dMapVSBlob->Release();
+	//if (m_pd3dMapPSBlob)
+	//	m_pd3dMapPSBlob->Release();
 
 	if (m_d3dPipelineStateDesc.InputLayout.pInputElementDescs) delete[] m_d3dPipelineStateDesc.InputLayout.pInputElementDescs;
 }
