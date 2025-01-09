@@ -81,3 +81,56 @@ float4 PSFbxSkinnedModel(VS_FBX_MODEL_OUTPUT input) : SV_TARGET
     return sample;
     // return float4(uv.x, uv.y, 0.0f, 1.0f);
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#define SKINNED_ANIMATION_BONES 256
+#define MAX_VERTEX_INFLUENCES 4
+
+cbuffer cbBoneOffsets : register(b7)
+{
+    float4x4 gpmtxBoneOffsets[SKINNED_ANIMATION_BONES];
+};
+
+cbuffer cbBoneTransforms : register(b8)
+{
+    float4x4 gpmtxBoneTransforms[SKINNED_ANIMATION_BONES];
+};
+
+//struct VS_ANIMATED_MODEL_INPUT
+//{
+//    float3 position : POSITION;
+//    float2 uv : TEXCOORD;
+//    int4 indices : BONEINDEX;
+//    float4 weights : BONEWEIGHT;
+//};
+
+//struct VS_ANIMATED_MODEL_OUTPUT
+//{
+//    float4 position : SV_POSITION;
+//    float2 uv : TEXCOORD;
+//};
+
+//VS_ANIMATED_MODEL_OUTPUT VSAnimation(VS_ANIMATED_MODEL_INPUT input)
+//{
+//    VS_ANIMATED_MODEL_OUTPUT output;
+    
+//    float3 positionW = float3(0.0f, 0.0f, 0.0f);
+//    matrix mtxVertexToBoneWorld;
+//    for (int i = 0; i < MAX_VERTEX_INFLUENCES; i++)
+//    {
+//        mtxVertexToBoneWorld = mul(gpmtxBoneOffsets[input.indices[i]], gpmtxBoneTransforms[input.indices[i]]);
+//        positionW += input.weights[i] * mul(float4(input.position, 1.0f), mtxVertexToBoneWorld).xyz;
+//    }
+
+//    output.position = mul(mul(float4(positionW, 1.0f), gmtxView), gmtxProjection);
+//    output.uv = input.uv;
+    
+//    return (output);
+//}
+
+//float4 PSAnimation(VS_ANIMATED_MODEL_OUTPUT input) : SV_TARGET
+//{
+//    float4 Color = gTexture.Sample(gSampler, input.uv);
+
+//    return (Color);
+//}

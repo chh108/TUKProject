@@ -206,12 +206,6 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	{
 		::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
 	}
-	else
-	{
-		FbxTime staticTime;
-		staticTime.SetSecondDouble(0.0);
-		::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), staticTime, fbxf4x4World);
-	}
 }
 
 CShader* CGameObject::m_pFbxShader = NULL;

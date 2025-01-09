@@ -1,5 +1,4 @@
 // Model.hlsl
-
 cbuffer cbCameraInfo : register(b1)
 {
 	matrix					gmtxView : packoffset(c0);
@@ -11,6 +10,7 @@ cbuffer cbGameObjectInfo : register(b2)
 {
 	matrix 					gmtxGameObject : packoffset(c0);
 };
+
 
 Texture2D gTexture : register(t0); // Texture binding
 SamplerState gSampler : register(s0); // Sampler binding

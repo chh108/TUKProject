@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include "FbxSceneContext.h"
 #include "DebugLog.h"
+#include <map>
 
 #define DIR_FORWARD					0x01
 #define DIR_BACKWARD				0x02
@@ -138,6 +139,7 @@ public:
 
 public:
 	// 20241229 Animation
+
 	void SetAnimationStack(int nAnimationStack) { m_pAnimationController->SetAnimationStack(m_pfbxScene, nAnimationStack); }
 	void PrintAnimationStackNames(FbxScene* pfbxScene);
 	bool CreateAnimationStack(FbxScene* pfbxScene, const std::string& animationFilePath);
