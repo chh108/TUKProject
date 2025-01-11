@@ -4,6 +4,14 @@
 #include "FbxSceneContext.h"
 #include "Texture.h"
 #include "DebugLog.h"
+#include <functional>
+
+struct BoneInfo {
+	FbxNode* pBoneNode;
+	FbxAMatrix boneOffsetMatrix;
+};
+
+std::unordered_map<std::string, BoneInfo> m_boneMap;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -364,6 +372,27 @@ void ComputeSkinDeformation(FbxMesh *pfbxMesh, FbxTime& fbxCurrentTime, FbxVecto
 	}
 }
 
+void LoadBones(FbxNode* pfbxNode)
+{
+	if (!pfbxNode) return;
+
+	// 본 노드인지 확인
+	FbxNodeAttribute* pAttr = pfbxNode->GetNodeAttribute();
+	if (pAttr && pAttr->GetAttributeType() == FbxNodeAttribute::eSkeleton) {
+		BoneInfo boneInfo;
+		boneInfo.pBoneNode = pfbxNode;
+		boneInfo.boneOffsetMatrix= pfbxNode->EvaluateGlobalTransform();
+
+		m_boneMap[pfbxNode->GetName()] = boneInfo;
+		debugLog << "[Bone Loaded] " << pfbxNode->GetName() << std::endl;
+	}
+
+	// 자식 노드 탐색
+	for (int i = 0; i < pfbxNode->GetChildCount(); i++) {
+		LoadBones(pfbxNode->GetChild(i));
+	}
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 void AnimateFbxMesh(FbxMesh *pfbxMesh, FbxTime& fbxCurrentTime)
@@ -552,7 +581,7 @@ void ReleaseUploadBufferFromFbxNodeHierarchy(FbxNode *pfbxNode)
 	for (int i = 0; i < nChilds; i++) ReleaseUploadBufferFromFbxNodeHierarchy(pfbxNode->GetChild(i));
 }
 
-FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, char *pstrFbxFileName)
+FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, const char *pstrFbxFileName)
 {
 	FbxScene *pfbxScene = NULL;
 
@@ -560,6 +589,12 @@ FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandLi
 	FbxManager::GetFileFormatVersion(nSDKMajor, nSDKMinor, nSDKRevision);
 
 	FbxIOSettings *pfbxIOSettings = pfbxSdkManager->GetIOSettings();
+
+	pfbxIOSettings->SetBoolProp(IMP_FBX_ANIMATION, true);  // 애니메이션 데이터 불러오기
+	pfbxIOSettings->SetBoolProp(IMP_FBX_MATERIAL, false);
+	pfbxIOSettings->SetBoolProp(IMP_FBX_TEXTURE, false);
+	pfbxIOSettings->SetBoolProp(IMP_FBX_LINK, true);
+
 	FbxImporter *pfbxImporter = FbxImporter::Create(pfbxSdkManager, " ");
 	bool bImportStatus = pfbxImporter->Initialize(pstrFbxFileName, -1, pfbxIOSettings);
 
@@ -581,8 +616,19 @@ FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandLi
 	FbxSystemUnit fbxSceneSystemUnit = pfbxScene->GetGlobalSettings().GetSystemUnit();
 	if (fbxSceneSystemUnit.GetScaleFactor() != 1.0) FbxSystemUnit::cm.ConvertScene(pfbxScene);
 
+	if (pfbxScene->GetSrcObjectCount<FbxAnimStack>() == 0) {
+		std::cerr << "No animation stacks found in file: " << pstrFbxFileName << std::endl;
+	}
+	else {
+		debugLog << "Animation stack loaded from: " << pstrFbxFileName << std::endl;
+	}
+
+	if (pfbxScene) {
+		FbxNode* rootNode = pfbxScene->GetRootNode();
+		LoadBones(rootNode);
+	}
+
 	pfbxImporter->Destroy();
 
 	return(pfbxScene);
 }
-

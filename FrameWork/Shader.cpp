@@ -186,8 +186,8 @@ void CShader::SetObjectsShader(ID3D12Device* pd3dDevice)
 	g_shaderInfo[0].VS = CShader::CompileShaderFromFile(L"Model.hlsl", "VSFbxModel", "vs_5_1", &m_pd3dFbxVSBlob);
 	g_shaderInfo[0].PS = CShader::CompileShaderFromFile(L"Model.hlsl", "PSFbxModel", "ps_5_1", &m_pd3dFbxPSBlob);
 
-	g_shaderInfo[1].VS = CShader::CompileShaderFromFile(L"SkinnedModel.hlsl", "VSFbxSkinnedModel", "vs_5_1", &m_pd3dFbxSkinVSBlob);
-	g_shaderInfo[1].PS = CShader::CompileShaderFromFile(L"SkinnedModel.hlsl", "PSFbxSkinnedModel", "ps_5_1", &m_pd3dFbxSkinPSBlob);
+	g_shaderInfo[1].VS = CShader::CompileShaderFromFile(L"SkinnedModel.hlsl", "VSAnimation", "vs_5_1", &m_pd3dFbxSkinVSBlob);
+	g_shaderInfo[1].PS = CShader::CompileShaderFromFile(L"SkinnedModel.hlsl", "PSAnimation", "ps_5_1", &m_pd3dFbxSkinPSBlob);
 
 	//g_shaderInfo[2].VS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "VSSkyBox", "vs_5_1", &m_pd3dSkyBoxVSBlob);
 	//g_shaderInfo[2].PS = CShader::CompileShaderFromFile(L"SkyBoxShader.hlsl", "PSSkyBox", "ps_5_1", &m_pd3dSkyBoxPSBlob);
@@ -258,16 +258,16 @@ void CShader::CreateShader(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *
 
 	HRESULT hResult = pd3dDevice->CreateGraphicsPipelineState(&m_d3dPipelineStateDesc, __uuidof(ID3D12PipelineState), (void **)&m_pd3dPipelineState);
 	if (FAILED(hResult)) {
-		debugLog << "ShaderPipeLinestate Connection Failed NUMBER : "<< int(eType) << "\nERROR : " << hResult << std::endl;
-		debugLog << "ShaderPipelineState Creation Failed!" << std::endl;
-		debugLog << "RootSignature: " << m_d3dPipelineStateDesc.pRootSignature << std::endl;
-		debugLog << "VS ByteCode Size: " << m_d3dPipelineStateDesc.VS.BytecodeLength << std::endl;
-		debugLog << "PS ByteCode Size: " << m_d3dPipelineStateDesc.PS.BytecodeLength << std::endl;
-		debugLog << "VS ByteCode Ptr: " << m_d3dPipelineStateDesc.VS.pShaderBytecode << std::endl;
-		debugLog << "PS ByteCode Ptr: " << m_d3dPipelineStateDesc.PS.pShaderBytecode << std::endl;
-		debugLog << "RTV Format: " << m_d3dPipelineStateDesc.RTVFormats[0] << std::endl;
-		debugLog << "DSV Format: " << m_d3dPipelineStateDesc.DSVFormat << std::endl;
-		debugLog << "InputLayout NumElements: " << m_d3dPipelineStateDesc.InputLayout.NumElements << std::endl;
+		// debugLog << "ShaderPipeLinestate Connection Failed NUMBER : "<< int(eType) << "\nERROR : " << hResult << std::endl;
+		// debugLog << "ShaderPipelineState Creation Failed!" << std::endl;
+		// debugLog << "RootSignature: " << m_d3dPipelineStateDesc.pRootSignature << std::endl;
+		// debugLog << "VS ByteCode Size: " << m_d3dPipelineStateDesc.VS.BytecodeLength << std::endl;
+		// debugLog << "PS ByteCode Size: " << m_d3dPipelineStateDesc.PS.BytecodeLength << std::endl;
+		// debugLog << "VS ByteCode Ptr: " << m_d3dPipelineStateDesc.VS.pShaderBytecode << std::endl;
+		// debugLog << "PS ByteCode Ptr: " << m_d3dPipelineStateDesc.PS.pShaderBytecode << std::endl;
+		// debugLog << "RTV Format: " << m_d3dPipelineStateDesc.RTVFormats[0] << std::endl;
+		// debugLog << "DSV Format: " << m_d3dPipelineStateDesc.DSVFormat << std::endl;
+		// debugLog << "InputLayout NumElements: " << m_d3dPipelineStateDesc.InputLayout.NumElements << std::endl;
 	}
 
 	if (m_pd3dFbxVSBlob)
@@ -362,17 +362,22 @@ CFbxSkinnedModelShader::~CFbxSkinnedModelShader()
 D3D12_INPUT_LAYOUT_DESC CFbxSkinnedModelShader::CreateInputLayout()
 {
 	debugLog << "Start Create FbxSkinnedModel Shader" << std::endl;
-	UINT nInputElementDescs = 2;
+
+	UINT nInputElementDescs = 4;
+
 	D3D12_INPUT_ELEMENT_DESC *pd3dInputElementDescs = new D3D12_INPUT_ELEMENT_DESC[nInputElementDescs];
 
 	pd3dInputElementDescs[0] = { "POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
 	pd3dInputElementDescs[1] = { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 1, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }; // +UV
+	pd3dInputElementDescs[2] = { "BONEINDEX", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 2, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
+	pd3dInputElementDescs[3] = { "BONEWEIGHT", 0, DXGI_FORMAT_R32G32_FLOAT, 3, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 };
 
 	D3D12_INPUT_LAYOUT_DESC d3dInputLayoutDesc;
 	d3dInputLayoutDesc.pInputElementDescs = pd3dInputElementDescs;
 	d3dInputLayoutDesc.NumElements = nInputElementDescs;
 
 	debugLog << "pInputElementDescs : " << d3dInputLayoutDesc.pInputElementDescs<< "\nNumElements : " << d3dInputLayoutDesc.NumElements << std::endl;
+
 	return(d3dInputLayoutDesc);
 }
 

@@ -9,6 +9,11 @@
 #include "Texture.h"
 #include "DebugLog.h"
 
+std::vector<std::string> AnimationFilePaths = {
+	"Model/Character/Animations/IDLE.fbx",
+	"Model/Character/Animations/WALK.fbx"
+};
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CPlayer
 
@@ -28,7 +33,7 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
         debugLog << "CPlayer: Texture Manager is NULL!" << std::endl;
     }
 	// FBX 씬 로드
-	m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, const_cast<char*>(fbxFilePath.c_str()));
+	m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, fbxFilePath.c_str());
 
 	debugLog << "CPlayer Constructor (After Scene Load) - Device: " << m_pd3dDevice << std::endl;
 
@@ -49,12 +54,12 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 	SetTexture(m_pTexture, 0);
 
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
+
 	if (m_pAnimationController) {
-		//CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/WALK.fbx");
-		CheckAllAnimationStacks(m_pfbxScene);
-		PrintAnimationStackNames(m_pfbxScene);
-		m_pAnimationController->SetAnimationStack(m_pfbxScene, 0);
+		m_pAnimationController->LoadAnimations(pfbxSdkManager, AnimationFilePaths);
+		m_pAnimationController->SetAnimation(0);
 	}
+
 	// 플레이어 타입별 설정
 	SetPlayerProperties();
 
@@ -210,6 +215,11 @@ void CPlayer::Update(float fTimeElapsed)
 	float fDeceleration = (m_fFriction * fTimeElapsed);
 	if (fDeceleration > fLength) fDeceleration = fLength;
 	m_xmf3Velocity = Vector3::Add(m_xmf3Velocity, Vector3::ScalarProduct(m_xmf3Velocity, -fDeceleration, true));
+
+	if (m_pAnimationController) // Animation Time Update
+	{
+		m_pAnimationController->AdvanceTime(fTimeElapsed);
+	}
 }
 
 void CPlayer::SetPlayerProperties() {

@@ -32,12 +32,12 @@ void CScene::BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *p
 	m_ppGameObjects = new CGameObject*[m_nGameObjects];
 
 	m_ppGameObjects[0] = new CBlueObject(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
-	m_ppGameObjects[0]->SetAnimationStack(0);
+	m_ppGameObjects[0]->SetAnimationStack(1);
 	m_ppGameObjects[0]->m_pAnimationController->SetPosition(0, 0.0f);
 	m_ppGameObjects[0]->SetPosition(150.0f, 0.0f, 150.0f);
 
 	m_ppGameObjects[1] = new CBlueObject(pd3dDevice, pd3dCommandList, m_pd3dGraphicsRootSignature, pfbxSdkManager, pTextureManager, pfbxScene);
-	m_ppGameObjects[1]->SetAnimationStack(0);
+	m_ppGameObjects[1]->SetAnimationStack(1);
 	m_ppGameObjects[1]->m_pAnimationController->SetPosition(0, 0.75f);
 	m_ppGameObjects[1]->SetPosition(-150.0f, 0.0f, 250.0f);
 	m_ppGameObjects[1]->Rotate(0.0f, 90.0f, 0.0f);

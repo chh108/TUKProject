@@ -10,6 +10,7 @@
 #include "FbxSceneContext.h"
 #include "DebugLog.h"
 #include <map>
+#include <vector>
 
 #define DIR_FORWARD					0x01
 #define DIR_BACKWARD				0x02
@@ -23,35 +24,39 @@ class CGameObject;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-class CAnimationController 
+class CAnimationController
 {
 public:
-	CAnimationController(FbxScene *pfbxScene);
+	CAnimationController(FbxScene* pfbxScene);
 	~CAnimationController();
 
 public:
-    float 							m_fTime = 0.0f;
+	float m_fTime = 0.0f;
+	
+	FbxScene* m_pModelScene = NULL;
 
-	int 							m_nAnimationStacks = 0;
-	FbxAnimStack 					**m_ppfbxAnimationStacks = NULL;
+	std::vector<FbxScene*> m_pAnimationScenes;   // 애니메이션 씬 리스트
+	std::vector<FbxAnimStack*> m_pAnimationStacks; // 애니메이션 스택 리스트
+	std::vector<FbxTime> m_pfbxStartTimes;       // 애니메이션 시작 시간
+	std::vector<FbxTime> m_pfbxStopTimes;        // 애니메이션 종료 시간
+	std::vector<FbxTime> m_pfbxCurrentTimes;     // 애니메이션 현재 시간
 
-	int 							m_nAnimationStack = 0;
-
-	FbxTime							*m_pfbxStartTimes = NULL;
-	FbxTime							*m_pfbxStopTimes = NULL;
-
-	FbxTime							*m_pfbxCurrentTimes = NULL;
+	int m_nAnimationStack = 0;   // 현재 활성화된 애니메이션 스택
 
 public:
-	void SetAnimationStack(FbxScene *pfbxScene, int nAnimationStack);
-
-	void AdvanceTime(float fElapsedTime);
-	FbxTime GetCurrentTime() { return(m_pfbxCurrentTimes[m_nAnimationStack]); }
-
-	void CheckAnimationKeyframes(FbxScene* pFbxScene);
+	void LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath);
+	void LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths);
 
 	void SetPosition(int nAnimationStack, float fPosition);
+
+	void SetAnimation(int nAnimationStack);
+	void AdvanceTime(float fElapsedTime);
+	
+	void CheckAnimationKeyframes(int nAnimationStack);
+
+	FbxTime GetCurrentTime() { return m_pfbxCurrentTimes[m_nAnimationStack]; }
 };
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -139,12 +144,8 @@ public:
 
 public:
 	// 20241229 Animation
-
-	void SetAnimationStack(int nAnimationStack) { m_pAnimationController->SetAnimationStack(m_pfbxScene, nAnimationStack); }
-	void PrintAnimationStackNames(FbxScene* pfbxScene);
-	bool CreateAnimationStack(FbxScene* pfbxScene, const std::string& animationFilePath);
-	void CheckAnimationStack(FbxScene* pfbxScene);
-	void CheckAllAnimationStacks(FbxScene* pfbxScene);
+	void SetAnimationStack(int nAnimationStack) { m_pAnimationController->SetAnimation(nAnimationStack); }
+	void ApplyAnimation();
 
 	// 20241215 Texture Func
 	void SetTexture(ID3D12Resource* pTexture, UINT textureHeapIndex) {

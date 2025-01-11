@@ -10,61 +10,87 @@
 #include "DebugLog.h"
 #include "texture.h"
 
+std::vector<std::string> ObjectAnimations = {
+	"Model/Character/Animations/IDLE.fbx",
+	"Model/Character/Animations/WALK.fbx"
+};
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CAnimationController::CAnimationController(FbxScene *pfbxScene)
+CAnimationController::CAnimationController(FbxScene* pfbxScene) : m_pModelScene(pfbxScene)
 {
-    FbxArray<FbxString *> fbxAnimationStackNames;
-	pfbxScene->FillAnimStackNameArray(fbxAnimationStackNames);
-
-	m_nAnimationStacks = fbxAnimationStackNames.Size();
-
-	m_ppfbxAnimationStacks = new FbxAnimStack*[m_nAnimationStacks];
-	m_pfbxStartTimes = new FbxTime[m_nAnimationStacks];
-	m_pfbxStopTimes = new FbxTime[m_nAnimationStacks];
-	m_pfbxCurrentTimes = new FbxTime[m_nAnimationStacks];
-
-	for (int i = 0; i < m_nAnimationStacks; i++)
+	if (!m_pModelScene)
 	{
-		FbxString *pfbxStackName = fbxAnimationStackNames[i];
-		FbxAnimStack *pfbxAnimationStack = pfbxScene->FindMember<FbxAnimStack>(pfbxStackName->Buffer());
-		m_ppfbxAnimationStacks[i] = pfbxAnimationStack;
+		debugLog << "Model Scene is NULL." << std::endl;
+	}
+}
 
-		FbxTakeInfo *pfbxTakeInfo = pfbxScene->GetTakeInfo(*pfbxStackName);
-		FbxTime fbxStartTime, fbxStopTime;
-		if (pfbxTakeInfo)
-		{
-			fbxStartTime = pfbxTakeInfo->mLocalTimeSpan.GetStart();
-			fbxStopTime = pfbxTakeInfo->mLocalTimeSpan.GetStop();
-		}
-		else
-		{
-			FbxTimeSpan fbxTimeLineTimeSpan;
-			pfbxScene->GetGlobalSettings().GetTimelineDefaultTimeSpan(fbxTimeLineTimeSpan);
-			fbxStartTime = fbxTimeLineTimeSpan.GetStart();
-			fbxStopTime = fbxTimeLineTimeSpan.GetStop();
-		}
+CAnimationController::~CAnimationController() 
+{
+	for (FbxScene* scene : m_pAnimationScenes)
+	{
+		scene->Destroy();
+	}
+	m_pAnimationScenes.clear();
+	m_pAnimationStacks.clear();
+	m_pfbxStartTimes.clear();
+	m_pfbxStopTimes.clear();
+	m_pfbxCurrentTimes.clear();
+};
 
-		m_pfbxStartTimes[i] = fbxStartTime;
-		m_pfbxStopTimes[i] = fbxStopTime;
-		m_pfbxCurrentTimes[i] = FbxTime(0);
+void CAnimationController::LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath)
+{
+	FbxScene* pAnimationScene = LoadFbxSceneFromFile(nullptr, nullptr, pFbxManager, animationFilePath.c_str());
+	if (!pAnimationScene) {
+		std::cerr << "Failed to load animation FBX: " << animationFilePath << std::endl;
+		return;
 	}
 
-    FbxArrayDelete(fbxAnimationStackNames);
+	m_pAnimationScenes.push_back(pAnimationScene);
+
+	FbxArray<FbxString*> fbxAnimationStackNames;
+	pAnimationScene->FillAnimStackNameArray(fbxAnimationStackNames);
+
+	for (int i = 0; i < fbxAnimationStackNames.Size(); i++) {
+		FbxAnimStack* pAnimStack = pAnimationScene->FindMember<FbxAnimStack>(fbxAnimationStackNames[i]->Buffer());
+		m_pAnimationStacks.push_back(pAnimStack);
+
+		FbxTakeInfo* pTakeInfo = pAnimationScene->GetTakeInfo(*fbxAnimationStackNames[i]);
+		if (pTakeInfo) {
+			m_pfbxStartTimes.push_back(pTakeInfo->mLocalTimeSpan.GetStart());
+			m_pfbxStopTimes.push_back(pTakeInfo->mLocalTimeSpan.GetStop());
+		}
+		else {
+			FbxTimeSpan defaultTimeSpan;
+			pAnimationScene->GetGlobalSettings().GetTimelineDefaultTimeSpan(defaultTimeSpan);
+			m_pfbxStartTimes.push_back(defaultTimeSpan.GetStart());
+			m_pfbxStopTimes.push_back(defaultTimeSpan.GetStop());
+		}
+		m_pfbxCurrentTimes.push_back(m_pfbxStartTimes.back());
+	}
+
+	FbxArrayDelete(fbxAnimationStackNames);
 }
 
-CAnimationController::~CAnimationController()
+void CAnimationController::LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths)
 {
-	if (m_ppfbxAnimationStacks) delete[] m_ppfbxAnimationStacks;
-	if (m_pfbxStartTimes) delete[] m_pfbxStartTimes;
-	if (m_pfbxStopTimes) delete[] m_pfbxStopTimes;
-	if (m_pfbxCurrentTimes) delete[] m_pfbxCurrentTimes;
-}
+	for (const std::string& filePath : animationFilePaths)
+	{
+		LoadAnimation(pFbxManager, filePath);
+	}
 
-void CAnimationController::SetAnimationStack(FbxScene *pfbxScene, int nAnimationStack)
-{
-	m_nAnimationStack = nAnimationStack;
-	pfbxScene->SetCurrentAnimationStack(m_ppfbxAnimationStacks[nAnimationStack]);
+	for (size_t i = 0; i < m_pAnimationStacks.size(); ++i)
+	{
+		std::string fileName = animationFilePaths[i].substr(animationFilePaths[i].find_last_of("/\\") + 1);
+		fileName = fileName.substr(0, fileName.find_last_of("."));  // 확장자 제거
+
+		m_pAnimationStacks[i]->SetName(fileName.c_str());
+
+		debugLog << "[Loaded Animations] Loaded Animation Stack [" << i << "]: "
+			<< m_pAnimationStacks[i]->GetName() << std::endl;
+		debugLog << "START TIME: " << m_pfbxStartTimes[i].GetSecondDouble() << "s, "
+			<< "STOP TIME: " << m_pfbxStopTimes[i].GetSecondDouble() << "s" << std::endl;
+	}
 }
 
 void CAnimationController::SetPosition(int nAnimationStack, float fPosition)
@@ -72,38 +98,52 @@ void CAnimationController::SetPosition(int nAnimationStack, float fPosition)
 	m_pfbxCurrentTimes[nAnimationStack].SetSecondDouble(fPosition);;
 }
 
-void CAnimationController::AdvanceTime(float fTimeElapsed) 
+void CAnimationController::SetAnimation(int nAnimationStack)
 {
-	m_fTime += fTimeElapsed; 
+	if (nAnimationStack < 0 || nAnimationStack >= static_cast<int>(m_pAnimationStacks.size())) {
+		debugLog << "[SetAnimation] Invalid animation stack index: " << nAnimationStack << std::endl;
+		return;
+	}
 
+	m_nAnimationStack = nAnimationStack;
+	m_pModelScene->SetCurrentAnimationStack(m_pAnimationStacks[nAnimationStack]);
+
+	debugLog << "[SetAnimation] Current Animation Stack Set: "
+		<< m_pAnimationStacks[nAnimationStack]->GetName() << std::endl;
+}
+
+void CAnimationController::AdvanceTime(float fElapsedTime)
+{
 	FbxTime fbxElapsedTime;
-	fbxElapsedTime.SetSecondDouble(fTimeElapsed);
-
-	debugLog << "Animation Current Time : " << fbxElapsedTime.GetSecondDouble() << std::endl;
+	fbxElapsedTime.SetSecondDouble(fElapsedTime);
 
 	m_pfbxCurrentTimes[m_nAnimationStack] += fbxElapsedTime;
-	if (m_pfbxCurrentTimes[m_nAnimationStack] > m_pfbxStopTimes[m_nAnimationStack]) m_pfbxCurrentTimes[m_nAnimationStack] = m_pfbxStartTimes[m_nAnimationStack];
-} 
 
-void CAnimationController::CheckAnimationKeyframes(FbxScene* pFbxScene)
+	if (m_pfbxCurrentTimes[m_nAnimationStack] > m_pfbxStopTimes[m_nAnimationStack]) {
+		m_pfbxCurrentTimes[m_nAnimationStack] = m_pfbxStartTimes[m_nAnimationStack];
+	}
+}
+
+void CAnimationController::CheckAnimationKeyframes(int nAnimationStack)
 {
-	int animStackCount = pFbxScene->GetSrcObjectCount<FbxAnimStack>();
-	for (int i = 0; i < animStackCount; i++) {
-		FbxAnimStack* animStack = pFbxScene->GetSrcObject<FbxAnimStack>(i);
-		if (animStack) {
-			debugLog << "Animation Stack [" << i << "]: " << animStack->GetName() << std::endl;
+	if (nAnimationStack < 0 || nAnimationStack >= static_cast<int>(m_pAnimationStacks.size())) {
+		std::cerr << "Invalid animation stack index: " << nAnimationStack << std::endl;
+		return;
+	}
 
-			FbxAnimLayer* animLayer = animStack->GetMember<FbxAnimLayer>();
-			if (animLayer) {
-				FbxAnimCurve* animCurve = pFbxScene->GetRootNode()->LclTranslation.GetCurve(animLayer, FBXSDK_CURVENODE_COMPONENT_X);
-				if (animCurve) {
-					int keyCount = animCurve->KeyGetCount();
-					debugLog << "Total Keyframes: " << keyCount << std::endl;
-					for (int k = 0; k < keyCount; k++) {
-						FbxTime keyTime = animCurve->KeyGetTime(k);
-						debugLog << "Keyframe[" << k << "] Time: " << keyTime.GetSecondDouble() << " seconds" << std::endl;
-					}
-				}
+	FbxAnimStack* animStack = m_pAnimationStacks[nAnimationStack];
+	FbxAnimLayer* animLayer = animStack->GetMember<FbxAnimLayer>();
+	if (animLayer)
+	{
+		FbxAnimCurve* animCurve = m_pModelScene->GetRootNode()->LclTranslation.GetCurve(animLayer, FBXSDK_CURVENODE_COMPONENT_X);
+		if (animCurve)
+		{
+			int keyCount = animCurve->KeyGetCount();
+			std::cout << "Total Keyframes: " << keyCount << std::endl;
+			for (int k = 0; k < keyCount; k++)
+			{
+				FbxTime keyTime = animCurve->KeyGetTime(k);
+				std::cout << "Keyframe[" << k << "] Time: " << keyTime.GetSecondDouble() << " seconds" << std::endl;
 			}
 		}
 	}
@@ -204,6 +244,9 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	FbxAMatrix fbxf4x4World = ::XmFloat4x4MatrixToFbxMatrix(m_xmf4x4World);
 	if (m_pfbxScene && m_pAnimationController)
 	{
+		// Animation Set
+		ApplyAnimation();
+
 		::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
 	}
 }
@@ -354,93 +397,13 @@ void CGameObject::SetShader(CShader* pShader)
 	if (m_pShader) m_pShader->AddRef();
 }
 
-void CGameObject::PrintAnimationStackNames(FbxScene* pfbxScene)
+void CGameObject::ApplyAnimation()
 {
-	FbxArray<FbxString*> animationStackNames;
-	pfbxScene->FillAnimStackNameArray(animationStackNames);
-
-	for (int i = 0; i < animationStackNames.Size(); i++) {
-		debugLog << "Animation Stack [" << i << "]: " << animationStackNames[i]->Buffer() << std::endl;
-	}
-
-	FbxArrayDelete(animationStackNames);
-}
-
-bool CGameObject::CreateAnimationStack(FbxScene* pScene, const std::string& animationFilePath)
-{
-	FbxManager* pFbxSdkManager = pScene->GetFbxManager();
-	FbxImporter* pImporter = FbxImporter::Create(pFbxSdkManager, " ");
-
-	if (!pImporter->Initialize(animationFilePath.c_str(), -1, pFbxSdkManager->GetIOSettings())) {
-		std::cerr << "Failed to initialize importer for file: " << animationFilePath << std::endl;
-		return false;
-	}
-
-	FbxScene* pAnimationScene = FbxScene::Create(pFbxSdkManager, "AnimationScene");
-	if (!pImporter->Import(pAnimationScene)) {
-		std::cerr << "Failed to import animation file: " << animationFilePath << std::endl;
-		return false;
-	}
-
-	// 애니메이션 병합
-	FbxAnimStack* pAnimStack = pAnimationScene->GetMember<FbxAnimStack>();
-	if (pAnimStack) {
-		pScene->AddMember(pAnimStack);
-		std::cout << "Successfully added animation stack: " << pAnimStack->GetName() << std::endl;
-	}
-	else {
-		std::cerr << "No animation stack found in file: " << animationFilePath << std::endl;
-		return false;
-	}
-
-	pImporter->Destroy();
-	return true;
-}
-
-void CGameObject::CheckAnimationStack(FbxScene* pfbxScene)
-{
-	FbxAnimStack* pAnimStack = pfbxScene->GetCurrentAnimationStack();
-	if (pAnimStack)
+	if (m_pfbxScene && m_pAnimationController) // Scene & Animation
 	{
-		debugLog << "Current Animation Stack: " << pAnimStack->GetName() << std::endl;
+		FbxTime currentTime = m_pAnimationController->GetCurrentTime();
 
-		FbxTime startTime, endTime;
-		pAnimStack->GetLocalTimeSpan();
-		debugLog << "Animation Time Range: Start = " << startTime.GetSecondDouble()
-			<< ", End = " << endTime.GetSecondDouble() << std::endl;
-	}
-	else
-	{
-		debugLog << "No Animation Stack Found!" << std::endl;
-	}
-}
-
-void CGameObject::CheckAllAnimationStacks(FbxScene* pfbxScene)
-{
-	int stackCount = pfbxScene->GetSrcObjectCount<FbxAnimStack>();
-	debugLog << "Total Animation Stacks: " << stackCount << std::endl;
-
-	for (int i = 0; i < stackCount; ++i)
-	{
-		FbxAnimStack* pAnimStack = pfbxScene->GetSrcObject<FbxAnimStack>(i);
-		if (pAnimStack)
-		{
-			debugLog << "Animation Stack [" << i << "]: " << pAnimStack->GetName() << std::endl;
-
-			FbxTime startTime, endTime;
-			FbxTakeInfo* takeInfo = pfbxScene->GetTakeInfo(pAnimStack->GetName());
-			if (takeInfo)
-			{
-				startTime = takeInfo->mLocalTimeSpan.GetStart();
-				endTime = takeInfo->mLocalTimeSpan.GetStop();
-				debugLog << "Time Range: Start = " << startTime.GetSecondDouble()
-					<< ", End = " << endTime.GetSecondDouble() << std::endl;
-			}
-			else
-			{
-				debugLog << "No Time Range Available for Stack [" << i << "]" << std::endl;
-			}
-		}
+		AnimateFbxNodeHierarchy(m_pfbxScene->GetRootNode(), currentTime);
 	}
 }
 
@@ -478,15 +441,10 @@ CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 
 	if (m_pAnimationController) {
-		// m_pAnimationController->CheckAnimationKeyframes(m_pfbxScene);
-		// CreateAnimationStack(m_pfbxScene, "Model/Character/Animations/IDLE.fbx");
-		CheckAllAnimationStacks(m_pfbxScene);
-		PrintAnimationStackNames(m_pfbxScene);
-		m_pAnimationController->SetAnimationStack(m_pfbxScene, 0);
+		m_pAnimationController->LoadAnimations(pfbxSdkManager, ObjectAnimations);
 	}
 }
 
 CBlueObject::~CBlueObject()
 {
 }
-
