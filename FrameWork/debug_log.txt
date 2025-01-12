@@ -1,15 +1,15 @@
 Debug Log Initialized
-CTexture::Initialize called - Device: 000001F82C1A03C0
+CTexture::Initialize called - Device: 0000026044AC05D0
 Input layout is invalid. NUM : 0
 Input layout is invalid. NUM : 1
-Ready To Connect Shader Num : 0 Address :000001F832A97588
+Ready To Connect Shader Num : 0 Address :000002604B1C8CE8
 Input Layout: 2
 Element 0: POSITION
 Element 1: TEXCOORD
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 000001F832921A80
+pInputElementDescs : 000002604B261A40
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :000001F832AC9FC8
+Ready To Connect Shader Num : 1 Address :000002604B474AA8
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
@@ -52,13 +52,13 @@ Animation stack loaded from: Model/BluePlayer.fbx
 [Bone Loaded] Bip002 R Foot
 [Bone Loaded] Bip002 R Toe0
 m_TextureMap is empty.
-Texture resource created successfully: 000001F832CADEB0
-SRV Handle Address (Before) : 2165477953536
-Create SRV : 2165477953536with 000001F832CADEB0
+Texture resource created successfully: 000002604B564CD0
+SRV Handle Address (Before) : 2612566577152
+Create SRV : 2612566577152with 000002604B564CD0
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 000001F8331B5350
+pInputElementDescs : 000002604B59EA20
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :000001F832CA4048
+Ready To Connect Shader Num : 1 Address :000002604B746678
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
@@ -176,9 +176,9 @@ Animation stack loaded from: Model/BluePlayer.fbx
 [Bone Loaded] Bip002 R Foot
 [Bone Loaded] Bip002 R Toe0
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 000001F833C81EC0
+pInputElementDescs : 000002604C60F9C0
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :000001F833A881E8
+Ready To Connect Shader Num : 1 Address :000002604C2C2C48
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
@@ -259,7 +259,7 @@ START TIME: 0s, STOP TIME: 1s
 [Loaded Animations] Loaded Animation Stack [1]: WALK
 START TIME: 0s, STOP TIME: 1.16667s
 [SetAnimation] Current Animation Stack Set: WALK
-CPlayer Constructor (Before Scene Load) - Device: 000001F82C1A03C0
+CPlayer Constructor (Before Scene Load) - Device: 0000026044AC05D0
 Animation stack loaded from: Model/BluePlayer.fbx
 [Bone Loaded] Bip002
 [Bone Loaded] Bip002 Pelvis
@@ -296,11 +296,11 @@ Animation stack loaded from: Model/BluePlayer.fbx
 [Bone Loaded] Bip002 R Calf
 [Bone Loaded] Bip002 R Foot
 [Bone Loaded] Bip002 R Toe0
-CPlayer Constructor (After Scene Load) - Device: 000001F82C1A03C0
+CPlayer Constructor (After Scene Load) - Device: 0000026044AC05D0
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 000001F834AF3250
+pInputElementDescs : 000002604D484460
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :000001F832CB8C78
+Ready To Connect Shader Num : 1 Address :000002604C248BD8
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
@@ -381,1017 +381,796 @@ START TIME: 0s, STOP TIME: 1s
 [Loaded Animations] Loaded Animation Stack [1]: WALK
 START TIME: 0s, STOP TIME: 1.16667s
 [SetAnimation] Current Animation Stack Set: IDLE
-Elapsed Time per Frame: 0.0722595
-Elapsed Time Per Frame: 0.0722595 seconds
+Elapsed Time per Frame: 0.0670482
+Elapsed Time Per Frame: 0.0670482 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0536609
-Elapsed Time Per Frame: 0.0536609 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0462954
+Elapsed Time Per Frame: 0.0462954 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0452617
-Elapsed Time Per Frame: 0.0452617 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0392248
+Elapsed Time Per Frame: 0.0392248 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0393284
-Elapsed Time Per Frame: 0.0393284 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0346166
+Elapsed Time Per Frame: 0.0346166 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0370823
-Elapsed Time Per Frame: 0.0370823 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0343185
+Elapsed Time Per Frame: 0.0343185 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0354844
-Elapsed Time Per Frame: 0.0354844 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0321173
+Elapsed Time Per Frame: 0.0321173 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0331182
-Elapsed Time Per Frame: 0.0331182 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0302381
+Elapsed Time Per Frame: 0.0302381 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0315772
-Elapsed Time Per Frame: 0.0315772 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0289245
+Elapsed Time Per Frame: 0.0289245 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0310087
-Elapsed Time Per Frame: 0.0310087 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0278051
+Elapsed Time Per Frame: 0.0278051 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0301329
-Elapsed Time Per Frame: 0.0301329 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0270579
+Elapsed Time Per Frame: 0.0270579 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0292851
-Elapsed Time Per Frame: 0.0292851 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0263329
+Elapsed Time Per Frame: 0.0263329 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0287294
-Elapsed Time Per Frame: 0.0287294 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0257634
+Elapsed Time Per Frame: 0.0257634 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.028155
-Elapsed Time Per Frame: 0.028155 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0252167
+Elapsed Time Per Frame: 0.0252167 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0275973
-Elapsed Time Per Frame: 0.0275973 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0248079
+Elapsed Time Per Frame: 0.0248079 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0274357
-Elapsed Time Per Frame: 0.0274357 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0243941
+Elapsed Time Per Frame: 0.0243941 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0270689
-Elapsed Time Per Frame: 0.0270689 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0240014
+Elapsed Time Per Frame: 0.0240014 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.026784
-Elapsed Time Per Frame: 0.026784 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0236881
+Elapsed Time Per Frame: 0.0236881 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0267021
-Elapsed Time Per Frame: 0.0267021 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0233961
+Elapsed Time Per Frame: 0.0233961 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0264771
-Elapsed Time Per Frame: 0.0264771 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.023133
+Elapsed Time Per Frame: 0.023133 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0262597
-Elapsed Time Per Frame: 0.0262597 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0228762
+Elapsed Time Per Frame: 0.0228762 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0263271
-Elapsed Time Per Frame: 0.0263271 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0227985
+Elapsed Time Per Frame: 0.0227985 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.026256
-Elapsed Time Per Frame: 0.026256 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0225962
+Elapsed Time Per Frame: 0.0225962 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0261365
-Elapsed Time Per Frame: 0.0261365 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0224483
+Elapsed Time Per Frame: 0.0224483 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0259607
-Elapsed Time Per Frame: 0.0259607 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0223759
+Elapsed Time Per Frame: 0.0223759 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0259143
-Elapsed Time Per Frame: 0.0259143 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.02224
+Elapsed Time Per Frame: 0.02224 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0259926
-Elapsed Time Per Frame: 0.0259926 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0223485
+Elapsed Time Per Frame: 0.0223485 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0259682
-Elapsed Time Per Frame: 0.0259682 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0222271
+Elapsed Time Per Frame: 0.0222271 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0258172
-Elapsed Time Per Frame: 0.0258172 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0220879
+Elapsed Time Per Frame: 0.0220879 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0258076
-Elapsed Time Per Frame: 0.0258076 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0219945
+Elapsed Time Per Frame: 0.0219945 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0256674
-Elapsed Time Per Frame: 0.0256674 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0218782
+Elapsed Time Per Frame: 0.0218782 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0255362
-Elapsed Time Per Frame: 0.0255362 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0218421
+Elapsed Time Per Frame: 0.0218421 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0254564
-Elapsed Time Per Frame: 0.0254564 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0217472
+Elapsed Time Per Frame: 0.0217472 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0253139
-Elapsed Time Per Frame: 0.0253139 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0216882
+Elapsed Time Per Frame: 0.0216882 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0252413
-Elapsed Time Per Frame: 0.0252413 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0215958
+Elapsed Time Per Frame: 0.0215958 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0252473
-Elapsed Time Per Frame: 0.0252473 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.02155
+Elapsed Time Per Frame: 0.02155 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.025255
-Elapsed Time Per Frame: 0.025255 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.021464
+Elapsed Time Per Frame: 0.021464 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.025231
-Elapsed Time Per Frame: 0.025231 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0214919
+Elapsed Time Per Frame: 0.0214919 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0251836
-Elapsed Time Per Frame: 0.0251836 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.021511
+Elapsed Time Per Frame: 0.021511 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0252144
-Elapsed Time Per Frame: 0.0252144 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0214936
+Elapsed Time Per Frame: 0.0214936 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0251123
-Elapsed Time Per Frame: 0.0251123 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0214643
+Elapsed Time Per Frame: 0.0214643 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0251976
-Elapsed Time Per Frame: 0.0251976 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0214545
+Elapsed Time Per Frame: 0.0214545 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0251655
-Elapsed Time Per Frame: 0.0251655 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0213914
+Elapsed Time Per Frame: 0.0213914 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0251094
-Elapsed Time Per Frame: 0.0251094 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0213798
+Elapsed Time Per Frame: 0.0213798 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0250341
-Elapsed Time Per Frame: 0.0250341 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0215737
+Elapsed Time Per Frame: 0.0215737 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0251139
-Elapsed Time Per Frame: 0.0251139 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.021775
+Elapsed Time Per Frame: 0.021775 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0250489
-Elapsed Time Per Frame: 0.0250489 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0217287
+Elapsed Time Per Frame: 0.0217287 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0249925
-Elapsed Time Per Frame: 0.0249925 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0216632
+Elapsed Time Per Frame: 0.0216632 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0249781
-Elapsed Time Per Frame: 0.0249781 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0215985
+Elapsed Time Per Frame: 0.0215985 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.024879
-Elapsed Time Per Frame: 0.024879 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0215721
+Elapsed Time Per Frame: 0.0215721 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0247852
-Elapsed Time Per Frame: 0.0247852 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0215508
+Elapsed Time Per Frame: 0.0215508 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.023822
-Elapsed Time Per Frame: 0.023822 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.02063
+Elapsed Time Per Frame: 0.02063 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0235424
-Elapsed Time Per Frame: 0.0235424 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.02053
+Elapsed Time Per Frame: 0.02053 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0234165
-Elapsed Time Per Frame: 0.0234165 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0204741
+Elapsed Time Per Frame: 0.0204741 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0234598
-Elapsed Time Per Frame: 0.0234598 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0204566
+Elapsed Time Per Frame: 0.0204566 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0233074
-Elapsed Time Per Frame: 0.0233074 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0201835
+Elapsed Time Per Frame: 0.0201835 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.023237
-Elapsed Time Per Frame: 0.023237 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0201328
+Elapsed Time Per Frame: 0.0201328 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0233649
-Elapsed Time Per Frame: 0.0233649 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0201428
+Elapsed Time Per Frame: 0.0201428 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0234485
-Elapsed Time Per Frame: 0.0234485 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0201282
+Elapsed Time Per Frame: 0.0201282 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0234462
-Elapsed Time Per Frame: 0.0234462 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0201638
+Elapsed Time Per Frame: 0.0201638 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0235488
-Elapsed Time Per Frame: 0.0235488 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0201788
+Elapsed Time Per Frame: 0.0201788 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.023646
-Elapsed Time Per Frame: 0.023646 seconds
+After CGameObject::Render - Player texture valid: 000002604B564CD0
+Elapsed Time per Frame: 0.0201908
+Elapsed Time Per Frame: 0.0201908 seconds
 PositionBuffer: 145907712
 UVBuffer: 140292096
 IndexBuffer: 145932288
 PositionBuffer: 145997824
 UVBuffer: 146022400
 IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
+Rendering Player Texture Address: 000002604B564CD0
 PositionBuffer: 146100224
 UVBuffer: 146124800
 IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0238
-Elapsed Time Per Frame: 0.0238 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.023799
-Elapsed Time Per Frame: 0.023799 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0238473
-Elapsed Time Per Frame: 0.0238473 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0237745
-Elapsed Time Per Frame: 0.0237745 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0237782
-Elapsed Time Per Frame: 0.0237782 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0237718
-Elapsed Time Per Frame: 0.0237718 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0237331
-Elapsed Time Per Frame: 0.0237331 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0237329
-Elapsed Time Per Frame: 0.0237329 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0237574
-Elapsed Time Per Frame: 0.0237574 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0236644
-Elapsed Time Per Frame: 0.0236644 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0235888
-Elapsed Time Per Frame: 0.0235888 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0235982
-Elapsed Time Per Frame: 0.0235982 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0236015
-Elapsed Time Per Frame: 0.0236015 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0236318
-Elapsed Time Per Frame: 0.0236318 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0234924
-Elapsed Time Per Frame: 0.0234924 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.0234416
-Elapsed Time Per Frame: 0.0234416 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
-Elapsed Time per Frame: 0.023439
-Elapsed Time Per Frame: 0.023439 seconds
-PositionBuffer: 145907712
-UVBuffer: 140292096
-IndexBuffer: 145932288
-PositionBuffer: 145997824
-UVBuffer: 146022400
-IndexBuffer: 146034688
-Rendering Player Texture Address: 000001F832CADEB0
-PositionBuffer: 146100224
-UVBuffer: 146124800
-IndexBuffer: 146137088
-After CGameObject::Render - Player texture valid: 000001F832CADEB0
+After CGameObject::Render - Player texture valid: 000002604B564CD0

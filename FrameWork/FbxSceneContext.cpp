@@ -32,6 +32,12 @@ CFbxRenderInfo::~CFbxRenderInfo()
 	if (m_pMesh) m_pMesh->Release(); m_pMesh = NULL;
 }
 
+class CFbxSceneLoader {
+public:
+	FbxScene* m_pScene = NULL;
+	std::unordered_map<std::string, BoneInfo> m_BoneMap;
+
+};
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 XMFLOAT4X4 FbxMatrixToXmFloat4x4Matrix(FbxAMatrix *pfbxmtxSource)
