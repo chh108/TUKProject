@@ -4,17 +4,11 @@
 #define SKINNED_ANIMATION_BONES 256
 #define MAX_VERTEX_INFLUENCES 4
 
-// 본 오프셋 행렬 (모델 로딩 시 세팅)
-cbuffer cbBoneOffsets : register(b7)
-{
-    float4x4 gpmtxBoneOffsets[SKINNED_ANIMATION_BONES];
-}
+// 본 오프셋 행렬 (모델 로딩 시 세팅) → SRV로 변경
+StructuredBuffer<float4x4> gmtxBoneOffsets : register(t3); // t3 슬롯 사용
 
-// 애니메이션 본 변환 행렬 (애니메이션 진행 중 업데이트)
-cbuffer cbBoneTransforms : register(b8)
-{
-    float4x4 gpmtxBoneTransforms[SKINNED_ANIMATION_BONES];
-}
+// 애니메이션 본 변환 행렬 (애니메이션 진행 중 업데이트) → SRV로 변경
+StructuredBuffer<float4x4> gmtxBoneTransforms : register(t4); // t4 슬롯 사용
 
 // 카메라 및 게임 오브젝트 변환 정보
 cbuffer cbCameraInfo : register(b1)
@@ -91,7 +85,7 @@ VS_ANIMATED_MODEL_OUTPUT VSAnimation(VS_ANIMATED_MODEL_INPUT input)
 {
     VS_ANIMATED_MODEL_OUTPUT output;
 
-    float3 positionW = float3(0.0f, 0.0f, 0.0f);
+    float4 skinnedPosition = float4(0.0f, 0.0f, 0.0f, 0.0f);
 
     // 최대 4개의 본 가중치를 기반으로 위치 계산
     for (int i = 0; i < MAX_VERTEX_INFLUENCES; i++)
@@ -101,14 +95,16 @@ VS_ANIMATED_MODEL_OUTPUT VSAnimation(VS_ANIMATED_MODEL_INPUT input)
 
         if (weight > 0.0f)
         {
-            // 버텍스 → 본 공간 변환 → 본 → 월드 변환
-            matrix boneTransform = mul(gpmtxBoneOffsets[boneIndex], gpmtxBoneTransforms[boneIndex]);
-            positionW += weight * mul(float4(input.position, 1.0f), boneTransform).xyz;
+            // 오프셋 행렬과 애니메이션 변환 행렬을 SRV에서 가져옴
+            float4x4 boneMatrix = mul(gmtxBoneOffsets[boneIndex], gmtxBoneTransforms[boneIndex]);
+
+            // 스키닝 적용
+            skinnedPosition += weight * mul(float4(input.position, 1.0f), boneMatrix);
         }
     }
 
     // 최종 변환: 월드 → 뷰 → 투영
-    float4 worldPosition = mul(float4(positionW, 1.0f), gmtxGameObject);
+    float4 worldPosition = mul(skinnedPosition, gmtxGameObject);
     float4 viewPosition = mul(worldPosition, gmtxView);
     output.position = mul(viewPosition, gmtxProjection);
 

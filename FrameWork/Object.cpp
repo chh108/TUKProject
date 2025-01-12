@@ -152,7 +152,8 @@ void CAnimationController::CheckAnimationKeyframes(int nAnimationStack)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 CGameObject::CGameObject() 
-	: m_pd3dCbvSrvDescriptorHeap(NULL), m_pd3dDevice(NULL), m_pTextureManager(NULL) {
+	: m_pd3dCbvSrvDescriptorHeap(NULL), m_pd3dBoneOffsetSrvDescriptorHeap(NULL),
+	m_pd3dBoneTransSrvDescriptorHeap(NULL), m_pd3dDevice(NULL), m_pTextureManager(NULL) {
 	m_xmf4x4World = Matrix4x4::Identity();
 }
 
@@ -211,42 +212,33 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 
 	OnPrepareRender();
 
-	if (m_pd3dCbvSrvDescriptorHeap) {
-		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = m_pd3dCbvSrvDescriptorHeap->GetDesc();
-		// debugLog << "SRV Descriptor Heap Size: " << heapDesc.NumDescriptors << std::endl;
-	}
-	else {
-		// debugLog << "SRV Descriptor Heap is NULL." << std::endl;
-	}
+	ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dCbvSrvDescriptorHeap, m_pd3dBoneOffsetSrvDescriptorHeap, m_pd3dBoneTransSrvDescriptorHeap };
+	pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
+
 	// 20241216 텍스처 로딩
 	if (m_pTexture) {
 		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
-		// debugLog << "Texture Resource: " << m_pTexture << std::endl;
-
 		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-		// UINT64 testNum = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-		//debugLog << "SRVHandle: (With Texture) " << srvHandle.ptr << 
-		//	" | index " << m_TextureHeapIndex <<
-		//	" | Descriptor IncrementSize " << testNum << std::endl;
-
-		ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dCbvSrvDescriptorHeap };
-		pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
 		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root ParameterIndex 2
-
-		// debugLog << "SetGraphicsRootDescriptorTable: Handle Ptr = " << srvHandle.ptr << std::endl;
 	}
 	else
 	{
-		// debugLog << "Failed To Bind SRV.\n";
+		debugLog << "Failed To Bind SRV.\n";
 	}
 
-	// 20241216 애니메이션 작업 시작
-	FbxAMatrix fbxf4x4World = ::XmFloat4x4MatrixToFbxMatrix(m_xmf4x4World);
+	// 20241216 애니메이션 작업
 	if (m_pfbxScene && m_pAnimationController)
 	{
+		D3D12_GPU_DESCRIPTOR_HANDLE boneOffsetSrvHandle = m_pd3dBoneOffsetSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		D3D12_GPU_DESCRIPTOR_HANDLE boneTransformSrvHandle = m_pd3dBoneTransSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+
+		pd3dCommandList->SetGraphicsRootDescriptorTable(6, boneOffsetSrvHandle); // Root ParameterIndex 6
+		pd3dCommandList->SetGraphicsRootDescriptorTable(7, boneTransformSrvHandle); // Root ParameterIndex 7
+		debugLog << "Set Bone SRVS" << std::endl;
+
 		// Animation Set
 		ApplyAnimation();
-
+		FbxAMatrix fbxf4x4World = ::XmFloat4x4MatrixToFbxMatrix(m_xmf4x4World);
 		::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
 	}
 }

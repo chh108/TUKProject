@@ -7,11 +7,14 @@
 #include <functional>
 
 struct BoneInfo {
-	FbxNode* pBoneNode;
-	FbxAMatrix boneOffsetMatrix;
+	FbxNode* pBoneNode; // 본 노드
+	FbxAMatrix boneOffsetMatrix; // 본 오프셋
+	FbxAMatrix finalTransform; // 애니메이션 적용 행렬
+	int parentIndex = -1; // 부모 본 인덱스
 };
 
-std::unordered_map<std::string, BoneInfo> m_boneMap;
+std::unordered_map<std::string, int> m_BoneNameToIndex; // 본 이름을 인덱스로 저장
+std::vector<BoneInfo> m_BoneInfos;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -378,7 +381,8 @@ void ComputeSkinDeformation(FbxMesh *pfbxMesh, FbxTime& fbxCurrentTime, FbxVecto
 	}
 }
 
-void LoadBones(FbxNode* pfbxNode)
+// 본 관련 함수 추가
+void LoadBones(FbxNode* pfbxNode, int& parentIndex)
 {
 	if (!pfbxNode) return;
 
@@ -388,21 +392,65 @@ void LoadBones(FbxNode* pfbxNode)
 		BoneInfo boneInfo;
 		boneInfo.pBoneNode = pfbxNode;
 		boneInfo.boneOffsetMatrix= pfbxNode->EvaluateGlobalTransform();
+		boneInfo.parentIndex = parentIndex;
 
-		m_boneMap[pfbxNode->GetName()] = boneInfo;
-		debugLog << "[Bone Loaded] " << pfbxNode->GetName() << std::endl;
+		
+		int boneIndex = static_cast<int>(m_BoneInfos.size());
+		m_BoneInfos.push_back(boneInfo);
+		m_BoneNameToIndex[pfbxNode->GetName()] = boneIndex;
+
+		debugLog << "[Bone Loaded] " << pfbxNode->GetName() << " | Index: " << boneIndex
+			<< " | Parent Index: " << parentIndex << std::endl;
+
+		// 자식 노드 탐색
+		for (int i = 0; i < pfbxNode->GetChildCount(); i++) {
+			LoadBones(pfbxNode->GetChild(i), boneIndex);
+		}
+	}
+	else {
+		for (int i = 0; i < pfbxNode->GetChildCount(); i++) {
+			LoadBones(pfbxNode->GetChild(i), parentIndex);
+		}
 	}
 
-	// 자식 노드 탐색
-	for (int i = 0; i < pfbxNode->GetChildCount(); i++) {
-		LoadBones(pfbxNode->GetChild(i));
+}
+
+void UpdateBoneTransforms(FbxTime currentTime)
+{
+	for (size_t i = 0; i < m_BoneInfos.size(); ++i)
+	{
+		FbxAMatrix globalTransform = m_BoneInfos[i].pBoneNode->EvaluateGlobalTransform(currentTime);
+
+		// 부모-자식 관계를 고려한 트랜스폼
+		if (m_BoneInfos[i].parentIndex != -1)
+		{
+			globalTransform = m_BoneInfos[m_BoneInfos[i].parentIndex].finalTransform * globalTransform;
+		}
+
+		m_BoneInfos[i].finalTransform = globalTransform * m_BoneInfos[i].boneOffsetMatrix;
 	}
 }
+
+void UploadBoneTransformsToGPU(ID3D12GraphicsCommandList* pd3dCommandList)
+{
+	std::vector<XMFLOAT4X4> boneTransforms(m_BoneInfos.size());
+
+	for (size_t i = 0; i < m_BoneInfos.size(); ++i)
+	{
+		boneTransforms[i] = FbxMatrixToXmFloat4x4Matrix(&m_BoneInfos[i].finalTransform);
+	}
+
+	// Bone 행렬을 셰이더에 전송
+	pd3dCommandList->SetGraphicsRoot32BitConstants(8, boneTransforms.size() * 16, boneTransforms.data(), 0);
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 void AnimateFbxMesh(FbxMesh *pfbxMesh, FbxTime& fbxCurrentTime)
 {
+	UpdateBoneTransforms(fbxCurrentTime);
+
 	int nVertices = pfbxMesh->GetControlPointsCount();
 	if (nVertices > 0)
 	{
@@ -444,6 +492,8 @@ void AnimateFbxNodeHierarchy(FbxNode *pfbxNode, FbxTime& fbxCurrentTime)
 
 void RenderFbxMesh(ID3D12GraphicsCommandList *pd3dCommandList, FbxMesh *pfbxMesh, FbxAMatrix& fbxmtxNodeToRoot, FbxAMatrix& fbxmtxGeometryOffset, FbxAMatrix fbxmtxWorld)
 {
+	UploadBoneTransformsToGPU(pd3dCommandList);
+
 	int nVertices = pfbxMesh->GetControlPointsCount();
 	if (nVertices > 0)
 	{
@@ -610,6 +660,10 @@ FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandLi
 	pfbxScene = FbxScene::Create(pfbxSdkManager, " ");
 	bool bStatus = pfbxImporter->Import(pfbxScene);
 
+	// 본 데이터 초기화
+	m_BoneInfos.clear();
+	m_BoneNameToIndex.clear();
+
 	FbxGeometryConverter fbxGeomConverter(pfbxSdkManager);
 	fbxGeomConverter.Triangulate(pfbxScene, true);
 //	fbxGeomConverter.SplitMeshesPerMaterial(pfbxScene, true);
@@ -631,7 +685,8 @@ FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandLi
 
 	if (pfbxScene) {
 		FbxNode* rootNode = pfbxScene->GetRootNode();
-		LoadBones(rootNode);
+		int boneIndex = 0;
+		LoadBones(rootNode, boneIndex);
 	}
 
 	pfbxImporter->Destroy();

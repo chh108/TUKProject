@@ -75,7 +75,7 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 
 	// 20241227 SRV Descriptor Table
 
-	D3D12_DESCRIPTOR_RANGE srvRange[3];
+	D3D12_DESCRIPTOR_RANGE srvRange[5];
 
 	srvRange[0].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
 	srvRange[0].NumDescriptors = 1; // Player Texture
@@ -94,6 +94,16 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	srvRange[2].BaseShaderRegister = 2; // t2
 	srvRange[2].RegisterSpace = 0;
 	srvRange[2].OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+
+	srvRange[3].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	srvRange[3].NumDescriptors = 1; 
+	srvRange[3].BaseShaderRegister = 3; // Bone Offsets (t3)
+	srvRange[3].RegisterSpace = 0;
+
+	srvRange[4].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	srvRange[4].NumDescriptors = 1; 
+	srvRange[4].BaseShaderRegister = 4; // Bone Transforms (t4)
+	srvRange[4].RegisterSpace = 0;
 
 	D3D12_ROOT_PARAMETER pd3dRootParameters[8]; // 20241204 Add RootParameters
 
@@ -134,15 +144,15 @@ ID3D12RootSignature *CScene::CreateGraphicsRootSignature(ID3D12Device *pd3dDevic
 	pd3dRootParameters[5].DescriptorTable.pDescriptorRanges = &(srvRange[2]);
 	pd3dRootParameters[5].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
 
-	// 7. CBV for Animation (20250108)
-	pd3dRootParameters[6].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
-	pd3dRootParameters[6].Descriptor.ShaderRegister = 7; //Skinned Bone Offsets
-	pd3dRootParameters[6].Descriptor.RegisterSpace = 0;
+	// 7. BoneData
+	pd3dRootParameters[6].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+	pd3dRootParameters[6].DescriptorTable.NumDescriptorRanges = 1;
+	pd3dRootParameters[6].DescriptorTable.pDescriptorRanges = &(srvRange[3]); // Bone Offsets (t3)
 	pd3dRootParameters[6].ShaderVisibility = D3D12_SHADER_VISIBILITY_VERTEX;
 
-	pd3dRootParameters[7].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
-	pd3dRootParameters[7].Descriptor.ShaderRegister = 8; //Skinned Bone Transforms
-	pd3dRootParameters[7].Descriptor.RegisterSpace = 0;
+	pd3dRootParameters[7].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+	pd3dRootParameters[7].DescriptorTable.NumDescriptorRanges = 1;
+	pd3dRootParameters[7].DescriptorTable.pDescriptorRanges = &(srvRange[4]); // Bone Transforms (t4)
 	pd3dRootParameters[7].ShaderVisibility = D3D12_SHADER_VISIBILITY_VERTEX;
 
 	//20241204 Add Samplers
