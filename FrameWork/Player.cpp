@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "Texture.h"
 #include "DebugLog.h"
+#include "BoneData.h"
 
 std::vector<std::string> AnimationFilePaths = {
 	"Model/Character/Animations/IDLE.fbx",
@@ -38,7 +39,8 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 	debugLog << "CPlayer Constructor (After Scene Load) - Device: " << m_pd3dDevice << std::endl;
 
 	if (m_pfbxScene) {
-		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), "Model/Character/Textures/", pd3dCommandList);
+		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), 
+			"Model/Character/Textures/", pd3dCommandList);
 
 		if (!textures.empty()) {
 			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
@@ -55,9 +57,34 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 
-	if (m_pAnimationController) {
+	if (m_pAnimationController) 
+	{
 		m_pAnimationController->LoadAnimations(pfbxSdkManager, AnimationFilePaths);
 		m_pAnimationController->SetAnimation(0);
+
+		m_pBoneData = new CBoneData(pd3dDevice, m_pd3dCbvSrvDescriptorHeap);
+
+		for (const auto& animationScene : m_pAnimationController->GetAnimationScenes()) {
+			if (animationScene) 
+			{
+				FbxNode* rootNode = animationScene->GetRootNode();
+				int boneIndex = 0;
+
+				// 애니메이션의 본 데이터 로드
+				m_pBoneData->LoadBones(rootNode, boneIndex);
+
+				// 메쉬의 버텍스 본 데이터 로드
+				for (int i = 0; i < rootNode->GetChildCount(); ++i) 
+				{
+					FbxNode* childNode = rootNode->GetChild(i);
+					FbxMesh* pMesh = childNode->GetMesh();
+					if (pMesh)
+					{
+						m_pBoneData->LoadVertexBoneData(pMesh);
+					}
+				}
+			}
+		}
 	}
 
 	// 플레이어 타입별 설정
@@ -65,6 +92,8 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 
 	CreateShaderVariables(pd3dDevice, pd3dCommandList);
 	SetPosition(XMFLOAT3(0.0f, 0.0f, -60.0f));
+
+	debugLog << "[CPlayer] Player Created Successful!! " << std::endl;
 }
 
 CPlayer::~CPlayer()

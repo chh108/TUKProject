@@ -48,6 +48,8 @@ public:
 	void LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath);
 	void LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths);
 
+	void LinkAnimationToModel(FbxNode* pModelRoot, FbxNode* pAnimRoot);
+
 	void SetPosition(int nAnimationStack, float fPosition);
 
 	void SetAnimation(int nAnimationStack);
@@ -55,6 +57,9 @@ public:
 	
 	void CheckAnimationKeyframes(int nAnimationStack);
 
+	std::vector<FbxScene*> GetAnimationScenes() const {
+		return m_pAnimationScenes;
+	}
 	FbxTime GetCurrentTime() { return m_pfbxCurrentTimes[m_nAnimationStack]; }
 };
 
@@ -90,9 +95,14 @@ public:
 
 	XMFLOAT4X4  					m_xmf4x4World;
 
-	//20241215 TextureResource
+	// 20241215 TextureResource
 	ID3D12Resource* m_pTexture = NULL;
-	UINT							m_TextureHeapIndex = 0;
+	UINT m_TextureHeapIndex = 0;
+
+	// 20250114 BoneResources
+	ID3D12Resource* m_pd3dBoneBuffer = NULL;
+	D3D12_CPU_DESCRIPTOR_HANDLE m_BoneSrvHandle = {};
+	UINT m_BoneMapIndex = 0;
 
 	//20241216 Animation
 	CAnimationController* m_pAnimationController = NULL;
@@ -125,6 +135,7 @@ public:
 
 	virtual void ReleaseUploadBuffers();
 
+	static void UploadBoneTransformToGPU(ID3D12GraphicsCommandList* pd3dCommandList);
 	// 모델 위치 방향 관련 함수들
 	XMFLOAT3 GetPosition();
 	XMFLOAT3 GetLook();

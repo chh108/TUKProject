@@ -1,385 +1,1863 @@
 Debug Log Initialized
-CTexture::Initialize called - Device: 000001E1DB2103C0
+CTexture::Initialize called - Device: 00000192DA8A05D0
 Input layout is invalid. NUM : 0
 Input layout is invalid. NUM : 1
-Ready To Connect Shader Num : 0 Address :000001E1E1C3B568
+Ready To Connect Shader Num : 0 Address :00000192E113B1F8
 Input Layout: 2
 Element 0: POSITION
 Element 1: TEXCOORD
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 000001E1E1B1F620
+pInputElementDescs : 00000192E1044040
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :000001E1E1CAB288
+Ready To Connect Shader Num : 1 Address :00000192E119A318
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
 Element 2: BONEINDEX
 Element 3: BONEWEIGHT
 Animation stack loaded from: Model/BluePlayer.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Dummy001 | Index: 6 | Parent Index: 5
-[Bone Loaded] Bip002 L Clavicle | Index: 7 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Forearm | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Hand | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger0 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger01 | Index: 12 | Parent Index: 11
-[Bone Loaded] Bip002 L Finger1 | Index: 13 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger11 | Index: 14 | Parent Index: 13
-[Bone Loaded] Bip002 L Finger2 | Index: 15 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger21 | Index: 16 | Parent Index: 15
-[Bone Loaded] Bip002 R Clavicle | Index: 17 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Forearm | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Hand | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger0 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger01 | Index: 22 | Parent Index: 21
-[Bone Loaded] Bip002 R Finger1 | Index: 23 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger11 | Index: 24 | Parent Index: 23
-[Bone Loaded] Bip002 R Finger2 | Index: 25 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger21 | Index: 26 | Parent Index: 25
-[Bone Loaded] Bip002 L Thigh | Index: 27 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Foot | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 L Toe0 | Index: 30 | Parent Index: 29
-[Bone Loaded] Bip002 R Thigh | Index: 31 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Foot | Index: 33 | Parent Index: 32
-[Bone Loaded] Bip002 R Toe0 | Index: 34 | Parent Index: 33
 m_TextureMap is empty.
-Texture resource created successfully: 000001E1E1E84970
-SRV Handle Address (Before) : 2069631553536
-Create SRV : 2069631553536with 000001E1E1E84970
+Texture resource created successfully: 00000192E132B480
+SRV Handle Address (Before) : 1730317668352
+Create SRV : 1730317668352with 00000192E132B480
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 000001E1E23BEC40
+pInputElementDescs : 00000192E121F8A0
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :000001E1E24121A8
+Ready To Connect Shader Num : 1 Address :00000192E122CB88
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
 Element 2: BONEINDEX
 Element 3: BONEWEIGHT
 Animation stack loaded from: Model/Character/Animations/IDLE.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Bip002 L Clavicle | Index: 6 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 7 | Parent Index: 6
-[Bone Loaded] Bip002 L Forearm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Hand | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Finger0 | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger01 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger1 | Index: 12 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger11 | Index: 13 | Parent Index: 12
-[Bone Loaded] Bip002 L Finger2 | Index: 14 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger21 | Index: 15 | Parent Index: 14
-[Bone Loaded] Bip002 R Clavicle | Index: 16 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 17 | Parent Index: 16
-[Bone Loaded] Bip002 R Forearm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Hand | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Finger0 | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger01 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger1 | Index: 22 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger11 | Index: 23 | Parent Index: 22
-[Bone Loaded] Bip002 R Finger2 | Index: 24 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger21 | Index: 25 | Parent Index: 24
-[Bone Loaded] Bip002 L Thigh | Index: 26 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 27 | Parent Index: 26
-[Bone Loaded] Bip002 L Foot | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Toe0 | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 R Thigh | Index: 30 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 31 | Parent Index: 30
-[Bone Loaded] Bip002 R Foot | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Toe0 | Index: 33 | Parent Index: 32
 Animation stack loaded from: Model/Character/Animations/WALK.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Bip002 L Clavicle | Index: 6 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 7 | Parent Index: 6
-[Bone Loaded] Bip002 L Forearm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Hand | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Finger0 | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger01 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger1 | Index: 12 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger11 | Index: 13 | Parent Index: 12
-[Bone Loaded] Bip002 L Finger2 | Index: 14 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger21 | Index: 15 | Parent Index: 14
-[Bone Loaded] Bip002 R Clavicle | Index: 16 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 17 | Parent Index: 16
-[Bone Loaded] Bip002 R Forearm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Hand | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Finger0 | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger01 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger1 | Index: 22 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger11 | Index: 23 | Parent Index: 22
-[Bone Loaded] Bip002 R Finger2 | Index: 24 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger21 | Index: 25 | Parent Index: 24
-[Bone Loaded] Bip002 L Thigh | Index: 26 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 27 | Parent Index: 26
-[Bone Loaded] Bip002 L Foot | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Toe0 | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 R Thigh | Index: 30 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 31 | Parent Index: 30
-[Bone Loaded] Bip002 R Foot | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Toe0 | Index: 33 | Parent Index: 32
-[Loaded Animations] Loaded Animation Stack [0]: IDLE
-START TIME: 0s, STOP TIME: 1s
-[Loaded Animations] Loaded Animation Stack [1]: WALK
-START TIME: 0s, STOP TIME: 1.16667s
-[SetAnimation] Current Animation Stack Set: WALK
-Animation stack loaded from: Model/BluePlayer.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Dummy001 | Index: 6 | Parent Index: 5
-[Bone Loaded] Bip002 L Clavicle | Index: 7 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Forearm | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Hand | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger0 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger01 | Index: 12 | Parent Index: 11
-[Bone Loaded] Bip002 L Finger1 | Index: 13 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger11 | Index: 14 | Parent Index: 13
-[Bone Loaded] Bip002 L Finger2 | Index: 15 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger21 | Index: 16 | Parent Index: 15
-[Bone Loaded] Bip002 R Clavicle | Index: 17 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Forearm | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Hand | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger0 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger01 | Index: 22 | Parent Index: 21
-[Bone Loaded] Bip002 R Finger1 | Index: 23 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger11 | Index: 24 | Parent Index: 23
-[Bone Loaded] Bip002 R Finger2 | Index: 25 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger21 | Index: 26 | Parent Index: 25
-[Bone Loaded] Bip002 L Thigh | Index: 27 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Foot | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 L Toe0 | Index: 30 | Parent Index: 29
-[Bone Loaded] Bip002 R Thigh | Index: 31 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Foot | Index: 33 | Parent Index: 32
-[Bone Loaded] Bip002 R Toe0 | Index: 34 | Parent Index: 33
-Start Create FbxSkinnedModel Shader
-pInputElementDescs : 000001E1E2E5D800
-NumElements : 4
-Ready To Connect Shader Num : 1 Address :000001E1E2BCA058
-Input Layout: 4
-Element 0: POSITION
-Element 1: TEXCOORD
-Element 2: BONEINDEX
-Element 3: BONEWEIGHT
-Animation stack loaded from: Model/Character/Animations/IDLE.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Bip002 L Clavicle | Index: 6 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 7 | Parent Index: 6
-[Bone Loaded] Bip002 L Forearm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Hand | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Finger0 | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger01 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger1 | Index: 12 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger11 | Index: 13 | Parent Index: 12
-[Bone Loaded] Bip002 L Finger2 | Index: 14 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger21 | Index: 15 | Parent Index: 14
-[Bone Loaded] Bip002 R Clavicle | Index: 16 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 17 | Parent Index: 16
-[Bone Loaded] Bip002 R Forearm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Hand | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Finger0 | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger01 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger1 | Index: 22 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger11 | Index: 23 | Parent Index: 22
-[Bone Loaded] Bip002 R Finger2 | Index: 24 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger21 | Index: 25 | Parent Index: 24
-[Bone Loaded] Bip002 L Thigh | Index: 26 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 27 | Parent Index: 26
-[Bone Loaded] Bip002 L Foot | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Toe0 | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 R Thigh | Index: 30 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 31 | Parent Index: 30
-[Bone Loaded] Bip002 R Foot | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Toe0 | Index: 33 | Parent Index: 32
-Animation stack loaded from: Model/Character/Animations/WALK.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Bip002 L Clavicle | Index: 6 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 7 | Parent Index: 6
-[Bone Loaded] Bip002 L Forearm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Hand | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Finger0 | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger01 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger1 | Index: 12 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger11 | Index: 13 | Parent Index: 12
-[Bone Loaded] Bip002 L Finger2 | Index: 14 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger21 | Index: 15 | Parent Index: 14
-[Bone Loaded] Bip002 R Clavicle | Index: 16 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 17 | Parent Index: 16
-[Bone Loaded] Bip002 R Forearm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Hand | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Finger0 | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger01 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger1 | Index: 22 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger11 | Index: 23 | Parent Index: 22
-[Bone Loaded] Bip002 R Finger2 | Index: 24 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger21 | Index: 25 | Parent Index: 24
-[Bone Loaded] Bip002 L Thigh | Index: 26 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 27 | Parent Index: 26
-[Bone Loaded] Bip002 L Foot | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Toe0 | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 R Thigh | Index: 30 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 31 | Parent Index: 30
-[Bone Loaded] Bip002 R Foot | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Toe0 | Index: 33 | Parent Index: 32
-[Loaded Animations] Loaded Animation Stack [0]: IDLE
-START TIME: 0s, STOP TIME: 1s
-[Loaded Animations] Loaded Animation Stack [1]: WALK
-START TIME: 0s, STOP TIME: 1.16667s
-[SetAnimation] Current Animation Stack Set: WALK
-CPlayer Constructor (Before Scene Load) - Device: 000001E1DB2103C0
-Animation stack loaded from: Model/BluePlayer.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Dummy001 | Index: 6 | Parent Index: 5
-[Bone Loaded] Bip002 L Clavicle | Index: 7 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Forearm | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Hand | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger0 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger01 | Index: 12 | Parent Index: 11
-[Bone Loaded] Bip002 L Finger1 | Index: 13 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger11 | Index: 14 | Parent Index: 13
-[Bone Loaded] Bip002 L Finger2 | Index: 15 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger21 | Index: 16 | Parent Index: 15
-[Bone Loaded] Bip002 R Clavicle | Index: 17 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Forearm | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Hand | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger0 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger01 | Index: 22 | Parent Index: 21
-[Bone Loaded] Bip002 R Finger1 | Index: 23 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger11 | Index: 24 | Parent Index: 23
-[Bone Loaded] Bip002 R Finger2 | Index: 25 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger21 | Index: 26 | Parent Index: 25
-[Bone Loaded] Bip002 L Thigh | Index: 27 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Foot | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 L Toe0 | Index: 30 | Parent Index: 29
-[Bone Loaded] Bip002 R Thigh | Index: 31 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Foot | Index: 33 | Parent Index: 32
-[Bone Loaded] Bip002 R Toe0 | Index: 34 | Parent Index: 33
-CPlayer Constructor (After Scene Load) - Device: 000001E1DB2103C0
-Start Create FbxSkinnedModel Shader
-pInputElementDescs : 000001E1E3D06AC0
-NumElements : 4
-Ready To Connect Shader Num : 1 Address :000001E1E2B384C8
-Input Layout: 4
-Element 0: POSITION
-Element 1: TEXCOORD
-Element 2: BONEINDEX
-Element 3: BONEWEIGHT
-Animation stack loaded from: Model/Character/Animations/IDLE.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Bip002 L Clavicle | Index: 6 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 7 | Parent Index: 6
-[Bone Loaded] Bip002 L Forearm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Hand | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Finger0 | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger01 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger1 | Index: 12 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger11 | Index: 13 | Parent Index: 12
-[Bone Loaded] Bip002 L Finger2 | Index: 14 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger21 | Index: 15 | Parent Index: 14
-[Bone Loaded] Bip002 R Clavicle | Index: 16 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 17 | Parent Index: 16
-[Bone Loaded] Bip002 R Forearm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Hand | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Finger0 | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger01 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger1 | Index: 22 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger11 | Index: 23 | Parent Index: 22
-[Bone Loaded] Bip002 R Finger2 | Index: 24 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger21 | Index: 25 | Parent Index: 24
-[Bone Loaded] Bip002 L Thigh | Index: 26 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 27 | Parent Index: 26
-[Bone Loaded] Bip002 L Foot | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Toe0 | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 R Thigh | Index: 30 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 31 | Parent Index: 30
-[Bone Loaded] Bip002 R Foot | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Toe0 | Index: 33 | Parent Index: 32
-Animation stack loaded from: Model/Character/Animations/WALK.fbx
-[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
-[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
-[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
-[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
-[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
-[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
-[Bone Loaded] Bip002 L Clavicle | Index: 6 | Parent Index: 3
-[Bone Loaded] Bip002 L UpperArm | Index: 7 | Parent Index: 6
-[Bone Loaded] Bip002 L Forearm | Index: 8 | Parent Index: 7
-[Bone Loaded] Bip002 L Hand | Index: 9 | Parent Index: 8
-[Bone Loaded] Bip002 L Finger0 | Index: 10 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger01 | Index: 11 | Parent Index: 10
-[Bone Loaded] Bip002 L Finger1 | Index: 12 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger11 | Index: 13 | Parent Index: 12
-[Bone Loaded] Bip002 L Finger2 | Index: 14 | Parent Index: 9
-[Bone Loaded] Bip002 L Finger21 | Index: 15 | Parent Index: 14
-[Bone Loaded] Bip002 R Clavicle | Index: 16 | Parent Index: 3
-[Bone Loaded] Bip002 R UpperArm | Index: 17 | Parent Index: 16
-[Bone Loaded] Bip002 R Forearm | Index: 18 | Parent Index: 17
-[Bone Loaded] Bip002 R Hand | Index: 19 | Parent Index: 18
-[Bone Loaded] Bip002 R Finger0 | Index: 20 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger01 | Index: 21 | Parent Index: 20
-[Bone Loaded] Bip002 R Finger1 | Index: 22 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger11 | Index: 23 | Parent Index: 22
-[Bone Loaded] Bip002 R Finger2 | Index: 24 | Parent Index: 19
-[Bone Loaded] Bip002 R Finger21 | Index: 25 | Parent Index: 24
-[Bone Loaded] Bip002 L Thigh | Index: 26 | Parent Index: 1
-[Bone Loaded] Bip002 L Calf | Index: 27 | Parent Index: 26
-[Bone Loaded] Bip002 L Foot | Index: 28 | Parent Index: 27
-[Bone Loaded] Bip002 L Toe0 | Index: 29 | Parent Index: 28
-[Bone Loaded] Bip002 R Thigh | Index: 30 | Parent Index: 1
-[Bone Loaded] Bip002 R Calf | Index: 31 | Parent Index: 30
-[Bone Loaded] Bip002 R Foot | Index: 32 | Parent Index: 31
-[Bone Loaded] Bip002 R Toe0 | Index: 33 | Parent Index: 32
 [Loaded Animations] Loaded Animation Stack [0]: IDLE
 START TIME: 0s, STOP TIME: 1s
 [Loaded Animations] Loaded Animation Stack [1]: WALK
 START TIME: 0s, STOP TIME: 1.16667s
 [SetAnimation] Current Animation Stack Set: IDLE
-Elapsed Time per Frame: 0.0674621
-Elapsed Time Per Frame: 0.0674621 seconds
+[CGameObject] Objects Created Successful!! 
+[SetAnimation] Current Animation Stack Set: WALK
+Animation stack loaded from: Model/BluePlayer.fbx
+Start Create FbxSkinnedModel Shader
+pInputElementDescs : 00000192E23E5860
+NumElements : 4
+Ready To Connect Shader Num : 1 Address :00000192E2233ED8
+Input Layout: 4
+Element 0: POSITION
+Element 1: TEXCOORD
+Element 2: BONEINDEX
+Element 3: BONEWEIGHT
+Animation stack loaded from: Model/Character/Animations/IDLE.fbx
+Animation stack loaded from: Model/Character/Animations/WALK.fbx
+[Loaded Animations] Loaded Animation Stack [0]: IDLE
+START TIME: 0s, STOP TIME: 1s
+[Loaded Animations] Loaded Animation Stack [1]: WALK
+START TIME: 0s, STOP TIME: 1.16667s
+[SetAnimation] Current Animation Stack Set: IDLE
+[CGameObject] Objects Created Successful!! 
+[SetAnimation] Current Animation Stack Set: WALK
+CPlayer Constructor (Before Scene Load) - Device: 00000192DA8A05D0
+Animation stack loaded from: Model/BluePlayer.fbx
+CPlayer Constructor (After Scene Load) - Device: 00000192DA8A05D0
+Start Create FbxSkinnedModel Shader
+pInputElementDescs : 00000192E3298690
+NumElements : 4
+Ready To Connect Shader Num : 1 Address :00000192E24EA738
+Input Layout: 4
+Element 0: POSITION
+Element 1: TEXCOORD
+Element 2: BONEINDEX
+Element 3: BONEWEIGHT
+Animation stack loaded from: Model/Character/Animations/IDLE.fbx
+Animation stack loaded from: Model/Character/Animations/WALK.fbx
+[Loaded Animations] Loaded Animation Stack [0]: IDLE
+START TIME: 0s, STOP TIME: 1s
+[Loaded Animations] Loaded Animation Stack [1]: WALK
+START TIME: 0s, STOP TIME: 1.16667s
+[SetAnimation] Current Animation Stack Set: IDLE
+[Bone Loaded] Bip002 | Index: 0 | Parent Index: 0
+[Bone Loaded] Bip002 Pelvis | Index: 1 | Parent Index: 0
+[Bone Loaded] Bip002 Spine | Index: 2 | Parent Index: 1
+[Bone Loaded] Bip002 Spine1 | Index: 3 | Parent Index: 2
+[Bone Loaded] Bip002 Neck | Index: 4 | Parent Index: 3
+[Bone Loaded] Bip002 Head | Index: 5 | Parent Index: 4
+[Bone Loaded] Bip002 L Clavicle | Index: 6 | Parent Index: 3
+[Bone Loaded] Bip002 L UpperArm | Index: 7 | Parent Index: 6
+[Bone Loaded] Bip002 L Forearm | Index: 8 | Parent Index: 7
+[Bone Loaded] Bip002 L Hand | Index: 9 | Parent Index: 8
+[Bone Loaded] Bip002 L Finger0 | Index: 10 | Parent Index: 9
+[Bone Loaded] Bip002 L Finger01 | Index: 11 | Parent Index: 10
+[Bone Loaded] Bip002 L Finger1 | Index: 12 | Parent Index: 9
+[Bone Loaded] Bip002 L Finger11 | Index: 13 | Parent Index: 12
+[Bone Loaded] Bip002 L Finger2 | Index: 14 | Parent Index: 9
+[Bone Loaded] Bip002 L Finger21 | Index: 15 | Parent Index: 14
+[Bone Loaded] Bip002 R Clavicle | Index: 16 | Parent Index: 3
+[Bone Loaded] Bip002 R UpperArm | Index: 17 | Parent Index: 16
+[Bone Loaded] Bip002 R Forearm | Index: 18 | Parent Index: 17
+[Bone Loaded] Bip002 R Hand | Index: 19 | Parent Index: 18
+[Bone Loaded] Bip002 R Finger0 | Index: 20 | Parent Index: 19
+[Bone Loaded] Bip002 R Finger01 | Index: 21 | Parent Index: 20
+[Bone Loaded] Bip002 R Finger1 | Index: 22 | Parent Index: 19
+[Bone Loaded] Bip002 R Finger11 | Index: 23 | Parent Index: 22
+[Bone Loaded] Bip002 R Finger2 | Index: 24 | Parent Index: 19
+[Bone Loaded] Bip002 R Finger21 | Index: 25 | Parent Index: 24
+[Bone Loaded] Bip002 L Thigh | Index: 26 | Parent Index: 1
+[Bone Loaded] Bip002 L Calf | Index: 27 | Parent Index: 26
+[Bone Loaded] Bip002 L Foot | Index: 28 | Parent Index: 27
+[Bone Loaded] Bip002 L Toe0 | Index: 29 | Parent Index: 28
+[Bone Loaded] Bip002 R Thigh | Index: 30 | Parent Index: 1
+[Bone Loaded] Bip002 R Calf | Index: 31 | Parent Index: 30
+[Bone Loaded] Bip002 R Foot | Index: 32 | Parent Index: 31
+[Bone Loaded] Bip002 R Toe0 | Index: 33 | Parent Index: 32
+[Bone Loaded] Bip002 | Index: 34 | Parent Index: 0
+[Bone Loaded] Bip002 Pelvis | Index: 35 | Parent Index: 34
+[Bone Loaded] Bip002 Spine | Index: 36 | Parent Index: 35
+[Bone Loaded] Bip002 Spine1 | Index: 37 | Parent Index: 36
+[Bone Loaded] Bip002 Neck | Index: 38 | Parent Index: 37
+[Bone Loaded] Bip002 Head | Index: 39 | Parent Index: 38
+[Bone Loaded] Bip002 L Clavicle | Index: 40 | Parent Index: 37
+[Bone Loaded] Bip002 L UpperArm | Index: 41 | Parent Index: 40
+[Bone Loaded] Bip002 L Forearm | Index: 42 | Parent Index: 41
+[Bone Loaded] Bip002 L Hand | Index: 43 | Parent Index: 42
+[Bone Loaded] Bip002 L Finger0 | Index: 44 | Parent Index: 43
+[Bone Loaded] Bip002 L Finger01 | Index: 45 | Parent Index: 44
+[Bone Loaded] Bip002 L Finger1 | Index: 46 | Parent Index: 43
+[Bone Loaded] Bip002 L Finger11 | Index: 47 | Parent Index: 46
+[Bone Loaded] Bip002 L Finger2 | Index: 48 | Parent Index: 43
+[Bone Loaded] Bip002 L Finger21 | Index: 49 | Parent Index: 48
+[Bone Loaded] Bip002 R Clavicle | Index: 50 | Parent Index: 37
+[Bone Loaded] Bip002 R UpperArm | Index: 51 | Parent Index: 50
+[Bone Loaded] Bip002 R Forearm | Index: 52 | Parent Index: 51
+[Bone Loaded] Bip002 R Hand | Index: 53 | Parent Index: 52
+[Bone Loaded] Bip002 R Finger0 | Index: 54 | Parent Index: 53
+[Bone Loaded] Bip002 R Finger01 | Index: 55 | Parent Index: 54
+[Bone Loaded] Bip002 R Finger1 | Index: 56 | Parent Index: 53
+[Bone Loaded] Bip002 R Finger11 | Index: 57 | Parent Index: 56
+[Bone Loaded] Bip002 R Finger2 | Index: 58 | Parent Index: 53
+[Bone Loaded] Bip002 R Finger21 | Index: 59 | Parent Index: 58
+[Bone Loaded] Bip002 L Thigh | Index: 60 | Parent Index: 35
+[Bone Loaded] Bip002 L Calf | Index: 61 | Parent Index: 60
+[Bone Loaded] Bip002 L Foot | Index: 62 | Parent Index: 61
+[Bone Loaded] Bip002 L Toe0 | Index: 63 | Parent Index: 62
+[Bone Loaded] Bip002 R Thigh | Index: 64 | Parent Index: 35
+[Bone Loaded] Bip002 R Calf | Index: 65 | Parent Index: 64
+[Bone Loaded] Bip002 R Foot | Index: 66 | Parent Index: 65
+[Bone Loaded] Bip002 R Toe0 | Index: 67 | Parent Index: 66
+[CPlayer] Player Created Successful!! 
+Elapsed Time per Frame: 0.0128379
+Elapsed Time Per Frame: 0.0128379 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0128379
+Elapsed Time Per Frame: 0.0128379 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0160169
+Elapsed Time Per Frame: 0.0160169 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.016731
+Elapsed Time Per Frame: 0.016731 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0169191
+Elapsed Time Per Frame: 0.0169191 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.017067
+Elapsed Time Per Frame: 0.017067 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0171393
+Elapsed Time Per Frame: 0.0171393 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0172235
+Elapsed Time Per Frame: 0.0172235 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0172645
+Elapsed Time Per Frame: 0.0172645 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0172899
+Elapsed Time Per Frame: 0.0172899 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0173151
+Elapsed Time Per Frame: 0.0173151 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0174052
+Elapsed Time Per Frame: 0.0174052 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.017409
+Elapsed Time Per Frame: 0.017409 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0174142
+Elapsed Time Per Frame: 0.0174142 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0174475
+Elapsed Time Per Frame: 0.0174475 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0175175
+Elapsed Time Per Frame: 0.0175175 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0175309
+Elapsed Time Per Frame: 0.0175309 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0175949
+Elapsed Time Per Frame: 0.0175949 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176362
+Elapsed Time Per Frame: 0.0176362 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.01767
+Elapsed Time Per Frame: 0.01767 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176961
+Elapsed Time Per Frame: 0.0176961 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176967
+Elapsed Time Per Frame: 0.0176967 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176852
+Elapsed Time Per Frame: 0.0176852 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176719
+Elapsed Time Per Frame: 0.0176719 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.017655
+Elapsed Time Per Frame: 0.017655 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176537
+Elapsed Time Per Frame: 0.0176537 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.017648
+Elapsed Time Per Frame: 0.017648 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176439
+Elapsed Time Per Frame: 0.0176439 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176456
+Elapsed Time Per Frame: 0.0176456 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176406
+Elapsed Time Per Frame: 0.0176406 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176444
+Elapsed Time Per Frame: 0.0176444 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176383
+Elapsed Time Per Frame: 0.0176383 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176387
+Elapsed Time Per Frame: 0.0176387 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176322
+Elapsed Time Per Frame: 0.0176322 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176221
+Elapsed Time Per Frame: 0.0176221 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176209
+Elapsed Time Per Frame: 0.0176209 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176124
+Elapsed Time Per Frame: 0.0176124 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176186
+Elapsed Time Per Frame: 0.0176186 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176156
+Elapsed Time Per Frame: 0.0176156 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.017613
+Elapsed Time Per Frame: 0.017613 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176117
+Elapsed Time Per Frame: 0.0176117 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176032
+Elapsed Time Per Frame: 0.0176032 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176108
+Elapsed Time Per Frame: 0.0176108 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176162
+Elapsed Time Per Frame: 0.0176162 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176194
+Elapsed Time Per Frame: 0.0176194 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176208
+Elapsed Time Per Frame: 0.0176208 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176332
+Elapsed Time Per Frame: 0.0176332 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178378
+Elapsed Time Per Frame: 0.0178378 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178307
+Elapsed Time Per Frame: 0.0178307 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178306
+Elapsed Time Per Frame: 0.0178306 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178244
+Elapsed Time Per Frame: 0.0178244 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179228
+Elapsed Time Per Frame: 0.0179228 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178881
+Elapsed Time Per Frame: 0.0178881 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178718
+Elapsed Time Per Frame: 0.0178718 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178805
+Elapsed Time Per Frame: 0.0178805 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178929
+Elapsed Time Per Frame: 0.0178929 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179012
+Elapsed Time Per Frame: 0.0179012 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178968
+Elapsed Time Per Frame: 0.0178968 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178969
+Elapsed Time Per Frame: 0.0178969 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179058
+Elapsed Time Per Frame: 0.0179058 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179139
+Elapsed Time Per Frame: 0.0179139 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178987
+Elapsed Time Per Frame: 0.0178987 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179014
+Elapsed Time Per Frame: 0.0179014 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179044
+Elapsed Time Per Frame: 0.0179044 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179118
+Elapsed Time Per Frame: 0.0179118 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178966
+Elapsed Time Per Frame: 0.0178966 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178979
+Elapsed Time Per Frame: 0.0178979 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178788
+Elapsed Time Per Frame: 0.0178788 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178614
+Elapsed Time Per Frame: 0.0178614 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178479
+Elapsed Time Per Frame: 0.0178479 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178408
+Elapsed Time Per Frame: 0.0178408 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178401
+Elapsed Time Per Frame: 0.0178401 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178449
+Elapsed Time Per Frame: 0.0178449 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178589
+Elapsed Time Per Frame: 0.0178589 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.017867
+Elapsed Time Per Frame: 0.017867 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178683
+Elapsed Time Per Frame: 0.0178683 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178677
+Elapsed Time Per Frame: 0.0178677 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178651
+Elapsed Time Per Frame: 0.0178651 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178603
+Elapsed Time Per Frame: 0.0178603 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178595
+Elapsed Time Per Frame: 0.0178595 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178569
+Elapsed Time Per Frame: 0.0178569 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178568
+Elapsed Time Per Frame: 0.0178568 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178587
+Elapsed Time Per Frame: 0.0178587 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178582
+Elapsed Time Per Frame: 0.0178582 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178643
+Elapsed Time Per Frame: 0.0178643 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178678
+Elapsed Time Per Frame: 0.0178678 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178707
+Elapsed Time Per Frame: 0.0178707 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178615
+Elapsed Time Per Frame: 0.0178615 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178651
+Elapsed Time Per Frame: 0.0178651 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178673
+Elapsed Time Per Frame: 0.0178673 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178677
+Elapsed Time Per Frame: 0.0178677 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178747
+Elapsed Time Per Frame: 0.0178747 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178674
+Elapsed Time Per Frame: 0.0178674 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178597
+Elapsed Time Per Frame: 0.0178597 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178577
+Elapsed Time Per Frame: 0.0178577 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178517
+Elapsed Time Per Frame: 0.0178517 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178594
+Elapsed Time Per Frame: 0.0178594 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176728
+Elapsed Time Per Frame: 0.0176728 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176745
+Elapsed Time Per Frame: 0.0176745 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176682
+Elapsed Time Per Frame: 0.0176682 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.017684
+Elapsed Time Per Frame: 0.017684 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176811
+Elapsed Time Per Frame: 0.0176811 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0176832
+Elapsed Time Per Frame: 0.0176832 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178277
+Elapsed Time Per Frame: 0.0178277 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0178222
+Elapsed Time Per Frame: 0.0178222 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.017816
+Elapsed Time Per Frame: 0.017816 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179482
+Elapsed Time Per Frame: 0.0179482 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179547
+Elapsed Time Per Frame: 0.0179547 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179623
+Elapsed Time Per Frame: 0.0179623 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179626
+Elapsed Time Per Frame: 0.0179626 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179686
+Elapsed Time Per Frame: 0.0179686 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179785
+Elapsed Time Per Frame: 0.0179785 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179816
+Elapsed Time Per Frame: 0.0179816 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179858
+Elapsed Time Per Frame: 0.0179858 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179758
+Elapsed Time Per Frame: 0.0179758 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0179772
+Elapsed Time Per Frame: 0.0179772 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.018016
+Elapsed Time Per Frame: 0.018016 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0180133
+Elapsed Time Per Frame: 0.0180133 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.018012
+Elapsed Time Per Frame: 0.018012 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0181718
+Elapsed Time Per Frame: 0.0181718 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0181712
+Elapsed Time Per Frame: 0.0181712 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0181866
+Elapsed Time Per Frame: 0.0181866 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0182386
+Elapsed Time Per Frame: 0.0182386 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0182405
+Elapsed Time Per Frame: 0.0182405 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0182485
+Elapsed Time Per Frame: 0.0182485 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0182541
+Elapsed Time Per Frame: 0.0182541 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0184042
+Elapsed Time Per Frame: 0.0184042 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0184122
+Elapsed Time Per Frame: 0.0184122 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0184222
+Elapsed Time Per Frame: 0.0184222 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0184253
+Elapsed Time Per Frame: 0.0184253 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0184314
+Elapsed Time Per Frame: 0.0184314 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480
+Elapsed Time per Frame: 0.0184391
+Elapsed Time Per Frame: 0.0184391 seconds
+PositionBuffer: 145907712
+UVBuffer: 140292096
+IndexBuffer: 145932288
+PositionBuffer: 145997824
+UVBuffer: 146022400
+IndexBuffer: 146034688
+Rendering Player Texture Address: 00000192E132B480
+PositionBuffer: 146100224
+UVBuffer: 146124800
+IndexBuffer: 146137088
+After CGameObject::Render - Player texture valid: 00000192E132B480

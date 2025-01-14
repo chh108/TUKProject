@@ -8,6 +8,7 @@
 #include "Mesh.h"
 #include "Scene.h"
 #include "DebugLog.h"
+#include "BoneData.h"
 #include "texture.h"
 
 std::vector<std::string> ObjectAnimations = {
@@ -212,7 +213,7 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 
 	OnPrepareRender();
 
-	ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dCbvSrvDescriptorHeap, m_pd3dBoneOffsetSrvDescriptorHeap, m_pd3dBoneTransSrvDescriptorHeap };
+	ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dCbvSrvDescriptorHeap};
 	pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
 
 	// 20241216 텍스처 로딩
@@ -229,12 +230,12 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	// 20241216 애니메이션 작업
 	if (m_pfbxScene && m_pAnimationController)
 	{
-		D3D12_GPU_DESCRIPTOR_HANDLE boneOffsetSrvHandle = m_pd3dBoneOffsetSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
-		D3D12_GPU_DESCRIPTOR_HANDLE boneTransformSrvHandle = m_pd3dBoneTransSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		//D3D12_GPU_DESCRIPTOR_HANDLE boneOffsetSrvHandle = m_pd3dBoneOffsetSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		//D3D12_GPU_DESCRIPTOR_HANDLE boneTransformSrvHandle = m_pd3dBoneTransSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
 
-		pd3dCommandList->SetGraphicsRootDescriptorTable(6, boneOffsetSrvHandle); // Root ParameterIndex 6
-		pd3dCommandList->SetGraphicsRootDescriptorTable(7, boneTransformSrvHandle); // Root ParameterIndex 7
-		debugLog << "Set Bone SRVS" << std::endl;
+		//pd3dCommandList->SetGraphicsRootDescriptorTable(6, boneOffsetSrvHandle); // Root ParameterIndex 6
+		//pd3dCommandList->SetGraphicsRootDescriptorTable(7, boneTransformSrvHandle); // Root ParameterIndex 7
+		//debugLog << "Set Bone SRVS" << std::endl;
 
 		// Animation Set
 		ApplyAnimation();
@@ -434,7 +435,9 @@ CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd
 
 	if (m_pAnimationController) {
 		m_pAnimationController->LoadAnimations(pfbxSdkManager, ObjectAnimations);
+		m_pAnimationController->SetAnimation(0);
 	}
+	debugLog << "[CGameObject] Objects Created Successful!! " << std::endl;
 }
 
 CBlueObject::~CBlueObject()

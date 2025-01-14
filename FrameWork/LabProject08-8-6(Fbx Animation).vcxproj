@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoneData.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="d3dx12.h" />
     <ClInclude Include="DebugLog.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Defines.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoneData.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DebugLog.cpp" />
     <ClCompile Include="FbxSceneContext.cpp" />
