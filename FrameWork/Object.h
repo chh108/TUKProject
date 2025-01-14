@@ -45,10 +45,10 @@ public:
 	int m_nAnimationStack = 0;   // 현재 활성화된 애니메이션 스택
 
 public:
-	void LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath);
-	void LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths);
+	void LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath, FbxScene* pModelScene);
+	void LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths, FbxScene* pModelScene);
 
-	void LinkAnimationToModel(FbxNode* pModelRoot, FbxNode* pAnimRoot);
+	void MergeModelAndAnimation(FbxScene* modelScene, FbxScene* animationScene);
 
 	void SetPosition(int nAnimationStack, float fPosition);
 
@@ -73,6 +73,7 @@ protected:
 	ID3D12DescriptorHeap* m_pd3dCbvSrvDescriptorHeap = NULL; // 디스크립터 힙
 	ID3D12DescriptorHeap* m_pd3dBoneOffsetSrvDescriptorHeap = NULL; // 본 데이터
 	ID3D12DescriptorHeap* m_pd3dBoneTransSrvDescriptorHeap = NULL; // 본 행렬
+
 	CTexture* m_pTextureManager; // Texture 매니저
 	CShader* m_pShader; // Shader
 

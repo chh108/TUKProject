@@ -59,30 +59,18 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 
 	if (m_pAnimationController) 
 	{
-		m_pAnimationController->LoadAnimations(pfbxSdkManager, AnimationFilePaths);
+		m_pAnimationController->LoadAnimations(pfbxSdkManager, AnimationFilePaths, m_pfbxScene);
 		m_pAnimationController->SetAnimation(0);
 
 		m_pBoneData = new CBoneData(pd3dDevice, m_pd3dCbvSrvDescriptorHeap);
 
-		for (const auto& animationScene : m_pAnimationController->GetAnimationScenes()) {
-			if (animationScene) 
-			{
+		for (const auto& animationScene : m_pAnimationController->GetAnimationScenes())
+		{
+			if (animationScene) {
 				FbxNode* rootNode = animationScene->GetRootNode();
 				int boneIndex = 0;
 
-				// 애니메이션의 본 데이터 로드
 				m_pBoneData->LoadBones(rootNode, boneIndex);
-
-				// 메쉬의 버텍스 본 데이터 로드
-				for (int i = 0; i < rootNode->GetChildCount(); ++i) 
-				{
-					FbxNode* childNode = rootNode->GetChild(i);
-					FbxMesh* pMesh = childNode->GetMesh();
-					if (pMesh)
-					{
-						m_pBoneData->LoadVertexBoneData(pMesh);
-					}
-				}
 			}
 		}
 	}

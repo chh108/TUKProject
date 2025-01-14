@@ -39,7 +39,7 @@ CAnimationController::~CAnimationController()
 	m_pfbxCurrentTimes.clear();
 };
 
-void CAnimationController::LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath)
+void CAnimationController::LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath, FbxScene* pModelScene)
 {
 	FbxScene* pAnimationScene = LoadFbxSceneFromFile(nullptr, nullptr, pFbxManager, animationFilePath.c_str());
 	if (!pAnimationScene) {
@@ -68,16 +68,20 @@ void CAnimationController::LoadAnimation(FbxManager* pFbxManager, const std::str
 			m_pfbxStopTimes.push_back(defaultTimeSpan.GetStop());
 		}
 		m_pfbxCurrentTimes.push_back(m_pfbxStartTimes.back());
+
+		MergeModelAndAnimation(pModelScene, pAnimationScene);
+
+		debugLog << "[LoadAnimation] Animation Stack Loaded: " << pAnimStack->GetName() << std::endl;
 	}
 
 	FbxArrayDelete(fbxAnimationStackNames);
 }
 
-void CAnimationController::LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths)
+void CAnimationController::LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths, FbxScene* pModelScene)
 {
 	for (const std::string& filePath : animationFilePaths)
 	{
-		LoadAnimation(pFbxManager, filePath);
+		LoadAnimation(pFbxManager, filePath, pModelScene);
 	}
 
 	for (size_t i = 0; i < m_pAnimationStacks.size(); ++i)
@@ -87,10 +91,48 @@ void CAnimationController::LoadAnimations(FbxManager* pFbxManager, const std::ve
 
 		m_pAnimationStacks[i]->SetName(fileName.c_str());
 
-		debugLog << "[Loaded Animations] Loaded Animation Stack [" << i << "]: "
-			<< m_pAnimationStacks[i]->GetName() << std::endl;
-		debugLog << "START TIME: " << m_pfbxStartTimes[i].GetSecondDouble() << "s, "
-			<< "STOP TIME: " << m_pfbxStopTimes[i].GetSecondDouble() << "s" << std::endl;
+		//debugLog << "[Loaded Animations] Loaded Animation Stack [" << i << "]: "
+		//	<< m_pAnimationStacks[i]->GetName() << std::endl;
+		//debugLog << "START TIME: " << m_pfbxStartTimes[i].GetSecondDouble() << "s, "
+		//	<< "STOP TIME: " << m_pfbxStopTimes[i].GetSecondDouble() << "s" << std::endl;
+	}
+}
+
+void CAnimationController::MergeModelAndAnimation(FbxScene* modelScene, FbxScene* animationScene)
+{
+	FbxNode* modelRoot = modelScene->GetRootNode();
+	FbxNode* animRoot = animationScene->GetRootNode();
+
+	if (!modelRoot || !animRoot) {
+		debugLog << "[Merge Error] Invalid model or animation scene." << std::endl;
+		return;
+	}
+
+	std::unordered_map<std::string, FbxNode*> animBoneMap;
+
+	// 1. 애니메이션 본 맵 생성
+	for (int i = 0; i < animRoot->GetChildCount(); ++i) {
+		FbxNode* animNode = animRoot->GetChild(i);
+		if (animNode->GetNodeAttribute() && animNode->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton) {
+			animBoneMap[animNode->GetName()] = animNode;
+		}
+	}
+
+	// 2. 모델 본과 애니메이션 본 연결
+	for (int i = 0; i < modelRoot->GetChildCount(); ++i) {
+		FbxNode* modelNode = modelRoot->GetChild(i);
+		std::string boneName = modelNode->GetName();
+
+		if (animBoneMap.find(boneName) != animBoneMap.end()) {
+			FbxNode* animBone = animBoneMap[boneName];
+
+			// 3. 트랜스폼 병합
+			modelNode->LclTranslation.Set(animBone->LclTranslation.Get());
+			modelNode->LclRotation.Set(animBone->LclRotation.Get());
+			modelNode->LclScaling.Set(animBone->LclScaling.Get());
+
+			debugLog << "[Merge] Bone '" << boneName << "' animation applied." << std::endl;
+		}
 	}
 }
 
@@ -434,7 +476,7 @@ CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 
 	if (m_pAnimationController) {
-		m_pAnimationController->LoadAnimations(pfbxSdkManager, ObjectAnimations);
+		m_pAnimationController->LoadAnimations(pfbxSdkManager, ObjectAnimations, m_pfbxScene);
 		m_pAnimationController->SetAnimation(0);
 	}
 	debugLog << "[CGameObject] Objects Created Successful!! " << std::endl;
