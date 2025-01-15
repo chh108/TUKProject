@@ -1,14 +1,19 @@
+// BoneData.cpp
+
 #include "stdafx.h"
 #include "BoneData.h"
 #include "DebugLog.h"
 #include "FbxSceneContext.h"
 
-CBoneData::CBoneData(ID3D12Device* device, ID3D12DescriptorHeap* heap)
-	: m_pd3dDevice(device), m_pd3dCbvSrvDescriptorHeap(heap) {
+CBoneData::CBoneData(ID3D12Device* pd3dDevice, ID3D12DescriptorHeap* pd3dDescriptorHeap)
+	: m_pd3dDevice(pd3dDevice), m_pd3dCbvSrvDescriptorHeap(pd3dDescriptorHeap) 
+{
+	m_descriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 }
 
 CBoneData::~CBoneData() {
-	if (m_pd3dBoneBuffer) m_pd3dBoneBuffer->Release();
+	if (m_pd3dBoneOffsetBuffer) m_pd3dBoneOffsetBuffer->Release();
+	if (m_pd3dBoneTransformBuffer) m_pd3dBoneTransformBuffer->Release();
 }
 
 // 본 관련 함수 추가
@@ -100,8 +105,8 @@ void CBoneData::LoadBones(FbxNode* pfbxNode, int& parentIndex)
 }
 
 // 본 버퍼 생성 (통합)
-void CBoneData::CreateBoneBuffer(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle) {
-	UINT64 bufferSize = (sizeof(XMFLOAT4X4) * m_BoneInfos.size() + 255) & ~255;
+void CBoneData::CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_CPU_DESCRIPTOR_HANDLE srvHandle) {
+	UINT64 bufferSize = sizeof(XMFLOAT4X4) * m_BoneInfos.size();
 
 	D3D12_HEAP_PROPERTIES heapProps = {};
 	heapProps.Type = D3D12_HEAP_TYPE_UPLOAD;
@@ -111,15 +116,34 @@ void CBoneData::CreateBoneBuffer(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle) {
 	bufferDesc.Width = bufferSize;
 	bufferDesc.Height = 1;
 	bufferDesc.DepthOrArraySize = 1;
+	bufferDesc.MipLevels = 1;
 	bufferDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
+	// 1. 본 오프셋 버퍼 (CBV)
 	m_pd3dDevice->CreateCommittedResource(
 		&heapProps,
 		D3D12_HEAP_FLAG_NONE,
 		&bufferDesc,
 		D3D12_RESOURCE_STATE_GENERIC_READ,
 		nullptr,
-		IID_PPV_ARGS(&m_pd3dBoneBuffer)
+		IID_PPV_ARGS(&m_pd3dBoneOffsetBuffer)
+	);
+
+	D3D12_CONSTANT_BUFFER_VIEW_DESC cbvDesc = {};
+	cbvDesc.BufferLocation = m_pd3dBoneOffsetBuffer->GetGPUVirtualAddress();
+	cbvDesc.SizeInBytes = (UINT)((bufferSize + 255) & ~255);
+
+	m_pd3dDevice->CreateConstantBufferView(&cbvDesc, cbvHandle);
+	m_BoneOffsetCBVHandle = cbvHandle;
+
+	// 2. 본 트랜스폼 버퍼 (SRV)
+	m_pd3dDevice->CreateCommittedResource(
+		&heapProps,
+		D3D12_HEAP_FLAG_NONE,
+		&bufferDesc,
+		D3D12_RESOURCE_STATE_GENERIC_READ,
+		nullptr,
+		IID_PPV_ARGS(&m_pd3dBoneTransformBuffer)
 	);
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
@@ -130,13 +154,14 @@ void CBoneData::CreateBoneBuffer(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle) {
 	srvDesc.Buffer.StructureByteStride = sizeof(XMFLOAT4X4);
 	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 
-	m_pd3dDevice->CreateShaderResourceView(m_pd3dBoneBuffer, &srvDesc, d3dBoneCpuHandle);
+	m_pd3dDevice->CreateShaderResourceView(m_pd3dBoneTransformBuffer, &srvDesc, srvHandle);
+	m_BoneTransformSRVHandle = srvHandle;
 
-	debugLog << "[CreateBoneBuffer] Unified Bone Buffer Created." << std::endl;
+	debugLog << "[CreateBoneBuffers] CBV and SRV buffers created." << std::endl;
 }
 
 // 본 트랜스폼 업데이트 및 GPU 업로드
-void CBoneData::UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime, D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle) {
+void CBoneData::UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime) {
 	for (size_t i = 0; i < m_BoneInfos.size(); ++i) {
 		FbxAMatrix globalTransform = m_BoneInfos[i].pBoneNode->EvaluateGlobalTransform(fbxCurrentTime);
 		if (m_BoneInfos[i].parentIndex != -1) {
@@ -146,13 +171,14 @@ void CBoneData::UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime, D3D12_CPU
 		m_FinalBoneTransforms[i] = FbxMatrixToXmFloat4x4Matrix(&m_BoneInfos[i].finalTransform);
 	}
 
+	// GPU에 트랜스폼 데이터 업로드 (SRV)
 	void* mappedData = nullptr;
 	D3D12_RANGE readRange = { 0, 0 };
 
-	HRESULT hr = m_pd3dBoneBuffer->Map(0, &readRange, &mappedData);
+	HRESULT hr = m_pd3dBoneTransformBuffer->Map(0, &readRange, &mappedData);
 	if (SUCCEEDED(hr) && mappedData) {
 		memcpy(mappedData, m_FinalBoneTransforms.data(), sizeof(XMFLOAT4X4) * m_FinalBoneTransforms.size());
-		m_pd3dBoneBuffer->Unmap(0, nullptr);
+		m_pd3dBoneTransformBuffer->Unmap(0, nullptr);
 	}
 	else {
 		debugLog << "[Error] Failed to upload bone transforms!" << std::endl;
@@ -160,7 +186,12 @@ void CBoneData::UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime, D3D12_CPU
 }
 
 // SRV 바인딩
-void CBoneData::BindBoneSRV(ID3D12GraphicsCommandList* commandList, UINT rootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE d3dBoneGpuHandle) {
-	commandList->SetGraphicsRootDescriptorTable(rootParameterIndex, d3dBoneGpuHandle);
-	debugLog << "[BindBoneSRV] Bone SRV Bound at Root Index: " << rootParameterIndex << std::endl;
+void CBoneData::BindBoneBuffers(ID3D12GraphicsCommandList* commandList) {
+	// CBV (Bone Offset Buffer) → Root Parameter Index 6
+	commandList->SetGraphicsRootDescriptorTable(6, m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
+
+	// SRV (Bone Transform Buffer) → Root Parameter Index 7
+	commandList->SetGraphicsRootDescriptorTable(7, m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
+
+	debugLog << "[BindBoneBuffers] CBV (t3) and SRV (t4) bound to the pipeline." << std::endl;
 }

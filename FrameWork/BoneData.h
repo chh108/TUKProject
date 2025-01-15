@@ -23,29 +23,30 @@ struct VertexBoneData {
 
 class CBoneData {
 public:
-    CBoneData(ID3D12Device* device, ID3D12DescriptorHeap* heap);
+    CBoneData(ID3D12Device* pd3dDevice, ID3D12DescriptorHeap* pd3dDescriptorHeap);
     ~CBoneData();
 
     void LoadBones(FbxNode* pfbxNode, int& parentIndex);
     void LoadVertexBoneData(FbxMesh* pMesh);
-    void UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime, D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
-    void BindBoneSRV(ID3D12GraphicsCommandList* commandList, UINT rootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE d3dBoneGpuHandle);
-
-    const std::vector<XMFLOAT4X4>& GetFinalBoneTransforms();
+    void UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime);
+    void BindBoneBuffers(ID3D12GraphicsCommandList* commandList);
 
 private:
-    void CreateBoneBuffer(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
+    void CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_CPU_DESCRIPTOR_HANDLE srvHandle);
 
     ID3D12Device* m_pd3dDevice = NULL;
     ID3D12DescriptorHeap* m_pd3dCbvSrvDescriptorHeap = NULL;
 
-    ID3D12Resource* m_pd3dBoneBuffer = NULL;  // 통합된 본 버퍼
+    ID3D12Resource* m_pd3dBoneOffsetBuffer = NULL;
+    ID3D12Resource* m_pd3dBoneTransformBuffer = NULL;
+
+    D3D12_CPU_DESCRIPTOR_HANDLE m_BoneOffsetCBVHandle = {};
+    D3D12_CPU_DESCRIPTOR_HANDLE m_BoneTransformSRVHandle = {};
 
     std::unordered_map<std::string, int> m_BoneNameToIndex;
     std::vector<BoneInfo> m_BoneInfos;
     std::vector<VertexBoneData> m_VertexBoneData;
     std::vector<XMFLOAT4X4> m_FinalBoneTransforms;
 
-    UINT m_BoneHeapIndex = 0;
     UINT m_descriptorIncrementSize = 0;
 };

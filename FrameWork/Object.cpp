@@ -364,13 +364,6 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	// 20241216 애니메이션 작업
 	if (m_pfbxScene && m_pAnimationController)
 	{
-		//D3D12_GPU_DESCRIPTOR_HANDLE boneOffsetSrvHandle = m_pd3dBoneOffsetSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
-		//D3D12_GPU_DESCRIPTOR_HANDLE boneTransformSrvHandle = m_pd3dBoneTransSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
-
-		//pd3dCommandList->SetGraphicsRootDescriptorTable(6, boneOffsetSrvHandle); // Root ParameterIndex 6
-		//pd3dCommandList->SetGraphicsRootDescriptorTable(7, boneTransformSrvHandle); // Root ParameterIndex 7
-		//debugLog << "Set Bone SRVS" << std::endl;
-
 		// Animation Set
 		ApplyAnimation();
 		FbxAMatrix fbxf4x4World = ::XmFloat4x4MatrixToFbxMatrix(m_xmf4x4World);
