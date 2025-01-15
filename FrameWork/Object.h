@@ -49,6 +49,9 @@ public:
 	void LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths, FbxScene* pModelScene);
 
 	void MergeModelAndAnimation(FbxScene* modelScene, FbxScene* animationScene);
+	void BuildBoneMap(FbxNode* node, std::unordered_map<std::string, FbxNode*>& boneMap);
+	void MergeAnimationCurves(FbxNode* modelNode, FbxNode* animBone);
+	void ApplyAnimationToModelBones(FbxNode* modelNode, const std::unordered_map<std::string, FbxNode*>& animBoneMap);
 
 	void SetPosition(int nAnimationStack, float fPosition);
 
