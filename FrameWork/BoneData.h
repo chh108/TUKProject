@@ -1,3 +1,4 @@
+// BoneData.h
 #pragma once
 
 #include <vector>
@@ -20,21 +21,17 @@ struct VertexBoneData {
     float BoneWeights[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 };
 
-// 본 데이터 클래스
 class CBoneData {
 public:
     CBoneData(ID3D12Device* device, ID3D12DescriptorHeap* heap);
     ~CBoneData();
 
-    // Upload Bone Data from FBX File and Transform Set.
-   void LoadBones(FbxNode* pfbxNode, int& parentIndex);
-   void LoadVertexBoneData(FbxMesh* pMesh);
-   void UpdateBoneTransforms(FbxTime& fbxCurrentTime, D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
-   void UploadBoneTransformsToGPU(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
+    void LoadBones(FbxNode* pfbxNode, int& parentIndex);
+    void LoadVertexBoneData(FbxMesh* pMesh);
+    void UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime, D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
+    void BindBoneSRV(ID3D12GraphicsCommandList* commandList, UINT rootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE d3dBoneGpuHandle);
 
-   void BindBoneSRV(ID3D12GraphicsCommandList* commandList, UINT rootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE d3dBoneGPUHandle);
-
-   const std::vector<XMFLOAT4X4>& GetFinalBoneTransforms();
+    const std::vector<XMFLOAT4X4>& GetFinalBoneTransforms();
 
 private:
     void CreateBoneBuffer(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
@@ -42,10 +39,9 @@ private:
     ID3D12Device* m_pd3dDevice = NULL;
     ID3D12DescriptorHeap* m_pd3dCbvSrvDescriptorHeap = NULL;
 
-    ID3D12Resource* m_pd3dBoneBuffer = NULL;
+    ID3D12Resource* m_pd3dBoneBuffer = NULL;  // 통합된 본 버퍼
 
     std::unordered_map<std::string, int> m_BoneNameToIndex;
-
     std::vector<BoneInfo> m_BoneInfos;
     std::vector<VertexBoneData> m_VertexBoneData;
     std::vector<XMFLOAT4X4> m_FinalBoneTransforms;
