@@ -21,7 +21,7 @@ std::vector<std::string> AnimationFilePaths = {
 CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
 	ID3D12RootSignature* pd3dGraphicsRootSignature, FbxManager* pfbxSdkManager,
 	const std::string& fbxFilePath, CTexture* pTextureManager, PlayerType playerType)
-	: CGameObject(pTextureManager, pd3dDevice), m_pTexture(NULL), m_PlayerType(playerType) {
+	: CGameObject(pTextureManager, pd3dDevice), m_pTexture(NULL), m_pBoneData(NULL), m_PlayerType(playerType) {
 
 	debugLog << "CPlayer Constructor (Before Scene Load) - Device: " << m_pd3dDevice << std::endl;
 

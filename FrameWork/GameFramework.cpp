@@ -218,7 +218,7 @@ void CGameFramework::CreateRtvAndDsvDescriptorHeaps()
 void CGameFramework::CreateCbvAndSrvDescriptorHeaps() // 20241228 
 {
 	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
-	srvHeapDesc.NumDescriptors = 60; // Max Num of Textures
+	srvHeapDesc.NumDescriptors = 600; // Max Set Descriptors
 	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
 	srvHeapDesc.NodeMask = 0;

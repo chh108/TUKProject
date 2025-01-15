@@ -6,7 +6,7 @@
 #include "FbxSceneContext.h"
 
 CBoneData::CBoneData(ID3D12Device* pd3dDevice, ID3D12DescriptorHeap* pd3dDescriptorHeap)
-	: m_pd3dDevice(pd3dDevice), m_pd3dCbvSrvDescriptorHeap(pd3dDescriptorHeap) 
+	: m_pd3dDevice(pd3dDevice), m_pd3dCbvSrvDescriptorHeap(pd3dDescriptorHeap)
 {
 	m_descriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 }

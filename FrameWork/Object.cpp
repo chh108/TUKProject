@@ -314,6 +314,7 @@ CGameObject::~CGameObject()
 	if (m_pfbxScene) m_pfbxScene->Destroy();
 #endif
 	if (m_pAnimationController) delete m_pAnimationController;
+	if (m_pBoneData) delete m_pBoneData;
 }
 
 void CGameObject::AddRef() 
@@ -362,7 +363,14 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	}
 
 	if (m_pBoneData) {
+		FbxTime currentTime = m_pAnimationController->GetCurrentTime();
+		D3D12_CPU_DESCRIPTOR_HANDLE boneCpuHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+		m_pBoneData->UpdateAndUploadBoneTransforms(currentTime);
 
+		// (2) 본 데이터 SRV 바인딩
+		D3D12_GPU_DESCRIPTOR_HANDLE boneGpuHandle = m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		pd3dCommandList->SetGraphicsRootDescriptorTable(6, boneGpuHandle);  // Root Parameter 6 (Bone Offset)
+		pd3dCommandList->SetGraphicsRootDescriptorTable(7, boneGpuHandle); // Root ParameterIndex 2
 	}
 	// 20241216 애니메이션 작업
 	if (m_pfbxScene && m_pAnimationController)

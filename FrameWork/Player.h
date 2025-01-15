@@ -27,7 +27,6 @@ private:
 	PlayerType m_PlayerType; // PlayerType (Blue, Red, Green)
 	CTexture* m_pTextureManager; // TextureManager
 	ID3D12Resource* m_pTexture = NULL; // Player Texture
-
 	CBoneData* m_pBoneData = NULL; // Bone Datas
 	int m_TextureHeapIndex = -1; // TextureHeapIndex for Descriptor
 
