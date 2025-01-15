@@ -78,17 +78,54 @@ void CBoneData::LoadBones(FbxNode* pfbxNode, int& parentIndex)
 	// 본 노드인지 확인
 	FbxNodeAttribute* pAttr = pfbxNode->GetNodeAttribute();
 	if (pAttr && pAttr->GetAttributeType() == FbxNodeAttribute::eSkeleton) {
+		std::string boneName = pfbxNode->GetName();
+
+		// 중복 본 로딩 방지
+		if (m_BoneNameToIndex.find(boneName) != m_BoneNameToIndex.end()) {
+			debugLog << "[Warning] Duplicate Bone: " << boneName << " - Skipping..." << std::endl;
+			return;
+		}
+
 		BoneInfo boneInfo;
 		boneInfo.pBoneNode = pfbxNode;
-		boneInfo.boneOffsetMatrix = pfbxNode->EvaluateGlobalTransform();
-		boneInfo.parentIndex = parentIndex;
 
+		// 본 오프셋 행렬 정확하게 계산 (BindPose 기준)
+		FbxAMatrix bindPoseMatrix;
+		bool hasBindPose = false;
+
+		for (int i = 0; i < pfbxNode->GetScene()->GetPoseCount(); i++) {
+			FbxPose* pose = pfbxNode->GetScene()->GetPose(i);
+			if (pose->IsBindPose()) {
+				for (int j = 0; j < pose->GetCount(); j++) {
+					if (pose->GetNode(j) == pfbxNode) {
+						FbxMatrix matrix = pose->GetMatrix(j);
+						for (int row = 0; row < 4; ++row) {
+							for (int col = 0; col < 4; ++col) {
+								bindPoseMatrix[row][col] = matrix.Get(row, col);
+							}
+						}
+						hasBindPose = true;
+						break;
+					}
+				}
+			}
+		}
+
+		if (hasBindPose) {
+			boneInfo.boneOffsetMatrix = bindPoseMatrix;
+		}
+		else {
+			boneInfo.boneOffsetMatrix = pfbxNode->EvaluateGlobalTransform();  // Fallback
+			debugLog << "[Warning] No BindPose Found for Bone: " << boneName << ". Using Global Transform." << std::endl;
+		}
+
+		boneInfo.parentIndex = parentIndex;
 
 		int boneIndex = static_cast<int>(m_BoneInfos.size());
 		m_BoneInfos.push_back(boneInfo);
-		m_BoneNameToIndex[pfbxNode->GetName()] = boneIndex;
+		m_BoneNameToIndex[boneName] = boneIndex;
 
-		debugLog << "[Bone Loaded] " << pfbxNode->GetName() << " | Index: " << boneIndex
+		debugLog << "[Bone Loaded] " << boneName << " | Index: " << boneIndex
 			<< " | Parent Index: " << parentIndex << std::endl;
 
 		// 자식 노드 탐색
@@ -97,11 +134,11 @@ void CBoneData::LoadBones(FbxNode* pfbxNode, int& parentIndex)
 		}
 	}
 	else {
+		// 본이 아니더라도 자식 노드 탐색
 		for (int i = 0; i < pfbxNode->GetChildCount(); i++) {
 			LoadBones(pfbxNode->GetChild(i), parentIndex);
 		}
 	}
-
 }
 
 // 본 버퍼 생성 (통합)

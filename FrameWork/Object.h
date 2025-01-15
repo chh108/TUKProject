@@ -112,6 +112,8 @@ public:
 	ID3D12Resource* m_pTexture = NULL;
 	UINT m_TextureHeapIndex = 0;
 
+	ID3D12Resource* m_pBoneData = NULL;
+
 	// 20250114 BoneResources
 	ID3D12Resource* m_pd3dBoneBuffer = NULL;
 	D3D12_CPU_DESCRIPTOR_HANDLE m_BoneSrvHandle = {};

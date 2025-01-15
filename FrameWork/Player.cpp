@@ -64,13 +64,22 @@ CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 
 		m_pBoneData = new CBoneData(pd3dDevice, m_pd3dCbvSrvDescriptorHeap);
 
-		for (const auto& animationScene : m_pAnimationController->GetAnimationScenes())
-		{
-			if (animationScene) {
-				FbxNode* rootNode = animationScene->GetRootNode();
-				int boneIndex = 0;
+		FbxNode* modelRootNode = m_pfbxScene->GetRootNode();
+		int boneIndex = 0;
+		m_pBoneData->LoadBones(modelRootNode, boneIndex);
 
-				m_pBoneData->LoadBones(rootNode, boneIndex);
+		for (int i = 0; i < modelRootNode->GetChildCount(); ++i) {
+			FbxNode* childNode = modelRootNode->GetChild(i);
+			FbxMesh* pMesh = childNode->GetMesh();
+			if (pMesh) {
+				m_pBoneData->LoadVertexBoneData(pMesh);
+			}
+		}
+
+		for (const auto& animationScene : m_pAnimationController->GetAnimationScenes()) {
+			if (animationScene) {
+				FbxNode* animRootNode = animationScene->GetRootNode();
+				m_pBoneData->LoadBones(animRootNode, boneIndex);
 			}
 		}
 	}

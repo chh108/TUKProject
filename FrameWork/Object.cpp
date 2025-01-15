@@ -361,6 +361,9 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 		debugLog << "Failed To Bind SRV.\n";
 	}
 
+	if (m_pBoneData) {
+
+	}
 	// 20241216 애니메이션 작업
 	if (m_pfbxScene && m_pAnimationController)
 	{
