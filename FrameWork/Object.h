@@ -48,6 +48,7 @@ public:
 	void LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath, FbxScene* pModelScene);
 	void LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths, FbxScene* pModelScene);
 
+	// 20250115 AnimationMerge 작업
 	void MergeModelAndAnimation(FbxScene* modelScene, FbxScene* animationScene);
 	void BuildBoneMap(FbxNode* node, std::unordered_map<std::string, FbxNode*>& boneMap);
 	void MergeAnimationCurves(FbxNode* modelNode, FbxNode* animBone);
@@ -55,6 +56,14 @@ public:
 
 	void SetPosition(int nAnimationStack, float fPosition);
 
+	// 만일을 위한 공백 제거 및 대소문자 통일
+	std::string NormalizeBoneName(const std::string& name) {
+		std::string trimmedName = name;
+		trimmedName.erase(0, trimmedName.find_first_not_of(" \t\n\r"));  // 앞 공백 제거
+		trimmedName.erase(trimmedName.find_last_not_of(" \t\n\r") + 1);  // 뒤 공백 제거
+
+		return trimmedName;
+	}
 	void SetAnimation(int nAnimationStack);
 	void AdvanceTime(float fElapsedTime);
 	

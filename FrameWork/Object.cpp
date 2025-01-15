@@ -69,6 +69,7 @@ void CAnimationController::LoadAnimation(FbxManager* pFbxManager, const std::str
 		}
 		m_pfbxCurrentTimes.push_back(m_pfbxStartTimes.back());
 
+		// Merge Model And Animation
 		MergeModelAndAnimation(pModelScene, pAnimationScene);
 
 		debugLog << "[LoadAnimation] Animation Stack Loaded: " << pAnimStack->GetName() << std::endl;
@@ -110,17 +111,18 @@ void CAnimationController::MergeModelAndAnimation(FbxScene* modelScene, FbxScene
 
 	std::unordered_map<std::string, FbxNode*> animBoneMap;
 
-	// 1?? 애니메이션 본 맵 전체 구성
+	// BuildBoneMap
 	BuildBoneMap(animRoot, animBoneMap);
 
-	// 2?? 모델 본과 애니메이션 본 연결 및 트랜스폼 병합
+	// ApplyAnimationToModelBones
 	ApplyAnimationToModelBones(modelRoot, animBoneMap);
 }
 
 void CAnimationController::BuildBoneMap(FbxNode* node, std::unordered_map<std::string, FbxNode*>& boneMap)
 {
 	if (node->GetNodeAttribute() && node->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton) {
-		boneMap[node->GetName()] = node;
+		std::string boneName = node->GetName();
+		boneMap[boneName] = node;
 	}
 
 	for (int i = 0; i < node->GetChildCount(); ++i) {
@@ -136,12 +138,23 @@ void CAnimationController::ApplyAnimationToModelBones(FbxNode* modelNode, const 
 	if (it != animBoneMap.end()) {
 		FbxNode* animBone = it->second;
 
+		debugLog << "[Bone Mapping] Model Bone: " << boneName << " with Animation Bone: " << animBone->GetName() << std::endl;
+
+		// 트랜스폼 병합 전 디버깅
+		FbxVector4 modelTrans = modelNode->LclTranslation.Get();
+		FbxVector4 animTrans = animBone->LclTranslation.Get();
+
+		debugLog << "[Before Merge] Model Trans: (" << modelTrans[0] << ", " << modelTrans[1] << ", " << modelTrans[2] << ")" << std::endl;
+		debugLog << "[Before Merge] Anim Trans: (" << animTrans[0] << ", " << animTrans[1] << ", " << animTrans[2] << ")" << std::endl;
+
 		// TransfromSet
 		modelNode->LclTranslation.Set(animBone->LclTranslation.Get());
 		modelNode->LclRotation.Set(animBone->LclRotation.Get());
 		modelNode->LclScaling.Set(animBone->LclScaling.Get());
 
-		debugLog << "[Merge] Bone '" << boneName << "' animation applied." << std::endl;
+		// 병합 후 디버깅
+		FbxVector4 mergedTrans = modelNode->LclTranslation.Get();
+		debugLog << "[After Merge] Merged Trans: (" << mergedTrans[0] << ", " << mergedTrans[1] << ", " << mergedTrans[2] << ")" << std::endl;
 
 		// MergeAnimationCurves
 		MergeAnimationCurves(modelNode, animBone);
@@ -155,25 +168,47 @@ void CAnimationController::ApplyAnimationToModelBones(FbxNode* modelNode, const 
 void CAnimationController::MergeAnimationCurves(FbxNode* modelNode, FbxNode* animBone)
 {
 	FbxAnimStack* animStack = animBone->GetScene()->GetCurrentAnimationStack();
+	if (!animStack) {
+		animStack = FbxAnimStack::Create(modelNode->GetScene(), "Merged_Animation_Stack");
+		// debugLog << "[Create Animation Stack] : " << modelNode->GetScene()->GetName() << std::endl;
+	}
 	if (!animStack) return;
 
 	FbxAnimLayer* animLayer = animStack->GetMember<FbxAnimLayer>();
+	if (!animLayer) {
+		animLayer = FbxAnimLayer::Create(modelNode->GetScene(), "Merged_Animation_Layer");
+		animStack->AddMember(animLayer);
+		// debugLog << "[Create Animation Stack] : " << modelNode->GetScene()->GetName() << std::endl;
+	}
 	if (!animLayer) return;
 
-	// X, Y, Z 축의 애니메이션 커브 병합
+	// X,Y,Z Animation Curves
 	for (int axis = 0; axis < 3; ++axis) {
-		FbxAnimCurve* modelCurve = modelNode->LclTranslation.GetCurve(animLayer, axis);
-		FbxAnimCurve* animCurve = animBone->LclTranslation.GetCurve(animLayer, axis);
+		const char* axisName = (axis == 0) ? "X" : (axis == 1) ? "Y" : "Z";
 
-		if (!modelCurve || !animCurve) {
-			debugLog << "[Warning] Null animation curve detected on axis " << axis << "." << std::endl;
+		FbxAnimCurve* modelCurve = modelNode->LclTranslation.GetCurve(animLayer, axisName);
+		FbxAnimCurve* animCurve = animBone->LclTranslation.GetCurve(animLayer, axisName);
+
+		if (!modelCurve) {
+			modelCurve = modelNode->LclTranslation.GetCurve(animLayer, axisName, true);
+			// debugLog << "[Create] New animation curve for bone '" << modelNode->GetName() << "' on axis " << axisName << std::endl;
 			continue;
 		}
+
+		if (!animCurve) {
+			// debugLog << "[Warning] No animation curve for bone '" << animBone->GetName() << "' on axis " << axisName << "." << std::endl;
+			continue;
+		}
+
+		//if (!modelCurve || !animCurve) {
+		//	debugLog << "[Warning] Null animation curve detected on axis " << axis << "." << std::endl;
+		//	continue;
+		//}
 
 		modelCurve->KeyModifyBegin();
 
 		if (modelCurve && animCurve) {
-			// 애니메이션 키프레임 병합
+			// Animation Keyframe
 			for (int k = 0; k < animCurve->KeyGetCount(); ++k) {
 				FbxTime keyTime = animCurve->KeyGetTime(k);
 				float keyValue = animCurve->KeyGetValue(k);
@@ -186,9 +221,11 @@ void CAnimationController::MergeAnimationCurves(FbxNode* modelNode, FbxNode* ani
 				else {
 					debugLog << "[Error] Failed to add keyframe at time: " << keyTime.GetSecondDouble() << std::endl;
 				}
-				modelCurve->KeyModifyEnd();
+				
 			}
 		}
+
+		modelCurve->KeyModifyEnd();
 	}
 }
 
