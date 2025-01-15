@@ -138,14 +138,14 @@ void CAnimationController::ApplyAnimationToModelBones(FbxNode* modelNode, const 
 	if (it != animBoneMap.end()) {
 		FbxNode* animBone = it->second;
 
-		debugLog << "[Bone Mapping] Model Bone: " << boneName << " with Animation Bone: " << animBone->GetName() << std::endl;
+		// debugLog << "[Bone Mapping] Model Bone: " << boneName << " with Animation Bone: " << animBone->GetName() << std::endl;
 
 		// Æ®·£½ºÆû º´ÇÕ Àü µð¹ö±ë
 		FbxVector4 modelTrans = modelNode->LclTranslation.Get();
 		FbxVector4 animTrans = animBone->LclTranslation.Get();
 
-		debugLog << "[Before Merge] Model Trans: (" << modelTrans[0] << ", " << modelTrans[1] << ", " << modelTrans[2] << ")" << std::endl;
-		debugLog << "[Before Merge] Anim Trans: (" << animTrans[0] << ", " << animTrans[1] << ", " << animTrans[2] << ")" << std::endl;
+		// debugLog << "[Before Merge] Model Trans: (" << modelTrans[0] << ", " << modelTrans[1] << ", " << modelTrans[2] << ")" << std::endl;
+		// debugLog << "[Before Merge] Anim Trans: (" << animTrans[0] << ", " << animTrans[1] << ", " << animTrans[2] << ")" << std::endl;
 
 		// TransfromSet
 		modelNode->LclTranslation.Set(animBone->LclTranslation.Get());
@@ -170,7 +170,7 @@ void CAnimationController::MergeAnimationCurves(FbxNode* modelNode, FbxNode* ani
 	FbxAnimStack* animStack = animBone->GetScene()->GetCurrentAnimationStack();
 	if (!animStack) {
 		animStack = FbxAnimStack::Create(modelNode->GetScene(), "Merged_Animation_Stack");
-		// debugLog << "[Create Animation Stack] : " << modelNode->GetScene()->GetName() << std::endl;
+		debugLog << "[Create Animation Stack] : " << modelNode->GetScene()->GetName() << std::endl;
 	}
 	if (!animStack) return;
 
@@ -178,13 +178,14 @@ void CAnimationController::MergeAnimationCurves(FbxNode* modelNode, FbxNode* ani
 	if (!animLayer) {
 		animLayer = FbxAnimLayer::Create(modelNode->GetScene(), "Merged_Animation_Layer");
 		animStack->AddMember(animLayer);
-		// debugLog << "[Create Animation Stack] : " << modelNode->GetScene()->GetName() << std::endl;
+		debugLog << "[Create Animation Stack] : " << modelNode->GetScene()->GetName() << std::endl;
 	}
 	if (!animLayer) return;
 
 	// X,Y,Z Animation Curves
 	for (int axis = 0; axis < 3; ++axis) {
 		const char* axisName = (axis == 0) ? "X" : (axis == 1) ? "Y" : "Z";
+
 
 		FbxAnimCurve* modelCurve = modelNode->LclTranslation.GetCurve(animLayer, axisName);
 		FbxAnimCurve* animCurve = animBone->LclTranslation.GetCurve(animLayer, axisName);
@@ -196,14 +197,9 @@ void CAnimationController::MergeAnimationCurves(FbxNode* modelNode, FbxNode* ani
 		}
 
 		if (!animCurve) {
-			// debugLog << "[Warning] No animation curve for bone '" << animBone->GetName() << "' on axis " << axisName << "." << std::endl;
+			debugLog << "[Warning] No animation curve for bone '" << animBone->GetName() << "' on axis " << axisName << "." << std::endl;
 			continue;
 		}
-
-		//if (!modelCurve || !animCurve) {
-		//	debugLog << "[Warning] Null animation curve detected on axis " << axis << "." << std::endl;
-		//	continue;
-		//}
 
 		modelCurve->KeyModifyBegin();
 
@@ -226,6 +222,9 @@ void CAnimationController::MergeAnimationCurves(FbxNode* modelNode, FbxNode* ani
 		}
 
 		modelCurve->KeyModifyEnd();
+
+		debugLog << "[Merge Complete] Bone '" << modelNode->GetName() << "' on axis " << axisName
+			<< " has " << modelCurve->KeyGetCount() << " keyframes." << std::endl;
 	}
 }
 

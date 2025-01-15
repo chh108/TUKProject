@@ -99,7 +99,7 @@ void CBoneData::LoadBones(FbxNode* pfbxNode, int& parentIndex)
 
 }
 
-void CBoneData::UpdateBoneTransforms(FbxTime& fbxCurrentTime)
+void CBoneData::UpdateBoneTransforms(FbxTime& fbxCurrentTime, D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle)
 {
 	for (size_t i = 0; i < m_BoneInfos.size(); ++i)
 	{
@@ -110,15 +110,69 @@ void CBoneData::UpdateBoneTransforms(FbxTime& fbxCurrentTime)
 		{
 			globalTransform = m_BoneInfos[m_BoneInfos[i].parentIndex].finalTransform * globalTransform;
 		}
-
 		m_BoneInfos[i].finalTransform = globalTransform * m_BoneInfos[i].boneOffsetMatrix;
-
-		// 디버그 로그 추가
-		//debugLog << "[Bone Updated] Index: " << i
-		//	<< " | Transform: ["
-		//	<< globalTransform.Get(0, 0) << ", " << globalTransform.Get(0, 1) << ", " << globalTransform.Get(0, 2) << "]"
-		//	<< std::endl;
 	}
+
+	UploadBoneTransformsToGPU(d3dBoneCpuHandle);
+}
+
+void CBoneData::UploadBoneTransformsToGPU(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle)
+{
+	if (!m_pd3dBoneBuffer) {
+		CreateBoneBuffer(d3dBoneCpuHandle);
+	}
+
+	for (size_t i = 0; i < m_BoneInfos.size(); ++i) {
+		m_FinalBoneTransforms[i] = FbxMatrixToXmFloat4x4Matrix(&m_BoneInfos[i].finalTransform);
+	}
+
+	void* mappedData = nullptr;
+	m_pd3dBoneBuffer->Map(0, nullptr, &mappedData);
+	memcpy(mappedData, m_FinalBoneTransforms.data(), sizeof(XMFLOAT4X4) * m_FinalBoneTransforms.size());
+	m_pd3dBoneBuffer->Unmap(0, nullptr);
+}
+
+void CBoneData::CreateBoneBuffer(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle)
+{
+	D3D12_RESOURCE_DESC bufferDesc = {};
+	bufferDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+	bufferDesc.Width = sizeof(XMFLOAT4X4) * m_BoneInfos.size();
+	bufferDesc.Height = 1;
+	bufferDesc.DepthOrArraySize = 1;
+	bufferDesc.MipLevels = 1;
+	bufferDesc.SampleDesc.Count = 1;
+	bufferDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+
+	D3D12_HEAP_PROPERTIES d3dHeapPropertiesDesc;
+	::ZeroMemory(&d3dHeapPropertiesDesc, sizeof(D3D12_HEAP_PROPERTIES));
+	d3dHeapPropertiesDesc.Type = D3D12_HEAP_TYPE_UPLOAD;
+	d3dHeapPropertiesDesc.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+	d3dHeapPropertiesDesc.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+	d3dHeapPropertiesDesc.CreationNodeMask = 1;
+	d3dHeapPropertiesDesc.VisibleNodeMask = 1;
+
+	m_pd3dDevice->CreateCommittedResource(
+		&d3dHeapPropertiesDesc,
+		D3D12_HEAP_FLAG_NONE,
+		&bufferDesc,
+		D3D12_RESOURCE_STATE_GENERIC_READ,
+		nullptr,
+		IID_PPV_ARGS(&m_pd3dBoneBuffer)
+	);
+
+	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+	srvDesc.Format = DXGI_FORMAT_UNKNOWN;
+	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
+	srvDesc.Buffer.NumElements = static_cast<UINT>(m_BoneInfos.size());
+	srvDesc.Buffer.StructureByteStride = sizeof(XMFLOAT4X4);
+
+	m_pd3dDevice->CreateShaderResourceView(m_pd3dBoneBuffer, &srvDesc, d3dBoneCpuHandle);
+}
+
+void CBoneData::BindBoneSRV(ID3D12GraphicsCommandList* commandList, UINT rootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE d3dBoneGpuHandle)
+{
+	commandList->SetGraphicsRootDescriptorTable(rootParameterIndex, d3dBoneGpuHandle);
 }
 
 const std::vector<XMFLOAT4X4>& CBoneData::GetFinalBoneTransforms() {
@@ -143,33 +197,4 @@ const std::vector<XMFLOAT4X4>& CBoneData::GetFinalBoneTransforms() {
 	}
 
 	return m_FinalBoneTransforms;
-}
-
-
-void CBoneData::UploadBoneTransformsToGPU(ID3D12GraphicsCommandList* commandList)
-{
-	if (m_FinalBoneTransforms.size() != m_BoneInfos.size()) {
-		m_FinalBoneTransforms.resize(m_BoneInfos.size());
-	}
-
-	for (size_t i = 0; i < m_BoneInfos.size(); ++i) {
-		m_FinalBoneTransforms[i] = FbxMatrixToXmFloat4x4Matrix(&m_BoneInfos[i].finalTransform);
-	}
-
-	void* mappedData = nullptr;
-	m_pd3dBoneBuffer->Map(0, nullptr, &mappedData);
-	memcpy(mappedData, m_FinalBoneTransforms.data(), sizeof(XMFLOAT4X4) * m_FinalBoneTransforms.size());
-	m_pd3dBoneBuffer->Unmap(0, nullptr);
-}
-
-void CBoneData::BindBoneSRV(ID3D12GraphicsCommandList* commandList, UINT rootParameterIndex)
-{
-	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
-	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
-	srvDesc.Format = DXGI_FORMAT_UNKNOWN;
-	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
-	srvDesc.Buffer.NumElements = static_cast<UINT>(m_BoneInfos.size());
-	srvDesc.Buffer.StructureByteStride = sizeof(XMFLOAT4X4);
-
-	m_pd3dDevice->CreateShaderResourceView(m_pd3dBoneBuffer, &srvDesc, m_BoneSrvHandle);
 }

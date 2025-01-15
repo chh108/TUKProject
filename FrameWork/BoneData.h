@@ -5,6 +5,7 @@
 #include <string>
 #include <fbxsdk.h>
 #include "stdafx.h"
+
 // 본 정보 구조체
 struct BoneInfo {
     FbxNode* pBoneNode = nullptr;
@@ -28,20 +29,23 @@ public:
     // Upload Bone Data from FBX File and Transform Set.
    void LoadBones(FbxNode* pfbxNode, int& parentIndex);
    void LoadVertexBoneData(FbxMesh* pMesh);
-   void UpdateBoneTransforms(FbxTime& fbxCurrentTime);
-   void UploadBoneTransformsToGPU(ID3D12GraphicsCommandList* commandList);
-   void BindBoneSRV(ID3D12GraphicsCommandList* commandList, UINT rootParameterIndex);
+   void UpdateBoneTransforms(FbxTime& fbxCurrentTime, D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
+   void UploadBoneTransformsToGPU(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
+
+   void BindBoneSRV(ID3D12GraphicsCommandList* commandList, UINT rootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE d3dBoneGPUHandle);
 
    const std::vector<XMFLOAT4X4>& GetFinalBoneTransforms();
 
 private:
+    void CreateBoneBuffer(D3D12_CPU_DESCRIPTOR_HANDLE d3dBoneCpuHandle);
+
     ID3D12Device* m_pd3dDevice = NULL;
     ID3D12DescriptorHeap* m_pd3dCbvSrvDescriptorHeap = NULL;
 
     ID3D12Resource* m_pd3dBoneBuffer = NULL;
-    D3D12_CPU_DESCRIPTOR_HANDLE m_BoneSrvHandle = {};
 
     std::unordered_map<std::string, int> m_BoneNameToIndex;
+
     std::vector<BoneInfo> m_BoneInfos;
     std::vector<VertexBoneData> m_VertexBoneData;
     std::vector<XMFLOAT4X4> m_FinalBoneTransforms;
