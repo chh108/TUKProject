@@ -288,7 +288,7 @@ void CAnimationController::CheckAnimationKeyframes(int nAnimationStack)
 //
 CGameObject::CGameObject() 
 	: m_pd3dCbvSrvDescriptorHeap(NULL), m_pd3dBoneOffsetSrvDescriptorHeap(NULL),
-	m_pd3dBoneTransSrvDescriptorHeap(NULL), m_pd3dDevice(NULL), m_pTextureManager(NULL) {
+	m_pd3dBoneTransSrvDescriptorHeap(NULL), m_pd3dDevice(NULL), m_pTextureManager(NULL), m_pBoneData(NULL) {
 	m_xmf4x4World = Matrix4x4::Identity();
 }
 
@@ -366,6 +366,7 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	if (m_pBoneData) {
 		FbxTime currentTime = m_pAnimationController->GetCurrentTime();
 		D3D12_CPU_DESCRIPTOR_HANDLE boneCpuHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+
 		m_pBoneData->UpdateAndUploadBoneTransforms(currentTime);
 
 		// (2) 본 데이터 SRV 바인딩
@@ -573,9 +574,31 @@ CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd
 
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
 
-	if (m_pAnimationController) {
+	if (m_pAnimationController)
+	{
 		m_pAnimationController->LoadAnimations(pfbxSdkManager, ObjectAnimations, m_pfbxScene);
 		m_pAnimationController->SetAnimation(0);
+
+		m_pBoneData = new CBoneData(pd3dDevice, m_pd3dCbvSrvDescriptorHeap);
+
+		FbxNode* modelRootNode = m_pfbxScene->GetRootNode();
+		int boneIndex = 0;
+		m_pBoneData->LoadBones(modelRootNode, boneIndex);
+
+		for (int i = 0; i < modelRootNode->GetChildCount(); ++i) {
+			FbxNode* childNode = modelRootNode->GetChild(i);
+			FbxMesh* pMesh = childNode->GetMesh();
+			if (pMesh) {
+				m_pBoneData->LoadVertexBoneData(pMesh);
+			}
+		}
+
+		for (const auto& animationScene : m_pAnimationController->GetAnimationScenes()) {
+			if (animationScene) {
+				FbxNode* animRootNode = animationScene->GetRootNode();
+				m_pBoneData->LoadBones(animRootNode, boneIndex);
+			}
+		}
 	}
 	debugLog << "[CGameObject] Objects Created Successful!! " << std::endl;
 }

@@ -216,6 +216,7 @@ void CBoneData::UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime) {
 	if (SUCCEEDED(hr) && mappedData) {
 		memcpy(mappedData, m_FinalBoneTransforms.data(), sizeof(XMFLOAT4X4) * m_FinalBoneTransforms.size());
 		m_pd3dBoneTransformBuffer->Unmap(0, nullptr);
+		debugLog << "[UpdateAndUploadBoneTransforms] : Success!!" << std::endl;
 	}
 	else {
 		debugLog << "[Error] Failed to upload bone transforms!" << std::endl;
