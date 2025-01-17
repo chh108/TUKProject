@@ -147,7 +147,7 @@ void CBoneData::CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_C
 	bufferSize = (bufferSize + 255) & ~255;  // 256바이트 단위 정렬
 
 	D3D12_HEAP_PROPERTIES heapProps = {};
-	heapProps.Type = D3D12_HEAP_TYPE_DEFAULT;
+	heapProps.Type = D3D12_HEAP_TYPE_UPLOAD;
 	heapProps.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
 	heapProps.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
 	heapProps.CreationNodeMask = 1;
@@ -155,12 +155,15 @@ void CBoneData::CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_C
 
 	D3D12_RESOURCE_DESC bufferDesc = {};
 	bufferDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
-	bufferDesc.Alignment = D3D12_DEFAULT_RESOURCE_PLACEMENT_ALIGNMENT;  // 64KB 정렬
+	bufferDesc.Alignment = 0;
 	bufferDesc.Width = bufferSize;
 	bufferDesc.Height = 1;
 	bufferDesc.DepthOrArraySize = 1;
 	bufferDesc.MipLevels = 1;
+	bufferDesc.SampleDesc.Count = 1;
+	bufferDesc.SampleDesc.Quality = 0; 
 	bufferDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR; // D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+	bufferDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
 
 	// 1. 본 오프셋 버퍼 (CBV)
 	HRESULT hr = m_pd3dDevice->CreateCommittedResource(

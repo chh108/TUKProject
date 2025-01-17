@@ -49,14 +49,26 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	m_hInstance = hInstance;
 	m_hWnd = hMainWnd;
 
+#if defined(_DEBUG)  // 디버그 빌드에서만 실행
 	ID3D12Debug* debugController = nullptr;
 	if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController)))) {
-		debugController->EnableDebugLayer();  // 디버그 레이어 활성화
+		debugController->EnableDebugLayer();  // D3D12 디버그 레이어 활성화
 		debugLog << "[Info] D3D12 Debug Layer Enabled." << std::endl;
+		debugController->Release();
 	}
 	else {
 		debugLog << "[Warning] Failed to enable D3D12 Debug Layer." << std::endl;
 	}
+
+	// DXGI 디버그 레이어 활성화 (선택사항)
+	IDXGIInfoQueue* dxgiInfoQueue = nullptr;
+	if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(&dxgiInfoQueue)))) {
+		dxgiInfoQueue->SetBreakOnSeverity(DXGI_DEBUG_ALL, DXGI_INFO_QUEUE_MESSAGE_SEVERITY_ERROR, TRUE);
+		dxgiInfoQueue->SetBreakOnSeverity(DXGI_DEBUG_ALL, DXGI_INFO_QUEUE_MESSAGE_SEVERITY_CORRUPTION, TRUE);
+		debugLog << "[Info] DXGI Debug Layer Enabled." << std::endl;
+		dxgiInfoQueue->Release();
+	}
+#endif
 
 	CreateDirect3DDevice();
 	CreateCommandQueueAndList();

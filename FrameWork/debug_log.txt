@@ -1,17 +1,18 @@
 Debug Log Initialized
 [Info] D3D12 Debug Layer Enabled.
+[Info] DXGI Debug Layer Enabled.
 SRV Descriptor Heap Created Well Done
-CTexture::Initialize called - Device: 0000017FA62401B0
+CTexture::Initialize called - Device: 00000255AE5003C0
 Input layout is invalid. NUM : 0
 Input layout is invalid. NUM : 1
-Ready To Connect Shader Num : 0 Address :0000017FACB16DF8
+Ready To Connect Shader Num : 0 Address :00000255B4D7A8A8
 Input Layout: 2
 Element 0: POSITION
 Element 1: TEXCOORD
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 0000017FACA07180
+pInputElementDescs : 00000255B4C987A0
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :0000017FACB4C558
+Ready To Connect Shader Num : 1 Address :00000255B4DB5808
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
@@ -19,13 +20,13 @@ Element 2: BONEINDEX
 Element 3: BONEWEIGHT
 Animation stack loaded from: Model/BluePlayer.fbx
 m_TextureMap is empty.
-Texture resource created successfully: 0000017FACD65C50
-SRV Handle Address (Before) : 1647834583040
-Create SRV : 1647834583040with 0000017FACD65C50
+Texture resource created successfully: 00000255B556D150
+SRV Handle Address (Before) : 2567094489088
+Create SRV : 2567094489088with 00000255B556D150
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 0000017FACD89E70
+pInputElementDescs : 00000255B5500DA0
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :0000017FAD2CDF88
+Ready To Connect Shader Num : 1 Address :00000255B4FF5B48
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
@@ -1901,9 +1902,9 @@ Animation stack loaded from: Model/Character/Animations/WALK.fbx
 [SetAnimation] Current Animation Stack Set: WALK
 Animation stack loaded from: Model/BluePlayer.fbx
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 0000017FADDE7DC0
+pInputElementDescs : 00000255B5E4C080
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :0000017FACD878D8
+Ready To Connect Shader Num : 1 Address :00000255B5627108
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
@@ -3777,13 +3778,13 @@ Animation stack loaded from: Model/Character/Animations/WALK.fbx
 [Warning] Duplicate Bone: Bip002 - Skipping...
 [CGameObject] Objects Created Successful!! 
 [SetAnimation] Current Animation Stack Set: WALK
-CPlayer Constructor (Before Scene Load) - Device: 0000017FA62401B0
+CPlayer Constructor (Before Scene Load) - Device: 00000255AE5003C0
 Animation stack loaded from: Model/BluePlayer.fbx
-CPlayer Constructor (After Scene Load) - Device: 0000017FA62401B0
+CPlayer Constructor (After Scene Load) - Device: 00000255AE5003C0
 Start Create FbxSkinnedModel Shader
-pInputElementDescs : 0000017FAEF2E240
+pInputElementDescs : 00000255B7312B00
 NumElements : 4
-Ready To Connect Shader Num : 1 Address :0000017FADB796B8
+Ready To Connect Shader Num : 1 Address :00000255B7070A58
 Input Layout: 4
 Element 0: POSITION
 Element 1: TEXCOORD
@@ -5656,12 +5657,12 @@ Animation stack loaded from: Model/Character/Animations/WALK.fbx
 [Warning] Duplicate Bone: Bip002 - Skipping...
 [Warning] Duplicate Bone: Bip002 - Skipping...
 [CPlayer] Player Created Successful!! 
-Elapsed Time per Frame: 0.017163
-Elapsed Time Per Frame: 0.017163 seconds
+Elapsed Time per Frame: 0.0178178
+Elapsed Time Per Frame: 0.0178178 seconds
 SrvGpuHandle : 10528416542556160
 [Warning] Bone Buffers are NULL. Creating buffers...
 [Info] Descriptor Increment Size: 32
 [Info] BoneMapIndex: 0
-[Info] CBV Handle Ptr: 1647834583040
-[Info] SRV Handle Ptr: 1647834583072
-[Error] Failed to create Bone Offset Buffer. HRESULT: -2147024809
+[Info] CBV Handle Ptr: 2567094489088
+[Info] SRV Handle Ptr: 2567094489120
+[CreateBoneBuffers] CBV and SRV buffers created.
