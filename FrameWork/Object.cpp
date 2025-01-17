@@ -364,6 +364,24 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 	}
 
 	if (m_pBoneData) {
+		if (m_pBoneData->m_pd3dBoneOffsetBuffer == NULL || m_pBoneData->m_pd3dBoneTransformBuffer == NULL) {
+			debugLog << "[Warning] Bone Buffers are NULL. Creating buffers..." << std::endl;
+
+			D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+			D3D12_CPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+
+			UINT descriptorSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+			debugLog << "[Info] Descriptor Increment Size: " << descriptorSize << std::endl;
+			debugLog << "[Info] BoneMapIndex: " << m_BoneMapIndex << std::endl;
+
+			cbvHandle.ptr += m_BoneMapIndex * 2 * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+			srvHandle.ptr += (m_BoneMapIndex * 2 + 1) * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+
+			debugLog << "[Info] CBV Handle Ptr: " << cbvHandle.ptr << std::endl;
+			debugLog << "[Info] SRV Handle Ptr: " << srvHandle.ptr << std::endl;
+
+			m_pBoneData->CreateBoneBuffers(cbvHandle, srvHandle);
+		}
 		FbxTime currentTime = m_pAnimationController->GetCurrentTime();
 		D3D12_CPU_DESCRIPTOR_HANDLE boneCpuHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 

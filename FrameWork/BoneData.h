@@ -30,15 +30,15 @@ public:
     void LoadVertexBoneData(FbxMesh* pMesh);
     void UpdateAndUploadBoneTransforms(FbxTime& fbxCurrentTime);
     void BindBoneBuffers(ID3D12GraphicsCommandList* commandList);
-
-private:
     void CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_CPU_DESCRIPTOR_HANDLE srvHandle);
-
-    ID3D12Device* m_pd3dDevice = NULL;
-    ID3D12DescriptorHeap* m_pd3dCbvSrvDescriptorHeap = NULL;
 
     ID3D12Resource* m_pd3dBoneOffsetBuffer = NULL;
     ID3D12Resource* m_pd3dBoneTransformBuffer = NULL;
+
+private:
+    ID3D12Device* m_pd3dDevice = NULL;
+    ID3D12DescriptorHeap* m_pd3dCbvSrvDescriptorHeap = NULL;
+
 
     D3D12_CPU_DESCRIPTOR_HANDLE m_BoneOffsetCBVHandle = {};
     D3D12_CPU_DESCRIPTOR_HANDLE m_BoneTransformSRVHandle = {};

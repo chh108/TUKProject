@@ -144,20 +144,26 @@ void CBoneData::LoadBones(FbxNode* pfbxNode, int& parentIndex)
 // 본 버퍼 생성 (통합)
 void CBoneData::CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_CPU_DESCRIPTOR_HANDLE srvHandle) {
 	UINT64 bufferSize = sizeof(XMFLOAT4X4) * m_BoneInfos.size();
+	bufferSize = (bufferSize + 255) & ~255;  // 256바이트 단위 정렬
 
 	D3D12_HEAP_PROPERTIES heapProps = {};
 	heapProps.Type = D3D12_HEAP_TYPE_UPLOAD;
+	heapProps.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+	heapProps.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+	heapProps.CreationNodeMask = 1;
+	heapProps.VisibleNodeMask = 1;
 
 	D3D12_RESOURCE_DESC bufferDesc = {};
 	bufferDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+	bufferDesc.Alignment = D3D12_DEFAULT_RESOURCE_PLACEMENT_ALIGNMENT;  // 64KB 정렬
 	bufferDesc.Width = bufferSize;
 	bufferDesc.Height = 1;
 	bufferDesc.DepthOrArraySize = 1;
 	bufferDesc.MipLevels = 1;
-	bufferDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+	bufferDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR; // D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
 	// 1. 본 오프셋 버퍼 (CBV)
-	m_pd3dDevice->CreateCommittedResource(
+	HRESULT hr = m_pd3dDevice->CreateCommittedResource(
 		&heapProps,
 		D3D12_HEAP_FLAG_NONE,
 		&bufferDesc,
@@ -165,6 +171,10 @@ void CBoneData::CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_C
 		nullptr,
 		IID_PPV_ARGS(&m_pd3dBoneOffsetBuffer)
 	);
+
+	if (FAILED(hr)) {
+		debugLog << "[Error] Failed to create Bone Offset Buffer. HRESULT: " << hr << std::endl;
+	}
 
 	D3D12_CONSTANT_BUFFER_VIEW_DESC cbvDesc = {};
 	cbvDesc.BufferLocation = m_pd3dBoneOffsetBuffer->GetGPUVirtualAddress();
@@ -174,7 +184,7 @@ void CBoneData::CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_C
 	m_BoneOffsetCBVHandle = cbvHandle;
 
 	// 2. 본 트랜스폼 버퍼 (SRV)
-	m_pd3dDevice->CreateCommittedResource(
+	HRESULT hr_srv = m_pd3dDevice->CreateCommittedResource(
 		&heapProps,
 		D3D12_HEAP_FLAG_NONE,
 		&bufferDesc,
@@ -183,6 +193,9 @@ void CBoneData::CreateBoneBuffers(D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle, D3D12_C
 		IID_PPV_ARGS(&m_pd3dBoneTransformBuffer)
 	);
 
+	if (FAILED(hr_srv)) {
+		debugLog << "[Error] Failed to create Bone Transform Buffer. HRESULT: " << hr << std::endl;
+	}
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
 	srvDesc.Format = DXGI_FORMAT_UNKNOWN;
 	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
