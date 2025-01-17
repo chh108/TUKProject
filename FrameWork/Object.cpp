@@ -356,6 +356,7 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
 		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root ParameterIndex 2
+		debugLog << "SrvGpuHandle : " << srvHandle.ptr << std::endl;
 	}
 	else
 	{
@@ -370,6 +371,7 @@ void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pC
 		// (2) 본 데이터 SRV 바인딩
 		D3D12_GPU_DESCRIPTOR_HANDLE boneGpuHandle = m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
 		pd3dCommandList->SetGraphicsRootDescriptorTable(6, boneGpuHandle);  // Root Parameter 6 (Bone Offset)
+		debugLog << "boneGpuHandle : " << boneGpuHandle.ptr << std::endl;
 		pd3dCommandList->SetGraphicsRootDescriptorTable(7, boneGpuHandle); // Root ParameterIndex 2
 	}
 	// 20241216 애니메이션 작업
