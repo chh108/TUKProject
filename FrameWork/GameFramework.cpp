@@ -49,6 +49,15 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	m_hInstance = hInstance;
 	m_hWnd = hMainWnd;
 
+	ID3D12Debug* debugController = nullptr;
+	if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController)))) {
+		debugController->EnableDebugLayer();  // 디버그 레이어 활성화
+		debugLog << "[Info] D3D12 Debug Layer Enabled." << std::endl;
+	}
+	else {
+		debugLog << "[Warning] Failed to enable D3D12 Debug Layer." << std::endl;
+	}
+
 	CreateDirect3DDevice();
 	CreateCommandQueueAndList();
 	CreateRtvAndDsvDescriptorHeaps();
