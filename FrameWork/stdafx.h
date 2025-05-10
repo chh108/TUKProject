@@ -22,6 +22,7 @@
 
 #include <fstream>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -40,6 +41,7 @@ using namespace std;
 #endif
 
 #include <fbxsdk.h>
+
 
 //#define _WITH_FBX_SCENE_INSTANCING
 

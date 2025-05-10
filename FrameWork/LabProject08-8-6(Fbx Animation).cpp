@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "LabProject08-8-6(Fbx Animation).h"
 #include "GameFramework.h"
+#include "DebugLog.h"
 
 #define MAX_LOADSTRING 100
 
@@ -20,6 +21,15 @@ INT_PTR CALLBACK About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
+	debugLog.open("debug_log.txt"); // 로그 파일 열기
+	if (debugLog.is_open()) {
+		debugLog << "Debug Log Initialized\n";
+	}
+	else {
+		MessageBox(NULL, L"Failed to open debug log file!", L"Error", MB_OK);
+		return -1; // 파일이 열리지 않으면 종료
+	}
+
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
@@ -51,6 +61,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		}
 	}
 	gGameFramework.OnDestroy();
+
+	debugLog << "Closing Debug Log\n";
+	debugLog.close(); // 로그 파일 닫기
 
 	return((int)msg.wParam);
 }

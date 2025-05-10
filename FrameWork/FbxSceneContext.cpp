@@ -2,6 +2,10 @@
 #include "Object.h"
 #include "Shader.h"
 #include "FbxSceneContext.h"
+#include "BoneData.h"
+#include "Texture.h"
+#include "DebugLog.h"
+#include <functional>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -18,8 +22,8 @@ public:
 
 CFbxRenderInfo::~CFbxRenderInfo()
 {
-	if (m_pShader) m_pShader->Release();
-	if (m_pMesh) m_pMesh->Release();
+	if (m_pShader) m_pShader->Release(); m_pShader = NULL;
+	if (m_pMesh) m_pMesh->Release(); m_pMesh = NULL;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -189,6 +193,7 @@ void ComputeLinearDeformation(FbxMesh *pfbxMesh, FbxTime& fbxCurrentTime, FbxVec
 			int *pnIndices = pfbxCluster->GetControlPointIndices();
 			double *pfWeights = pfbxCluster->GetControlPointWeights();
 
+			
 			int nIndices = pfbxCluster->GetControlPointIndicesCount();
 			for (int k = 0; k < nIndices; k++)
 			{            
@@ -210,6 +215,8 @@ void ComputeLinearDeformation(FbxMesh *pfbxMesh, FbxTime& fbxCurrentTime, FbxVec
 					MatrixAdd(pfbxmtxClusterDeformations[nIndex], fbxmtxInfluence);
 					pfSumOfClusterWeights[nIndex] += fWeight;
 				}
+
+				// debugLog << "[BoneCluster] Vertex: " << nIndex << "| Cluster " << j << "| Weight" << fWeight << std::endl;
 			}			
 		}
 	}
@@ -373,12 +380,19 @@ void AnimateFbxMesh(FbxMesh *pfbxMesh, FbxTime& fbxCurrentTime)
 		::memcpy(pfbxv4Vertices, pfbxMesh->GetControlPoints(), nVertices * sizeof(FbxVector4));
 
 		int nSkinDeformers = pfbxMesh->GetDeformerCount(FbxDeformer::eSkin);
-		if (nSkinDeformers > 0) ::ComputeSkinDeformation(pfbxMesh, fbxCurrentTime, pfbxv4Vertices, nVertices);
+		if (nSkinDeformers > 0)
+		{
+			::ComputeSkinDeformation(pfbxMesh, fbxCurrentTime, pfbxv4Vertices, nVertices);
+		}
 
 		CFbxRenderInfo *pFbxRenderInfo = (CFbxRenderInfo *)pfbxMesh->GetUserDataPtr();
-		if (pFbxRenderInfo->m_pMesh)
+		if (pFbxRenderInfo && pFbxRenderInfo->m_pMesh)
 		{
-			for (int i = 0; i < nVertices; i++) pFbxRenderInfo->m_pMesh->m_pxmf4MappedPositions[i] = XMFLOAT4((float)pfbxv4Vertices[i][0], (float)pfbxv4Vertices[i][1], (float)pfbxv4Vertices[i][2], 1.0f);
+			for (int i = 0; i < nVertices; i++)
+			{
+				pFbxRenderInfo->m_pMesh->m_pxmf4MappedPositions[i] = XMFLOAT4((float)pfbxv4Vertices[i][0], (float)pfbxv4Vertices[i][1], (float)pfbxv4Vertices[i][2], 1.0f);
+			}
+			pFbxRenderInfo->m_pMesh->UploadDeformedVerticesToGPU();
 		}
 
 		delete[] pfbxv4Vertices;
@@ -441,6 +455,33 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 		{
 			int nVertices = pfbxMesh->GetControlPointsCount();
 
+			XMFLOAT2* pxmf2UVs = new XMFLOAT2[nVertices]; // 20241229 ADD UV
+			if (pfbxMesh->GetElementUVCount() > 0)
+			{
+				FbxGeometryElementUV* pUVElement = pfbxMesh->GetElementUV(0);
+
+				for (int i = 0; i < nVertices; i++)
+				{
+					pxmf2UVs[i] = XMFLOAT2(0.0f, 0.0f); // Reset UV
+				}
+				for (int i = 0; i < pfbxMesh->GetPolygonCount(); i++)
+				{
+					for (int j = 0; j < pfbxMesh->GetPolygonSize(i); j++)
+					{
+						int vertexIndex = pfbxMesh->GetPolygonVertex(i, j); // GetVertexIndex
+						int uvIndex = pfbxMesh->GetTextureUVIndex(i, j); // GetUVIndex
+						FbxVector2 uv = pUVElement->GetDirectArray().GetAt(uvIndex);
+
+						pxmf2UVs[vertexIndex] = XMFLOAT2(static_cast<float>(uv[0]), 1.0f - static_cast<float>(uv[1]));
+						// debugLog << "Vertex[" << vertexIndex << "] UV = (" << uv[0] << ", " << uv[1] << ")" << std::endl; // Check UV DATA
+					}
+				}
+			}
+			else
+			{
+				std::cout << "No UV data available for this mesh." << std::endl;
+			}
+
 			int nIndices = 0;
 			int nPolygons = pfbxMesh->GetPolygonCount();
 			for (int i = 0; i < nPolygons; i++) nIndices += pfbxMesh->GetPolygonSize(i); //Triangle: 3, Triangulate(), nIndices = nPolygons * 3
@@ -453,17 +494,26 @@ void CreateMeshFromFbxNodeHierarchy(ID3D12Device *pd3dDevice, ID3D12GraphicsComm
 			}
 
 			CFbxRenderInfo *pFbxRenderInfo = new CFbxRenderInfo();
-			pFbxRenderInfo->m_pMesh = new CMeshFromFbx(pd3dDevice, pd3dCommandList, nVertices, nIndices, pnIndices);
+			pFbxRenderInfo->m_pMesh = new CMeshFromFbx(pd3dDevice, pd3dCommandList, nVertices, nIndices, pnIndices, pxmf2UVs);
+
 			int nSkinDeformers = pfbxMesh->GetDeformerCount(FbxDeformer::eSkin);
 			if (nSkinDeformers > 0)
+			{
 				pFbxRenderInfo->m_pShader = new CFbxSkinnedModelShader();
+				pFbxRenderInfo->m_pShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxSkinnedModel);
+				pFbxRenderInfo->m_pShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+			}
 			else
+			{
 				pFbxRenderInfo->m_pShader = new CFbxModelShader();
-			pFbxRenderInfo->m_pShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature);
+				pFbxRenderInfo->m_pShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxModel);
+				pFbxRenderInfo->m_pShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+			}
 
 			pfbxMesh->SetUserDataPtr(pFbxRenderInfo);
 
 			if(pnIndices) delete[] pnIndices;
+			if(pxmf2UVs) delete[] pxmf2UVs;
 		}
 	}
 
@@ -507,14 +557,15 @@ void ReleaseUploadBufferFromFbxNodeHierarchy(FbxNode *pfbxNode)
 	for (int i = 0; i < nChilds; i++) ReleaseUploadBufferFromFbxNodeHierarchy(pfbxNode->GetChild(i));
 }
 
-FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, char *pstrFbxFileName)
+FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, const char *pstrFbxFileName)
 {
 	FbxScene *pfbxScene = NULL;
 
 	int nSDKMajor, nSDKMinor, nSDKRevision;
 	FbxManager::GetFileFormatVersion(nSDKMajor, nSDKMinor, nSDKRevision);
 
-	FbxIOSettings *pfbxIOSettings = pfbxSdkManager->GetIOSettings();
+	FbxIOSettings* pfbxIOSettings = pfbxSdkManager->GetIOSettings();
+
 	FbxImporter *pfbxImporter = FbxImporter::Create(pfbxSdkManager, " ");
 	bool bImportStatus = pfbxImporter->Initialize(pstrFbxFileName, -1, pfbxIOSettings);
 
@@ -535,6 +586,28 @@ FbxScene *LoadFbxSceneFromFile(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandLi
 
 	FbxSystemUnit fbxSceneSystemUnit = pfbxScene->GetGlobalSettings().GetSystemUnit();
 	if (fbxSceneSystemUnit.GetScaleFactor() != 1.0) FbxSystemUnit::cm.ConvertScene(pfbxScene);
+
+	if (pfbxScene->GetSrcObjectCount<FbxAnimStack>() == 0) {
+		std::cerr << "No animation stacks found in file: " << pstrFbxFileName << std::endl;
+	}
+	else {
+		debugLog << "Animation stack loaded from: " << pstrFbxFileName << std::endl;
+	}
+
+	if (pfbxScene) {
+		FbxNode* rootNode = pfbxScene->GetRootNode();
+		int boneIndex = 0;
+		// BoneData LOAD
+
+		for (int i = 0; i < rootNode->GetChildCount(); ++i) {
+			FbxNode* childNode = rootNode->GetChild(i);
+			FbxMesh* pMesh = childNode->GetMesh();
+			if (pMesh)
+			{
+				// VertexBone Data Load
+			}
+		}
+	}
 
 	pfbxImporter->Destroy();
 

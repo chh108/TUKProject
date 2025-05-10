@@ -1,35 +1,96 @@
 //-----------------------------------------------------------------------------
-// File: CPlayer.cpp
+// File: Player.cpp
 //-----------------------------------------------------------------------------
 
 #include "stdafx.h"
 #include "Player.h"
 #include "Shader.h"
+#include "Scene.h"
+#include "Texture.h"
+#include "DebugLog.h"
+#include "BoneData.h"
+
+std::vector<std::string> AnimationFilePaths = {
+	"Model/Character/Animations/IDLE.fbx",
+	"Model/Character/Animations/WALK.fbx"
+};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CPlayer
 
-CPlayer::CPlayer()
-{
-	m_pCamera = NULL;
+CPlayer::CPlayer(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
+	ID3D12RootSignature* pd3dGraphicsRootSignature, FbxManager* pfbxSdkManager,
+	const std::string& fbxFilePath, CTexture* pTextureManager, PlayerType playerType)
+	: CGameObject(pTextureManager, pd3dDevice), m_pTexture(NULL), m_pBoneData(NULL), m_PlayerType(playerType) {
 
-	m_xmf3Position = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	m_xmf3Right = XMFLOAT3(1.0f, 0.0f, 0.0f);
-	m_xmf3Up = XMFLOAT3(0.0f, 1.0f, 0.0f);
-	m_xmf3Look = XMFLOAT3(0.0f, 0.0f, 1.0f);
+	debugLog << "CPlayer Constructor (Before Scene Load) - Device: " << m_pd3dDevice << std::endl;
 
-	m_xmf3Velocity = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	m_xmf3Gravity = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	m_fMaxVelocityXZ = 0.0f;
-	m_fMaxVelocityY = 0.0f;
-	m_fFriction = 0.0f;
+	m_pCamera = ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
 
-	m_fPitch = 0.0f;
-	m_fRoll = 0.0f;
-	m_fYaw = 0.0f;
+	if (pTextureManager) {
+        m_pTextureManager = pTextureManager;
+    } else
+	{
+        debugLog << "CPlayer: Texture Manager is NULL!" << std::endl;
+    }
+	// FBX 씬 로드
+	m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, fbxFilePath.c_str());
 
-	m_pPlayerUpdatedContext = NULL;
-	m_pCameraUpdatedContext = NULL;
+	debugLog << "CPlayer Constructor (After Scene Load) - Device: " << m_pd3dDevice << std::endl;
+
+	if (m_pfbxScene) {
+		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), 
+			"Model/Character/Textures/", pd3dCommandList);
+
+		if (!textures.empty()) {
+			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
+			// debugLog << "First texture loaded for Player: " << m_pTexture << std::endl;
+		}
+		else {
+			std::cerr << "No textures loaded for Player." << std::endl;
+		}
+
+		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
+	}
+
+	SetTexture(m_pTexture, 0);
+
+	m_pAnimationController = new CAnimationController(m_pfbxScene);
+
+	if (m_pAnimationController) 
+	{
+		m_pAnimationController->LoadAnimations(pfbxSdkManager, AnimationFilePaths, m_pfbxScene);
+		m_pAnimationController->SetAnimation(0);
+
+		m_pBoneData = new CBoneData(pd3dDevice, m_pd3dCbvSrvDescriptorHeap);
+
+		FbxNode* modelRootNode = m_pfbxScene->GetRootNode();
+		int boneIndex = 0;
+		m_pBoneData->LoadBones(modelRootNode, boneIndex);
+
+		for (int i = 0; i < modelRootNode->GetChildCount(); ++i) {
+			FbxNode* childNode = modelRootNode->GetChild(i);
+			FbxMesh* pMesh = childNode->GetMesh();
+			if (pMesh) {
+				m_pBoneData->LoadVertexBoneData(pMesh);
+			}
+		}
+
+		for (const auto& animationScene : m_pAnimationController->GetAnimationScenes()) {
+			if (animationScene) {
+				FbxNode* animRootNode = animationScene->GetRootNode();
+				m_pBoneData->LoadBones(animRootNode, boneIndex);
+			}
+		}
+	}
+
+	// 플레이어 타입별 설정
+	SetPlayerProperties();
+
+	CreateShaderVariables(pd3dDevice, pd3dCommandList);
+	SetPosition(XMFLOAT3(0.0f, 0.0f, -60.0f));
+
+	debugLog << "[CPlayer] Player Created Successful!! " << std::endl;
 }
 
 CPlayer::~CPlayer()
@@ -37,6 +98,12 @@ CPlayer::~CPlayer()
 	ReleaseShaderVariables();
 
 	if (m_pCamera) delete m_pCamera;
+	if (m_pAnimationController) delete m_pAnimationController;
+	if (m_pTextureManager) 
+	{
+		delete m_pTextureManager;
+		m_pTextureManager = NULL;
+	}
 }
 
 void CPlayer::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)
@@ -153,7 +220,11 @@ void CPlayer::Update(float fTimeElapsed)
 	}
 	float fMaxVelocityY = m_fMaxVelocityY;
 	fLength = sqrtf(m_xmf3Velocity.y * m_xmf3Velocity.y);
-	if (fLength > m_fMaxVelocityY) m_xmf3Velocity.y *= (fMaxVelocityY / fLength);
+	
+	if (fLength > m_fMaxVelocityY) 
+	{
+		m_xmf3Velocity.y *= (fMaxVelocityY / fLength);
+	}
 
 	XMFLOAT3 xmf3Velocity = Vector3::ScalarProduct(m_xmf3Velocity, fTimeElapsed, false);
 	Move(xmf3Velocity, false);
@@ -170,6 +241,26 @@ void CPlayer::Update(float fTimeElapsed)
 	float fDeceleration = (m_fFriction * fTimeElapsed);
 	if (fDeceleration > fLength) fDeceleration = fLength;
 	m_xmf3Velocity = Vector3::Add(m_xmf3Velocity, Vector3::ScalarProduct(m_xmf3Velocity, -fDeceleration, true));
+
+	if (m_pAnimationController) // Animation Time Update
+	{
+		m_pAnimationController->AdvanceTime(fTimeElapsed);
+	}
+}
+
+void CPlayer::SetPlayerProperties() {
+	switch (m_PlayerType) {
+	case PlayerType::Blue:
+		m_fMaxVelocityXZ = 15.0f;
+		m_fMaxVelocityY = 25.0f;
+		break;
+	case PlayerType::Red:
+		//RedPlayer
+		break;
+	case PlayerType::Green:
+		//GreenPlayer
+		break;
+	}
 }
 
 CCamera *CPlayer::OnChangeCamera(DWORD nNewCameraMode, DWORD nCurrentCameraMode)
@@ -216,6 +307,78 @@ CCamera *CPlayer::OnChangeCamera(DWORD nNewCameraMode, DWORD nCurrentCameraMode)
 	return(pNewCamera);
 }
 
+CCamera* CPlayer::ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed) {
+	DWORD nCurrentCameraMode = (m_pCamera) ? m_pCamera->GetMode() : 0x00;
+	if (nCurrentCameraMode == nNewCameraMode) return m_pCamera;
+
+	switch (nNewCameraMode) {
+	case FIRST_PERSON_CAMERA:
+		SetFriction(20.0f);
+		SetGravity(XMFLOAT3(0.0f, 0.0f, 0.0f));
+		SetMaxVelocityXZ(2.5f);
+		SetMaxVelocityY(40.0f);
+		m_pCamera = OnChangeCamera(FIRST_PERSON_CAMERA, nCurrentCameraMode);
+		m_pCamera->SetTimeLag(0.0f);
+		m_pCamera->SetOffset(XMFLOAT3(0.0f, 20.0f, 0.0f));
+		m_pCamera->GenerateProjectionMatrix(1.01f, 5000.0f, ASPECT_RATIO, 60.0f);
+		break;
+
+	case SPACESHIP_CAMERA:
+		SetFriction(100.5f);
+		SetGravity(XMFLOAT3(0.0f, 0.0f, 0.0f));
+		SetMaxVelocityXZ(40.0f);
+		SetMaxVelocityY(40.0f);
+		m_pCamera = OnChangeCamera(SPACESHIP_CAMERA, nCurrentCameraMode);
+		m_pCamera->SetTimeLag(0.0f);
+		m_pCamera->SetOffset(XMFLOAT3(0.0f, 0.0f, 0.0f));
+		m_pCamera->GenerateProjectionMatrix(1.01f, 5000.0f, ASPECT_RATIO, 60.0f);
+		break;
+
+	case THIRD_PERSON_CAMERA:
+		if (m_PlayerType == PlayerType::Blue) {
+			SetFriction(20.5f);
+			SetGravity(XMFLOAT3(0.0f, 0.0f, 0.0f));
+			SetMaxVelocityXZ(25.5f);
+			SetMaxVelocityY(20.0f);
+			m_pCamera = OnChangeCamera(THIRD_PERSON_CAMERA, nCurrentCameraMode);
+			m_pCamera->SetTimeLag(0.25f);
+			m_pCamera->SetOffset(XMFLOAT3(0.0f, 300.0f, -270.0f));
+		}
+		else if (m_PlayerType == PlayerType::Red) {
+			SetFriction(15.0f);
+			SetGravity(XMFLOAT3(0.0f, -9.8f, 0.0f));
+			SetMaxVelocityXZ(30.0f);
+			SetMaxVelocityY(25.0f);
+			m_pCamera = OnChangeCamera(THIRD_PERSON_CAMERA, nCurrentCameraMode);
+			m_pCamera->SetTimeLag(0.2f);
+			m_pCamera->SetOffset(XMFLOAT3(0.0f, 200.0f, -200.0f));
+		}
+		else if (m_PlayerType == PlayerType::Green) {
+			SetFriction(10.0f);
+			SetGravity(XMFLOAT3(0.0f, -5.0f, 0.0f));
+			SetMaxVelocityXZ(20.0f);
+			SetMaxVelocityY(15.0f);
+			m_pCamera = OnChangeCamera(THIRD_PERSON_CAMERA, nCurrentCameraMode);
+			m_pCamera->SetTimeLag(0.3f);
+			m_pCamera->SetOffset(XMFLOAT3(0.0f, 250.0f, -250.0f));
+		}
+		m_pCamera->GenerateProjectionMatrix(1.01f, 5000.0f, ASPECT_RATIO, 60.0f);
+		break;
+
+	default:
+		break;
+	}
+
+	if (m_pCamera) {
+		m_pCamera->SetViewport(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT, 0.0f, 1.0f);
+		m_pCamera->SetScissorRect(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
+		m_pCamera->SetPosition(Vector3::Add(m_xmf3Position, m_pCamera->GetOffset()));
+		Update(fTimeElapsed);
+	}
+
+	return m_pCamera;
+}
+
 void CPlayer::OnPrepareRender()
 {
 	m_xmf4x4World._11 = m_xmf3Right.x; m_xmf4x4World._12 = m_xmf3Right.y; m_xmf4x4World._13 = m_xmf3Right.z;
@@ -229,84 +392,19 @@ void CPlayer::OnPrepareRender()
 
 void CPlayer::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera)
 {
+	if (m_pTexture) {
+		debugLog << "Rendering Player Texture Address: " << m_pTexture << std::endl;
+	}
+	else {
+		debugLog << "Player texture is NULL during Render." << std::endl;
+	}
 	DWORD nCameraMode = (pCamera) ? pCamera->GetMode() : 0x00;
 	if (nCameraMode == THIRD_PERSON_CAMERA) CGameObject::Render(pd3dCommandList, pCamera);
-}
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
-CAngrybotPlayer::CAngrybotPlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
-{
-	m_pCamera = ChangeCamera(THIRD_PERSON_CAMERA, 0.0f);
-
-	m_pfbxScene = pfbxScene;
-	if (!m_pfbxScene)
-	{
-		m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, "Model/BluePlayer.fbx");
-		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
+	if (m_pTexture) {
+		debugLog << "After CGameObject::Render - Player texture valid: " << m_pTexture << std::endl;
 	}
-
-	m_pAnimationController = new CAnimationController(m_pfbxScene);
-
-	SetAnimationStack(0);
-
-	CreateShaderVariables(pd3dDevice, pd3dCommandList);
-
-	SetPosition(XMFLOAT3(0.0f, 0.0f, -60.0f));
-}
-
-CAngrybotPlayer::~CAngrybotPlayer()
-{
-}
-
-CCamera *CAngrybotPlayer::ChangeCamera(DWORD nNewCameraMode, float fTimeElapsed)
-{
-	DWORD nCurrentCameraMode = (m_pCamera) ? m_pCamera->GetMode() : 0x00;
-	if (nCurrentCameraMode == nNewCameraMode) return(m_pCamera);
-	switch (nNewCameraMode)
-	{
-		case FIRST_PERSON_CAMERA:
-			SetFriction(20.0f);
-			SetGravity(XMFLOAT3(0.0f, 0.0f, 0.0f));
-			SetMaxVelocityXZ(2.5f);
-			SetMaxVelocityY(40.0f);
-			m_pCamera = OnChangeCamera(FIRST_PERSON_CAMERA, nCurrentCameraMode);
-			m_pCamera->SetTimeLag(0.0f);
-			m_pCamera->SetOffset(XMFLOAT3(0.0f, 20.0f, 0.0f));
-			m_pCamera->GenerateProjectionMatrix(1.01f, 5000.0f, ASPECT_RATIO, 60.0f);
-			m_pCamera->SetViewport(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT, 0.0f, 1.0f);
-			m_pCamera->SetScissorRect(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
-			break;
-		case SPACESHIP_CAMERA:
-			SetFriction(100.5f);
-			SetGravity(XMFLOAT3(0.0f, 0.0f, 0.0f));
-			SetMaxVelocityXZ(40.0f);
-			SetMaxVelocityY(40.0f);
-			m_pCamera = OnChangeCamera(SPACESHIP_CAMERA, nCurrentCameraMode);
-			m_pCamera->SetTimeLag(0.0f);
-			m_pCamera->SetOffset(XMFLOAT3(0.0f, 0.0f, 0.0f));
-			m_pCamera->GenerateProjectionMatrix(1.01f, 5000.0f, ASPECT_RATIO, 60.0f);
-			m_pCamera->SetViewport(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT, 0.0f, 1.0f);
-			m_pCamera->SetScissorRect(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
-			break;
-		case THIRD_PERSON_CAMERA:
-			SetFriction(20.5f);
-			SetGravity(XMFLOAT3(0.0f, 0.0f, 0.0f));
-			SetMaxVelocityXZ(25.5f);
-			SetMaxVelocityY(20.0f);
-			m_pCamera = OnChangeCamera(THIRD_PERSON_CAMERA, nCurrentCameraMode);
-			m_pCamera->SetTimeLag(0.25f);
-			m_pCamera->SetOffset(XMFLOAT3(0.0f, 300.0f, -270.0f));
-			m_pCamera->GenerateProjectionMatrix(1.01f, 5000.0f, ASPECT_RATIO, 60.0f);
-			m_pCamera->SetViewport(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT, 0.0f, 1.0f);
-			m_pCamera->SetScissorRect(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
-			break;
-		default:
-			break;
+	else {
+		debugLog << "After CGameObject::Render - Player texture is NULL." << std::endl;
 	}
-	m_pCamera->SetPosition(Vector3::Add(m_xmf3Position, m_pCamera->GetOffset()));
-	Update(fTimeElapsed);
-
-	return(m_pCamera);
 }
-

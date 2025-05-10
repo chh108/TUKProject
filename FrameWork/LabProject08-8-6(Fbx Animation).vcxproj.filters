@@ -43,6 +43,15 @@
     <Filter Include="77.Shaders">
       <UniqueIdentifier>{568e690c-d62b-4c47-8ad3-8e87f3c59dec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObjects\Texture">
+      <UniqueIdentifier>{bfffbb4b-ed31-4f22-99d3-e61997a18c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\Map">
+      <UniqueIdentifier>{d34e5bb3-c598-4b88-a951-37d6daccef81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObjects\BoneData">
+      <UniqueIdentifier>{4bf30921-3bb3-4619-89f7-90e627fc112d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -52,12 +61,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="DDSTextureLoader12.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="WICTextureLoader12.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="FbxSceneContext.h">
@@ -90,15 +93,30 @@
     <ClInclude Include="Shader.h">
       <Filter>77.Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>02.GameObjects\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="d3dx12.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugLog.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+      <Filter>02.GameObjects\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>02.GameObjects\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BoneData.h">
+      <Filter>02.GameObjects\BoneData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DDSTextureLoader12.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="WICTextureLoader12.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="FbxSceneContext.cpp">
@@ -131,6 +149,21 @@
     <ClCompile Include="Shader.cpp">
       <Filter>77.Shaders</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>02.GameObjects\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugLog.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+      <Filter>02.GameObjects\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>02.GameObjects\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="BoneData.cpp">
+      <Filter>02.GameObjects\BoneData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LabProject08-8-6(Fbx Animation).rc">
@@ -146,7 +179,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shaders.hlsl">
+    <FxCompile Include="Model.hlsl">
+      <Filter>77.Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="SkyBoxShader.hlsl">
+      <Filter>77.Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="StageShader.hlsl">
+      <Filter>77.Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="SkinnedModel.hlsl">
       <Filter>77.Shaders</Filter>
     </FxCompile>
   </ItemGroup>

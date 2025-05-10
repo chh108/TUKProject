@@ -1,11 +1,16 @@
 #pragma once
 
+//-----------------------------------------------------------------------------
+// File: GameFramework.h
+//-----------------------------------------------------------------------------
+
 #define FRAME_BUFFER_WIDTH		640
 #define FRAME_BUFFER_HEIGHT		480
 
 #include "Timer.h"
 #include "Player.h"
 #include "Scene.h"
+#include "Stage.h"
 
 class CGameFramework
 {
@@ -21,6 +26,10 @@ public:
 	void CreateCommandQueueAndList();
 
 	void CreateRtvAndDsvDescriptorHeaps();
+
+	//20241209 Texture
+	void CreateCbvAndSrvDescriptorHeaps();
+	void CreateShaderResourceViews(ID3D12Resource** ppTextures, int nTextures);
 
 	void CreateRenderTargetViews();
 	void CreateDepthStencilView();
@@ -60,6 +69,11 @@ private:
 	static const UINT			m_nSwapChainBuffers = 2;
 	UINT						m_nSwapChainBufferIndex;
 
+	UINT						m_nCbvSrvDescriptorIncrementSize;
+
+	ID3D12DescriptorHeap		*m_pd3dCbvSrvDescriptorHeap = NULL;
+	ID3D12Resource				*m_pTexture = NULL;
+
 	ID3D12Resource				*m_ppd3dSwapChainBackBuffers[m_nSwapChainBuffers];
 	ID3D12DescriptorHeap		*m_pd3dRtvDescriptorHeap = NULL;
 	UINT						m_nRtvDescriptorIncrementSize;
@@ -85,6 +99,7 @@ private:
 	CScene						*m_pScene = NULL;
 	CPlayer						*m_pPlayer = NULL;
 	CCamera						*m_pCamera = NULL;
+	CStage						*m_pStage = NULL;
 
 	POINT						m_ptOldCursorPos;
 
@@ -92,5 +107,6 @@ private:
 
 	FbxManager 					*m_pfbxSdkManager = NULL;
 	FbxScene  					*m_pfbxScene = NULL;
-};
 
+	CTexture					*m_pTextureManager = NULL;
+};

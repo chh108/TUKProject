@@ -1,67 +1,231 @@
 //-----------------------------------------------------------------------------
-// File: CGameObject.cpp
+// File: Object.cpp
 //-----------------------------------------------------------------------------
 
 #include "stdafx.h"
 #include "Object.h"
 #include "Shader.h"
+#include "Mesh.h"
 #include "Scene.h"
+#include "DebugLog.h"
+#include "BoneData.h"
+#include "texture.h"
+
+std::vector<std::string> ObjectAnimations = {
+	"Model/Character/Animations/IDLE.fbx",
+	"Model/Character/Animations/WALK.fbx"
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CAnimationController::CAnimationController(FbxScene *pfbxScene)
+CAnimationController::CAnimationController(FbxScene* pfbxScene) : m_pModelScene(pfbxScene)
 {
-    FbxArray<FbxString *> fbxAnimationStackNames;
-	pfbxScene->FillAnimStackNameArray(fbxAnimationStackNames);
-
-	m_nAnimationStacks = fbxAnimationStackNames.Size();
-
-	m_ppfbxAnimationStacks = new FbxAnimStack*[m_nAnimationStacks];
-	m_pfbxStartTimes = new FbxTime[m_nAnimationStacks];
-	m_pfbxStopTimes = new FbxTime[m_nAnimationStacks];
-	m_pfbxCurrentTimes = new FbxTime[m_nAnimationStacks];
-
-	for (int i = 0; i < m_nAnimationStacks; i++)
+	if (!m_pModelScene)
 	{
-		FbxString *pfbxStackName = fbxAnimationStackNames[i];
-		FbxAnimStack *pfbxAnimationStack = pfbxScene->FindMember<FbxAnimStack>(pfbxStackName->Buffer());
-		m_ppfbxAnimationStacks[i] = pfbxAnimationStack;
+		debugLog << "Model Scene is NULL." << std::endl;
+	}
+}
 
-		FbxTakeInfo *pfbxTakeInfo = pfbxScene->GetTakeInfo(*pfbxStackName);
-		FbxTime fbxStartTime, fbxStopTime;
-		if (pfbxTakeInfo)
-		{
-			fbxStartTime = pfbxTakeInfo->mLocalTimeSpan.GetStart();
-			fbxStopTime = pfbxTakeInfo->mLocalTimeSpan.GetStop();
-		}
-		else
-		{
-			FbxTimeSpan fbxTimeLineTimeSpan;
-			pfbxScene->GetGlobalSettings().GetTimelineDefaultTimeSpan(fbxTimeLineTimeSpan);
-			fbxStartTime = fbxTimeLineTimeSpan.GetStart();
-			fbxStopTime = fbxTimeLineTimeSpan.GetStop();
-		}
+CAnimationController::~CAnimationController() 
+{
+	for (FbxScene* scene : m_pAnimationScenes)
+	{
+		scene->Destroy();
+	}
+	m_pAnimationScenes.clear();
+	m_pAnimationStacks.clear();
+	m_pfbxStartTimes.clear();
+	m_pfbxStopTimes.clear();
+	m_pfbxCurrentTimes.clear();
+};
 
-		m_pfbxStartTimes[i] = fbxStartTime;
-		m_pfbxStopTimes[i] = fbxStopTime;
-		m_pfbxCurrentTimes[i] = FbxTime(0);
+void CAnimationController::LoadAnimation(FbxManager* pFbxManager, const std::string& animationFilePath, FbxScene* pModelScene)
+{
+	FbxScene* pAnimationScene = LoadFbxSceneFromFile(nullptr, nullptr, pFbxManager, animationFilePath.c_str());
+	if (!pAnimationScene) {
+		std::cerr << "Failed to load animation FBX: " << animationFilePath << std::endl;
+		return;
 	}
 
-    FbxArrayDelete(fbxAnimationStackNames);
+	m_pAnimationScenes.push_back(pAnimationScene);
+
+	FbxArray<FbxString*> fbxAnimationStackNames;
+	pAnimationScene->FillAnimStackNameArray(fbxAnimationStackNames);
+
+	for (int i = 0; i < fbxAnimationStackNames.Size(); i++) {
+		FbxAnimStack* pAnimStack = pAnimationScene->FindMember<FbxAnimStack>(fbxAnimationStackNames[i]->Buffer());
+		m_pAnimationStacks.push_back(pAnimStack);
+
+		FbxTakeInfo* pTakeInfo = pAnimationScene->GetTakeInfo(*fbxAnimationStackNames[i]);
+		if (pTakeInfo) {
+			m_pfbxStartTimes.push_back(pTakeInfo->mLocalTimeSpan.GetStart());
+			m_pfbxStopTimes.push_back(pTakeInfo->mLocalTimeSpan.GetStop());
+		}
+		else {
+			FbxTimeSpan defaultTimeSpan;
+			pAnimationScene->GetGlobalSettings().GetTimelineDefaultTimeSpan(defaultTimeSpan);
+			m_pfbxStartTimes.push_back(defaultTimeSpan.GetStart());
+			m_pfbxStopTimes.push_back(defaultTimeSpan.GetStop());
+		}
+		m_pfbxCurrentTimes.push_back(m_pfbxStartTimes.back());
+
+		// Merge Model And Animation
+		MergeModelAndAnimation(pModelScene, pAnimationScene);
+
+		debugLog << "[LoadAnimation] Animation Stack Loaded: " << pAnimStack->GetName() << std::endl;
+	}
+
+	FbxArrayDelete(fbxAnimationStackNames);
 }
 
-CAnimationController::~CAnimationController()
+void CAnimationController::LoadAnimations(FbxManager* pFbxManager, const std::vector<std::string>& animationFilePaths, FbxScene* pModelScene)
 {
-	if (m_ppfbxAnimationStacks) delete[] m_ppfbxAnimationStacks;
-	if (m_pfbxStartTimes) delete[] m_pfbxStartTimes;
-	if (m_pfbxStopTimes) delete[] m_pfbxStopTimes;
-	if (m_pfbxCurrentTimes) delete[] m_pfbxCurrentTimes;
+	for (const std::string& filePath : animationFilePaths)
+	{
+		LoadAnimation(pFbxManager, filePath, pModelScene);
+	}
+
+	for (size_t i = 0; i < m_pAnimationStacks.size(); ++i)
+	{
+		std::string fileName = animationFilePaths[i].substr(animationFilePaths[i].find_last_of("/\\") + 1);
+		fileName = fileName.substr(0, fileName.find_last_of("."));  // 확장자 제거
+
+		m_pAnimationStacks[i]->SetName(fileName.c_str());
+
+		//debugLog << "[Loaded Animations] Loaded Animation Stack [" << i << "]: "
+		//	<< m_pAnimationStacks[i]->GetName() << std::endl;
+		//debugLog << "START TIME: " << m_pfbxStartTimes[i].GetSecondDouble() << "s, "
+		//	<< "STOP TIME: " << m_pfbxStopTimes[i].GetSecondDouble() << "s" << std::endl;
+	}
 }
 
-void CAnimationController::SetAnimationStack(FbxScene *pfbxScene, int nAnimationStack)
+void CAnimationController::MergeModelAndAnimation(FbxScene* modelScene, FbxScene* animationScene)
 {
-	m_nAnimationStack = nAnimationStack;
-	pfbxScene->SetCurrentAnimationStack(m_ppfbxAnimationStacks[nAnimationStack]);
+	FbxNode* modelRoot = modelScene->GetRootNode();
+	FbxNode* animRoot = animationScene->GetRootNode();
+
+	if (!modelRoot || !animRoot) {
+		debugLog << "[Merge Error] Invalid model or animation scene." << std::endl;
+		return;
+	}
+
+	std::unordered_map<std::string, FbxNode*> animBoneMap;
+
+	// BuildBoneMap
+	BuildBoneMap(animRoot, animBoneMap);
+
+	// ApplyAnimationToModelBones
+	ApplyAnimationToModelBones(modelRoot, animBoneMap);
+}
+
+void CAnimationController::BuildBoneMap(FbxNode* node, std::unordered_map<std::string, FbxNode*>& boneMap)
+{
+	if (node->GetNodeAttribute() && node->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton) {
+		std::string boneName = node->GetName();
+		boneMap[boneName] = node;
+	}
+
+	for (int i = 0; i < node->GetChildCount(); ++i) {
+		BuildBoneMap(node->GetChild(i), boneMap);
+	}
+}
+
+void CAnimationController::ApplyAnimationToModelBones(FbxNode* modelNode, const std::unordered_map<std::string, FbxNode*>& animBoneMap)
+{
+	std::string boneName = modelNode->GetName();
+
+	auto it = animBoneMap.find(boneName);
+	if (it != animBoneMap.end()) {
+		FbxNode* animBone = it->second;
+
+		// debugLog << "[Bone Mapping] Model Bone: " << boneName << " with Animation Bone: " << animBone->GetName() << std::endl;
+
+		// 트랜스폼 병합 전 디버깅
+		FbxVector4 modelTrans = modelNode->LclTranslation.Get();
+		FbxVector4 animTrans = animBone->LclTranslation.Get();
+
+		// debugLog << "[Before Merge] Model Trans: (" << modelTrans[0] << ", " << modelTrans[1] << ", " << modelTrans[2] << ")" << std::endl;
+		// debugLog << "[Before Merge] Anim Trans: (" << animTrans[0] << ", " << animTrans[1] << ", " << animTrans[2] << ")" << std::endl;
+
+		// TransfromSet
+		modelNode->LclTranslation.Set(animBone->LclTranslation.Get());
+		modelNode->LclRotation.Set(animBone->LclRotation.Get());
+		modelNode->LclScaling.Set(animBone->LclScaling.Get());
+
+		// 병합 후 디버깅
+		FbxVector4 mergedTrans = modelNode->LclTranslation.Get();
+		debugLog << "[After Merge] Merged Trans: (" << mergedTrans[0] << ", " << mergedTrans[1] << ", " << mergedTrans[2] << ")" << std::endl;
+
+		// MergeAnimationCurves
+		MergeAnimationCurves(modelNode, animBone);
+	}
+
+	for (int i = 0; i < modelNode->GetChildCount(); ++i) {
+		ApplyAnimationToModelBones(modelNode->GetChild(i), animBoneMap);
+	}
+}
+
+void CAnimationController::MergeAnimationCurves(FbxNode* modelNode, FbxNode* animBone)
+{
+	FbxAnimStack* animStack = animBone->GetScene()->GetCurrentAnimationStack();
+	if (!animStack) {
+		animStack = FbxAnimStack::Create(modelNode->GetScene(), "Merged_Animation_Stack");
+		debugLog << "[Create Animation Stack] : " << modelNode->GetScene()->GetName() << std::endl;
+	}
+	if (!animStack) return;
+
+	FbxAnimLayer* animLayer = animStack->GetMember<FbxAnimLayer>();
+	if (!animLayer) {
+		animLayer = FbxAnimLayer::Create(modelNode->GetScene(), "Merged_Animation_Layer");
+		animStack->AddMember(animLayer);
+		debugLog << "[Create Animation Stack] : " << modelNode->GetScene()->GetName() << std::endl;
+	}
+	if (!animLayer) return;
+
+	// X,Y,Z Animation Curves
+	for (int axis = 0; axis < 3; ++axis) {
+		const char* axisName = (axis == 0) ? "X" : (axis == 1) ? "Y" : "Z";
+
+
+		FbxAnimCurve* modelCurve = modelNode->LclTranslation.GetCurve(animLayer, axisName);
+		FbxAnimCurve* animCurve = animBone->LclTranslation.GetCurve(animLayer, axisName);
+
+		if (!modelCurve) {
+			modelCurve = modelNode->LclTranslation.GetCurve(animLayer, axisName, true);
+			// debugLog << "[Create] New animation curve for bone '" << modelNode->GetName() << "' on axis " << axisName << std::endl;
+			continue;
+		}
+
+		if (!animCurve) {
+			debugLog << "[Warning] No animation curve for bone '" << animBone->GetName() << "' on axis " << axisName << "." << std::endl;
+			continue;
+		}
+
+		modelCurve->KeyModifyBegin();
+
+		if (modelCurve && animCurve) {
+			// Animation Keyframe
+			for (int k = 0; k < animCurve->KeyGetCount(); ++k) {
+				FbxTime keyTime = animCurve->KeyGetTime(k);
+				float keyValue = animCurve->KeyGetValue(k);
+
+				int keyIndex = modelCurve->KeyAdd(keyTime);
+				if (keyIndex != -1) {
+					modelCurve->KeySetValue(keyIndex, keyValue);
+					modelCurve->KeySetInterpolation(keyIndex, FbxAnimCurveDef::eInterpolationLinear);
+				}
+				else {
+					debugLog << "[Error] Failed to add keyframe at time: " << keyTime.GetSecondDouble() << std::endl;
+				}
+				
+			}
+		}
+
+		modelCurve->KeyModifyEnd();
+
+		debugLog << "[Merge Complete] Bone '" << modelNode->GetName() << "' on axis " << axisName
+			<< " has " << modelCurve->KeyGetCount() << " keyframes." << std::endl;
+	}
 }
 
 void CAnimationController::SetPosition(int nAnimationStack, float fPosition)
@@ -69,21 +233,77 @@ void CAnimationController::SetPosition(int nAnimationStack, float fPosition)
 	m_pfbxCurrentTimes[nAnimationStack].SetSecondDouble(fPosition);;
 }
 
-void CAnimationController::AdvanceTime(float fTimeElapsed) 
+void CAnimationController::SetAnimation(int nAnimationStack)
 {
-	m_fTime += fTimeElapsed; 
+	if (nAnimationStack < 0 || nAnimationStack >= static_cast<int>(m_pAnimationStacks.size())) {
+		debugLog << "[SetAnimation] Invalid animation stack index: " << nAnimationStack << std::endl;
+		return;
+	}
 
+	m_nAnimationStack = nAnimationStack;
+	m_pModelScene->SetCurrentAnimationStack(m_pAnimationStacks[nAnimationStack]);
+
+	debugLog << "[SetAnimation] Current Animation Stack Set: "
+		<< m_pAnimationStacks[nAnimationStack]->GetName() << std::endl;
+}
+
+void CAnimationController::AdvanceTime(float fElapsedTime)
+{
 	FbxTime fbxElapsedTime;
-	fbxElapsedTime.SetSecondDouble(fTimeElapsed);
+	fbxElapsedTime.SetSecondDouble(fElapsedTime);
 
 	m_pfbxCurrentTimes[m_nAnimationStack] += fbxElapsedTime;
-	if (m_pfbxCurrentTimes[m_nAnimationStack] > m_pfbxStopTimes[m_nAnimationStack]) m_pfbxCurrentTimes[m_nAnimationStack] = m_pfbxStartTimes[m_nAnimationStack];
-} 
+
+	if (m_pfbxCurrentTimes[m_nAnimationStack] > m_pfbxStopTimes[m_nAnimationStack]) {
+		m_pfbxCurrentTimes[m_nAnimationStack] = m_pfbxStartTimes[m_nAnimationStack];
+	}
+}
+
+void CAnimationController::CheckAnimationKeyframes(int nAnimationStack)
+{
+	if (nAnimationStack < 0 || nAnimationStack >= static_cast<int>(m_pAnimationStacks.size())) {
+		std::cerr << "Invalid animation stack index: " << nAnimationStack << std::endl;
+		return;
+	}
+
+	FbxAnimStack* animStack = m_pAnimationStacks[nAnimationStack];
+	FbxAnimLayer* animLayer = animStack->GetMember<FbxAnimLayer>();
+	if (animLayer)
+	{
+		FbxAnimCurve* animCurve = m_pModelScene->GetRootNode()->LclTranslation.GetCurve(animLayer, FBXSDK_CURVENODE_COMPONENT_X);
+		if (animCurve)
+		{
+			int keyCount = animCurve->KeyGetCount();
+			std::cout << "Total Keyframes: " << keyCount << std::endl;
+			for (int k = 0; k < keyCount; k++)
+			{
+				FbxTime keyTime = animCurve->KeyGetTime(k);
+				std::cout << "Keyframe[" << k << "] Time: " << keyTime.GetSecondDouble() << " seconds" << std::endl;
+			}
+		}
+	}
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CGameObject::CGameObject()
-{
+CGameObject::CGameObject() 
+	: m_pd3dCbvSrvDescriptorHeap(NULL), m_pd3dBoneOffsetSrvDescriptorHeap(NULL),
+	m_pd3dBoneTransSrvDescriptorHeap(NULL), m_pd3dDevice(NULL), m_pTextureManager(NULL), m_pBoneData(NULL) {
+	m_xmf4x4World = Matrix4x4::Identity();
+}
+
+CGameObject::CGameObject(CTexture* pTextureManager, ID3D12Device* pd3dDevice)
+	: m_pTextureManager(pTextureManager), m_pd3dDevice(pd3dDevice) {
+
+	// debugLog << "CGameObject Constructor - Device: " << pd3dDevice << std::endl;
+
+	if (!m_pTextureManager) {
+		// debugLog << "CGameObject: Texture Manager is NULL during initialization." << std::endl;
+	}
+	else {
+		// debugLog << "CGameObject: Texture Manager successfully initialized." << std::endl;
+		m_pd3dCbvSrvDescriptorHeap = pTextureManager->GetDescriptorHeap(); // 힙 참조
+	}
 	m_xmf4x4World = Matrix4x4::Identity();
 }
 
@@ -94,6 +314,7 @@ CGameObject::~CGameObject()
 	if (m_pfbxScene) m_pfbxScene->Destroy();
 #endif
 	if (m_pAnimationController) delete m_pAnimationController;
+	if (m_pBoneData) delete m_pBoneData;
 }
 
 void CGameObject::AddRef() 
@@ -118,10 +339,93 @@ void CGameObject::Animate(float fTimeElapsed)
 
 void CGameObject::Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera)
 {
+	if (m_pTexture) {
+		// debugLog << "CGameObject::Render - Texture valid: " << m_pTexture << std::endl;
+	}
+	else {
+		// debugLog << "CGameObject::Render - Texture is NULL." << std::endl;
+	}
+
 	OnPrepareRender();
 
-	FbxAMatrix fbxf4x4World = ::XmFloat4x4MatrixToFbxMatrix(m_xmf4x4World);
-	if (m_pfbxScene) ::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
+	ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dCbvSrvDescriptorHeap};
+	pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps);
+
+	// 20241216 텍스처 로딩
+	if (m_pTexture) {
+		D3D12_GPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		srvHandle.ptr += m_TextureHeapIndex * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+		pd3dCommandList->SetGraphicsRootDescriptorTable(2, srvHandle); // Root ParameterIndex 2
+		debugLog << "SrvGpuHandle : " << srvHandle.ptr << std::endl;
+	}
+	else
+	{
+		debugLog << "Failed To Bind SRV.\n";
+	}
+
+	if (m_pBoneData) {
+		if (m_pBoneData->m_pd3dBoneOffsetBuffer == NULL || m_pBoneData->m_pd3dBoneTransformBuffer == NULL) {
+			debugLog << "[Warning] Bone Buffers are NULL. Creating buffers..." << std::endl;
+
+			D3D12_CPU_DESCRIPTOR_HANDLE cbvHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+			D3D12_CPU_DESCRIPTOR_HANDLE srvHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+
+			UINT descriptorSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+			debugLog << "[Info] Descriptor Increment Size: " << descriptorSize << std::endl;
+			debugLog << "[Info] BoneMapIndex: " << m_BoneMapIndex << std::endl;
+
+			cbvHandle.ptr += m_BoneMapIndex * 2 * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+			srvHandle.ptr += (m_BoneMapIndex * 2 + 1) * m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+
+			debugLog << "[Info] CBV Handle Ptr: " << cbvHandle.ptr << std::endl;
+			debugLog << "[Info] SRV Handle Ptr: " << srvHandle.ptr << std::endl;
+
+			m_pBoneData->CreateBoneBuffers(cbvHandle, srvHandle);
+		}
+		FbxTime currentTime = m_pAnimationController->GetCurrentTime();
+		D3D12_CPU_DESCRIPTOR_HANDLE boneCpuHandle = m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+
+		m_pBoneData->UpdateAndUploadBoneTransforms(currentTime);
+
+		// (2) 본 데이터 SRV 바인딩
+		D3D12_GPU_DESCRIPTOR_HANDLE boneGpuHandle = m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart();
+		pd3dCommandList->SetGraphicsRootDescriptorTable(6, boneGpuHandle);  // Root Parameter 6 (Bone Offset)
+		debugLog << "boneGpuHandle : " << boneGpuHandle.ptr << std::endl;
+		pd3dCommandList->SetGraphicsRootDescriptorTable(7, boneGpuHandle); // Root ParameterIndex 2
+	}
+	// 20241216 애니메이션 작업
+	if (m_pfbxScene && m_pAnimationController)
+	{
+		// Animation Set
+		ApplyAnimation();
+		FbxAMatrix fbxf4x4World = ::XmFloat4x4MatrixToFbxMatrix(m_xmf4x4World);
+		::RenderFbxNodeHierarchy(pd3dCommandList, m_pfbxScene->GetRootNode(), m_pAnimationController->GetCurrentTime(), fbxf4x4World);
+	}
+}
+
+CShader* CGameObject::m_pFbxShader = NULL;
+CShader* CGameObject::m_pFbxSkinnedShader = NULL;
+CShader* CGameObject::m_pSkyBoxShader = NULL;
+CShader* CGameObject::m_pStageShader = NULL;
+
+
+void CGameObject::PrepareShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList, ID3D12RootSignature* pd3dGraphicsRootSignature)
+{
+	m_pFbxShader = new CFbxModelShader();
+	m_pFbxShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxModel);
+	m_pFbxShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+
+	m_pFbxSkinnedShader = new CFbxSkinnedModelShader();
+	m_pFbxSkinnedShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::FbxSkinnedModel);
+	m_pFbxSkinnedShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+
+	//m_pSkyBoxShader = new CSkyBoxShader();
+	//m_pSkyBoxShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::SkyBox);
+	//m_pSkyBoxShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+
+	//m_pStageShader = new CStageShader();
+	//m_pStageShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, SHADER_TYPE::Stage);
+	//m_pStageShader->CreateShaderVariables(pd3dDevice, pd3dCommandList);
 }
 
 void CGameObject::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)
@@ -237,20 +541,86 @@ void CGameObject::Rotate(XMFLOAT4 *pxmf4Quaternion)
 	m_xmf4x4World = Matrix4x4::Multiply(mtxRotate, m_xmf4x4World);
 }
 
+void CGameObject::SetShader(CShader* pShader)
+{
+	if (m_pShader) m_pShader->Release();
+	m_pShader = pShader;
+
+	if (m_pShader) m_pShader->AddRef();
+}
+
+void CGameObject::ApplyAnimation()
+{
+	if (m_pfbxScene && m_pAnimationController) // Scene & Animation
+	{
+		FbxTime currentTime = m_pAnimationController->GetCurrentTime();
+
+		AnimateFbxNodeHierarchy(m_pfbxScene->GetRootNode(), currentTime);
+	}
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-CAngrybotObject::CAngrybotObject(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, ID3D12RootSignature *pd3dGraphicsRootSignature, FbxManager *pfbxSdkManager, FbxScene *pfbxScene)
+CBlueObject::CBlueObject(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList,
+	ID3D12RootSignature* pd3dGraphicsRootSignature, FbxManager* pfbxSdkManager, CTexture* pTextureManager, FbxScene *pfbxScene)
+	: CGameObject(pTextureManager, pd3dDevice), m_pObjTexture(NULL)
 {
 	m_pfbxScene = pfbxScene;
 	if (!m_pfbxScene)
 	{
+		if (pTextureManager) {
+			m_pTextureManager = pTextureManager;
+		}
+		else {
+			// debugLog << "CBlueObject : Texture Manager is NULL!" << std::endl;
+		}
+
 		m_pfbxScene = ::LoadFbxSceneFromFile(pd3dDevice, pd3dCommandList, pfbxSdkManager, "Model/BluePlayer.fbx");
+
+		std::vector<ID3D12Resource*> textures = m_pTextureManager->ExtractTexturesWithCustom(m_pfbxScene->GetRootNode(), "Model/Character/Textures/", pd3dCommandList);
+
+		if (!textures.empty()) {
+			m_pTexture = textures[0]; // 첫 번째 텍스처를 사용
+			//debugLog << "First texture loaded for Player: " << m_pTexture << std::endl;
+		}
+		else {
+			// std::cerr << "No textures loaded for Player." << std::endl;
+		}
 		::CreateMeshFromFbxNodeHierarchy(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature, m_pfbxScene->GetRootNode());
 	}
+	SetTexture(m_pTexture, 0);
+
 	m_pAnimationController = new CAnimationController(m_pfbxScene);
+
+	if (m_pAnimationController)
+	{
+		m_pAnimationController->LoadAnimations(pfbxSdkManager, ObjectAnimations, m_pfbxScene);
+		m_pAnimationController->SetAnimation(0);
+
+		m_pBoneData = new CBoneData(pd3dDevice, m_pd3dCbvSrvDescriptorHeap);
+
+		FbxNode* modelRootNode = m_pfbxScene->GetRootNode();
+		int boneIndex = 0;
+		m_pBoneData->LoadBones(modelRootNode, boneIndex);
+
+		for (int i = 0; i < modelRootNode->GetChildCount(); ++i) {
+			FbxNode* childNode = modelRootNode->GetChild(i);
+			FbxMesh* pMesh = childNode->GetMesh();
+			if (pMesh) {
+				m_pBoneData->LoadVertexBoneData(pMesh);
+			}
+		}
+
+		for (const auto& animationScene : m_pAnimationController->GetAnimationScenes()) {
+			if (animationScene) {
+				FbxNode* animRootNode = animationScene->GetRootNode();
+				m_pBoneData->LoadBones(animRootNode, boneIndex);
+			}
+		}
+	}
+	debugLog << "[CGameObject] Objects Created Successful!! " << std::endl;
 }
 
-CAngrybotObject::~CAngrybotObject()
+CBlueObject::~CBlueObject()
 {
 }
-

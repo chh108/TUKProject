@@ -1,9 +1,10 @@
 //-----------------------------------------------------------------------------
-// File: CGameFramework.cpp
+// File: GameFramework.cpp
 //-----------------------------------------------------------------------------
 
 #include "stdafx.h"
 #include "GameFramework.h"
+#include "debugLog.h"
 
 CGameFramework::CGameFramework()
 {
@@ -20,6 +21,7 @@ CGameFramework::CGameFramework()
 
 	m_pd3dRtvDescriptorHeap = NULL;
 	m_pd3dDsvDescriptorHeap = NULL;
+	m_pd3dCbvSrvDescriptorHeap = NULL;
 
 	m_nRtvDescriptorIncrementSize = 0;
 	m_nDsvDescriptorIncrementSize = 0;
@@ -33,6 +35,7 @@ CGameFramework::CGameFramework()
 
 	m_pScene = NULL;
 	m_pPlayer = NULL;
+	m_pTexture = NULL;
 
 	_tcscpy_s(m_pszFrameRate, _T("LabProject ("));
 }
@@ -46,13 +49,42 @@ bool CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 	m_hInstance = hInstance;
 	m_hWnd = hMainWnd;
 
+#if defined(_DEBUG)  // 디버그 빌드에서만 실행
+	ID3D12Debug* debugController = nullptr;
+	if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController)))) {
+		debugController->EnableDebugLayer();  // D3D12 디버그 레이어 활성화
+		debugLog << "[Info] D3D12 Debug Layer Enabled." << std::endl;
+		debugController->Release();
+	}
+	else {
+		debugLog << "[Warning] Failed to enable D3D12 Debug Layer." << std::endl;
+	}
+
+	// DXGI 디버그 레이어 활성화 (선택사항)
+	IDXGIInfoQueue* dxgiInfoQueue = nullptr;
+	if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(&dxgiInfoQueue)))) {
+		dxgiInfoQueue->SetBreakOnSeverity(DXGI_DEBUG_ALL, DXGI_INFO_QUEUE_MESSAGE_SEVERITY_ERROR, TRUE);
+		dxgiInfoQueue->SetBreakOnSeverity(DXGI_DEBUG_ALL, DXGI_INFO_QUEUE_MESSAGE_SEVERITY_CORRUPTION, TRUE);
+		debugLog << "[Info] DXGI Debug Layer Enabled." << std::endl;
+		dxgiInfoQueue->Release();
+	}
+#endif
+
 	CreateDirect3DDevice();
 	CreateCommandQueueAndList();
 	CreateRtvAndDsvDescriptorHeaps();
+	CreateCbvAndSrvDescriptorHeaps();
 	CreateSwapChain();
 	CreateDepthStencilView();
 
+	// 20241229 Texture
+	m_pTextureManager = new CTexture();
+	m_pTextureManager->Initialize(m_pd3dDevice, m_pd3dCommandQueue, m_pd3dCbvSrvDescriptorHeap, m_nCbvSrvDescriptorIncrementSize);
+
 	CoInitialize(NULL);
+
+	//20241212 LoadTextures
+	// LoadGameTextures();
 
 	BuildObjects();
 
@@ -202,6 +234,44 @@ void CGameFramework::CreateRtvAndDsvDescriptorHeaps()
 	d3dDescriptorHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
 	hResult = m_pd3dDevice->CreateDescriptorHeap(&d3dDescriptorHeapDesc, __uuidof(ID3D12DescriptorHeap), (void **)&m_pd3dDsvDescriptorHeap);
 	m_nDsvDescriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_DSV);
+}
+
+void CGameFramework::CreateCbvAndSrvDescriptorHeaps() // 20241228 
+{
+	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
+	srvHeapDesc.NumDescriptors = 1024; // Max Set Descriptors
+	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	srvHeapDesc.NodeMask = 0;
+
+	HRESULT hResult = m_pd3dDevice->CreateDescriptorHeap(&srvHeapDesc, __uuidof(ID3D12DescriptorHeap), (void**)&m_pd3dCbvSrvDescriptorHeap);
+	if (FAILED(hResult)) {
+		debugLog << ("Failed to create CBV/SRV/UAV Descriptor Heap.\n");
+	}
+	else
+	{
+		debugLog << ("SRV Descriptor Heap Created Well Done\n");
+	}
+	m_nCbvSrvDescriptorIncrementSize = m_pd3dDevice->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV); // GetDescriptorSize
+}
+
+void CGameFramework::CreateShaderResourceViews(ID3D12Resource** ppTextures, int nTextures)
+{
+	D3D12_CPU_DESCRIPTOR_HANDLE srvCpuHandle(m_pd3dCbvSrvDescriptorHeap->GetCPUDescriptorHandleForHeapStart());
+	D3D12_GPU_DESCRIPTOR_HANDLE srcGpuHandle(m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
+
+	for (int i = 0; i < nTextures; ++i)
+	{
+		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+		srvDesc.Format = ppTextures[i]->GetDesc().Format;
+		srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+		srvDesc.Texture2D.MostDetailedMip = 0;
+		srvDesc.Texture2D.MipLevels = ppTextures[i]->GetDesc().MipLevels;
+
+		m_pd3dDevice->CreateShaderResourceView(ppTextures[i], &srvDesc, srvCpuHandle);
+		srvCpuHandle.ptr += m_nCbvSrvDescriptorIncrementSize; // MoveDescriptorHandleForHeapStart();
+	}
 }
 
 void CGameFramework::CreateRenderTargetViews()
@@ -375,6 +445,9 @@ void CGameFramework::OnDestroy()
 
 	for (int i = 0; i < m_nSwapChainBuffers; i++) if (m_ppd3dSwapChainBackBuffers[i]) m_ppd3dSwapChainBackBuffers[i]->Release();
 	if (m_pd3dRtvDescriptorHeap) m_pd3dRtvDescriptorHeap->Release();
+	if (m_pd3dCbvSrvDescriptorHeap) m_pd3dCbvSrvDescriptorHeap->Release();
+
+	if (m_pTexture) m_pTexture->Release();
 
 	if (m_pd3dCommandAllocator) m_pd3dCommandAllocator->Release();
 	if (m_pd3dCommandQueue) m_pd3dCommandQueue->Release();
@@ -409,20 +482,22 @@ void CGameFramework::CreateFbxSdkManager()
 void CGameFramework::BuildObjects()
 {
 	CreateFbxSdkManager();
-
 	m_pd3dCommandList->Reset(m_pd3dCommandAllocator, NULL);
 
 #ifdef _WITH_FBX_SCENE_INSTANCING
-	m_pfbxScene = ::LoadFbxSceneFromFile(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, "Model/Angrybot.fbx");
+	m_pfbxScene = ::LoadFbxSceneFromFile(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, "Model/Blue.fbx");
 #endif
 	m_pScene = new CScene();
-	if (m_pScene) m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, m_pfbxScene);
+	if (m_pScene) m_pScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList, m_pfbxSdkManager, m_pTextureManager, m_pfbxScene);
+
+	CPlayer* pPlayer = new CPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(),
+		m_pfbxSdkManager, "Model/BluePlayer.fbx", m_pTextureManager, PlayerType::Blue);
+
+	// debugLog << "After CPlayer Creation - Device: " << m_pd3dDevice << std::endl;
 
 #ifdef _WITH_FBX_SCENE_INSTANCING
 	::CreateMeshFromFbxNodeHierarchy(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxScene->GetRootNode());
 #endif
-
-	CAngrybotPlayer *pPlayer = new CAngrybotPlayer(m_pd3dDevice, m_pd3dCommandList, m_pScene->GetGraphicsRootSignature(), m_pfbxSdkManager, m_pfbxScene);
 
 	m_pScene->m_pPlayer = m_pPlayer = pPlayer;
 	m_pCamera = m_pPlayer->GetCamera();
@@ -502,6 +577,8 @@ void CGameFramework::AnimateObjects()
 {
 	float fTimeElapsed = m_GameTimer.GetTimeElapsed();
 
+	debugLog << "Elapsed Time Per Frame: " << fTimeElapsed << " seconds" << std::endl;
+
 	if (m_pScene) m_pScene->AnimateObjects(fTimeElapsed);
 
 	m_pPlayer->Animate(fTimeElapsed);
@@ -540,6 +617,9 @@ void CGameFramework::FrameAdvance()
 {    
 	m_GameTimer.Tick(0.0f);
 	
+	float fTimeElapsed = m_GameTimer.GetTimeElapsed();
+	debugLog << "Elapsed Time per Frame: " << fTimeElapsed << std::endl;
+
 	ProcessInput();
 
     AnimateObjects();
@@ -567,6 +647,12 @@ void CGameFramework::FrameAdvance()
 	m_pd3dCommandList->ClearDepthStencilView(d3dDsvCPUDescriptorHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, NULL);
 
 	m_pd3dCommandList->OMSetRenderTargets(1, &d3dRtvCPUDescriptorHandle, TRUE, &d3dDsvCPUDescriptorHandle);
+
+	//ID3D12DescriptorHeap* ppHeaps[] = { m_pd3dCbvSrvDescriptorHeap };
+	//m_pd3dCommandList->SetDescriptorHeaps(_countof(ppHeaps), ppHeaps); // Do When Rendering is needed 20241229
+
+	//// SetRootDescriptorTable and Rendering
+	//m_pd3dCommandList->SetGraphicsRootDescriptorTable(0, m_pd3dCbvSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
 
 	if (m_pScene) m_pScene->Render(m_pd3dCommandList, m_pCamera);
 

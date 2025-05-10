@@ -6,6 +6,7 @@
 
 #include "Shader.h"
 #include "Player.h"
+#include "Stage.h"
 
 class CScene
 {
@@ -20,7 +21,9 @@ public:
 	virtual void UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList);
 	virtual void ReleaseShaderVariables();
 
-	void BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, FbxScene *pfbxScene);
+	void InitializeShaders(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList, ID3D12RootSignature* pd3dGraphicsRootSignature);
+
+	void BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, FbxManager *pfbxSdkManager, CTexture* pTextureManager, FbxScene *pfbxScene);
 	void ReleaseObjects();
 
 	ID3D12RootSignature *CreateGraphicsRootSignature(ID3D12Device *pd3dDevice);
@@ -34,10 +37,22 @@ public:
 
 	CPlayer								*m_pPlayer = NULL;
 
+	//20241229 Map
+	CStage								*m_pStage = NULL;
+
 protected:
 	ID3D12RootSignature					*m_pd3dGraphicsRootSignature = NULL;
 
+	static ID3D12DescriptorHeap*		m_pd3dCbvSrvDescriptorHeap;
+	ID3D12CommandQueue*					m_pd3dCommandQueue;
+
+	UINT								m_nSrvDescriptorSize = 0; // Size of Descriptor
 public:
+
+	//static void CreateCbvSrvDescriptorHeaps(ID3D12Device* pd3dDevice, int nConstantBufferViews, int nShaderResourceViews);
+
+	//static D3D12_GPU_DESCRIPTOR_HANDLE CreateConstantBufferViews(ID3D12Device* pd3dDevice, int nConstantBufferViews, ID3D12Resource* pd3dConstantBuffers, UINT nStride);
+	//static void CreateShaderResourceViews(ID3D12Device* pd3dDevice, CTexture* pTexture, UINT nDescriptorHeapIndex, UINT nRootParameterStartIndex);
 
 	int									m_nGameObjects = 0;
 	CGameObject							**m_ppGameObjects = NULL;
@@ -46,4 +61,5 @@ public:
 
 	int									m_nShaders = 0;
 	CShader								**m_ppShaders = NULL;
+
 };

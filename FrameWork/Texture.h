@@ -1,0 +1,39 @@
+// CTexture.h
+#pragma once
+
+// 20241204 Texture 헤더 파일 수정
+// 20241214 Unorderd_map 사용을 통한 중복 방지
+
+#include "stdafx.h"
+#include <codecvt>
+#include <unordered_map>
+
+// 20241213 Texture 클래스 수정
+
+class CTexture {
+public:
+    CTexture();
+    ~CTexture();
+
+    ID3D12Resource* LoadTexture(const std::string& path, ID3D12GraphicsCommandList* pd3dCommandList);
+    // ID3D12Resource* CreateCubeMapTexture(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dCommandList, const std::vector<std::wstring>& textureFiles);
+
+    std::vector<ID3D12Resource*>  ExtractTexturesWithCustom(FbxNode* pNode, const std::string& path, ID3D12GraphicsCommandList* pd3dCommandList);
+    std::string ConvertExtensionToLowerCase(const std::string & fileName);
+
+    void Initialize(ID3D12Device* pd3dDevice, ID3D12CommandQueue* pd3dCommandQueue, ID3D12DescriptorHeap* pd3dCbvSrvDescriptorHeap, UINT descriptorIncrementSize);
+
+    ID3D12DescriptorHeap* CTexture::GetDescriptorHeap() const {
+        return m_pd3dCbvSrvDescriptorHeap;
+    }
+
+private:
+    ID3D12Device* m_pd3dDevice;
+    ID3D12CommandQueue* m_pd3dCommandQueue;
+    ID3D12DescriptorHeap* m_pd3dCbvSrvDescriptorHeap;
+
+    UINT m_descriptorIncrementSize = 0;
+
+    UINT m_heapIndex = 0;
+    std::unordered_map<std::string, ID3D12Resource*> m_textureMap;
+};
